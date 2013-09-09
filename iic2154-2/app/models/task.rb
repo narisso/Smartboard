@@ -12,4 +12,7 @@ class Task < ActiveRecord::Base
   has_many :document_tasks
   has_many :commits
 
+  has_many :task_users
+  has_many :users, :through => :task_users
+
 end

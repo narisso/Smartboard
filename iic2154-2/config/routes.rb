@@ -1,4 +1,10 @@
 Iic21542::Application.routes.draw do
+  resources :roles
+
+
+  resources :task_users
+
+
   resources :labels
 
 

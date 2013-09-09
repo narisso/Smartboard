@@ -1,0 +1,29 @@
+<h1>Listing document_tasks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Name</th>
+    <th>Task</th>
+    <th>Url path</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @document_tasks.each do |document_task| %>
+  <tr>
+    <td><%= document_task.description %></td>
+    <td><%= document_task.name %></td>
+    <td><%= document_task.task_id %></td>
+    <td><%= document_task.url_path %></td>
+    <td><%= link_to 'Show', document_task %></td>
+    <td><%= link_to 'Edit', edit_document_task_path(document_task) %></td>
+    <td><%= link_to 'Destroy', document_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Document task', new_document_task_path %>

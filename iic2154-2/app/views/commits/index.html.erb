@@ -1,0 +1,35 @@
+<h1>Listing commits</h1>
+
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Sha</th>
+    <th>Author name</th>
+    <th>Author email</th>
+    <th>Date</th>
+    <th>Message</th>
+    <th>Task</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @commits.each do |commit| %>
+  <tr>
+    <td><%= commit.url %></td>
+    <td><%= commit.sha %></td>
+    <td><%= commit.author_name %></td>
+    <td><%= commit.author_email %></td>
+    <td><%= commit.date %></td>
+    <td><%= commit.message %></td>
+    <td><%= commit.task_id %></td>
+    <td><%= link_to 'Show', commit %></td>
+    <td><%= link_to 'Edit', edit_commit_path(commit) %></td>
+    <td><%= link_to 'Destroy', commit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Commit', new_commit_path %>

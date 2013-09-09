@@ -1,4 +1,13 @@
 Iic21542::Application.routes.draw do
+  resources :labels
+
+
+  resources :commits
+
+
+  resources :document_tasks
+
+
   resources :goals
   resources :statuses
   resources :requirement_templates

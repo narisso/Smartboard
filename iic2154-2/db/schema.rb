@@ -11,13 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909002349) do
+ActiveRecord::Schema.define(:version => 20130909005623) do
 
   create_table "document_projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "url_path"
     t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "document_tasks", :force => true do |t|
+    t.text     "description"
+    t.string   "name"
+    t.integer  "task_id"
+    t.string   "url_path"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -77,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130909002349) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "goal_id"
+    t.integer  "task_depend_id"
   end
 
   create_table "use_cases", :force => true do |t|

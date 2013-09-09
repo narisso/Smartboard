@@ -45,11 +45,6 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
-#Jenkins output
-group :test do
-  gem 'ci_reporter'
-end
-
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

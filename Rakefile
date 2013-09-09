@@ -6,5 +6,3 @@ require File.expand_path('../config/application', __FILE__)
 require 'ci/reporter/rake/rspec'     # use this if you're using RSpec
 
 Iic21542::Application.load_tasks
-
-rake ci:setup:rspec spec

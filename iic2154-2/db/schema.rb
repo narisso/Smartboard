@@ -11,11 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908153820) do
+ActiveRecord::Schema.define(:version => 20130908234235) do
 
-  create_table "jenkins_tests", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "document_projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url_path"
+    t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "initial_date"
+    t.date     "finish_date"
+    t.string   "status"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "task_father_id"
+    t.string   "type"
+    t.datetime "status_update_at"
+    t.integer  "project_id"
+    t.integer  "status_id"
+    t.integer  "requirement_id"
+    t.integer  "label_id"
+    t.integer  "estimated_hours"
+    t.integer  "effective_hours"
+    t.integer  "priority"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -31,6 +62,9 @@ ActiveRecord::Schema.define(:version => 20130908153820) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
+    t.string   "picture"
+    t.string   "curriculum"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

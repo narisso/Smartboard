@@ -1,0 +1,22 @@
+<%= simple_form_for(@task) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :task_father_id %>
+    <%= f.input :type %>
+    <%= f.input :status_update_at %>
+    <%= f.input :project_id %>
+    <%= f.input :status_id %>
+    <%= f.input :requirement_id %>
+    <%= f.input :label_id %>
+    <%= f.input :estimated_hours %>
+    <%= f.input :effective_hours %>
+    <%= f.input :priority %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

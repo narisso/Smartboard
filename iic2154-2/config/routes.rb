@@ -1,4 +1,16 @@
 Iic21542::Application.routes.draw do
+  resources :requirements
+
+
+  resources :use_cases
+
+
+  resources :tasks
+
+
+  resources :document_projects
+
+
   resources :projects
 
 

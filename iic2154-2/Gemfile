@@ -41,6 +41,7 @@ gem "less-rails"
 
 # CSS framework
 gem "twitter-bootstrap-rails"
+gem 'simple_form'
 
 
 

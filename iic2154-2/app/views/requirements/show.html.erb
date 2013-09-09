@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @requirement.name %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @requirement.type %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @requirement.data %>
+</p>
+
+<p>
+  <b>Template:</b>
+  <%= @requirement.template_id %>
+</p>
+
+<p>
+  <b>Use case:</b>
+  <%= @requirement.use_case_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>

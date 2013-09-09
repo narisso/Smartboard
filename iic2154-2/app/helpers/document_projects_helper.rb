@@ -1,0 +1,2 @@
+module DocumentProjectsHelper
+end

@@ -1,0 +1,29 @@
+<h1>Listing document_projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Url path</th>
+    <th>Project</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @document_projects.each do |document_project| %>
+  <tr>
+    <td><%= document_project.name %></td>
+    <td><%= document_project.description %></td>
+    <td><%= document_project.url_path %></td>
+    <td><%= document_project.project_id %></td>
+    <td><%= link_to 'Show', document_project %></td>
+    <td><%= link_to 'Edit', edit_document_project_path(document_project) %></td>
+    <td><%= link_to 'Destroy', document_project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Document project', new_document_project_path %>

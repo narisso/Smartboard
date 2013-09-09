@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @use_case.name %>
+</p>
+
+<p>
+  <b>Actors:</b>
+  <%= @use_case.actors %>
+</p>
+
+<p>
+  <b>Synopsis:</b>
+  <%= @use_case.synopsis %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @use_case.project_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_use_case_path(@use_case) %> |
+<%= link_to 'Back', use_cases_path %>

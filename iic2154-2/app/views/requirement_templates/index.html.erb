@@ -1,0 +1,25 @@
+<h1>Listing requirement_templates</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Template form</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @requirement_templates.each do |requirement_template| %>
+  <tr>
+    <td><%= requirement_template.name %></td>
+    <td><%= requirement_template.template_form %></td>
+    <td><%= link_to 'Show', requirement_template %></td>
+    <td><%= link_to 'Edit', edit_requirement_template_path(requirement_template) %></td>
+    <td><%= link_to 'Destroy', requirement_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Requirement template', new_requirement_template_path %>

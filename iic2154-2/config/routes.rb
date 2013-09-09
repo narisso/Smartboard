@@ -1,4 +1,13 @@
 Iic21542::Application.routes.draw do
+  resources :goals
+
+
+  resources :statuses
+
+
+  resources :requirement_templates
+
+
   resources :requirements
 
 

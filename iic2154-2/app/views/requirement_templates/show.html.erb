@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @requirement_template.name %>
+</p>
+
+<p>
+  <b>Template form:</b>
+  <%= @requirement_template.template_form %>
+</p>
+
+
+<%= link_to 'Edit', edit_requirement_template_path(@requirement_template) %> |
+<%= link_to 'Back', requirement_templates_path %>

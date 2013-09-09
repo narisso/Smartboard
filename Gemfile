@@ -20,12 +20,12 @@ group :development, :test do
   gem 'capybara'
   gem "better_errors"
   gem "binding_of_caller"
+  gem "rails-erd"
 end
 
 group :production do 
   gem 'pg'
 end
-
 
 gem 'jquery-rails'
 
@@ -45,6 +45,10 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
+#Jenkins output
+group :test do
+  gem 'ci_reporter'
+end
 
 
 # To use Jbuilder templates for JSON

@@ -11,7 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909005623) do
+ActiveRecord::Schema.define(:version => 20130909023030) do
+
+  create_table "bugs", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "test_case_id"
+    t.integer  "task_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.text     "message"
+    t.boolean  "approved"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "commits", :force => true do |t|
+    t.string   "url"
+    t.string   "sha"
+    t.string   "author_name"
+    t.string   "author_email"
+    t.datetime "date"
+    t.string   "message"
+    t.integer  "task_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "document_projects", :force => true do |t|
     t.string   "name"
@@ -33,6 +64,13 @@ ActiveRecord::Schema.define(:version => 20130909005623) do
 
   create_table "goals", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "labels", :force => true do |t|
+    t.string   "name"
+    t.string   "color"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -64,10 +102,27 @@ ActiveRecord::Schema.define(:version => 20130909005623) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "statuses", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "task_users", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.integer  "developer_id"
+    t.integer  "creator_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "tasks", :force => true do |t|
@@ -87,6 +142,24 @@ ActiveRecord::Schema.define(:version => 20130909005623) do
     t.datetime "updated_at",       :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
+  end
+
+  create_table "test_cases", :force => true do |t|
+    t.text     "description"
+    t.datetime "executed_at"
+    t.boolean  "approved"
+    t.integer  "test_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tests", :force => true do |t|
+    t.integer  "task_id"
+    t.text     "description"
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "use_cases", :force => true do |t|

@@ -1,31 +1,17 @@
 Iic21542::Application.routes.draw do
   resources :goals
-
-
   resources :statuses
-
-
   resources :requirement_templates
-
-
   resources :requirements
-
-
   resources :use_cases
-
-
   resources :tasks
-
-
   resources :document_projects
-
-
   resources :projects
 
-
+  # resources :users always below devise_for
   devise_for :users
-
   resources :users
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

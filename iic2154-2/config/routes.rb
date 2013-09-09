@@ -1,4 +1,16 @@
 Iic21542::Application.routes.draw do
+  resources :comments
+
+
+  resources :tests
+
+
+  resources :test_cases
+
+
+  resources :bugs
+
+
   resources :roles
 
 

@@ -1,0 +1,14 @@
+<%= simple_form_for(@test_case) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :description %>
+    <%= f.input :executed_at %>
+    <%= f.input :approved %>
+    <%= f.input :test_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -9,6 +9,11 @@ class Task < ActiveRecord::Base
   belongs_to :goal
   belongs_to :task_depend, :class_name => "Task", :foreign_key => "task_depdend_id"
 
+  has_one :bug
+  has_one :test
+  
+  has_many :comments
+
   has_many :document_tasks
   has_many :commits
 

@@ -3,6 +3,4 @@ class UseCase < ActiveRecord::Base
 
   belongs_to :project
   has_many :requirements
-  # Relation bugs
-  # Relation users (many to many)
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910194735) do
+ActiveRecord::Schema.define(:version => 20130910200833) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -83,14 +83,21 @@ ActiveRecord::Schema.define(:version => 20130910194735) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "project_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.date     "initial_date"
     t.date     "finish_date"
     t.string   "status"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "project_status_id"
   end
 
   create_table "requirement_templates", :force => true do |t|

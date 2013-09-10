@@ -1,4 +1,7 @@
 Iic21542::Application.routes.draw do
+  resources :project_statuses
+
+
   resources :comments
 
 

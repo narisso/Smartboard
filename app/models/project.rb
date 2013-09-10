@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :finish_date, :initial_date, :name, :status
+  attr_accessible :description, :finish_date, :initial_date, :name, :status_id
+
+  belongs_to :project_status
 
   has_many :document_projects
   has_many :use_cases
@@ -12,4 +14,6 @@ class Project < ActiveRecord::Base
   has_many :project_role_users
   has_many :users, :through => :project_role_users
   has_many :roles, :through => :project_role_users
+
+
 end

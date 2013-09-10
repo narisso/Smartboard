@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :task_users
   has_many :tasks, :through => :task_users
 
-  has_many :roles
-  has_many :projects, :through => :roles
+  #has_many :roles
+  #has_many :projects, :through => :roles
+  has_many :project_role_users
+  has_many :roles, :through => :project_role_users
+  has_many :projects, :through => :project_role_users
 end

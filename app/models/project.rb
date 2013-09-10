@@ -8,4 +8,8 @@ class Project < ActiveRecord::Base
 
   has_many :roles
   has_many :users, :through => :roles
+
+  has_many :project_role_users
+  has_many :users, :through => :project_role_users
+  has_many :roles, :through => :project_role_users
 end

@@ -1,15 +1,12 @@
-<%= simple_form_for(@bug) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :description %>
-    <%= f.input :user_id %>
-    <%= f.input :project_id %>
-    <%= f.input :test_case_id %>
-    <%= f.input :task_id %>
-  </div>
-
+<%= simple_form_for @bug, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :description %>
+  <%= f.input :user_id %>
+  <%= f.input :project_id %>
+  <%= f.input :test_case_id %>
+  <%= f.input :task_id %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                bugs_path, :class => 'btn' %>
   </div>
 <% end %>

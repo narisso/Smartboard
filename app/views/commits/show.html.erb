@@ -1,40 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Commit -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Url:</b>
-  <%= @commit.url %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
+  <dd><%= @commit.url %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sha) %>:</strong></dt>
+  <dd><%= @commit.sha %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:author_name) %>:</strong></dt>
+  <dd><%= @commit.author_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:author_email) %>:</strong></dt>
+  <dd><%= @commit.author_email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @commit.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:message) %>:</strong></dt>
+  <dd><%= @commit.message %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:task_id) %>:</strong></dt>
+  <dd><%= @commit.task_id %></dd>
+</dl>
 
-<p>
-  <b>Sha:</b>
-  <%= @commit.sha %>
-</p>
-
-<p>
-  <b>Author name:</b>
-  <%= @commit.author_name %>
-</p>
-
-<p>
-  <b>Author email:</b>
-  <%= @commit.author_email %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @commit.date %>
-</p>
-
-<p>
-  <b>Message:</b>
-  <%= @commit.message %>
-</p>
-
-<p>
-  <b>Task:</b>
-  <%= @commit.task_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_commit_path(@commit) %> |
-<%= link_to 'Back', commits_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              commits_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_commit_path(@commit), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              commit_path(@commit),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

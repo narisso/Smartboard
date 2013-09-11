@@ -1,14 +1,11 @@
-<%= simple_form_for(@task_user) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :task_id %>
-    <%= f.input :user_id %>
-    <%= f.input :developer_id %>
-    <%= f.input :creator_id %>
-  </div>
-
+<%= simple_form_for @task_user, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :task_id %>
+  <%= f.input :user_id %>
+  <%= f.input :developer_id %>
+  <%= f.input :creator_id %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                task_users_path, :class => 'btn' %>
   </div>
 <% end %>

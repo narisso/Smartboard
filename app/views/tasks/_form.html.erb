@@ -1,23 +1,21 @@
-<%= simple_form_for(@task) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :task_father_id %>
-    <%= f.input :type %>
-    <%= f.input :status_update_at %>
-    <%= f.input :project_id %>
-    <%= f.input :status_id %>
-    <%= f.input :requirement_id %>
-    <%= f.input :label_id %>
-    <%= f.input :estimated_hours %>
-    <%= f.input :effective_hours %>
-    <%= f.input :priority %>
-    <%= f.input :goal_id %>
-  </div>
-
+<%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :task_father_id %>
+  <%= f.input :type %>
+  <%= f.input :status_update_at %>
+  <%= f.input :project_id %>
+  <%= f.input :status_id %>
+  <%= f.input :requirement_id %>
+  <%= f.input :label_id %>
+  <%= f.input :estimated_hours %>
+  <%= f.input :effective_hours %>
+  <%= f.input :priority %>
+  <%= f.input :goal_id %>
+  <%= f.input :task_depend_id %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                tasks_path, :class => 'btn' %>
   </div>
 <% end %>

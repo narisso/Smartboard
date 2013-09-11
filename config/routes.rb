@@ -1,7 +1,8 @@
 Iic21542::Application.routes.draw do
 
   root :to => 'application#index'
-  #get "application" => 'application#index'
+  get "projects/:id" => 'projects#my_projects', :as => 'my_projects'
+
   resources :comments
 
 
@@ -11,8 +12,8 @@ Iic21542::Application.routes.draw do
   resources :test_cases
 
 
-  resources :bugs
-
+  resources :bugs 
+  
 
   resources :roles
 

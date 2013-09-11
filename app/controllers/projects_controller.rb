@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
+
   def index
     @projects = Project.all
 
@@ -80,4 +81,10 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def my_projects
+
+  end 
+  
 end

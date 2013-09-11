@@ -14,3 +14,5 @@ Label.create([{name: 'Administration', color: '#2b72dc'}, {name: 'Analysis', col
 Status.create([{name: 'Backlog'}, {name: 'In progress'}, {name: 'Done'}])
 
 Role.create([{name: 'Administrator'}, {name: 'Project Manager'}, {name: 'Developer'}, {name: 'Client'}])
+
+ProjectStatus.create([{name: 'Starting'}, {name: 'In process'}, {name: 'Finished'}, {name: 'Cancel'}])

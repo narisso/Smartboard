@@ -2,7 +2,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if not current_user.nil?
+      @projects = current_user.projects
+    else
+      @projects = []
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +45,10 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    if not current_user.nil?
+      @project.add_user_role(current_user, Role.first)
+    end
+    
 
     respond_to do |format|
       if @project.save

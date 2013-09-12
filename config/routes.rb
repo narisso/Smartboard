@@ -37,7 +37,7 @@ Iic21542::Application.routes.draw do
 
   # resources :users always below devise_for
   devise_for :users
-  resources :users
+  #resources :users
 
 
   # The priority is based upon order of creation:

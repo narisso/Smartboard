@@ -1,8 +1,13 @@
 <%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :task_father_id %>
-  <%= f.input :type %>
+  <%= f.input :description, as: :text%>
+  <%= f.input :task_type, collection: ['Administration','Design','Features'] %>
+  <%= f.input :priority, collection: 1..5 %>
+  <%= f.association :users,collection: User.all(order: 'name'), label_method: :email, value_method: :id , multiple: true%>
+  
+  <!--%= f.input :user_ids, :as => :grouped_select, :collection => User.all(order: 'name'), :label_method => :email, :value_method => :id %-->
+  <!--
+= f.input :author, :as => :grouped_select, :collection => { 'Authors' => ['Jose', 'Carlos'] }, :group_method => :last, :label_method => :upcase, :value_method => :downcas
   <%= f.input :status_update_at %>
   <%= f.input :project_id %>
   <%= f.input :status_id %>
@@ -13,6 +18,7 @@
   <%= f.input :priority %>
   <%= f.input :goal_id %>
   <%= f.input :task_depend_id %>
+-->
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

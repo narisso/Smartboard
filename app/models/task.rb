@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :type, :goal_id, :task_depend_id
+  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :task_type, :goal_id, :task_depend_id
 
   belongs_to :label
   belongs_to :project
@@ -19,5 +19,7 @@ class Task < ActiveRecord::Base
 
   has_many :task_users
   has_many :users, :through => :task_users
+
+  attr_accessible :user_ids
 
 end

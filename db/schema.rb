@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909023030) do
+ActiveRecord::Schema.define(:version => 20130912214109) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
     t.string   "name"
     t.text     "description"
     t.integer  "task_father_id"
-    t.string   "type"
+    t.string   "task_type"
     t.datetime "status_update_at"
     t.integer  "project_id"
     t.integer  "status_id"

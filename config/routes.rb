@@ -1,31 +1,14 @@
 Iic21542::Application.routes.draw do
+
   resources :comments
-
-
   resources :tests
-
-
   resources :test_cases
-
-
   resources :bugs
-
-
   resources :roles
-
-
   resources :task_users
-
-
   resources :labels
-
-
   resources :commits
-
-
   resources :document_tasks
-
-
   resources :goals
   resources :statuses
   resources :requirement_templates
@@ -36,8 +19,10 @@ Iic21542::Application.routes.draw do
   resources :projects
 
   # resources :users always below devise_for
-  devise_for :users
-  #resources :users
+  devise_for :users, :controller => {:registrations => "registrations"}
+  resources :users
+
+
 
 
   # The priority is based upon order of creation:

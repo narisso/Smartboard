@@ -3,7 +3,10 @@ class ProjectsController < ApplicationController
   # GET /projects.json
 
   def index
-    @projects = Project.all
+
+    current_user.id
+
+    @roles = current_user.roles
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,9 +85,4 @@ class ProjectsController < ApplicationController
     end
   end
 
-
-  def my_projects
-
-  end 
-  
 end

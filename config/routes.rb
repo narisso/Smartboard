@@ -35,6 +35,8 @@ Iic21542::Application.routes.draw do
   resources :document_projects
   resources :projects
 
+  resources :boards
+
   # resources :users always below devise_for
   devise_for :users
   resources :users

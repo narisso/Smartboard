@@ -4,8 +4,6 @@ class ProjectsController < ApplicationController
 
   def index
 
-    current_user.id
-
     @roles = current_user.roles
 
     respond_to do |format|

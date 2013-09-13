@@ -9,7 +9,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -36,13 +36,14 @@ gem 'devise'
 gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
-gem "therubyracer"
+gem 'therubyracer'
+gem 'libv8', '3.11.8.0'
 
 # Adds Less CSS into pipeline
 gem "less-rails"
 
 # CSS framework
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 
 

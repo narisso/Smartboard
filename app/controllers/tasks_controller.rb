@@ -89,9 +89,10 @@ class TasksController < ApplicationController
 
     @tasks=Task.where(:project_id => params[:id])
 
+
     respond_to do |format|
       format.html # project_tasks.html.erb
-      format.json { render json: @tasks }
+      format.json { render json: @tasks.to_json(:include => :users) }
     end
   end
 

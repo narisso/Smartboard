@@ -1,8 +1,11 @@
 <% @statuses.each do |status|%>
 
 	<div class='column'>
-		<button class= 'btn pull-right'>+</button>
+		<button class= 'btn pull-right' >+</button>
 		<h4 class='block text-center'><%= status.name%></h4>
+		<div class='block' data-id='<%=status.id%>'> </div>
 	</div>
 
+
+<script type="text/javascript" src="boards_controller.js"></script>
 <% end %>

@@ -1,12 +1,9 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  def index
-    if not current_user.nil?
-      @projects = current_user.projects
-    else
-      @projects = []
-    end
+
+  def index   
+    @projects = current_user.projects
 
     respond_to do |format|
       format.html # index.html.erb

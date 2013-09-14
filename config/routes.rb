@@ -1,34 +1,16 @@
 Iic21542::Application.routes.draw do
   resources :project_statuses
-
-
   resources :comments
-
-
+  root :to => 'application#index'
+  resources :comments
   resources :tests
-
-
   resources :test_cases
-
-
-  resources :bugs
-
-
+  resources :bugs 
   resources :roles
-
-
   resources :task_users
-
-
   resources :labels
-
-
   resources :commits
-
-
   resources :document_tasks
-
-
   resources :goals
   resources :statuses
   resources :requirement_templates

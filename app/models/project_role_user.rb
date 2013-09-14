@@ -4,4 +4,9 @@ class ProjectRoleUser < ActiveRecord::Base
   belongs_to :project
   belongs_to :role
   belongs_to :user
+
+  validate :project, 	:presence => true
+  validate :role, 		:presence => true
+  validate :user, 		:presence => true
+  #validates_uniqueness_of :project, :scope => :user
 end

@@ -45,10 +45,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.initial_date = Time.now
+    #@project.project_status = ProjectStatus.first
     if not current_user.nil?
       @project.add_user_role(current_user, Role.first)
     end
-    
 
     respond_to do |format|
       if @project.save
@@ -87,5 +88,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def finish
+    @project = Project.find(params[:id])
+    @project.project_status = ProjectStatus.where(:name => "Finished")
   end
 end

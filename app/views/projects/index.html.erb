@@ -10,7 +10,6 @@
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:initial_date) %></th>
       <th><%= model_class.human_attribute_name(:finish_date) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
       <th><%= model_class.human_attribute_name(:project_status_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -24,8 +23,7 @@
         <td><%= project.description %></td>
         <td><%= project.initial_date %></td>
         <td><%= project.finish_date %></td>
-        <td><%= project.status %></td>
-        <td><%= project.project_status_id %></td>
+        <td><%= project.project_status.name %></td>
         <td><%=l project.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

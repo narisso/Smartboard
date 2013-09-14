@@ -11,11 +11,9 @@
   <dt><strong><%= model_class.human_attribute_name(:initial_date) %>:</strong></dt>
   <dd><%= @project.initial_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:finish_date) %>:</strong></dt>
-  <dd><%= @project.finish_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @project.status %></dd>
+  <dd><%= @project.finish_date.nil? ? 'NaN' : @project.finish_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:project_status_id) %>:</strong></dt>
-  <dd><%= @project.project_status_id %></dd>
+  <dd><%= @project.project_status.name %></dd>
 </dl>
 
 <div class="form-actions">

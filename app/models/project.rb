@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :finish_date, :initial_date, :name
+  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id
 
   belongs_to :project_status
 
@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
 
   private
     def set_starting_status
-      self.status = ProjectStatus.first
+      self.project_status = ProjectStatus.first
     end
 
 end

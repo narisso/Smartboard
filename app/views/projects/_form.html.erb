@@ -2,9 +2,9 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :initial_date %>
-  <%= f.input :finish_date %>
-  <%= f.input :status %>
-  <%= f.input :project_status_id %>
+  <% if not @project.created_at.nil?%>
+    <%= f.association :project_status, :include_blank => false %>
+  <% end %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

@@ -36,7 +36,11 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   resources :tasks
   resources :document_projects
-  resources :projects
+  resources :projects do
+    member do
+      post :finish
+    end
+  end
 
   # resources :users always below devise_for
   devise_for :users

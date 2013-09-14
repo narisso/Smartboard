@@ -92,7 +92,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html # project_tasks.html.erb
-      format.json { render json: @tasks.to_json(:include => :users) }
+      format.json { render json: @tasks.to_json(:include => [:users, :label]) }
     end
   end
 

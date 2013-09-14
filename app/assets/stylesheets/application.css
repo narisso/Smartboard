@@ -11,3 +11,33 @@
  *= require_self
  *= require_tree .
  */
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	background-image: url('bg.png');
+	background-repeat: repeat;
+
+}
+
+.ltl-nav{
+	position: absolute;
+
+	width: 200px;
+	top: 42px;
+	bottom: 0px;
+	left: 0px;
+
+
+}
+
+.main-content{
+	position: absolute;
+	top: 42px;
+	bottom: 0px;
+	left: 290px;
+	right: 0px;
+	overflow: auto;
+}
+

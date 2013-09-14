@@ -58,8 +58,8 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
+        <div class="">
+          <div class="well sidebar-nav ltl-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <li><%= link_to "Link1", "/path1"  %></li>
@@ -68,7 +68,7 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="span9">
+        <div class="main-content">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>

@@ -2,7 +2,8 @@ class ProjectRoleUsersController < ApplicationController
   # GET /project_role_users
   # GET /project_role_users.json
   def index
-    @project_role_users = ProjectRoleUser.all
+    @project = Project.find(params[:id])
+    @project_role_users = ProjectRoleUser.where(:project_id => @project)
 
     respond_to do |format|
       format.html # index.html.erb

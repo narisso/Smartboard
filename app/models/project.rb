@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :tasks
   has_many :bugs
 
-  has_many :project_role_users, :dependent => :destroy
+  has_many :project_role_users
   has_many :users, :through => :project_role_users
   has_many :roles, :through => :project_role_users
 

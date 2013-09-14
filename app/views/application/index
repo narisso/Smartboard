@@ -1,4 +1,4 @@
-<h1> HOME </h1>
+<h1> Welcome </h1>
 
 <li><%= link_to "Login", users_path(@users)%></li>
 <li><%= link_to "register", users_path(@users)%></li>

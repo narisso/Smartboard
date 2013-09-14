@@ -8,10 +8,11 @@
 .column {
 	position:relative;
 	width: 280px;
+	height:97%;
 	float: left;
-	height: 90%;
 	min-height: 400px;
 	padding: 10px;
+	bottom: 0;
 
 	border-right: 1px dashed black;
 }

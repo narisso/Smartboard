@@ -30,6 +30,7 @@ html, body {
 		-moz-box-shadow: 0 0 2px #888;
 	-webkit-box-shadow: 0 0 2px#888;
 	box-shadow: 0 0 2px #888;
+	padding-top: 40px;
 }
 
 .ltl-nav-open{
@@ -37,12 +38,11 @@ html, body {
 }
 
 .ltl-nav-close{
-	width: 50px;
+	width: 55px;
 }
 
 .main-content{
 	position: absolute;
-	height:100%;
 	width: auto;
 	top: 42px;
 	bottom: 0px;
@@ -54,7 +54,7 @@ html, body {
 }
 
 .main-content-big{
-	left: 780px;
+	left: 80px;
 }
 
 .close-btn{
@@ -74,6 +74,7 @@ html, body {
 
 
 .ltl-nav-list{
+
 	padding: 0;
 	margin: 0;
 	width: 100%;
@@ -99,6 +100,8 @@ html, body {
 
 .ltl-nav-list li img{
 	float:left;
+	margin-left: 7px;
+	margin-right: 5px;
 
 }
 

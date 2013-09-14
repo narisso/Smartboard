@@ -25,7 +25,11 @@ html, body {
 	position: absolute;
 	top: 42px;
 	bottom: 0px;
-	left: 0px;	
+	left: 0px;
+	background-color: #f6f6f6;
+		-moz-box-shadow: 0 0 2px #888;
+	-webkit-box-shadow: 0 0 2px#888;
+	box-shadow: 0 0 2px #888;
 }
 
 .ltl-nav-open{
@@ -33,7 +37,7 @@ html, body {
 }
 
 .ltl-nav-close{
-	width: 40px;
+	width: 50px;
 }
 
 .main-content{
@@ -46,11 +50,11 @@ html, body {
 }
 
 .main-content-small{
-	left: 260px;
+	left: 240px;
 }
 
 .main-content-big{
-	left: 90px;
+	left: 780px;
 }
 
 .close-btn{
@@ -66,3 +70,48 @@ html, body {
 
 	box-shadow: 10px 0px 5px -2px #888 ;
 }
+
+
+
+.ltl-nav-list{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	list-style-type: none;
+
+}
+
+.ltl-nav-list li{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+	margin-bottom: 10px;
+	cursor: pointer;
+
+}
+
+.ltl-nav-list li:hover{
+	background-color: #d8d8d8;
+}
+
+
+.ltl-nav-list li img{
+	float:left;
+
+}
+
+.ltl-nav-list li h4{
+	float:center;
+	cursor: pointer;
+}
+
+.ltl-nav-open .ltl-nav-list li h4{
+	visibility: visible;
+}
+
+.ltl-nav-close .ltl-nav-list li h4{
+	visibility: hidden;
+}
+

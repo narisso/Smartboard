@@ -1,11 +1,13 @@
 Iic21542::Application.routes.draw do
+
   resources :project_statuses
   resources :comments
   root :to => 'application#index'
+
   resources :comments
   resources :tests
   resources :test_cases
-  resources :bugs 
+  resources :bugs
   resources :roles
   resources :task_users
   resources :labels
@@ -25,8 +27,10 @@ Iic21542::Application.routes.draw do
   end
 
   # resources :users always below devise_for
-  devise_for :users
+  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users
+
+
 
 
   # The priority is based upon order of creation:

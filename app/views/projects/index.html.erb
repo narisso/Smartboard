@@ -1,19 +1,21 @@
-<h1>Listing projects</h1>
+<h1>My projects</h1>
 
 
 
 <ul class='no-bullet'>
 <% @roles.each do |rol| %>
     <li>
-    <div class="well">    
+    <div class="well-small">  
+
         <h4><%= rol.project.name %></h4>
-        <%= rol.name %>
+        <p>Rol: <%= rol.name %>
         <!--
         <%= rol.project.description %>
         <%= rol.project.initial_date %>
         <%= rol.project.finish_date %>
         -->
-        <%= rol.project.status %>
+        /Status: <%= rol.project.status %></p>
+        <%= link_to 'ver info', :controller => "projects", :action => "show", :id => rol.project%>
         <!--
         <% link_to 'Show', rol.project %> 
         <%= link_to 'Edit', edit_project_path(rol.project) %> 

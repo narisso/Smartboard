@@ -1,4 +1,24 @@
 class TasksController < ApplicationController
+
+  def show_comments_of_task
+    @task = Task.find(params[:id])
+    @comments = @task.comments
+
+    respond_to do |format|
+      format.html {
+        if request.xhr?
+
+        else
+
+        end
+      }
+      format.js{
+
+      }
+    end
+
+  end
+
   # GET /tasks
   # GET /tasks.json
   def index

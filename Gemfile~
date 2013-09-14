@@ -45,8 +45,6 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
-# Gem to do breadcrumbs
-gem "gretel"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

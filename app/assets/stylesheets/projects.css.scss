@@ -1,3 +1,41 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.no-bullet
+{
+    list-style-type: none;
+}
+
+.well-small{
+
+   Background-color: #0F1E31; 
+   p{ color:white; }
+   h4{ color:white; }
+   padding-left: 30px;
+
+     border:none 5px #000000;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:75px;
+    -webkit-border-top-left-radius:0px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -webkit-border-bottom-right-radius:75px;
+    border-top-left-radius:0px;
+    border-top-right-radius:5px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:75px;
+
+    moz-box-shadow:10px 10px 5px #000000;
+	-webkit-box-shadow:10px 10px 5px #000000;
+	box-shadow:10px 10px 5px #000000;
+
+
+
+
+
+
+
+}

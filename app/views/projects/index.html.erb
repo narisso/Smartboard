@@ -1,31 +1,36 @@
-<h1>Listing projects</h1>
+<h1>My projects</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Initial date</th>
-    <th>Finish date</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.description %></td>
-    <td><%= project.initial_date %></td>
-    <td><%= project.finish_date %></td>
-    <td><%= project.status %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+<ul class='no-bullet'>
+<% @roles.each do |rol| %>
+    <li>
+    <div class="well-small">  
+
+        <h4><%= rol.project.name %></h4>
+        <p>Rol: <%= rol.name %>
+        <!--
+        <%= rol.project.description %>
+        <%= rol.project.initial_date %>
+        <%= rol.project.finish_date %>
+        -->
+        /Status: <%= rol.project.status %></p>
+        <%= link_to 'ver info', :controller => "projects", :action => "show", :id => rol.project%>
+        <!--
+        <% link_to 'Show', rol.project %> 
+        <%= link_to 'Edit', edit_project_path(rol.project) %> 
+        <%= link_to 'Destroy', rol.project, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        -->
+    </div>
+    </li>
 <% end %>
-</table>
+  </ul>
+
 
 <br />
 
-<%= link_to 'New Project', new_project_path %>
+ 
+<%= link_to 'New Project', new_project_path, :style=>'color:#FFFFFF', :class => "btn btn-inverse" %>
+
+
+

@@ -1,7 +1,7 @@
 Iic21542::Application.routes.draw do
 
 
-  root :to => 'application#index'
+  root :to => 'application#home'
   #get "application" => 'application#index'
   resources :comments
   resources :tests
@@ -22,7 +22,7 @@ Iic21542::Application.routes.draw do
   resources :projects
 
   # resources :users always below devise_for
-  devise_for :users, :controller => {:registrations => "registrations"}
+  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users
 
 

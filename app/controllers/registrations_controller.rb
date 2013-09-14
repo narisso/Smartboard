@@ -1,4 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
+
+  skip_before_filter :check_session , :only => [:new, :create]
+
  def new
    resource = build_resource({})
    respond_with resource

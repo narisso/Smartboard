@@ -1,4 +1,9 @@
 Iic21542::Application.routes.draw do
+   # route to getting task for a project
+  match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
+  match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+
+
   resources :comments
 
 
@@ -32,10 +37,15 @@ Iic21542::Application.routes.draw do
   resources :requirements
   resources :use_cases
   resources :tasks
+
+
+
   resources :document_projects
   resources :projects
 
   resources :boards
+
+
 
   # resources :users always below devise_for
   devise_for :users

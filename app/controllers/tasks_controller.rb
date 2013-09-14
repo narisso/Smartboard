@@ -80,4 +80,25 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+  # GET /tasks/project_tasks/1
+  # GET /tasks/project_tasks/1.json
+  def project_tasks
+
+    @tasks=Task.where(:project_id => params[:id])
+
+    respond_to do |format|
+      format.html # project_tasks.html.erb
+      format.json { render json: @tasks }
+    end
+  end
+
+
+
 end
+
+
+
+

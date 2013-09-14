@@ -1,3 +1,21 @@
 // Place all the styles related to the boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+html, body {
+	
+	background-image: url('bg.png');
+	background-repeat: repeat;
+
+}
+
+.column {
+	width: 280px;
+	float: left;
+	height: 100%;
+	min-height: 400px;
+	padding: 10px;
+
+	border-right: 1px dashed black;
+}

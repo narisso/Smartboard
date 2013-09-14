@@ -21,35 +21,36 @@ html, body {
 
 }
 
-.ltl-nav-open{
+.ltl-nav{
 	position: absolute;
-
-	width: 200px;
 	top: 42px;
 	bottom: 0px;
-	left: 0px;
-
-
+	left: 0px;	
 }
 
-.ltl-nav-closed{
-	position: absolute;
+.ltl-nav-open{
+	width: 200px;
+}
 
+.ltl-nav-close{
 	width: 40px;
-	top: 42px;
-	bottom: 0px;
-	left: 0px;
 }
 
 .main-content{
 	position: absolute;
 	height:100%;
-	width:80%;
+	width: auto;
 	top: 42px;
 	bottom: 0px;
 	left: 290px;
-	right: 0px;
+}
 
+.main-content-small{
+	left: 260px;
+}
+
+.main-content-big{
+	left: 90px;
 }
 
 .close-btn{

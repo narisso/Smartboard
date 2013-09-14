@@ -7,7 +7,8 @@ var _tasks=[]
 //loads the tasks ehwn the document is ready
 $(document).ready(function() {
 
-	$.getJSON('/tasks/project_tasks/1.json', function(data) {
+  var ask = "/tasks/project_tasks/"+p_id+".json"
+	$.getJSON(ask, function(data) {
 		_tasks = data;
 
   		$.each(data, function(i, item) {
@@ -19,7 +20,7 @@ $(document).ready(function() {
     		element = null;
 			for (var i = 0; i < length; i++) {
   				element = item.users[i];
-  				users = users + "<img src='' data-toggle='tooltip' title="+element.name+"></img>";
+  				users = users + "<img src='' data-toggle='tooltip' title='"+element.name+"''></img>";
 			}
 
 			users = users + "</div>";

@@ -59,17 +59,17 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="">
-          <div class="well sidebar-nav ltl-nav-open">
+          <div class="well sidebar-nav ltl-nav ltl-nav-open">
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
               <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
-            <div class="close-btn"></div>
+            <div class="close-btn" onClick="ltl_bar_change();"></div>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="main-content">
+        <div class="main-content main-content-small">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>

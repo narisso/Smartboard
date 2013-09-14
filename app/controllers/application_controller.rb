@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :check_session, :except => [:login, :logout]
 
-  def check_session
-    unless user_signed_in?
-      redirect_to root_path
-    end
-  end
+  #before_filter :check_session, :except => [:sign_in, :sign_up]
+
+  #def check_session
+  #  unless user_signed_in?
+  #    redirect_to root_path
+  #  end
+  #end
 
   def after_sign_in_path_for(resource)
   	projects_path
@@ -23,4 +24,11 @@ class ApplicationController < ActionController::Base
   	new_user_registration_path
   end
 
+
+	def index 
+		
+	end 
+
 end
+
+

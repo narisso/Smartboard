@@ -43,13 +43,10 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.initial_date = Time.now
-    #@project.project_status = ProjectStatus.first
-    if not current_user.nil?
-      @project.add_user_role(current_user, Role.first)
-    end
-
+    
     respond_to do |format|
       if @project.save
+        @project.add_user_role(current_user, Role.first)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else

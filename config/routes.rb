@@ -23,6 +23,7 @@ Iic21542::Application.routes.draw do
   resources :projects do
     member do
       post :finish
+      resources :project_role_users
     end
   end
 

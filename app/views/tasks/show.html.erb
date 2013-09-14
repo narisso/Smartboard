@@ -4,18 +4,15 @@
 </div>
 
 <dl class="dl-horizontal">
+  <!--
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @task.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @task.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:task_father_id) %>:</strong></dt>
-  <dd><%= @task.task_father_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
   <dd><%= @task.task_type %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status_update_at) %>:</strong></dt>
   <dd><%= @task.status_update_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_id) %>:</strong></dt>
-  <dd><%= @task.project_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:status_id) %>:</strong></dt>
   <dd><%= @task.status_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:requirement_id) %>:</strong></dt>
@@ -30,8 +27,21 @@
   <dd><%= @task.priority %></dd>
   <dt><strong><%= model_class.human_attribute_name(:goal_id) %>:</strong></dt>
   <dd><%= @task.goal_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:task_depend_id) %>:</strong></dt>
-  <dd><%= @task.task_depend_id %></dd>
+-->
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @task.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @task.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
+  <dd><%= @task.priority %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
+  <dd><%= @task.task_type %></dd>
+  
+  <dt>Owner:</dt>
+  <% @task.users.each do |user| %>
+  <dd><%= user.email%> </dd>
+  <% end %>
+
 </dl>
 
 <div class="form-actions">

@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    puts params[:status_id]
     @task = Task.new
 
     respond_to do |format|

@@ -21,7 +21,7 @@ html, body {
 
 }
 
-.ltl-nav{
+.ltl-nav-open{
 	position: absolute;
 
 	width: 200px;
@@ -32,12 +32,36 @@ html, body {
 
 }
 
+.ltl-nav-closed{
+	position: absolute;
+
+	width: 40px;
+	top: 42px;
+	bottom: 0px;
+	left: 0px;
+}
+
 .main-content{
 	position: absolute;
+	height:100%;
+	width:80%;
 	top: 42px;
 	bottom: 0px;
 	left: 290px;
 	right: 0px;
-	overflow: auto;
+
 }
 
+.close-btn{
+	position: absolute;
+	width: 5px;
+	right: 0px;
+	top:0;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.close-btn:hover{
+
+	box-shadow: 10px 0px 5px -2px #888 ;
+}

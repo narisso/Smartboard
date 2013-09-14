@@ -1,11 +1,13 @@
 <% @statuses.each do |status|%>
 
 	<div class='column'>
-		<button class= 'btn pull-right' >+</button>
+		<button class= 'btn pull-right' ><%= link_to "+", new_task_path(:status_id=> 1) %></button>
 		<h4 class='block text-center'><%= status.name%></h4>
 		<div class='block' data-id='<%=status.id%>'> </div>
 	</div>
 
+<script type="text/javascript">var p_id =<%= @projects[0].id %>;</script>
+<script type="text/javascript" src="boards_controller.js">
 
-<script type="text/javascript" src="boards_controller.js"></script>
+</script>
 <% end %>

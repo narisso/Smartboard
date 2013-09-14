@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
   before_filter :check_session , :except => [:home]
 
   def check_session
-    unless params[:controller] == "devise/sessions" || params[:controller] == "devise/registrations"
+    unless params[:controller] == "devise/sessions" || params[:controller] == "devise/registrations" || params[:controller] == "devise/confirmations"
       unless user_signed_in?
         redirect_to root_path
+        flash[:error] = "You need to sign in to access"
         return
       end
     end

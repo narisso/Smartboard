@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.text     "description"
     t.integer  "task_father_id"
-    t.string   "type"
+    t.string   "task_type"
     t.datetime "status_update_at"
     t.integer  "project_id"
     t.integer  "status_id"

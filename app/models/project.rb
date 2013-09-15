@@ -24,6 +24,11 @@ class Project < ActiveRecord::Base
     user_role.save
   end
 
+  def get_role user
+    project_role_user = ProjectRoleUser.where(:project_id => self, :user_id => user).first
+    project_role_user.role.name
+  end
+
   private
     def set_starting_status
       self.project_status = ProjectStatus.first

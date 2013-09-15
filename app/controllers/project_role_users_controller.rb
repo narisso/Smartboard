@@ -26,10 +26,13 @@ class ProjectRoleUsersController < ApplicationController
   # GET /project_role_users/new.json
   def new
     @project_role_user = ProjectRoleUser.new
+    @project = Project.find(params[:id])
+    @users = @project.users
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project_role_user }
+      format.js
     end
   end
 
@@ -42,14 +45,16 @@ class ProjectRoleUsersController < ApplicationController
   # POST /project_role_users.json
   def create
     @project_role_user = ProjectRoleUser.new(params[:project_role_user])
+    @project = Project.find(params[:id])
+    @project_role_user.project = @project
 
     respond_to do |format|
       if @project_role_user.save
-        format.html { redirect_to @project_role_user, notice: 'Project role user was successfully created.' }
+        format.html { redirect_to project_role_users_path(@project) }
         format.json { render json: @project_role_user, status: :created, location: @project_role_user }
       else
-        format.html { render action: "new" }
-        format.json { render json: @project_role_user.errors, status: :unprocessable_entity }
+        format.html { redirect_to project_role_users_path(@project), flash: { manifesto_modal_add_user_to_project: true } , alert: "Error when adding user." }
+        format.json { render json: @projects_role_user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -74,10 +79,12 @@ class ProjectRoleUsersController < ApplicationController
   # DELETE /project_role_users/1.json
   def destroy
     @project_role_user = ProjectRoleUser.find(params[:id])
+    @project = @project_role_user.project
     @project_role_user.destroy
+    
 
     respond_to do |format|
-      format.html { redirect_to project_role_users_url }
+      format.html { redirect_to project_role_users_path(@project), notice: 'User removed successfully.' }
       format.json { head :no_content }
     end
   end

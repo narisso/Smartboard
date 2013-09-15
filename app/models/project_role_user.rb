@@ -8,5 +8,5 @@ class ProjectRoleUser < ActiveRecord::Base
   validate :project, 	:presence => true
   validate :role, 		:presence => true
   validate :user, 		:presence => true
-  #validates_uniqueness_of :project_id
+  validates_uniqueness_of :project_id, :scope => :user_id
 end

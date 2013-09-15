@@ -17,13 +17,11 @@
     <% @project_role_users.each do |project_role_user| %>
       <tr>
         <td><%= link_to project_role_user.id, project_role_user_path(project_role_user) %></td>
-        <td><%= project_role_user.project_id %></td>
-        <td><%= project_role_user.role_id %></td>
-        <td><%= project_role_user.user_id %></td>
+        <td><%= project_role_user.project.name %></td>
+        <td><%= project_role_user.role.name %></td>
+        <td><%= project_role_user.user.email %></td>
         <td><%=l project_role_user.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_project_role_user_path(project_role_user), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       project_role_user_path(project_role_user),
                       :method => :delete,
@@ -35,6 +33,4 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_project_role_user_path,
-            :class => 'btn btn-primary' %>
+<%= link_to "Add User", new_project_role_user_path, :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class => 'btn btn-primary', :id => 'modal_button' %>

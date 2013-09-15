@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   has_many :tasks
   has_many :bugs
 
-  has_many :project_role_users, :dependent => :destroy
+  has_many :project_role_users
   has_many :users, :through => :project_role_users
   has_many :roles, :through => :project_role_users
 
@@ -22,6 +22,11 @@ class Project < ActiveRecord::Base
     user_role.user = user
     user_role.role = role
     user_role.save
+  end
+
+  def get_role user
+    project_role_user = ProjectRoleUser.where(:project_id => self, :user_id => user).first
+    project_role_user.role.name
   end
 
   private

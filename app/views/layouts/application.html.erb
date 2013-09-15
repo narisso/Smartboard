@@ -77,6 +77,10 @@
           <%= yield %>
       </div><!--/row-->
 
+      <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+      </div>
+
       <footer>
         <%= render "layouts/footer" unless @skip_footer %>
       </footer>
@@ -87,6 +91,14 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+
+    <% if flash[:manifesto_modal_add_user_to_project] %>
+      <script type="text/javascript">
+        $(window).load(function() {
+          $('#modal_button')[0].click();
+        });
+      </script>
+    <% end %>
 
   </body>
 </html>

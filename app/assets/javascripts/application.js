@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+function ltl_bar_change(){
+	if($('.ltl-nav-open').length>0){
+
+		$('.ltl-nav-open').addClass('ltl-nav-close');
+		$('.ltl-nav-open').removeClass('ltl-nav-open');
+		$('.main-content-small').addClass('main-content-big');
+		$('.main-content-small').removeClass('main-content-small');
+	}
+	else{
+		
+		$('.ltl-nav-close').addClass('ltl-nav-open');
+		$('.ltl-nav-close').removeClass('ltl-nav-close');
+		$('.main-content-big').addClass('main-content-small');
+		$('.main-content-big').removeClass('main-content-big');
+	}
+
+}

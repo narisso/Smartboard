@@ -5,11 +5,14 @@
 <ul class = 'no-bullet'>
         <% @projects.each do |project| %>
           <li>
-            <div class="well-small">
+           
+            <div class="well-small" >
+               <%= link_to board_path(project) do %>
               <h4><%= project.name %></h4>
+              <%end%>
               <p>
                 Rol: <%= get_role(current_user, project) %>
-                /Status: <%= project.project_status.name %>
+                | Status: <%= project.project_status.name %>
                 
               </p>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -21,6 +24,7 @@
                       :class => 'btn btn-mini btn-danger' %>
 
             </div>
+            
           </li>
         <% end %>
       </ul>

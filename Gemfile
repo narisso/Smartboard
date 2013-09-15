@@ -38,13 +38,14 @@ gem 'devise'
 gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
-gem "therubyracer"
+gem 'therubyracer'
+gem 'libv8'
 
 # Adds Less CSS into pipeline
 gem "less-rails"
 
 # CSS framework
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 
 

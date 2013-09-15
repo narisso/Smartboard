@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    puts params[:status_id]
     @task = Task.new
 
     respond_to do |format|
@@ -80,4 +81,26 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+  # GET /tasks/project_tasks/1
+  # GET /tasks/project_tasks/1.json
+  def project_tasks
+
+    @tasks=Task.where(:project_id => params[:id])
+
+
+    respond_to do |format|
+      format.html # project_tasks.html.erb
+      format.json { render json: @tasks.to_json(:include => [:users, :label]) }
+    end
+  end
+
+
+
 end
+
+
+
+

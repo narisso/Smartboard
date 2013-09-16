@@ -23,4 +23,7 @@ class Task < ActiveRecord::Base
 
   attr_accessible :user_ids
 
+  validates :name, :presence => true
+  validate :label, :presence => true  
+
 end

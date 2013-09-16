@@ -2,15 +2,19 @@
   <div id="select_task_options">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
-  <%= f.input :task_type, collection: ['Administration','Design','Features'] %>
-  <%= f.input :project_id, collection: Project.all %>
-  <%= f.input :status_id, collection: Status.where(:project_id => params[:pr_id]) %>
-  <%= f.input :priority, collection: 1..5 %>
+  <%= f.input :task_type, collection: ['Administration','Design','Features'], :include_blank => false%>
+  <%= f.input :priority, collection: 1..5, :include_blank => false %>
+  <%= f.input :project_id, input_html: {value: params[:pr_id]}, :as => :hidden %>
+  <% if !@editing %>
+    <%= f.input :status_id, input_html: {value: params[:status_id]}, :as => :hidden %>
+  <% else %>
+    <%= f.input :status_id, collection: Status.where(:project_id => params[:pr_id]), :include_blank => false %>
+   <% end %> 
   </div>
 
   <div id="select_owners">
     <a>Select Owners:</a>
-  <%= f.collection_check_boxes :user_ids, User.all, :id, :email %>
+  <%= f.collection_check_boxes :user_ids, User.joins(:project_role_users).where('project_id = ?', params[:pr_id]), :id, :email %>
   </div>
   <!--%= f.input :user_ids, :as => :grouped_select, :collection => User.all(order: 'name'), :label_method => :email, :value_method => :id %-->
   <!--
@@ -28,9 +32,8 @@
 -->
   <div id="create_edit_task">
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                tasks_path, :class => 'btn' %>
+    <%= f.button :submit, :class => 'btn-primary'%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), boards_path(params[:pr_id]), :class => 'btn' %>
   </div>
   </div>
 <% end %>

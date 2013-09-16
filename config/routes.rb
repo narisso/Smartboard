@@ -2,6 +2,8 @@ Iic21542::Application.routes.draw do
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
   
+  match 'boards/:id' => 'boards#show' , :as => 'boards'
+
   get "/tasks/show_comments_of_task"
 
   resources :comments

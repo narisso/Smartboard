@@ -3,6 +3,8 @@
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
   <%= f.input :task_type, collection: ['Administration','Design','Features'] %>
+  <%= f.input :project_id, collection: Project.all %>
+  <%= f.input :status_id, collection: Status.where(:project_id => params[:pr_id]) %>
   <%= f.input :priority, collection: 1..5 %>
   </div>
 

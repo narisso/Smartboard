@@ -5,12 +5,13 @@ class ProjectsController < ApplicationController
   def index
 
     
-    @roles = current_user.roles
+    #@roles = current_user.roles
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
+
   end
 
   # GET /projects/1

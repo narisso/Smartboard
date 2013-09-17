@@ -70,6 +70,8 @@
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
+
+          <!-- Codigo para generar los breadcrumbs-->
           <% breadcrumbs do |links| %>
                 <% if links.any? %>
                   You are here:
@@ -78,6 +80,7 @@
                   <% end %>
                 <% end %>
               <% end %>
+          <!--Fin codigo -->
           <%= yield %>
         </div>
       </div><!--/row-->

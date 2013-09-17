@@ -48,6 +48,7 @@ gem "less-rails"
 # CSS framework
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
+gem "flash_render"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

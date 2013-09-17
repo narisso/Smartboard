@@ -49,12 +49,12 @@
             <ul class="nav">
               <%if user_signed_in?%>
                 <li><%= link_to "My projects", projects_path  %></li>
+                <% if not @project.nil? %>
+                  <li><%= link_to "Add User", new_project_role_user_path, :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :id => 'modal_button' %></li>
+                <% end %>
               <%end%>
             </ul>
             <ul class="nav pull-right">
-              <!-- <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li> -->
               <%if user_signed_in?%>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
@@ -77,8 +77,8 @@
           <%= yield %>
       </div><!--/row-->
 
-      <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        
+      <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+        <%= bootstrap_flash %>
       </div>
 
       <footer>

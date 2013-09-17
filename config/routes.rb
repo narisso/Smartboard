@@ -34,10 +34,11 @@ Iic21542::Application.routes.draw do
 
   resources :document_projects
   resources :projects do
+    resources :project_role_users
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish
-      resources :project_role_users
+      #resources :project_role_users
     end
   end
 

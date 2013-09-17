@@ -26,11 +26,10 @@ class ProjectRoleUsersController < ApplicationController
   # GET /project_role_users/new.json
   def new
     @project_role_user = ProjectRoleUser.new
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @project_role_users = ProjectRoleUser.where(:project_id => @project)
 
     respond_to do |format|
-      #format.html # new.html.erb
       format.json { render json: @project_role_user }
       format.js
     end
@@ -46,15 +45,15 @@ class ProjectRoleUsersController < ApplicationController
   def create
     @project_role_user = ProjectRoleUser.new(params[:project_role_user])
 
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @project_role_users = ProjectRoleUser.where(:project_id => @project)
 
     respond_to do |format|
       if @project_role_user.save
-        format.js {redirect_to new_project_role_user_path, notice: 'User was successfully added.' }
+        format.js {redirect_to new_project_project_role_user_path, notice: 'User was successfully added.' }
         format.json { render json: @project_role_user, status: :created, location: @project_role_user }
       else
-        format.js {redirect_to new_project_role_user_path, alert: "User already in project."}
+        format.js {redirect_to new_project_project_role_user_path, alert: "User already in project."}
         format.json { render json: @projects_role_user.errors, status: :unprocessable_entity }
       end
     end
@@ -80,13 +79,15 @@ class ProjectRoleUsersController < ApplicationController
   # DELETE /project_role_users/1.json
   def destroy
     @project_role_user = ProjectRoleUser.find(params[:id])
-    #@project = @project_role_user.project
-    
     @project_role_user.destroy
-    #@project_role_users = ProjectRoleUser.where(:project_id => @project)
+
+    @project_role_user = ProjectRoleUser.new
+    @project = Project.find(params[:project_id])
+    @project_role_users = ProjectRoleUser.where(:project_id => @project)
 
     respond_to do |format|
-      format.js { redirect_to new_project_role_user_path, notice: 'User removed successfully.' }
+      format.js { render 'new', notice: 'User removed successfully.' }
+      #format.js { redirect_to new_project_project_role_user_path, notice: 'User removed successfully.' }
       format.json { head :no_content }
     end
   end

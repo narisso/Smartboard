@@ -1,17 +1,14 @@
-<%= simple_form_for(@commit) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :url %>
-    <%= f.input :sha %>
-    <%= f.input :author_name %>
-    <%= f.input :author_email %>
-    <%= f.input :date %>
-    <%= f.input :message %>
-    <%= f.input :task_id %>
-  </div>
-
+<%= simple_form_for @commit, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :url %>
+  <%= f.input :sha %>
+  <%= f.input :author_name %>
+  <%= f.input :author_email %>
+  <%= f.input :date %>
+  <%= f.input :message %>
+  <%= f.input :task_id %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                commits_path, :class => 'btn' %>
   </div>
 <% end %>

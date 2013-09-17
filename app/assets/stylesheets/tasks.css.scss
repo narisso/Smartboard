@@ -1,3 +1,110 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#select_task_options{
+	float:left;
+	width:40%;
+}
+
+#select_owners{
+	float:right;
+	width:40%;
+}
+
+#select_owners a{
+	float:left;
+	width:60%;
+}
+
+
+#select_owners span{
+	float:left;
+	width:60%;
+}
+
+#select_owners span input{
+	float:left;
+}
+
+#select_owners span label{
+	float:left;
+}
+
+
+#create_edit_task{
+	//position:relative;
+	//top:50%;
+	width:50%;	
+}
+
+#left{
+	width:40%;
+	float:left;
+	background-color:white;
+	height:50%;
+
+}
+
+.dl-horizontal{
+	width:60%;
+	float:right;
+	height:50%;
+}
+
+#selected_tab_view{
+	border-style:solid;
+	position:absolute;
+	height:40%;
+	width:35.5%;
+	background-color:none;
+}
+
+#show_buttons{
+	position:absolute;
+	top:75%;
+}
+
+/*
+#tabs {
+	//border-style:solid;
+	border-radius:5px;
+}
+
+#tabs span{
+	//background-color:white;
+	width:25%;
+	text-align:center;
+	float:right;
+
+}
+
+#tabs span:hover{
+	background-color:cyan;
+	border-radius:5px;
+}
+
+#Comments{
+
+
+}
+
+#Bugs{
+	
+
+}
+
+#Commits{
+
+	float:right;	
+}
+
+#Documentos{
+	float:right;
+}
+
+#selected_tab_view{
+	border-style:solid;
+	height:250px;
+}
+*/

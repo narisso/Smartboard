@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
-  def index
-    @projects = Project.all
+
+  def index   
+    @projects = current_user.projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,10 +42,15 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
+    @project.initial_date = Time.now
+    
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        Status.create({name: 'Backlog', project_id: @project.id})
+        Status.create({name: 'In Progress', project_id: @project.id})
+        Status.create({name: 'Done', project_id: @project.id})
+        @project.add_user_role(current_user, Role.first)
+        format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
@@ -79,5 +85,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def finish
+    @project = Project.find(params[:id])
+    @project.project_status = ProjectStatus.where(:name => "Finished")
   end
 end

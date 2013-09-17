@@ -12,6 +12,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-modal-rails'
 end
 
 group :development, :test do 
@@ -36,15 +37,15 @@ gem 'devise'
 gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
-gem "therubyracer"
+gem 'therubyracer'
+gem 'libv8'
 
 # Adds Less CSS into pipeline
 gem "less-rails"
 
 # CSS framework
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'simple_form'
-
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

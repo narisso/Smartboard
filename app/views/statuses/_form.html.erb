@@ -1,11 +1,10 @@
-<%= simple_form_for(@status) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-  </div>
-
+<%= simple_form_for @status, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :project_id %>
+  <%= f.input :order %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                statuses_path, :class => 'btn' %>
   </div>
 <% end %>

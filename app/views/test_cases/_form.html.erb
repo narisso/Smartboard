@@ -1,14 +1,11 @@
-<%= simple_form_for(@test_case) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :description %>
-    <%= f.input :executed_at %>
-    <%= f.input :approved %>
-    <%= f.input :test_id %>
-  </div>
-
+<%= simple_form_for @test_case, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :description %>
+  <%= f.input :executed_at %>
+  <%= f.input :approved %>
+  <%= f.input :test_id %>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                test_cases_path, :class => 'btn' %>
   </div>
 <% end %>

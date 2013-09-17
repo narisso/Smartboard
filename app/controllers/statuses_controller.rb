@@ -80,4 +80,17 @@ class StatusesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+# GET /statuses/project_statuses/1
+# GET /statuses/project_statuses/1.json
+ def project_statuses
+
+    @statuses=Status.where(:project_id => params[:id])
+
+    respond_to do |format|
+      format.html # project_statuses.html.erb
+      format.json { render json: @statusess }
+    end
+  end
+
 end

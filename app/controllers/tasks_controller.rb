@@ -1,4 +1,24 @@
 class TasksController < ApplicationController
+
+  def show_comments_of_task
+    @task = Task.find(params[:id])
+    @comments = @task.comments
+
+    respond_to do |format|
+      format.html {
+        if request.xhr?
+
+        else
+
+        end
+      }
+      format.js{
+
+      }
+    end
+
+  end
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -24,7 +44,10 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    puts params[:status_id]
+
     @task = Task.new
+    @editing = false
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +58,7 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    @editing = true
   end
 
   # POST /tasks
@@ -44,10 +68,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to boards_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        format.html { render action: "new" }
+        #format.html { render action: "new" }
+        format.html { redirect_to :back, notice: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -60,10 +85,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to boards_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        #format.html { render action: "edit" }
+        format.html { redirect_to :back, notice: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -76,8 +102,30 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to boards_path(params[:pr_id]) }
       format.json { head :no_content }
     end
   end
+
+
+
+  # GET /tasks/project_tasks/1
+  # GET /tasks/project_tasks/1.json
+  def project_tasks
+
+    @tasks=Task.where(:project_id => params[:id])
+
+
+    respond_to do |format|
+      format.html # project_tasks.html.erb
+      format.json { render json: @tasks.to_json(:include => [:users, :label]) }
+    end
+  end
+
+
+
 end
+
+
+
+

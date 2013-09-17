@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909023030) do
+ActiveRecord::Schema.define(:version => 20130914213337) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -75,14 +75,29 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "project_role_users", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "project_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.date     "initial_date"
     t.date     "finish_date"
     t.string   "status"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "project_status_id"
   end
 
   create_table "requirement_templates", :force => true do |t|
@@ -104,8 +119,6 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.integer  "project_id"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -114,6 +127,8 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "project_id"
+    t.integer  "order"
   end
 
   create_table "task_users", :force => true do |t|
@@ -129,7 +144,7 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
     t.string   "name"
     t.text     "description"
     t.integer  "task_father_id"
-    t.string   "type"
+    t.string   "task_type"
     t.datetime "status_update_at"
     t.integer  "project_id"
     t.integer  "status_id"
@@ -187,6 +202,10 @@ ActiveRecord::Schema.define(:version => 20130909023030) do
     t.string   "name"
     t.string   "picture"
     t.string   "curriculum"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

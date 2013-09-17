@@ -1,0 +1,146 @@
+// Place all the styles related to the boards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.column {
+	position:relative;
+	width: 280px;
+	height:97%;
+	float: left;
+	min-height: 400px;
+	padding: 10px;
+	bottom: 0;
+
+	border-right: 1px dashed black;
+}
+
+.task{
+	height: 100px;
+	margin: 5px;
+
+	padding: 5px;
+
+	background-color: rgba(255,255,255,0.5);
+	-moz-box-shadow: 0 0 2px #888;
+	-webkit-box-shadow: 0 0 2px#888;
+	box-shadow: 0 0 2px #888;
+
+	border-radius: 5px;
+
+	cursor: pointer;
+
+
+
+}
+
+.task img {
+	height:30px;
+	width: 30px;
+
+
+	margin:5px;
+	border-radius: 4px;
+
+}
+
+.ltl-nav{
+	position: absolute;
+	top: 42px;
+	bottom: 0px;
+	left: 0px;
+	background-color: #f6f6f6;
+		-moz-box-shadow: 0 0 2px #888;
+	-webkit-box-shadow: 0 0 2px#888;
+	box-shadow: 0 0 2px #888;
+	padding-top: 40px;
+}
+
+.ltl-nav-open{
+	width: 200px;
+}
+
+.ltl-nav-close{
+	width: 55px;
+}
+
+.main-content{
+	position: absolute;
+	width: auto;
+	top: 42px;
+	bottom: 0px;
+	left: 290px;
+
+}
+
+.main-content-small{
+	left: 240px;
+}
+
+.main-content-big{
+	left: 80px;
+}
+
+.close-btn{
+	position: absolute;
+	width: 5px;
+	right: 0px;
+	top:0;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.close-btn:hover{
+
+	box-shadow: 10px 0px 5px -2px #888 ;
+}
+
+
+
+.ltl-nav-list{
+
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	list-style-type: none;
+
+}
+
+.ltl-nav-list li{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 40px;
+	display: inline-block;
+	margin-bottom: 10px;
+	cursor: pointer;
+
+}
+
+.ltl-nav-list li:hover{
+	background-color: #d8d8d8;
+}
+
+
+.ltl-nav-list li img{
+	float:left;
+	margin-left: 7px;
+	margin-right: 5px;
+
+}
+
+.ltl-nav-list li h4{
+	float:center;
+	cursor: pointer;
+}
+
+.ltl-nav-open .ltl-nav-list li h4{
+	visibility: visible;
+}
+
+.ltl-nav-close .ltl-nav-list li h4{
+	visibility: hidden;
+}
+

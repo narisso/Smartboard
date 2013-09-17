@@ -1,46 +1,57 @@
 Iic21542::Application.routes.draw do
 
-  root :to => 'application#index'
-  #get "application" => 'application#index'
+  match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
+
+  get "/tasks/show_comments_of_task"
+
   resources :comments
 
+   # route to getting task for a project
+  match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
+  match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
 
+  resources :comments
+
+  resources :project_statuses
+  resources :comments
+  root :to => 'application#home'
+
+  resources :comments
   resources :tests
-
-
   resources :test_cases
-
-
   resources :bugs
-
-
   resources :roles
-
-
   resources :task_users
-
-
   resources :labels
-
-
   resources :commits
-
-
   resources :document_tasks
-
-
   resources :goals
   resources :statuses
   resources :requirement_templates
   resources :requirements
   resources :use_cases
   resources :tasks
+
+
+
   resources :document_projects
-  resources :projects
+  resources :projects do
+    member do
+      get '/boards/' => 'boards#show' , :as => 'boards'
+      post :finish
+      resources :project_role_users
+    end
+  end
+
+  #resources :boards
+
+
 
   # resources :users always below devise_for
-  devise_for :users
+  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users
+
+
 
 
   # The priority is based upon order of creation:

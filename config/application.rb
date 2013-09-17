@@ -61,28 +61,28 @@ module Iic21542
   end
 end
 
-ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
- html = %(<div class="field_with_errors">#{html_tag}</div>).html_safe
+#ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+# html = %(<div class="field_with_errors">#{html_tag}</div>).html_safe
  # add nokogiri gem to Gemfile
  
- form_fields = [
-   'textarea',
-   'input',
-   'select'
- ]
+# form_fields = [
+#   'textarea',
+#   'input',
+#   'select'
+# ]
 
- elements = Nokogiri::HTML::DocumentFragment.parse(html_tag).css "label, " + form_fields.join(', ')
+# elements = Nokogiri::HTML::DocumentFragment.parse(html_tag).css "label, " + form_fields.join(', ')
 
- elements.each do |e|
-   if e.node_name.eql? 'label'
-     html = %(#{e}).html_safe
-   elsif form_fields.include? e.node_name
-     if instance.error_message.kind_of?(Array)
-       html = %(#{html_tag}<span class="help-inline"> #{instance.error_message.join(', ')}</span>).html_safe
-     else
-       html = %(#{html_tag}<span class="help-inline"> #{instance.error_message}</span>).html_safe
-     end
-   end
- end
- html
-end
+# elements.each do |e|
+#   if e.node_name.eql? 'label'
+#     html = %(#{e}).html_safe
+#   elsif form_fields.include? e.node_name
+#     if instance.error_message.kind_of?(Array)
+#       html = %(#{html_tag}<span class="help-inline"> #{instance.error_message.join(', ')}</span>).html_safe
+#     else
+#       html = %(#{html_tag}<span class="help-inline"> #{instance.error_message}</span>).html_safe
+#     end
+#   end
+# end
+# html
+#end

@@ -87,7 +87,6 @@ class ProjectRoleUsersController < ApplicationController
 
     respond_to do |format|
       format.js { render 'new', notice: 'User removed successfully.' }
-      #format.js { redirect_to new_project_project_role_user_path, notice: 'User removed successfully.' }
       format.json { head :no_content }
     end
   end

@@ -34,7 +34,7 @@ Iic21542::Application.routes.draw do
 
   resources :document_projects
   resources :projects do
-    resources :project_role_users
+    resources :project_role_users, only: [:new, :create, :destroy]
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish

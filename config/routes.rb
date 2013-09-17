@@ -1,8 +1,6 @@
 Iic21542::Application.routes.draw do
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
-  
-  match 'boards/:id' => 'boards#show' , :as => 'boards'
 
   get "/tasks/show_comments_of_task"
 
@@ -39,12 +37,13 @@ Iic21542::Application.routes.draw do
   resources :document_projects
   resources :projects do
     member do
+      get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish
       resources :project_role_users
     end
   end
 
-  resources :boards
+  #resources :boards
 
 
 

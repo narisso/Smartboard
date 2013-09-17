@@ -1,16 +1,3 @@
-        <div class="">
-          <div class=" sidebar-nav ltl-nav ltl-nav-open">
-            <ul class="ltl-nav-list">
-              <li><%= image_tag("ltl_bar_task.png", :alt => "rss feed") %><h4>Tasks</h4></li>
-              <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed") %><h4>Tests</h4></li>
-              <li><%= image_tag("ltl_bar_bugs.png", :alt => "rss feed") %><h4>Bugs</h4></li>
-              <li><%= image_tag("ltl_bar_docs.png", :alt => "rss feed") %><h4>Docs</h4></li>
-              <li><%= image_tag("ltl_bar_cal.png", :alt => "rss feed") %><h4>Calendar</h4></li>
-              <li><%= image_tag("ltl_bar_use.png", :alt => "rss feed") %><h4>Use Cases</h4></li>
-            </ul>
-            <div class="close-btn" onClick="ltl_bar_change();"></div>
-          </div><!--/.well -->
-        </div><!--/span-->
 <%= render :partial => 'lateral' %>
 
         <div class="main-content main-content-small">
@@ -19,13 +6,13 @@
 <% @statuses.each do |status|%>
 
 	<div class='column'>
-		<button class= 'btn pull-right' ><%= link_to "+", new_task_path(:status_id=> status.id,:pr_id => @projects[0].id) %></button>
+		<button class= 'btn pull-right' ><%= link_to "+", new_task_path(:status_id=> status.id,:pr_id => @project) %></button>
 		<h4 class='block text-center'><%= status.name%></h4>
 		<div class='block' data-id='<%=status.id%>'> </div>
 
   <% status.tasks.each do |task|%>
     <div class='task'>
-      <%= link_to task.name, task_path(task, :status_id=> status.id,:pr_id => @projects[0].id) %>
+      <%= link_to task.name, task_path(task, :status_id=> status.id,:pr_id => @project) %>
       (<%= task.task_type %>)
       <ul>Owners:</ul>
       <% task.users.each do |owner|%>
@@ -40,7 +27,7 @@
   
   </div>
 
-<script type="text/javascript">var p_id =<%= @projects[0].id %>;</script>
+<script type="text/javascript">var p_id =<%= @project %>;</script>
 <script type="text/javascript" src="boards_controller.js">
 
 </script>

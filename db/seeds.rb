@@ -18,5 +18,5 @@ Role.create([{name: 'Administrator'}, {name: 'Project Manager'}, {name: 'Develop
 
 ProjectStatus.create([{name: 'Starting'}, {name: 'In process'}, {name: 'Finished'}, {name: 'Cancel'}])
 
-User.create({name: 'Usuario 3', email: 'usuario3@test.cl', password: 'blahblah'})
-User.create({name: 'Usuario 2', email: 'usuario2@test.cl', password: 'blahblah'})
+#User.create({name: 'Usuario 3', email: 'usuario3@test.cl', password: 'blahblah'})
+#User.create({name: 'Usuario 2', email: 'usuario2@test.cl', password: 'blahblah'})

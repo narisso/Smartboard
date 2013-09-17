@@ -32,8 +32,6 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   resources :tasks
 
-
-
   resources :document_projects
   resources :projects do
     member do
@@ -45,11 +43,9 @@ Iic21542::Application.routes.draw do
 
   #resources :boards
 
-
-
   # resources :users always below devise_for
   devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
-  resources :users
+  resources :users, :only => [:create]
 
 
 

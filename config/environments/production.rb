@@ -76,7 +76,8 @@ Iic21542::Application.configure do
    :port => 587,
    :domain => "gmail.com",
    :authentication => :login,
-   :user_name => "iic2154grupo2",
-   :password => "nicorisso"
+   :user_name => "iic2154grupo2@gmail.com",
+   :password => "nicorisso",
+   :authentication => "plain"
 }
 end

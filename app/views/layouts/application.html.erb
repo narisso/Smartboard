@@ -49,7 +49,7 @@
             <ul class="nav">
               <%if user_signed_in?%>
                 <li><%= link_to "My projects", projects_path  %></li>
-                <% if not @project.nil? %>
+                <% if @project and not @project.id.nil? %>
                   <li><%= link_to "Add User", new_project_role_user_path, :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :id => 'modal_button' %></li>
                 <% end %>
               <%end%>
@@ -78,7 +78,7 @@
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
-        <%= bootstrap_flash %>
+        <!-- <%= bootstrap_flash %> -->
       </div>
 
       <footer>
@@ -91,15 +91,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-    <%= yield(:javascripts) -%>
-
-    <% if flash[:manifesto_modal_add_user_to_project] %>
-      <script type="text/javascript">
-        $(window).load(function() {
-          $('#modal_button')[0].click();
-        });
-      </script>
-    <% end %>
+    <%= yield(:javascripts) %>
 
   </body>
 </html>

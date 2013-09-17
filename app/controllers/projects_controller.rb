@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
         Status.create({name: 'In Progress', project_id: @project.id})
         Status.create({name: 'Done', project_id: @project.id})
         @project.add_user_role(current_user, Role.first)
-        format.html { redirect_to board_path(@project) }
+        format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

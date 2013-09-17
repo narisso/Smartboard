@@ -1,0 +1,10 @@
+<%= simple_form_for @project_role_user, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :project_id %>
+  <%= f.input :role_id %>
+  <%= f.input :user_id %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_role_users_path, :class => 'btn' %>
+  </div>
+<% end %>

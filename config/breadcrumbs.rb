@@ -3,18 +3,14 @@ crumb :root do
 end
 
 crumb :projects do
-	link "Projects", projects_path
-end 
+   link "Projects", projects_path
+end
 
 crumb :project do |project|
-   link "project.name", project_path(project)
+   link project.name, project_path
    parent :projects
 end
 
-crumb :edit_project do |project|
-   link "Edition "+ project.name, edit_project_path(project)
-   parent :projects
-end
 # crumb :project_issues do |project|
 #   link "Issues", project_issues_path(project)
 #   parent :project, project

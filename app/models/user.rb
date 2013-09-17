@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -15,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :task_users
   has_many :tasks, :through => :task_users
 
-  has_many :roles
-  has_many :projects, :through => :roles
+  has_many :project_role_users
+  has_many :roles, :through => :project_role_users
+  has_many :projects, :through => :project_role_users
 end

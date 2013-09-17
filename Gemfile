@@ -12,6 +12,8 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
+  gem 'jquery-modal-rails'
 end
 
 group :development, :test do 
@@ -45,7 +47,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
-# Gem to do breadcrumbs
+#Gema para los breadScrumbs
 gem "gretel"
 
 # To use Jbuilder templates for JSON

@@ -127,8 +127,6 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "project_id"
-    t.integer  "order"
   end
 
   create_table "task_users", :force => true do |t|
@@ -144,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.text     "description"
     t.integer  "task_father_id"
-    t.string   "task_type"
+    t.string   "type"
     t.datetime "status_update_at"
     t.integer  "project_id"
     t.integer  "status_id"

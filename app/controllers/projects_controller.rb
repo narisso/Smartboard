@@ -2,16 +2,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
 
-  def index
-
-    
-    #@roles = current_user.roles
+  def index   
+    @projects = current_user.projects
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
     end
-
   end
 
   # GET /projects/1
@@ -45,9 +42,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
+    @project.initial_date = Time.now
+    
     respond_to do |format|
       if @project.save
+        @project.add_user_role(current_user, Role.first)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -85,4 +84,8 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def finish
+    @project = Project.find(params[:id])
+    @project.project_status = ProjectStatus.where(:name => "Finished")
+  end
 end

@@ -1,37 +1,32 @@
-<% breadcrumb :projects, @projects %>
 <h1>My projects</h1>
 
 
 
-<ul class='no-bullet'>
-<% @roles.each do |rol| %>
-    <li>
-    <div class="well-small">  
+<ul class = 'no-bullet'>
+        <% @projects.each do |project| %>
+          <li>
+            <div class="well-small">
+              <h4><%= project.name %></h4>
+              <p>
+                Rol: <%= get_role(current_user, project) %>
+                /Status: <%= project.project_status.name %>
+                
+              </p>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_project_path(project), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      project_path(project),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
 
-        <h4><%= rol.project.name %></h4>
-        <p>Rol: <%= rol.name %>
-        <!--
-        <%= rol.project.description %>
-        <%= rol.project.initial_date %>
-        <%= rol.project.finish_date %>
-        -->
-        /Status: <%= rol.project.status %></p>
-        <%= link_to 'ver info', :controller => "projects", :action => "show", :id => rol.project%>
-        <!--
-        <% link_to 'Show', rol.project %> 
-        <%= link_to 'Edit', edit_project_path(rol.project) %> 
-        <%= link_to 'Destroy', rol.project, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-        -->
-    </div>
-    </li>
-<% end %>
-  </ul>
+            </div>
+          </li>
+        <% end %>
+      </ul>
 
 
-<br />
 
  
-<%= link_to 'New Project', new_project_path, :style=>'color:#FFFFFF', :class => "btn btn-inverse" %>
-
-
-
+<%= link_to 'New Project', new_project_path, :class => "btn btn-primary" %>
+<% breadcrumb :projects, @projects %>

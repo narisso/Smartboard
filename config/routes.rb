@@ -1,11 +1,13 @@
 Iic21542::Application.routes.draw do
 
+  resources :project_statuses
+  resources :comments
   root :to => 'application#home'
-
+  
   resources :comments
   resources :tests
   resources :test_cases
-  resources :bugs 
+  resources :bugs
   resources :roles
   resources :task_users
   resources :labels
@@ -18,10 +20,18 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   resources :tasks
   resources :document_projects
-  resources :projects
+  resources :projects do
+    member do
+      post :finish
+      resources :project_role_users
+    end
+  end
+
   # resources :users always below devise_for
-  devise_for :users
+  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users
+
+
 
 
   # The priority is based upon order of creation:

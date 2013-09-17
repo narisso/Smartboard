@@ -49,7 +49,7 @@
             <ul class="nav">
               <%if user_signed_in?%>
                 <li><%= link_to "My projects", projects_path  %></li>
-                <% if not @project.id.nil? %>
+                <% if not @project.nil? %>
                   <li><%= link_to "Add User", new_project_role_user_path, :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :id => 'modal_button' %></li>
                 <% end %>
               <%end%>
@@ -91,6 +91,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= yield(:javascripts) -%>
 
     <% if flash[:manifesto_modal_add_user_to_project] %>
       <script type="text/javascript">

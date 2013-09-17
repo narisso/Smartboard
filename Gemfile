@@ -24,6 +24,8 @@ group :development, :test do
   gem "rails-erd"
 end
 
+gem 'quiet_assets', :group => :development
+
 group :production do 
   gem 'pg'
 end

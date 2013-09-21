@@ -44,7 +44,6 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    puts params[:status_id]
 
     @task = Task.new
     @editing = false
@@ -65,10 +64,10 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-
+    @task.task_type = @task.label.name
     respond_to do |format|
       if @task.save
-        format.html { redirect_to boards_path(@task.project_id)}#, notice: 'Task was successfully created.' }
+        format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
         #format.html { render action: "new" }
@@ -82,10 +81,10 @@ class TasksController < ApplicationController
   # PUT /tasks/1.json
   def update
     @task = Task.find(params[:id])
-
+    @task.task_type = @task.label.name
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to boards_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
+        format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }
@@ -102,7 +101,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to boards_path(params[:pr_id]) }
+      format.html { redirect_to boards_project_path(params[:pr_id]) }
       format.json { head :no_content }
     end
   end

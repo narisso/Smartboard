@@ -1,8 +1,11 @@
 <%- model_class = ProjectRoleUser -%>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  		<h1>Add User</h1>
+  		
+      <h1>Add User</h1>
+
   	</div>
+<%= bootstrap_flash %>
   	<div class="modal-body">
   		<table class="table table-striped">
   			<thead>
@@ -18,7 +21,7 @@
     				<td><%= project_role_user.user.email %></td>
     				<td><%= project_role_user.role.name %></td>
             <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      project_role_user_path(project_role_user),
+                      project_project_role_user_path(@project, project_role_user),
                       :remote => true,
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
@@ -29,7 +32,7 @@
     	</table>
   	</div>
   	<div class="modal-body">
-		  <%= simple_form_for @project_role_user, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+		  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
 		  <%= f.association :user, :include_blank => false, :label_method => :email %>
       <%= f.association :role, :include_blank => false %>
       <%= f.input :project_id,:as => :hidden, :input_html => { :value => "#{@project.id}" } %>

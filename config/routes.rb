@@ -32,24 +32,21 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   resources :tasks
 
-
-
   resources :document_projects
   resources :projects do
+    resources :project_role_users, only: [:new, :create, :destroy]
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish
-      resources :project_role_users
+      #resources :project_role_users
     end
   end
 
   #resources :boards
 
-
-
   # resources :users always below devise_for
   devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
-  resources :users
+  resources :users, :only => [:create]
 
 
 

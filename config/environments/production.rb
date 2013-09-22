@@ -78,6 +78,7 @@ Iic21542::Application.configure do
    :authentication => :login,
    :user_name => "iic2154grupo2@gmail.com",
    :password => "nicorisso",
-   :authentication => "plain"
+   :enable_starttls_auto => true,  
+   :openssl_verify_mode  => 'none'
 }
 end

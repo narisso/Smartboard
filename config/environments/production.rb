@@ -71,14 +71,12 @@ Iic21542::Application.configure do
   config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-   :tls => true,
    :address => "smtp.gmail.com",
    :port => 587,
    :domain => "gmail.com",
    :authentication => :login,
    :user_name => "iic2154grupo2@gmail.com",
    :password => "nicorisso",
-   :enable_starttls_auto => true,  
    :openssl_verify_mode  => 'none'
 }
 end

@@ -5,7 +5,7 @@ var _tasks=[]
 
 
 //loads the tasks ehwn the document is ready
-$(document).ready(function() {
+jQuery(document).ready(function($){
 
   var ask = "/tasks/project_tasks/"+p_id+".json"
 	$.getJSON(ask, function(data) {

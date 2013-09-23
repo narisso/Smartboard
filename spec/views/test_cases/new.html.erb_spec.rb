@@ -5,7 +5,7 @@ describe "test_cases/new" do
     assign(:test_case, stub_model(TestCase,
       :description => "MyText",
       :approved => false,
-      :test_id => 1
+      :evaluation_id => 1
     ).as_new_record)
   end
 
@@ -16,7 +16,7 @@ describe "test_cases/new" do
     assert_select "form[action=?][method=?]", test_cases_path, "post" do
       assert_select "textarea#test_case_description[name=?]", "test_case[description]"
       assert_select "input#test_case_approved[name=?]", "test_case[approved]"
-      assert_select "input#test_case_test_id[name=?]", "test_case[test_id]"
+      assert_select "input#test_case_evaluation_id[name=?]", "test_case[evaluation_id]"
     end
   end
 end

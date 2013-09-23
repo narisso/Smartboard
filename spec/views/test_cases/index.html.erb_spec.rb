@@ -6,12 +6,12 @@ describe "test_cases/index" do
       stub_model(TestCase,
         :description => "MyText",
         :approved => false,
-        :test_id => 1
+        :evaluation_id => 1
       ),
       stub_model(TestCase,
         :description => "MyText",
         :approved => false,
-        :test_id => 1
+        :evaluation_id => 1
       )
     ])
   end

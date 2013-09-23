@@ -17,7 +17,7 @@ Iic21542::Application.routes.draw do
   root :to => 'application#home'
 
   resources :comments
-  resources :tests
+  resources :evaluations
   resources :test_cases
   resources :bugs
   resources :roles

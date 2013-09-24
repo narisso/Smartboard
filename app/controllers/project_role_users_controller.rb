@@ -66,10 +66,10 @@ class ProjectRoleUsersController < ApplicationController
 
     respond_to do |format|
       if @project_role_user.update_attributes(params[:project_role_user])
-        format.html { redirect_to @project_role_user, notice: 'Project role user was successfully updated.' }
+        #format.html { redirect_to @project_role_user, notice: 'Project role user was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        #format.html { render action: "edit" }
         format.json { render json: @project_role_user.errors, status: :unprocessable_entity }
       end
     end

@@ -1,10 +1,19 @@
-<%= simple_form_for [@document_project.project, @document_project], :html => { :class => 'form-horizontal' } do |f| %>
+<%- model_class = DocumentProject -%>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h1>Project Document</h1>
+</div>
+<%= bootstrap_flash %>
+
+<%= simple_form_for [@document_project.project, @document_project], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+<div class="modal-body">
   <%= f.input :name %>
   <%= f.input :url_path %>
-  <%= f.input :description %>
-  <div class="form-actions">
+  <%= f.input :description, :input_html => { :cols => 50, :rows => 3 } %>
+ </div>
+ <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                project_document_projects_path(@document_project.project), :class => 'btn' %>
+    <%= link_to 'Back', project_document_projects_path(@document_project.project), :class => 'btn', :remote => true %>
+                		  
   </div>
 <% end %>

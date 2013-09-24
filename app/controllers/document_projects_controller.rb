@@ -2,9 +2,10 @@ class DocumentProjectsController < ApplicationController
   # GET /document_projects
   # GET /document_projects.json
   def index
-    @document_projects = DocumentProject.all
+    @document_projects = DocumentProject.where(:project_id => params[:project_id])
 
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.json { render json: @document_projects }
     end
@@ -28,6 +29,7 @@ class DocumentProjectsController < ApplicationController
     @document_project.project = Project.find(params[:project_id])
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @document_project }
     end
@@ -46,9 +48,10 @@ class DocumentProjectsController < ApplicationController
 
     respond_to do |format|
       if @document_project.save
-        format.html { redirect_to [@document_project.project, @document_project], notice: 'Document project was successfully created.' }
+        format.js { redirect_to project_document_projects_path, notice: 'Document project was successfully created.' }
         format.json { render json: @document_project, status: :created, location: @document_project }
       else
+        format.js { render "new" }
         format.html { render action: "new" }
         format.json { render json: @document_project.errors, status: :unprocessable_entity }
       end
@@ -62,10 +65,10 @@ class DocumentProjectsController < ApplicationController
 
     respond_to do |format|
       if @document_project.update_attributes(params[:document_project])
-        format.html { redirect_to [@document_project.project, @document_project], notice: 'Document project was successfully updated.' }
+        format.js { redirect_to project_document_projects_path(@document_project.project), notice: 'Document project was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.js { render action: "edit" }
         format.json { render json: @document_project.errors, status: :unprocessable_entity }
       end
     end
@@ -77,8 +80,10 @@ class DocumentProjectsController < ApplicationController
     @document_project = DocumentProject.find(params[:id])
     @document_project.destroy
 
+    @document_projects = DocumentProject.where(:project_id => params[:project_id])
+
     respond_to do |format|
-      format.html { redirect_to document_projects_url }
+      format.js { render 'index', notice: 'Document removed successfully.' }
       format.json { head :no_content }
     end
   end

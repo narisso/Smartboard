@@ -25,6 +25,7 @@ class DocumentProjectsController < ApplicationController
   # GET /document_projects/new.json
   def new
     @document_project = DocumentProject.new
+    @document_project.project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +42,11 @@ class DocumentProjectsController < ApplicationController
   # POST /document_projects.json
   def create
     @document_project = DocumentProject.new(params[:document_project])
+    @document_project.project = Project.find(params[:project_id])
 
     respond_to do |format|
       if @document_project.save
-        format.html { redirect_to @document_project, notice: 'Document project was successfully created.' }
+        format.html { redirect_to [@document_project.project, @document_project], notice: 'Document project was successfully created.' }
         format.json { render json: @document_project, status: :created, location: @document_project }
       else
         format.html { render action: "new" }

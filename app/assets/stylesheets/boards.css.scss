@@ -11,10 +11,11 @@
 	height:100%;
 	min-height: 400px;
 	padding: 10px;
-	bottom: 0;
+	top: 0;
 	margin-right:5px;
 	border-right: 1px dashed black;
-	display: inline-block;
+	display:inline;
+	float:left;
 
 
 
@@ -22,7 +23,7 @@
 
 .task{
 	height: 100px;
-	margin: 5px;
+
 
 	padding: 5px;
 
@@ -77,7 +78,7 @@
 	left: 290px;
 	right: 0px;
 	overflow-y:hidden;
-	overflow-x: auto;
+	overflow-x: scroll;
 	
 
 }

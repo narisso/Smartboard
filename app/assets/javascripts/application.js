@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 
+jQuery(document).ready(function($){
 
 function ltl_bar_change(){
 	if($('.ltl-nav-open').length>0){
@@ -32,4 +33,8 @@ function ltl_bar_change(){
 	}
 
 }
+
+$('#side_close_button').click(ltl_bar_change);
+
+});
 

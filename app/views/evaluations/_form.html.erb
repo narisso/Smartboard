@@ -1,4 +1,4 @@
-<%= simple_form_for @test, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @evaluation, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :task_id %>
   <%= f.input :description %>
   <%= f.input :name %>
@@ -6,6 +6,6 @@
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                tests_path, :class => 'btn' %>
+                evaluations_path, :class => 'btn' %>
   </div>
 <% end %>

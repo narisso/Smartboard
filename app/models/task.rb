@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
   belongs_to :task_depend, :class_name => "Task", :foreign_key => "task_depdend_id"
 
   has_one :bug
-  has_one :test
+  has_one :evaluation
   
   has_many :comments
 

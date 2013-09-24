@@ -5,7 +5,7 @@ describe "test_cases/show" do
     @test_case = assign(:test_case, stub_model(TestCase,
       :description => "MyText",
       :approved => false,
-      :test_id => 1
+      :evaluation_id => 1
     ))
   end
 

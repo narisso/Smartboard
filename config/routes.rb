@@ -33,9 +33,10 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   resources :tasks
 
-  resources :document_projects
+  
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
+    resources :document_projects
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish

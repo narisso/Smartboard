@@ -50,6 +50,8 @@ gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
 
+gem 'chosen-rails'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

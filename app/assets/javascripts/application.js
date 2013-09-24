@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require chosen-jquery
 
 jQuery(document).ready(function($){
 
@@ -38,3 +39,9 @@ $('#side_close_button').click(ltl_bar_change);
 
 });
 
+$('.chosen-select').chosen(function(){
+	allow_single_deselect: true;
+    no_results_text: 'No results matched';
+    width: '200px';
+});
+    

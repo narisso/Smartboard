@@ -62,7 +62,7 @@ class DocumentProjectsController < ApplicationController
 
     respond_to do |format|
       if @document_project.update_attributes(params[:document_project])
-        format.html { redirect_to @document_project, notice: 'Document project was successfully updated.' }
+        format.html { redirect_to [@document_project.project, @document_project], notice: 'Document project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

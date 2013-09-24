@@ -26,11 +26,11 @@ Iic21542::Application.routes.draw do
   resources :commits
   resources :document_tasks
   resources :goals
-  resources :statuses
+  #resources :statuses
   resources :requirement_templates
   resources :requirements
   resources :use_cases
-  resources :tasks
+  #resources :tasks
 
   
   resources :projects do
@@ -40,6 +40,9 @@ Iic21542::Application.routes.draw do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish
       #resources :project_role_users
+    end
+    resources :statuses do
+      resources :tasks
     end
   end
 

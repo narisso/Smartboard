@@ -44,8 +44,9 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-
     @task = Task.new
+    @task.project = Project.find(params[:project_id])
+    @task.status = Status.find(params[:status_id])
     @editing = false
 
     respond_to do |format|
@@ -66,6 +67,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.task_type = @task.label.name
+    #@task.project = Project.find(params[:project_id])
+    #@task.status = Project.find(params[:status_id])
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }

@@ -8,13 +8,13 @@
   <%= bootstrap_flash %>
 
 
-<%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="modal-body">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
   <%= f.association :label, :include_blank => false %>
   <%= f.input :priority, collection: 1..5, :include_blank => false %>
-  <%= f.input :project_id, input_html: {value: params[:pr_id]}, :as => :hidden %>
+  <%= f.input :project_id, input_html: {value: params[:project_id]}, :as => :hidden %>
   <%= f.association :users,
                     :collection => User.all,
                     :label_method => :email,
@@ -28,6 +28,6 @@
   </div>
   <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary'%>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), boards_project_path(params[:pr_id]), :class => 'btn' %>
+    <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            
   </div>
 <% end %>

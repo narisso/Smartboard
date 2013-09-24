@@ -9,7 +9,6 @@
 	position:relative;
 	width: 280px;
 	height:97%;
-	float: left;
 	min-height: 400px;
 	padding: 10px;
 	bottom: 0;
@@ -72,6 +71,9 @@
 	top: 42px;
 	bottom: 0px;
 	left: 290px;
+	overflow-x: scroll;
+	display: inline-block;
+	white-space: nowrap;
 
 }
 

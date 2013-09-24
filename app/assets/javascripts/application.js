@@ -36,12 +36,14 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-
+chosenSelect();
 });
 
-$('.chosen-select').chosen(function(){
-	allow_single_deselect: true;
-    no_results_text: 'No results matched';
-    width: '200px';
-});
+function chosenSelect() {
+	$('.chosen-select').chosen(function(){
+		allow_single_deselect: true;
+	    no_results_text: 'No results matched';
+	    width: '200px';
+	});
+}
     

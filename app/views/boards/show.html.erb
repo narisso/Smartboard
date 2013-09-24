@@ -6,7 +6,7 @@
 <% @statuses.each do |status|%>
 
 	<div class='column'>
-		<button class= 'btn pull-right' ><%= link_to "+", new_task_path(:status_id=> status.id,:pr_id => @project) %></button>
+		<button class= 'btn pull-right' ><%= link_to "+", new_task_path(:status_id=> status.id,:pr_id => @project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %></button>
 		<h4 class='block text-center'><%= status.name%></h4>
 		<div class='block' data-id='<%=status.id%>'> </div>
 

@@ -9,23 +9,24 @@ class ApiController < ApplicationController
 		@id_user = us.id
 		@proj_of_user = ProjectRoleUser.where(:user_id => @id_user)
    
-		project={}
-		array={}
-		@proj_of_user.each do |p|
-			array['user_name']=us.name
-			@proj=Project.where(:id => p.project_id)
-			array['project_id']=@proj.id
-			array['project_name']=@proj.name
-			array['project_description']=@proj.description
-			array['project_finish_date']=@proj.finish_date
-			array['project_status']=@proj.status
-			@role=Role.where(:id => p.role_id)
-			array['role_name']=@role.name
-
-
+		
 		if us
-			#@pr = proj.projects.to_json(:include => :id,:name,:role)
-			render :json => @proj #@pr
+			project_info = []
+		
+			@proj_of_user.each do |p|
+				array = {}
+				array['user_name'] = us.name
+				@proj = Project.where(:id => p.project_id)
+				array['project_id'] = @proj.id
+				array['project_name'] = @proj.name
+				array['project_description'] = @proj.description
+				array['project_finish_date'] = @proj.finish_date
+				array['project_status'] = @proj.status
+				@role = Role.where(:id => p.role_id)
+				array['role_name'] = @role.name
+				project_info << array
+			end
+			render :json => project_info #@pr
 		else
 			render :json => {:error => "Error: There's no user with given token."}
 		end

@@ -7,7 +7,22 @@ class ApiController < ApplicationController
 		token = params[:token]
 		us = User.find_by_authentication_token(token)
 		@id_user = us.id
-		@proj = ProjectRoleUser.where(:user_id => @id_user)
+		@proj_of_user = ProjectRoleUser.where(:user_id => @id_user)
+   
+		project={}
+		array={}
+		@proj_of_user.each do |p|
+			array['user_name']=us.name
+			@proj=Project.where(:id => p.project_id)
+			array['project_id']=@proj.id
+			array['project_name']=@proj.name
+			array['project_description']=@proj.description
+			array['project_finish_date']=@proj.finish_date
+			array['project_status']=@proj.status
+			@role=Role.where(:id => p.role_id)
+			array['role_name']=@role.name
+
+
 		if us
 			#@pr = proj.projects.to_json(:include => :id,:name,:role)
 			render :json => @proj #@pr

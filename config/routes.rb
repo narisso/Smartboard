@@ -9,6 +9,7 @@ Iic21542::Application.routes.draw do
    # route to getting task for a project
   match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
   match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+ 
 
   resources :comments
 
@@ -41,6 +42,11 @@ Iic21542::Application.routes.draw do
       #resources :project_role_users
     end
   end
+
+
+    get 'api/v1/getProjects' => 'api#getProjects'
+    post 'api/v1/login' => 'api#login'
+    delete 'api/v1/logout' => 'api#logout'
 
   #resources :boards
 

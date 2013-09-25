@@ -6,21 +6,23 @@
 
 
 .column {
-	position:relative;
-	width: 280px;
-	height:97%;
-	float: left;
-	min-height: 400px;
-	padding: 10px;
-	bottom: 0;
 
+	width: 280px;
+	height:100%;
+	padding: 10px;
+	top: 0;
+	margin-right:5px;
 	border-right: 1px dashed black;
+	display:inline-block;
+vertical-align:top
+
+
 }
 
 .task{
 	height: 100px;
-	margin: 5px;
 
+	margin: 5px;
 	padding: 5px;
 
 	background-color: rgba(255,255,255,0.5);
@@ -72,7 +74,11 @@
 	top: 42px;
 	bottom: 0px;
 	left: 290px;
+	right: 0px;
 
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
 }
 
 .main-content-small{

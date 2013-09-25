@@ -20,7 +20,8 @@ jQuery(document).ready(function($){
     		element = null;
 			for (var i = 0; i < length; i++) {
   				element = item.users[i];
-  				users = users + "<img src='' data-toggle='tooltip' title='"+element.name+"''></img>";
+
+  				users = users + "<img src='/assets/NA.jpg' data-toggle='tooltip' title='"+element.email+"''></img>";
 			}
 
 			users = users + "</div>";

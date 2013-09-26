@@ -87,6 +87,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.task_type = @task.label.name
+
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
@@ -106,7 +107,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to boards_project_path(params[:pr_id]) }
+      format.html { redirect_to boards_project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end

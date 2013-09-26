@@ -9,6 +9,10 @@ Iic21542::Application.routes.draw do
    # route to getting task for a project
   match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
   match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+
+  #Dropbox Routes
+  match '/dropbox/authorize'   => 'dropbox#authorize' , :method => :get , :as => :dropbox_auth
+  match '/dropbox/callback' => 'dropbox#callback' , :method => :get , :as =>  :dropbox_callback
  
 
   resources :comments

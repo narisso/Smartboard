@@ -71,6 +71,24 @@
     <div class="container-fluid">
       <div class="row-fluid">
         
+          <!--Para los breadcrumbs-->
+          <% breadcrumbs do |links| %>
+              <% if links.any? %>
+                    <ul class="breadcrumb">  
+                          You are here:
+                          <% index = 0 %>
+                          <% links.each do |link| %>
+                             <li>
+                            <%if(index > 0 )%>&rsaquo; <% end %>
+                             <%= link_to link.text, link.url %>  
+                             </li>                 
+                            <% index = index+1 %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </ul>
+
+          <!--Fin Breadcrumbs-->
 
 
           <%= bootstrap_flash %>

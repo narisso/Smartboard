@@ -1,6 +1,7 @@
 <h1>My projects</h1>
 
 
+<% breadcrumb :projects, @projects %>
 
 <ul class = 'no-bullet'>
         <% @projects.each do |project| %>
@@ -15,8 +16,8 @@
                 | Status: <%= project.project_status.name %>
                 
               </p>
-              <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_project_path(project), :class => 'btn btn-mini' %>
+              <%= link_to t('.show', :default => t("helpers.links.Info")),
+                      project_path(project), :class => 'btn btn-mini' %>
               <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       project_path(project),
                       :method => :delete,

@@ -49,6 +49,9 @@ gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
 
+#To breadScrumbs
+gem 'gretel'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
@@ -60,3 +63,4 @@ gem "flash_render"
 
 # To use debugger
 # gem 'debugger'
+

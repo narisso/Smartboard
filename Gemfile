@@ -48,7 +48,6 @@ gem 'cancan'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
-gem 'bootstrap-select-rails'
 
 
 # To breadScrumbs

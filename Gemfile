@@ -13,12 +13,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-<<<<<<< HEAD
-  gem 'jquery-ui-rails'
-  gem 'jquery-modal-rails'
-=======
   gem 'bootstrap-modal-rails'
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 end
 
 group :development, :test do 
@@ -52,13 +47,7 @@ gem 'cancan'
 # CSS framework
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
-<<<<<<< HEAD
-
-#Gema para los breadScrumbs
-gem "gretel"
-=======
 gem "flash_render"
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

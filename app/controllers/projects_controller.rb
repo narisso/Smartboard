@@ -46,16 +46,11 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
-<<<<<<< HEAD
-        @project.add_user_role(current_user, Role.first)
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-=======
         Status.create({name: 'Backlog', project_id: @project.id})
         Status.create({name: 'In Progress', project_id: @project.id})
         Status.create({name: 'Done', project_id: @project.id})
         @project.add_user_role(current_user, Role.first)
         format.html { redirect_to boards_project_path(@project) }
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

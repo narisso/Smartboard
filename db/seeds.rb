@@ -20,4 +20,3 @@ ProjectStatus.create([{name: 'Starting'}, {name: 'In process'}, {name: 'Finished
 
 #User.create({name: 'Usuario 3', email: 'usuario3@test.cl', password: 'blahblah'})
 #User.create({name: 'Usuario 2', email: 'usuario2@test.cl', password: 'blahblah'})
-

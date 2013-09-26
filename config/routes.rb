@@ -1,10 +1,5 @@
 Iic21542::Application.routes.draw do
 
-  resources :project_statuses
-  resources :comments
-  root :to => 'application#home'
-
-
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 
   get "/tasks/show_comments_of_task"
@@ -22,7 +17,6 @@ Iic21542::Application.routes.draw do
   resources :comments
   root :to => 'application#home'
 
-
   resources :comments
   resources :evaluations
   resources :test_cases
@@ -38,18 +32,6 @@ Iic21542::Application.routes.draw do
   resources :requirements
   resources :use_cases
   resources :tasks
-
-  resources :document_projects
-  resources :projects do
-    member do
-      post :finish
-      resources :project_role_users
-    end
-  end
-
-  # resources :users always below devise_for
-  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
-  resources :users
 
   
   resources :projects do
@@ -72,7 +54,6 @@ Iic21542::Application.routes.draw do
   # resources :users always below devise_for
   devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users, :only => [:create]
-
 
 
 

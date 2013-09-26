@@ -46,12 +46,6 @@
           </a>
           <a class="brand" href=<%= root_path %>>Iic21542</a>
           <div class="container-fluid nav-collapse">
-<<<<<<< HEAD
-            <ul class="nav pull-right">
-              <!-- <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li> -->
-=======
             <ul class="nav">
               <%if user_signed_in?%>
                 <li><%= link_to "My projects", projects_path  %></li>
@@ -61,7 +55,6 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
               <%if user_signed_in?%>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
@@ -77,60 +70,18 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-<<<<<<< HEAD
-
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
-=======
         
 
 
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
           <%= bootstrap_flash %>
-  <!--See more at: http://www.w3resource.com/twitter-bootstrap/breadcrumbs-tutorial.php#sthash.05Sdx0sG.dpuf-->
-          <div class="container">  
-              <div class="row">  
-                  <div class="span6"> 
-                    <ul class="breadcrumb">  
-                    <% breadcrumbs do |links| %>
-                      <% if links.any? %>
-                        You are here:
-                        <% links.each do |link| %>
-                          <li><%= link_to link.text, link.url %> &rsaquo;</li>
-                          <!--(<%= link.key %>) Esto es para saber la ruta-->
-                        <% end %>
-                      <% end %>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-            </div>
           <%= yield %>
-<<<<<<< HEAD
-
-        </div>
-=======
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
       </div>
 
       <footer>
-<<<<<<< HEAD
-        <p>&copy; Proyecto de Especialidad 2013</p>
-=======
         <%= render "layouts/footer" unless @skip_footer %>
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
       </footer>
 
     </div> <!-- /container -->

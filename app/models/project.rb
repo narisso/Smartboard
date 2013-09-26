@@ -8,11 +8,7 @@ class Project < ActiveRecord::Base
   has_many :tasks
   has_many :bugs
 
-<<<<<<< HEAD
-  has_many :project_role_users, :dependent => :destroy
-=======
   has_many :project_role_users
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
   has_many :users, :through => :project_role_users
   has_many :roles, :through => :project_role_users
 
@@ -28,14 +24,11 @@ class Project < ActiveRecord::Base
     user_role.save
   end
 
-<<<<<<< HEAD
-=======
   def get_role user
     project_role_user = ProjectRoleUser.where(:project_id => self, :user_id => user).first
     project_role_user.role.name
   end
 
->>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
   private
     def set_starting_status
       self.project_status = ProjectStatus.first

@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130914213337) do
+
+ActiveRecord::Schema.define(:version => 20130924160603) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -58,6 +59,15 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.integer  "task_id"
     t.string   "url_path"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "evaluations", :force => true do |t|
+    t.integer  "task_id"
+    t.text     "description"
+    t.string   "name"
+    t.string   "code"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -127,6 +137,8 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "project_id"
+    t.integer  "order"
   end
 
   create_table "task_users", :force => true do |t|
@@ -142,7 +154,7 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.string   "name"
     t.text     "description"
     t.integer  "task_father_id"
-    t.string   "type"
+    t.string   "task_type"
     t.datetime "status_update_at"
     t.integer  "project_id"
     t.integer  "status_id"
@@ -161,18 +173,9 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.text     "description"
     t.datetime "executed_at"
     t.boolean  "approved"
-    t.integer  "test_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "tests", :force => true do |t|
-    t.integer  "task_id"
-    t.text     "description"
-    t.string   "name"
-    t.string   "code"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "evaluation_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "use_cases", :force => true do |t|
@@ -204,6 +207,9 @@ ActiveRecord::Schema.define(:version => 20130914213337) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+
+    t.string   "authentication_token"
+
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

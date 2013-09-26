@@ -1,47 +1,49 @@
 <%- model_class = Task -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <!--h1><%=t '.title', :default => model_class.model_name.human %></h1-->
+  <h1><%= @task.name%></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @task.name %></dd>
+<div id="left">
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @task.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:task_father_id) %>:</strong></dt>
-  <dd><%= @task.task_father_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
-  <dd><%= @task.type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status_update_at) %>:</strong></dt>
-  <dd><%= @task.status_update_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:project_id) %>:</strong></dt>
-  <dd><%= @task.project_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status_id) %>:</strong></dt>
-  <dd><%= @task.status_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:requirement_id) %>:</strong></dt>
-  <dd><%= @task.requirement_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:label_id) %>:</strong></dt>
-  <dd><%= @task.label_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
-  <dd><%= @task.estimated_hours %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:effective_hours) %>:</strong></dt>
-  <dd><%= @task.effective_hours %></dd>
   <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
   <dd><%= @task.priority %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:goal_id) %>:</strong></dt>
-  <dd><%= @task.goal_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:task_depend_id) %>:</strong></dt>
-  <dd><%= @task.task_depend_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
+  <dd><%= @task.task_type %></dd>
+
+  <dt>Owner:</dt>
+  <% @task.users.each do |user| %>
+  <dd><%= user.email%> </dd>
+  <% end %>
+</div>
+
+
+<dl class="dl-horizontal">
+
+  <ul class="nav nav-tabs">
+      <li id="Comments"><%= link_to "Comments", comments_task_path, :remote => true ,'data-type' => :html%></li>
+      <li id="Bugs"><%= link_to "Bugs", '/profiles/profile_messages', :remote => true %></li>
+      <li id="Commits"><%= link_to "Commits", '/profiles/profile_messages', :remote => true %></li>
+      <li id="Documentos"><%= link_to "Documentos", '/profiles/profile_messages', :remote => true %></li>
+  </ul>
+
+
+  <div id="selected_tab_view">
+  
+  </div>
 </dl>
 
+<div id="show_buttons">
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              tasks_path, :class => 'btn'  %>
+              boards_project_path(params[:pr_id]), :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_task_path(@task), :class => 'btn' %>
+              edit_task_path(@task, :status_id=> params[:status_id],:pr_id => params[:pr_id]), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              task_path(@task),
+              task_path(@task, :pr_id => params[:pr_id]),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+</div>
 </div>

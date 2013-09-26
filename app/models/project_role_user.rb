@@ -8,5 +8,9 @@ class ProjectRoleUser < ActiveRecord::Base
   validate :project, 	:presence => true
   validate :role, 		:presence => true
   validate :user, 		:presence => true
+<<<<<<< HEAD
   #validates_uniqueness_of :project_id
+=======
+  validates_uniqueness_of :project_id, :scope => :user_id
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 end

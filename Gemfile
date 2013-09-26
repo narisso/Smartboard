@@ -7,13 +7,18 @@ gem 'rails', '3.2.13'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+<<<<<<< HEAD
   gem 'jquery-ui-rails'
   gem 'jquery-modal-rails'
+=======
+  gem 'bootstrap-modal-rails'
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 end
 
 group :development, :test do 
@@ -24,6 +29,8 @@ group :development, :test do
   gem "binding_of_caller"
   gem "rails-erd"
 end
+
+gem 'quiet_assets', :group => :development
 
 group :production do 
   gem 'pg'
@@ -38,17 +45,20 @@ gem 'devise'
 gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
-gem "therubyracer"
 
 # Adds Less CSS into pipeline
-gem "less-rails"
+
 
 # CSS framework
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'simple_form'
+<<<<<<< HEAD
 
 #Gema para los breadScrumbs
 gem "gretel"
+=======
+gem "flash_render"
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= simple_form_for @project_role_user, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :project_id %>
   <%= f.input :role_id %>
@@ -8,3 +9,53 @@
                 project_role_users_path, :class => 'btn' %>
   </div>
 <% end %>
+=======
+<%- model_class = ProjectRoleUser -%>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  		
+      <h1>Add User</h1>
+
+  	</div>
+<%= bootstrap_flash %>
+  	<div class="modal-body">
+  		<table class="table table-striped">
+  			<thead>
+    			<tr>
+    				<th>User</th>
+    				<th>Role</th>
+            <th></th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<% @project_role_users.each do |project_role_user| %>
+    			<tr>
+    				<td><%= project_role_user.user.email %></td>
+    				<td><%= project_role_user.role.name %></td>
+            <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      project_project_role_user_path(@project, project_role_user),
+                      :remote => true,
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %></td>
+    			</tr>
+    			<% end %>
+    		</tbody>
+    	</table>
+  	</div>
+		  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+    <div class="modal-body">  
+		  <%= f.association :user, :include_blank => false, :label_method => :email %>
+      <%= f.association :role, :include_blank => false %>
+      <%= f.input :project_id,:as => :hidden, :input_html => { :value => "#{@project.id}" } %>
+    </div>
+    <div class="modal-footer">
+		  <%= f.button :submit, 'Add user', :class => 'btn-primary' %>
+		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), "", :class => 'btn', :data => {:dismiss => "modal"} %>
+	   </div>
+
+		<% end %>
+  		
+  	
+
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa

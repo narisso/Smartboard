@@ -1,0 +1,40 @@
+<%= render :partial => 'lateral' %>
+
+        <ul class="main-content main-content-small">
+
+
+<% @statuses.each do |status|%>
+
+	<li class='column'>
+		<%= link_to "+", new_task_path(:status_id=> status.id,:pr_id => @project),:class=>"btn pull-right" %>
+		<h4 class='block text-center'><%= status.name%></h4>
+		<div class='' data-id='<%=status.id%>'> </div>
+
+<!--
+  <% status.tasks.each do |task|%>
+    <div class='task'>
+      <%= link_to task.name, task_path(task, :status_id=> status.id,:pr_id => @project) %>
+      (<%= task.task_type %>)
+      <ul>Owners:</ul>
+      <% task.users.each do |owner|%>
+        <li><%= owner.email %></li>
+
+      <% end %>
+
+
+
+    </div>
+  <% end %>
+-->  
+  </li>
+
+
+<% end %>
+
+
+<%- content_for(:javascripts) do -%>
+  <script type="text/javascript">var p_id =<%= @project.id %></script>
+  <%= javascript_include_tag "boards_controller" %>
+<%- end -%>
+
+</ul>

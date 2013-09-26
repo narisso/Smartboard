@@ -32,7 +32,7 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <!--%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %-->
   </head>
   <body>
 
@@ -44,12 +44,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Iic21542</a>
+          <a class="brand" href=<%= root_path %>>Iic21542</a>
           <div class="container-fluid nav-collapse">
+<<<<<<< HEAD
             <ul class="nav pull-right">
               <!-- <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li> -->
+=======
+            <ul class="nav">
+              <%if user_signed_in?%>
+                <li><%= link_to "My projects", projects_path  %></li>
+                <% if @project and not @project.id.nil? %>
+                  <li><%= link_to "Add User", new_project_project_role_user_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :id => 'modal_button' %></li>
+                <% end %>
+              <%end%>
+            </ul>
+            <ul class="nav pull-right">
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
               <%if user_signed_in?%>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
@@ -65,6 +77,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
+<<<<<<< HEAD
 
         <div class="span3">
           <div class="well sidebar-nav">
@@ -77,6 +90,11 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
+=======
+        
+
+
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
           <%= bootstrap_flash %>
   <!--See more at: http://www.w3resource.com/twitter-bootstrap/breadcrumbs-tutorial.php#sthash.05Sdx0sG.dpuf-->
           <div class="container">  
@@ -97,12 +115,22 @@
               </div>
             </div>
           <%= yield %>
+<<<<<<< HEAD
 
         </div>
+=======
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
       </div><!--/row-->
 
+      <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+      </div>
+
       <footer>
+<<<<<<< HEAD
         <p>&copy; Proyecto de Especialidad 2013</p>
+=======
+        <%= render "layouts/footer" unless @skip_footer %>
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
       </footer>
 
     </div> <!-- /container -->
@@ -111,6 +139,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= yield(:javascripts) %>
 
   </body>
 </html>

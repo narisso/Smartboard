@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 Label.create([{name: 'Administration', color: '#2b72dc'}, {name: 'Analysis', color: '#2babd6'}, 
 	{name: 'Requirement', color: '#ff8533'}, {name: 'Feature', color: '#ffad33'}, 
 	{name: 'Design', color: '#9d2bd6'}, {name: 'Bug', color: '#ff3333'}, {name: 'Testing', color: '#ffff33'},
@@ -16,3 +17,7 @@ Status.create([{name: 'Backlog'}, {name: 'In progress'}, {name: 'Done'}])
 Role.create([{name: 'Administrator'}, {name: 'Project Manager'}, {name: 'Developer'}, {name: 'Client'}])
 
 ProjectStatus.create([{name: 'Starting'}, {name: 'In process'}, {name: 'Finished'}, {name: 'Cancel'}])
+
+#User.create({name: 'Usuario 3', email: 'usuario3@test.cl', password: 'blahblah'})
+#User.create({name: 'Usuario 2', email: 'usuario2@test.cl', password: 'blahblah'})
+

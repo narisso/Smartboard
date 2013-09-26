@@ -3,9 +3,28 @@ Iic21542::Application.routes.draw do
   resources :project_statuses
   resources :comments
   root :to => 'application#home'
-  
+
+
+  match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
+
+  get "/tasks/show_comments_of_task"
+
   resources :comments
-  resources :tests
+
+   # route to getting task for a project
+  match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
+  match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+ 
+
+  resources :comments
+
+  resources :project_statuses
+  resources :comments
+  root :to => 'application#home'
+
+
+  resources :comments
+  resources :evaluations
   resources :test_cases
   resources :bugs
   resources :roles
@@ -19,6 +38,7 @@ Iic21542::Application.routes.draw do
   resources :requirements
   resources :use_cases
   resources :tasks
+
   resources :document_projects
   resources :projects do
     member do
@@ -30,6 +50,29 @@ Iic21542::Application.routes.draw do
   # resources :users always below devise_for
   devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
   resources :users
+
+  
+  resources :projects do
+    resources :project_role_users, only: [:new, :create, :destroy]
+    resources :document_projects
+    member do
+      get '/boards/' => 'boards#show' , :as => 'boards'
+      post :finish
+      #resources :project_role_users
+    end
+  end
+
+
+    get 'api/v1/getProjects' => 'api#getProjects'
+    post 'api/v1/login' => 'api#login'
+    delete 'api/v1/logout' => 'api#logout'
+
+  #resources :boards
+
+  # resources :users always below devise_for
+  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
+  resources :users, :only => [:create]
+
 
 
 

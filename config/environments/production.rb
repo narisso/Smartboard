@@ -15,6 +15,8 @@ Iic21542::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
+  # Change for Heroku deploy: "ActionView::Template::Error ('fontawesome.less' wasn't found)"
+  # config.assets.compile = false
   config.assets.compile = false
 
   # Generate digests for assets URLs
@@ -66,15 +68,27 @@ Iic21542::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #Mailer
+<<<<<<< HEAD
   config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
    :tls => true,
+=======
+  config.action_mailer.default_url_options = {:host => 'iic2154-2.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
    :address => "smtp.gmail.com",
    :port => 587,
    :domain => "gmail.com",
    :authentication => :login,
+<<<<<<< HEAD
    :user_name => "iic2154grupo2",
    :password => "nicorisso"
+=======
+   :user_name => "iic2154grupo2@gmail.com",
+   :password => "nicorisso",
+   :openssl_verify_mode  => 'none'
+>>>>>>> 34826f8cdf9a324a2e0b3ab80db2f06d5bad68aa
 }
 end

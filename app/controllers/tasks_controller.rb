@@ -36,7 +36,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.js # show.html.erb
       format.json { render json: @task }
     end
   end

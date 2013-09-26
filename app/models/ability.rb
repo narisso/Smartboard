@@ -1,7 +1,19 @@
 class Ability
   include CanCan::Ability
+  
 
   def initialize(user)
+
+    # Por ahora todos los usuarios pueden hacer manage pero luego hay que configurarlo para
+    # Acorde con el rol dentro del proyecto tenga distintas opciones
+    can :manage, Project do |project|
+        project.users.include? user 
+        end 
+
+    #Roles del proyecto
+    #   Admin, project manager, developer, cliente 
+
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

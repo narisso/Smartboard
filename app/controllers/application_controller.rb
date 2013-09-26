@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
+
+  rescue_from CanCan::AccessDenied do |exception|
+     flash[:error] = "Access denied!"
+     redirect_to root_url
+   end
+ 
   protect_from_forgery
-
-
   before_filter :check_session , :except => [:home]
 
-  def check_session
+   def check_session
     unless (params[:controller] == "devise/sessions" || 
       params[:controller] == "devise/registrations" || 
       params[:controller] == "devise/confirmations" ||
@@ -30,7 +34,6 @@ class ApplicationController < ActionController::Base
   def after_inactive_sign_up_path_for(resource)
   	new_user_registration_path
   end
-
 
 	def home 
 

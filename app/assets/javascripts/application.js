@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require chosen-jquery
 
 jQuery(document).ready(function($){
 
@@ -35,6 +36,25 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-
+chosenSelect();
 });
 
+// Script to active chosen select
+function chosenSelect() {
+	$('.chosen-select').chosen(function(){
+		allow_single_deselect: true;
+	    no_results_text: 'No results matched';
+	    width: '200px';
+	});
+}
+
+// Script for tabs on task modal    
+$('#task_tab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+
+// Script for tabs on task modal 
+$(function () {
+  $('#task_tab a:last').tab('show');
+})

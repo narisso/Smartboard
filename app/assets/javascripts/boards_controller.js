@@ -29,7 +29,7 @@ jQuery(document).ready(function($){
 
   			task = "<div class='task block'>"+
   					"<i class='icon-move pull-right'></i>"+
-  					"<h5>"+ "<a href='../../tasks/" + item.id + "?pr_id="+item.project_id+"&status_id="+item.status_id+"'>"+ item.name +"</a>" +"</h5>"+
+  					"<h5>"+ "<a href=projects/" + item.project_id + "/statuses/" + item.status_id + "/tasks/new/"'>"+ item.name +"</a>" +"</h5>"+
   					"<span class='label label-info' style='background-color:"+ item.label.color+";'>"+item.label.name+"</span>"+
   					users +
   					"</div>";

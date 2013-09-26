@@ -36,7 +36,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.js # show.html.erb
       format.json { render json: @task }
     end
   end
@@ -44,11 +44,13 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-
     @task = Task.new
+    @task.project = Project.find(params[:project_id])
+    @task.status = Status.find(params[:status_id])
     @editing = false
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @task }
     end
@@ -65,6 +67,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.task_type = @task.label.name
+    #@task.project = Project.find(params[:project_id])
+    #@task.status = Project.find(params[:status_id])
+
     respond_to do |format|
       if @task.save
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
@@ -82,6 +87,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.task_type = @task.label.name
+
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
@@ -101,7 +107,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to boards_project_path(params[:pr_id]) }
+      format.html { redirect_to boards_project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end

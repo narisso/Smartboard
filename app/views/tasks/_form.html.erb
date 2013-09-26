@@ -1,47 +1,33 @@
-<%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
-  <div id="select_task_options">
+<%- model_class = ProjectRoleUser -%>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      
+      <h1>Task</h1>
+
+  </div>
+  <%= bootstrap_flash %>
+
+
+<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="modal-body">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
-  <!--<%= f.input :task_type, collection: ['Administration','Design','Features'], :include_blank => false%>-->
-    
-  <div class="control-group select optional task_task_type">
-    <label class="select optional control-label" for="task_task_type">Task label</label>
-    <div class="controls">
-      <%= f.select(:label_id, Label.all.map { |label| [label.name, label.id] }, {:class=>"select optional"}) %>
-    </div>
-  </div>
-
+  <%= f.association :label, :include_blank => false %>
   <%= f.input :priority, collection: 1..5, :include_blank => false %>
-  <%= f.input :project_id, input_html: {value: params[:pr_id]}, :as => :hidden %>
+  <%= f.input :project_id, input_html: {value: params[:project_id]}, :as => :hidden %>
+  <%= f.association :users,
+                    :collection => User.all,
+                    :label_method => :email,
+                    :include_blank => true,
+                    :input_html => { class: 'chosen-select' } %>
   <% if !@editing %>
     <%= f.input :status_id, input_html: {value: params[:status_id]}, :as => :hidden %>
   <% else %>
-    <%= f.input :status_id, collection: Status.where(:project_id => params[:pr_id]), :include_blank => false %>
+    <%= f.input :status_id, collection: Status.where(:project_id => params[:project_id]), :include_blank => false %>
    <% end %> 
   </div>
-
-  <div id="select_owners">
-    <a>Select Owners:</a>
-  <%= f.collection_check_boxes :user_ids, User.joins(:project_role_users).where('project_id = ?', params[:pr_id]), :id, :email %>
-  </div>
-  <!--%= f.input :user_ids, :as => :grouped_select, :collection => User.all(order: 'name'), :label_method => :email, :value_method => :id %-->
-  <!--
-= f.input :author, :as => :grouped_select, :collection => { 'Authors' => ['Jose', 'Carlos'] }, :group_method => :last, :label_method => :upcase, :value_method => :downcas
-  <%= f.input :status_update_at %>
-  <%= f.input :project_id %>
-  <%= f.input :status_id %>
-  <%= f.input :requirement_id %>
-  <%= f.input :label_id %>
-  <%= f.input :estimated_hours %>
-  <%= f.input :effective_hours %>
-  <%= f.input :priority %>
-  <%= f.input :goal_id %>
-  <%= f.input :task_depend_id %>
--->
-  <div id="create_edit_task">
-  <div class="form-actions">
+  <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary'%>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), boards_project_path(params[:pr_id]), :class => 'btn' %>
-  </div>
+    <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            
   </div>
 <% end %>

@@ -49,8 +49,13 @@ gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
 
-#To breadScrumbs
+
+# To breadScrumbs
 gem 'gretel'
+
+# Add a fine select to forms
+gem 'chosen-rails'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

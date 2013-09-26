@@ -21,6 +21,9 @@
 				<span class='label label-info' style="background-color:#{task.color}">
 					<%= task.label.name %>
 				</span>
+				<span class='badge'>
+					<%= task.estimated_hours %>
+				</span>
 				<div class="block">
 					<% task.users.each do |user| %>
 						<img src='#' data-toggle='tooltip' title=""></img>

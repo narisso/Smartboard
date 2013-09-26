@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
+//= require bootstrap-select
 
 jQuery(document).ready(function($){
 
@@ -41,11 +42,7 @@ chosenSelect();
 
 // Script to active chosen select
 function chosenSelect() {
-	$('.chosen-select').chosen(function(){
-		allow_single_deselect: true;
-	    no_results_text: 'No results matched';
-	    width: '200px';
-	});
+	$('.chosen-select').chosen({ search_contains: true });
 }
 
 // Script for tabs on task modal    

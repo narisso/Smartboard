@@ -2,13 +2,13 @@
 
 
 <% breadcrumb :projects, @projects %>
-<div class="pagination pagination-centered">
+
 <ul class = 'no-bullet'>
         <% @projects.each do |project| %>
 
           <li>
 
-            <div class="btn btn-inverse", href= "boards_project_path(project)">
+            <div class="well well-small">
                <%= link_to boards_project_path(project) do %>
               <h4><%= project.name %></h4>
             
@@ -34,4 +34,3 @@
 
  
 <%= link_to 'New Project', new_project_path, :class => "btn btn-primary" %>
-</div>

@@ -52,6 +52,7 @@ Iic21542::Application.routes.draw do
     get 'api/v1/getProjects' => 'api#getProjects'
     post 'api/v1/login' => 'api#login'
     delete 'api/v1/logout' => 'api#logout'
+    post 'api/v1/upload' => 'api#upload'
 
   #resources :boards
 

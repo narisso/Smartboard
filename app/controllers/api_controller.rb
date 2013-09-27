@@ -72,4 +72,67 @@ class ApiController < ApplicationController
 			render :status=>200, :json=>{:token=>"Logout success."}
 		end
 	end
+
+
+	def upload
+		require 'dropbox_sdk'
+
+
+		@project_id = params[:id]
+		@file = params[:file]
+		@user = User.find_by_authentication_token(params[:token])
+		@file_name = params[:name]
+
+
+				
+		if @user.nil?
+			logger.info("Token not found.")
+			render :status=>404, :json=>{:message=>"Invalid token."}
+			return
+		end
+
+
+		if @project_id.nil? or @file.nil?
+			render :json=>{:message=>"The request must contain project id and file."}
+			return
+		end
+		@project = Project.find(@project_id)
+
+		if @project.nil?
+			render :json=>{:message=>"Project doesn't exists."}
+			return
+		end
+
+		@project_of_user = ProjectRoleUser.where("user_id = ? AND project_id = ?", @user.id , @project_id )
+
+		if @project_of_user.nil?
+			render :json=>{:message=>"User doesn't have permissions."}
+		else
+			
+			@dropbox_token = @project.dropbox_token
+
+			if @dropbox_token.nil?
+				render :json=>{:message=>"User doesn't have permissions."}
+				return
+			else
+				file = @file.read
+				@file_name ="IIC2154" + @project.name + "/" + @file_name
+				dbsession = DropboxSession.deserialize(@dropbox_token)
+				client = DropboxClient.new(dbsession)
+				response = client.put_file(@file_name, file)
+				puts "uploaded:", response.inspect
+				render :json=>{:message=>response}
+			end
+
+		end
+
+
+
+
+
+
+	end
+
+
+
 end

@@ -44,8 +44,8 @@ gem 'cancan'
 gem 'sass-rails',   '~> 3.2.5'
 gem 'compass'
 gem 'compass-rails'
-
 gem 'jquery-turbolinks'
+gem 'turbolinks'
 
 # CSS framework
 gem 'twitter-bootstrap-rails'

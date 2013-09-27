@@ -37,7 +37,6 @@ function ltl_bar_change(){
 
 $('#side_close_button').click(ltl_bar_change);
 chosenSelect();
-});
 
 // Script to active chosen select
 function chosenSelect() {
@@ -58,3 +57,5 @@ $('#task_tab a').click(function (e) {
 $(function () {
   $('#task_tab a:last').tab('show');
 })
+
+});

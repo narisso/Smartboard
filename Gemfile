@@ -51,6 +51,7 @@ gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
+gem 'dropbox-sdk'
 
 
 # To breadScrumbs

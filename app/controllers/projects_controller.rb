@@ -26,6 +26,14 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    @linkDropbox = false
+
+    if session[:dropbox_session]
+      @linkDropbox = true
+      @dropbox_token = session[:dropbox_session]
+      session.delete :dropbox_session
+    end
+
     @project = Project.new
 
     respond_to do |format|

@@ -33,3 +33,16 @@ ul.no-bullet
 	-webkit-box-shadow:10px 10px 5px #000000;
 	box-shadow:10px 10px 5px #000000;
 }
+
+
+#integration_frame {
+  z-index:100;
+  position: absolute;
+  height:80%;
+  width:80%;
+  top:10%;
+  bottom:10%;
+  left:10%;
+  right:10%;
+
+}

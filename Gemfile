@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
 
@@ -41,8 +40,10 @@ gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
 
-# Adds Less CSS into pipeline
-
+# Fix for heroku
+gem 'sass-rails',   '~> 3.2.5'
+gem 'compass'
+gem 'compass-rails'
 
 # CSS framework
 gem 'twitter-bootstrap-rails'

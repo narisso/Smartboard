@@ -6,6 +6,8 @@ class Ability
 
     # Por ahora todos los usuarios pueden hacer manage pero luego hay que configurarlo para
     # Acorde con el rol dentro del proyecto tenga distintas opciones
+    can :create, Project
+    
     can :manage, Project do |project|
         project.users.include? user 
         end 

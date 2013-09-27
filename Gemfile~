@@ -5,14 +5,15 @@ gem 'rails', '3.2.13'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-modal-rails'
+  gem 'jquery-ui-rails'
+  gem 'jquery-modal-rails'
 end
 
 group :development, :test do 
@@ -23,8 +24,6 @@ group :development, :test do
   gem "binding_of_caller"
   gem "rails-erd"
 end
-
-gem 'quiet_assets', :group => :development
 
 group :production do 
   gem 'pg'
@@ -39,23 +38,14 @@ gem 'devise'
 gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
+gem "therubyracer"
 
-# Fix for heroku
-gem 'sass-rails',   '~> 3.2.5'
-gem 'compass'
-gem 'compass-rails'
+# Adds Less CSS into pipeline
+gem "less-rails"
 
 # CSS framework
-gem 'twitter-bootstrap-rails'
+gem "twitter-bootstrap-rails"
 gem 'simple_form'
-gem "flash_render"
-
-
-# To breadScrumbs
-gem 'gretel'
-
-# Add a fine select to forms
-gem 'chosen-rails'
 
 
 # To use Jbuilder templates for JSON
@@ -69,4 +59,3 @@ gem 'chosen-rails'
 
 # To use debugger
 # gem 'debugger'
-

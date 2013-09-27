@@ -50,6 +50,11 @@ GEM
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
     choice (0.1.6)
+    chosen-rails (0.9.14)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
+    chunky_png (1.2.8)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -58,6 +63,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     debug_inspector (0.0.2)
     devise (3.1.0)
       bcrypt-ruby (~> 3.0)
@@ -70,6 +81,8 @@ GEM
     execjs (2.0.1)
     flash_render (1.1.0)
       rails (>= 2.3.8)
+    fssm (0.2.10)
+    gretel (2.1.0)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -88,6 +101,7 @@ GEM
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    pg (0.17.0)
     pg (0.17.0-x86-mingw32)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
@@ -171,6 +185,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -180,16 +195,20 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   capybara
+  chosen-rails
   coffee-rails (~> 3.2.1)
+  compass
+  compass-rails
   devise
   flash_render
+  gretel
   jquery-rails
   pg
   quiet_assets
   rails (= 3.2.13)
   rails-erd
   rspec-rails (~> 2.0)
-  sass-rails (~> 3.2.3)
+  sass-rails (~> 3.2.5)
   simple_form
   sqlite3
   twitter-bootstrap-rails

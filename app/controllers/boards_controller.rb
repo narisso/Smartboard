@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
 		@project = Project.find(params[:id])
 		authorize! :manage, @project
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
-		@skip_footer = true
+s		@skip_footer = true
 	end
 
 end

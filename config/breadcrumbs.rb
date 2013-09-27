@@ -2,9 +2,25 @@ crumb :root do
   link "Home", root_path
 end
 
-crumb: projects do
-	link "Projects", projects_path
-end 
+crumb :projects do
+   link "Projects", projects_path
+end
+
+crumb :project do |project|
+   link project.name, project_path(project)
+   parent :projects
+end
+
+crumb :edit_project do |project|
+   link "Edit" , edit_project_path(project)
+   parent :project, project
+end
+
+
+#crumb :board do |project|
+#	link project.name + "board", boards_project_path(project)
+#	parent :project
+#end 
 
 
 # crumb :projects do
@@ -15,6 +31,7 @@ end
 #   link project.name, project_path(project)
 #   parent :projects
 # end
+
 
 # crumb :project_issues do |project|
 #   link "Issues", project_issues_path(project)

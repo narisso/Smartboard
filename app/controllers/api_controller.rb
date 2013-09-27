@@ -21,7 +21,11 @@ class ApiController < ApplicationController
 				array['project_name'] = @proj.name
 				array['project_description'] = @proj.description
 				array['project_finish_date'] = @proj.finish_date
-				array['project_status'] = @proj.status
+				if @proj.status
+					array['project_status'] = @proj.status
+				else
+					array['project_status']="No Status"
+				end
 				@role = Role.find(p.role_id)
 				array['role_name'] = @role.name
 				project_info << array

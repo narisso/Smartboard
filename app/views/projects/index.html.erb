@@ -2,15 +2,16 @@
 
 
 <% breadcrumb :projects, @projects %>
-
+<div class="pagination pagination-centered">
 <ul class = 'no-bullet'>
         <% @projects.each do |project| %>
+
           <li>
-           <%= link_to boards_project_path(project)  do %>
-            <div class="btn btn-inverse" >
-               <%= link_to boards_project_path(project)  %>
+
+            <div class="btn btn-inverse", href= "boards_project_path(project)">
+               <%= link_to boards_project_path(project) do %>
               <h4><%= project.name %></h4>
-             
+            
               <p>
                 Role: <%= get_role(current_user, project) %>
                 | Status: <%= project.project_status.name %>
@@ -24,7 +25,7 @@
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
             </div>
-             <%end%>
+            <%end%>
           </li>
         <% end %>
       </ul>
@@ -33,3 +34,4 @@
 
  
 <%= link_to 'New Project', new_project_path, :class => "btn btn-primary" %>
+</div>

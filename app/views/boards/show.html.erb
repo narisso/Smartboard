@@ -18,7 +18,8 @@
 					<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
 				</h5>
 
-				<span class='label label-info' style="background-color:#{task.color}">
+
+				<span class='label label-info' style="background-color: <%= task.label.color %>" >
 					<%= task.label.name %>
 				</span>
 				<div class="block">

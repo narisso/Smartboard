@@ -16,7 +16,7 @@
   <%= f.input :priority, collection: 1..5, :include_blank => false %>
   <%= f.input :project_id, input_html: {value: params[:project_id]}, :as => :hidden %>
   <%= f.association :users,
-                    :collection => Project.users,
+                    :collection => @task.project.users,
                     :label_method => :email,
                     :include_blank => true,
                     :input_html => { class: 'chosen-select' } %>

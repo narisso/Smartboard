@@ -81,7 +81,6 @@ class ApiController < ApplicationController
 	def upload
 		require 'dropbox_sdk'
 
-
 		@project_id = params[:id]
 		@file = params[:file]
 		@user = User.find_by_authentication_token(params[:token])

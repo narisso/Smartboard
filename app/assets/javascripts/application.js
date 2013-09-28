@@ -58,4 +58,15 @@ $(function () {
   $('#task_tab a:last').tab('show');
 })
 
+$('#modal').on('shown', function () {
+  $('body').on('click', function(e) {
+    // your function...
+    e.stopPropagation();
+  });
+})
+
+$('#modal').on('hidden', function () {
+  $('body').off('click');
+});
+
 });

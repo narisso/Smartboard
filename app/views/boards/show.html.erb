@@ -33,7 +33,7 @@
 
 
 <% end %>
-<%= link_to "+", new_status_path(:pr_id => @project),:class=>"btn",:style=>"margin-top:50px;" %>
+<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"btn",:style=>"margin-top:50px;" %>
 
 
 <%- content_for(:javascripts) do -%>

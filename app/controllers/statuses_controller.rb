@@ -25,6 +25,7 @@ class StatusesController < ApplicationController
   # GET /statuses/new.json
   def new
     @status = Status.new
+    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +42,12 @@ class StatusesController < ApplicationController
   # POST /statuses.json
   def create
     @status = Status.new(params[:status])
+    @project= Project.find(params[:project_id])
+    @status.project_id = params[:project_id]
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to @status, notice: 'Status was successfully created.' }
+        format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @status, status: :created, location: @status }
       else
         format.html { render action: "new" }

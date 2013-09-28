@@ -17,7 +17,7 @@ Iic21542::Application.routes.draw do
 
   resources :comments
 
-  resources :project_statuses
+  #resources :project_statuses
   resources :comments
   root :to => 'application#home'
 

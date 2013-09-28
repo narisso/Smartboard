@@ -5,16 +5,12 @@
  <div class="control-group">
          <%= f.label :email , :class => 'control-label'%>
          <div class="controls">
-                 <%= f.email_field :email, :autofocus => true , :class => 'text_field' do %>
-         <% if @user.errors[:email].any? %>
-         <span class="help-inline">
-              <% @user.errors.full_messages.each do |msg| %>
-                <%= msg %>
-              <% end %>
-
-          </span>  
-          <% end %>         
-          <% end %>
+                 <%= f.email_field :email, :autofocus => true , :class => 'text_field'%>
+                 <span class="help-inline">
+                    <% @user.errors.full_messages.each do |msg| %>
+                      <%= msg %>
+                    <% end %>
+                 </span>                
          </div>
  </div>
 

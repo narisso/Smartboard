@@ -107,7 +107,10 @@ ActiveRecord::Schema.define(:version => 20130926164652) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "project_status_id"
+<<<<<<< Updated upstream
     t.string   "dropbox_token"
+=======
+>>>>>>> Stashed changes
   end
 
   create_table "requirement_templates", :force => true do |t|
@@ -214,3 +217,4 @@ ActiveRecord::Schema.define(:version => 20130926164652) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
+

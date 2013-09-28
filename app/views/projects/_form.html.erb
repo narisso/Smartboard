@@ -10,7 +10,7 @@
   <a class="btn btn-success" href="" style="margin-left:220px;">Linked to Dropbox</a>
   <%= f.hidden_field :dropbox_token, :value => @dropbox_token %>
   <% else %>
-  <a class="btn" href="../../dropbox/authorize" style="margin-left:220px;">Link To dropbox</a>
+  <a class="btn" href= <%= dropbox_auth_path  %>  style="margin-left:220px;">Link To dropbox</a>
   <% end %>
 
   <div class="form-actions">

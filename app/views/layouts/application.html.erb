@@ -74,13 +74,14 @@
           <!--Para los breadcrumbs-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>
-                    <ul class="breadcrumb">  
-                          You are here:
+                    <ul class="breadcrumb">                            
                           <% index = 0 %>
                           <% links.each do |link| %>
-                             <li>
-                            <%if(index > 0 )%>&rsaquo; <% end %>
-                             <%= link_to link.text, link.url %>  
+                         
+                            <%if links.last == link %>  <li class='active'><%= link_to link.text, link.url %>
+                            <%else%>
+                             <li> <%= link_to link.text, link.url %> &rsaquo; 
+                             <% end %>  
                              </li>                 
                             <% index = index+1 %>
                           <% end %>

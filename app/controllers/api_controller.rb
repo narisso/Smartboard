@@ -8,7 +8,7 @@ class ApiController < ApplicationController
 		us = User.find_by_authentication_token(token)
    
 		
-		if us
+		if us and token
 			@id_user = us.id
 			@proj_of_user = ProjectRoleUser.where(:user_id => @id_user)
 			project_info = []
@@ -90,7 +90,7 @@ class ApiController < ApplicationController
 				
 		if @user.nil?
 			logger.info("Token not found.")
-			render :status=>404, :json=>{:message=>"Invalid token."}
+			render :status=>404, :json => {:message=>"Invalid token."}
 			return
 		end
 
@@ -119,7 +119,7 @@ class ApiController < ApplicationController
 				return
 			else
 				file = @file.read
-				@file_name ="IIC2154" + @project.name + "/" + @file_name
+				@file_name ="IIC2154/" + @project.name + "/" + @file_name
 				dbsession = DropboxSession.deserialize(@dropbox_token)
 				client = DropboxClient.new(dbsession)
 				response = client.put_file(@file_name, file)

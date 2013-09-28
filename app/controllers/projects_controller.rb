@@ -45,6 +45,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+
+    if session[:dropbox_session]
+      @linkDropbox = true
+      @dropbox_token = session[:dropbox_session]
+      session.delete :dropbox_session
+    elsif @project.dropbox_token
+      @linkDropbox = true
+    end
   end
 
   # POST /projects

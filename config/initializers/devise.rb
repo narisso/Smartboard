@@ -7,6 +7,8 @@ Devise.setup do |config|
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
   config.secret_key = '433176d0184c2eb465b8376a106eacd7ff3b6f719b112db6ffb9a07a7590974f1ae86616bdb30070f1a954e6ef5524e677f26923642e757ca98fe90aa1cf356a'
 
+  #Allow insecure tokens (to fix password reset) Xavi
+  config.allow_insecure_token_lookup = true
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

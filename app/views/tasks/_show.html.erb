@@ -20,7 +20,13 @@
 
     <dt>Owner:</dt>
     <% @task.users.each do |user| %>
-      <dd><%= user.email%> </dd>
+      <dd>
+        <%= user.email%>
+        <% rep_hours = ReportedHours.find_by_user_id_and_task_id(user.id,@task.id) %>
+        <% if(rep_hours)%>
+          (<%= rep_hours.reporting_hours %>)
+        <% end %>
+      </dd>
     <% end %>
   </div>
 
@@ -45,6 +51,9 @@
 </div>
 
 <div class="modal-footer">
+  <% if @task.users.include? current_user %>
+    <%= link_to "Report Hours", new_reported_hours_path(@task, current_user), :remote => true, :class => 'btn' %>
+  <% end %>
   <%= link_to "Close", "", :data => {:dismiss => "modal"}, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_status_task_path(@task.status.project, @task.status, @task), :remote => true, :class => 'btn' %>

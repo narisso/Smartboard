@@ -9,6 +9,13 @@ Iic21542::Application.routes.draw do
    # route to getting task for a project
   match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
   match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+
+  match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
+  post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
+
+#  post 'tasks/create_reported_hours/:task_id/:user_id'
+
+
  
 
   resources :comments
@@ -33,7 +40,7 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   #resources :tasks
 
-  
+
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
     resources :document_projects

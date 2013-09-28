@@ -15,6 +15,8 @@ class Task < ActiveRecord::Base
   
   has_many :comments
 
+  has_many :reported_hours
+
   has_many :document_tasks
   has_many :commits
 

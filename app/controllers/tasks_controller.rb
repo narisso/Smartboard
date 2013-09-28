@@ -127,6 +127,35 @@ class TasksController < ApplicationController
     end
   end
 
+  def new_reported_hours
+    @rh = ReportedHours.new
+    @task = Task.find(params[:task_id])
+    @rh.task = @task
+    @rh.user = current_user
+
+  end
+
+  def create_reported_hours
+    @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:task_id])
+    @task = Task.find(params[:task_id])
+      
+    if @rh
+      @rh.reporting_hours = params[:rh][:reporting_hours]
+    else
+      @rh = ReportedHours.new(params[:rh])
+      @rh.task = @task
+      @rh.user = current_user
+    end
+
+    @rh.save
+
+    redirect_to boards_project_path(@task.status.project)
+  end
+
+  #def reported_hours_index
+
+  #end
+
 
 
 end

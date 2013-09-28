@@ -15,6 +15,8 @@ class Task < ActiveRecord::Base
   
   has_many :comments
 
+  has_many :reported_hours
+
   has_many :document_tasks
   has_many :commits
 
@@ -25,5 +27,6 @@ class Task < ActiveRecord::Base
 
   validates :name, :presence => true
   validate :label, :presence => true  
+  validates :estimated_hours, :numericality => { :greater_than_or_equal_to => 1 }
 
 end

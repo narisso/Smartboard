@@ -22,4 +22,9 @@ class User < ActiveRecord::Base
   has_many :project_role_users
   has_many :roles, :through => :project_role_users
   has_many :projects, :through => :project_role_users
+
+  has_many :reported_hours
+
+
+
 end

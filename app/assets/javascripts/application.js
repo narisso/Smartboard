@@ -38,7 +38,7 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-
+ltl_bar_change()
 
 // Script to active chosen select
 $('.chosen-select').chosen(function(){
@@ -58,15 +58,8 @@ $(function () {
   $('#task_tab a:last').tab('show');
 })
 
-$('#modal').on('shown', function () {
-  $('body').on('click', function(e) {
-    // your function...
-    e.stopPropagation();
+$('#modal').on('hide', function () {
+    $("#modal-header").empty();
   });
-})
-
-$('#modal').on('hidden', function () {
-  $('body').off('click');
-});
 
 });

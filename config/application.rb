@@ -86,7 +86,3 @@ end
 # end
 # html
 #end
-
-config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
-  <div class="field_with_errors">{html_tag}</div>.html_safe
-}

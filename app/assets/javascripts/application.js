@@ -38,12 +38,7 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-ltl_bar_change()
-
-// Script to active chosen select
-function chosenSelect() {
-	$('.chosen-select').chosen({ search_contains: true });
-}
+ltl_bar_change();
 
 
 // Script for tabs on task modal    
@@ -59,6 +54,13 @@ $(function () {
 
 $('#modal').on('hide', function () {
     $("#modal-header").empty();
-  });
+  })
 
-});
+})
+
+
+// Script to active chosen select
+function chosenSelect() {
+	$('.chosen-select').chosen({ search_contains: true });
+}
+

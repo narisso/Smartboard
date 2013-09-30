@@ -1,9 +1,5 @@
 jQuery('#modal').html("<%= escape_javascript(render 'form') %>");
 
-jQuery(document).ready(function($){
-	$('.chosen-select').chosen(function(){
-	allow_single_deselect: true;
-    no_results_text: 'No results matched';
-    width: '200px';
-	});
+$(document).ready(function(){
+	chosenSelect();
 });

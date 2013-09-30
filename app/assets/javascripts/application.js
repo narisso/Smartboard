@@ -41,11 +41,10 @@ $('#side_close_button').click(ltl_bar_change);
 ltl_bar_change()
 
 // Script to active chosen select
-$('.chosen-select').chosen(function(){
-	allow_single_deselect: true;
-    no_results_text: 'No results matched';
-    width: '200px';
-});
+function chosenSelect() {
+	$('.chosen-select').chosen({ search_contains: true });
+}
+
 
 // Script for tabs on task modal    
 $('#task_tab a').click(function (e) {

@@ -33,8 +33,11 @@
   	</div>
 		  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
     <div class="modal-body">  
-		  <%= f.association :user, :include_blank => false, :label_method => :email %>
-      <%= f.association :role, :include_blank => false %>
+		  <%= f.association :user, :include_blank => false, 
+                               :label_method => :email, 
+                               :input_html => { class: 'chosen-select selectpicker' } %>
+      <%= f.association :role, :include_blank => false, 
+                               :input_html => { class: 'chosen-select selectpicker' } %>
       <%= f.input :project_id,:as => :hidden, :input_html => { :value => "#{@project.id}" } %>
     </div>
     <div class="modal-footer">

@@ -57,7 +57,7 @@ class ProjectRoleUsersController < ApplicationController
           format.js {redirect_to new_project_project_role_user_path, notice: 'User was successfully added.' }
           format.json { render json: @project_role_user, status: :created, location: @project_role_user }
         else
-          format.js {redirect_to new_project_project_role_user_path, alert: "User already in project..."}
+          format.js {redirect_to new_project_project_role_user_path, alert: "User already in project."}
           format.json { render json: @projects_role_user.errors, status: :unprocessable_entity }
         end
       end

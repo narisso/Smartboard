@@ -1,6 +1,2 @@
-<% breadcrumb :new_task, @project %>
 <%- model_class = Task -%>
-<div class="page-header">
-  <h1><!--%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human %-->Create New Task for <%= Project.find(params[:pr_id]).name %> in  <%= Status.find(params[:status_id]).name %></h1>
-</div>
 <%= render :partial => 'form' %>

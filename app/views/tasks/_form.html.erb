@@ -8,7 +8,7 @@
   <%= bootstrap_flash %>
 
 
-<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="modal-body">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>

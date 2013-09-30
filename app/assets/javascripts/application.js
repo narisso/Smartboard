@@ -15,7 +15,9 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
-//= require turbolinks
+
+
+/* BUG require turbolinks*/
 
 jQuery(document).ready(function($){
 

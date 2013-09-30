@@ -75,8 +75,7 @@ class TasksController < ApplicationController
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        #format.html { render action: "new" }
-        format.html { redirect_to :back, notice: 'Name must not be blank'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -90,11 +89,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
+        format.js { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }
-        format.html { redirect_to :back, notice: 'Name must not be blank'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

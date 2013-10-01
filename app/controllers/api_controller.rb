@@ -119,12 +119,16 @@ class ApiController < ApplicationController
 				return
 			else
 				file = @file.read
-				@file_name ="IIC2154/" + @project.name + "/" + @file_name
+				@file_path ="IIC2154/" + @project.name + "/" + @file_name
 				dbsession = DropboxSession.deserialize(@dropbox_token)
 				client = DropboxClient.new(dbsession)
-				response = client.put_file(@file_name, file)
+				response = client.put_file(@file_path, file)
 				puts "uploaded:", response.inspect
-				render :json=>{:message=>response}
+
+				link = client.shares(response["path"])
+				DocumentProject.create({name: @file_name, project_id: @project.id, url_path: link["url"]})
+
+				render :json=>{:message=>response, :link=>link["url"]}
 			end
 
 		end

@@ -27,7 +27,7 @@
 				</span>
 				<div class="block">
 					<% task.users.each do |user| %>
-						<img src='/assets/NA.jpg' data-toggle='tooltip' title=""></img>
+						<img src='/assets/NA.jpg' data-toggle='tooltip' title="<%=user.email%>"></img>
 					<% end %>
 				</div>
 			</div>

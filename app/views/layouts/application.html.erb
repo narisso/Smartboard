@@ -73,6 +73,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         
+          <%= bootstrap_flash %>
           <!--Para los breadcrumbs-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>
@@ -94,7 +95,6 @@
           <!--Fin Breadcrumbs-->
 
 
-          <%= bootstrap_flash %>
           <%= yield %>
       </div><!--/row-->
 

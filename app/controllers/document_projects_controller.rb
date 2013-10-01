@@ -93,6 +93,7 @@ class DocumentProjectsController < ApplicationController
   # DELETE /document_projects/1
   # DELETE /document_projects/1.json
   def destroy
+    @project = Project.find(params[:project_id])
     @document_project = DocumentProject.find(params[:id])
     @document_project.destroy
 

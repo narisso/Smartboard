@@ -16,7 +16,6 @@
 //= require twitter/bootstrap
 //= require chosen-jquery
 
-
 /* BUG require turbolinks*/
 
 jQuery(document).ready(function($){
@@ -40,7 +39,6 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-ltl_bar_change();
 
 
 // Script for tabs on task modal    

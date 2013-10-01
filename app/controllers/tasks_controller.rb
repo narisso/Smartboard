@@ -94,7 +94,7 @@ class TasksController < ApplicationController
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }
-        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
+        format.js { redirect_to edit_project_status_task_path, alert: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

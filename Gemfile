@@ -60,7 +60,6 @@ gem 'gretel'
 # Add a fine select to forms
 gem 'chosen-rails'
 
-
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

@@ -32,7 +32,7 @@
     	</table>
   	</div>
 		  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
-    <div class="modal-body">  
+    <div class="modal-body big">  
 		  <%= f.association :user, :include_blank => false, 
                                :label_method => :email, 
                                :input_html => { class: 'chosen-select selectpicker' } %>

@@ -90,7 +90,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.js { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
+        format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }

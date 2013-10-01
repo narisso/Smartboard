@@ -23,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
    else
      clean_up_passwords resource
      respond_with resource
-        end
+    end
  end
 
  def update

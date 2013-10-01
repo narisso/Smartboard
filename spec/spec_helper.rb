@@ -3,6 +3,9 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rspec'
+require 'capybara/rails'
+
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -35,4 +38,14 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+end
+
+def empty_user_records
+  User.destroy_all
+end
+
+def create_confirmed_user
+  u = User.new({:email => 'test@test.test', :password => '12341234', :password_confirmation => '12341234'})
+  u.confirm!
+  u
 end

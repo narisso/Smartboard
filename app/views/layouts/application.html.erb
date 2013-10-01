@@ -48,9 +48,11 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <%if user_signed_in?%>
+
                 <li><%= link_to "My projects", projects_path  %></li>
                 <% if @project and not @project.id.nil? %>
-                  <li><%= link_to "Add User", new_project_project_role_user_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :id => 'modal_button' %></li>
+                <li><a style="color:white; margin-left:-28px;">/<%=@project.name%></a></li>
+                  <li><%= link_to "Add User", new_project_project_role_user_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal',}, :id => 'modal_button' %></li>
                 <% end %>
               <%end%>
             </ul>
@@ -74,13 +76,14 @@
           <!--Para los breadcrumbs-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>
-                    <ul class="breadcrumb">  
-                          You are here:
+                    <ul class="breadcrumb">                            
                           <% index = 0 %>
                           <% links.each do |link| %>
-                             <li>
-                            <%if(index > 0 )%>&rsaquo; <% end %>
-                             <%= link_to link.text, link.url %>  
+                         
+                            <%if links.last == link %>  <li class='active'><%= link_to link.text, link.url %>
+                            <%else%>
+                             <li> <%= link_to link.text, link.url %> &rsaquo; 
+                             <% end %>  
                              </li>                 
                             <% index = index+1 %>
                           <% end %>

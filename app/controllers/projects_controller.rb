@@ -26,6 +26,14 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
+    @linkDropbox = false
+
+    if session[:dropbox_session]
+      @linkDropbox = true
+      @dropbox_token = session[:dropbox_session]
+      session.delete :dropbox_session
+    end
+
     @project = Project.new
 
     respond_to do |format|
@@ -37,6 +45,14 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+
+    if session[:dropbox_session]
+      @linkDropbox = true
+      @dropbox_token = session[:dropbox_session]
+      session.delete :dropbox_session
+    elsif @project.dropbox_token
+      @linkDropbox = true
+    end
   end
 
   # POST /projects
@@ -47,9 +63,9 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
-        Status.create({name: 'Backlog', project_id: @project.id})
-        Status.create({name: 'In Progress', project_id: @project.id})
-        Status.create({name: 'Done', project_id: @project.id})
+        Status.create({name: 'Backlog', project_id: @project.id, order: 1 })
+        Status.create({name: 'In Progress', project_id: @project.id, order: 2})
+        Status.create({name: 'Done', project_id: @project.id, order: 3})
         @project.add_user_role(current_user, Role.first)
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }

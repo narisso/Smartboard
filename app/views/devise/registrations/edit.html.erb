@@ -1,8 +1,9 @@
+<%= devise_error_messages! %>
 <%- model_class = User -%>
 <div class="page-header">
  <h1><%=t '.title', :default => ['Edit User'], :model => model_class.model_name.human %></h1>
 </div>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
 
  <% if @user.errors[:email].present?%>
    <div class="control-group error">

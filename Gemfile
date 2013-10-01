@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
 
@@ -41,13 +40,18 @@ gem 'cancan'
 
 # Interpreter of JavaScript into Ruby
 
-# Adds Less CSS into pipeline
-
+# Fix for heroku
+gem 'sass-rails',   '~> 3.2.5'
+gem 'compass'
+gem 'compass-rails'
+gem 'jquery-turbolinks'
+gem 'turbolinks'
 
 # CSS framework
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem "flash_render"
+gem 'dropbox-sdk'
 
 
 # To breadScrumbs
@@ -55,7 +59,6 @@ gem 'gretel'
 
 # Add a fine select to forms
 gem 'chosen-rails'
-
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

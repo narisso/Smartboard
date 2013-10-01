@@ -8,15 +8,16 @@
   <%= bootstrap_flash %>
 
 
-<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for [@task.project, @task.status, @task], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="modal-body">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
   <%= f.association :label, :include_blank => false %>
   <%= f.input :priority, collection: 1..5, :include_blank => false %>
   <%= f.input :project_id, input_html: {value: params[:project_id]}, :as => :hidden %>
+  <%= f.input :estimated_hours ,:include_blank => false, :input_html => {value: 1} %>
   <%= f.association :users,
-                    :collection => User.all,
+                    :collection => @task.project.users,
                     :label_method => :email,
                     :include_blank => true,
                     :input_html => { class: 'chosen-select' } %>

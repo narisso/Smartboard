@@ -1,0 +1,19 @@
+<%- model_class = ProjectRoleUser -%>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      
+      <h1>Report Hours</h1>
+
+  </div>
+  <%= bootstrap_flash %>
+
+
+<%= simple_form_for :rh, :url => create_reported_hours_path(@task, current_user),:html => { :class => 'form-horizontal' }, :data => {:toggle => "modal", :remote => true, :target => '#modal'} do |f| %>
+  <div class="modal-body">
+  <%= f.input :reporting_hours %>
+  </div>
+  <div class="modal-footer">
+    <%= f.button :submit, :class => 'btn-primary', :value => 'Submit Hours' %>
+    <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            
+  </div>
+<% end %>

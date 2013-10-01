@@ -11,9 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
+
+/* BUG require turbolinks*/
 
 jQuery(document).ready(function($){
 
@@ -36,17 +39,7 @@ function ltl_bar_change(){
 }
 
 $('#side_close_button').click(ltl_bar_change);
-chosenSelect();
-});
 
-// Script to active chosen select
-function chosenSelect() {
-	$('.chosen-select').chosen(function(){
-		allow_single_deselect: true;
-	    no_results_text: 'No results matched';
-	    width: '200px';
-	});
-}
 
 // Script for tabs on task modal    
 $('#task_tab a').click(function (e) {
@@ -58,3 +51,16 @@ $('#task_tab a').click(function (e) {
 $(function () {
   $('#task_tab a:last').tab('show');
 })
+
+$('#modal').on('hide', function () {
+    $("#modal-header").empty();
+  })
+
+})
+
+
+// Script to active chosen select
+function chosenSelect() {
+	$('.chosen-select').chosen({ search_contains: true });
+}
+

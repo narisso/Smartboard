@@ -72,11 +72,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        #format.html { render action: "new" }
-        format.html { redirect_to :back, notice: 'Name must not be blank'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -90,11 +90,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully updated.' }
+        format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }
-        format.html { redirect_to :back, notice: 'Name must not be blank'}
+        format.js { redirect_to edit_project_status_task_path, alert: 'Name must not be blank'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -126,6 +126,35 @@ class TasksController < ApplicationController
       format.json { render json: @tasks.to_json(:include => [:users, :label]) }
     end
   end
+
+  def new_reported_hours
+    @rh = ReportedHours.new
+    @task = Task.find(params[:task_id])
+    @rh.task = @task
+    @rh.user = current_user
+
+  end
+
+  def create_reported_hours
+    @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:task_id])
+    @task = Task.find(params[:task_id])
+      
+    if @rh
+      @rh.reporting_hours = params[:rh][:reporting_hours]
+    else
+      @rh = ReportedHours.new(params[:rh])
+      @rh.task = @task
+      @rh.user = current_user
+    end
+
+    @rh.save
+
+    redirect_to boards_project_path(@task.status.project)
+  end
+
+  #def reported_hours_index
+
+  #end
 
 
 

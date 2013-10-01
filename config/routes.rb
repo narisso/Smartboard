@@ -9,11 +9,18 @@ Iic21542::Application.routes.draw do
    # route to getting task for a project
   match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
   match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
+
+  #Dropbox Routes
+  match '/dropbox/authorize'   => 'dropbox#authorize' , :method => :get , :as => :dropbox_auth
+  match '/dropbox/callback' => 'dropbox#callback' , :method => :get , :as =>  :dropbox_callback
+  match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
+  post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
+
  
 
   resources :comments
 
-  resources :project_statuses
+  #resources :project_statuses
   resources :comments
   root :to => 'application#home'
 
@@ -33,7 +40,7 @@ Iic21542::Application.routes.draw do
   resources :use_cases
   #resources :tasks
 
-  
+
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
     resources :document_projects
@@ -51,6 +58,7 @@ Iic21542::Application.routes.draw do
     get 'api/v1/getProjects' => 'api#getProjects'
     post 'api/v1/login' => 'api#login'
     delete 'api/v1/logout' => 'api#logout'
+    post 'api/v1/upload' => 'api#upload'
 
   #resources :boards
 

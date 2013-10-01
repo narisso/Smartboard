@@ -2,6 +2,7 @@ class DocumentProjectsController < ApplicationController
   # GET /document_projects
   # GET /document_projects.json
   def index
+    @project = Project.find(params[:project_id])
     @document_projects = DocumentProject.where(:project_id => params[:project_id])
 
     respond_to do |format|
@@ -30,7 +31,6 @@ class DocumentProjectsController < ApplicationController
 
     respond_to do |format|
       format.js
-      format.html # new.html.erb
       format.json { render json: @document_project }
     end
   end
@@ -43,16 +43,32 @@ class DocumentProjectsController < ApplicationController
   # POST /document_projects
   # POST /document_projects.json
   def create
-    @document_project = DocumentProject.new(params[:document_project])
-    @document_project.project = Project.find(params[:project_id])
+
+    @project = Project.find(params[:project_id])
+    @document_project = DocumentProject.new({name: params[:document_project][:name], description: params[:document_project][:description] })
+    @document_project.project = @project
+
+    if @project.dropbox_token then
+      if params[:document_project][:file] then
+        require 'dropbox_sdk'
+        file = params[:document_project][:file].read
+        @file_path ="IIC2154/" + @project.name + "/" + params[:document_project][:file].original_filename
+        dbsession = DropboxSession.deserialize(@project.dropbox_token)
+        client = DropboxClient.new(dbsession)
+        response = client.put_file(@file_path, file)
+        link = client.shares(response["path"])
+        @document_project.url_path = link["url"]
+      end
+    else
+      flash[:alert] = "No cloud storage linked"
+    end
 
     respond_to do |format|
       if @document_project.save
-        format.js { redirect_to project_document_projects_path, notice: 'Document project was successfully created.' }
+        format.html { redirect_to boards_project_path(@document_project.project_id) }
         format.json { render json: @document_project, status: :created, location: @document_project }
       else
-        format.js { render "new" }
-        format.html { render action: "new" }
+        format.html { redirect_to boards_project_path(@document_project.project_id) }
         format.json { render json: @document_project.errors, status: :unprocessable_entity }
       end
     end

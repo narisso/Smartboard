@@ -1,7 +1,7 @@
 <%- model_class = DocumentProject -%>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+    <h1><%=t '.title', :default => 'Documents' %></h1>
 </div>
 <%= bootstrap_flash %>
 <div class="modal-body">
@@ -33,7 +33,7 @@
 </div>
 <div class="modal-footer">
   <% if @project.dropbox_token then %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
+  <%= link_to t('.new', :default => 'Upload'),
               new_project_document_project_path,
               :class => 'btn btn-primary', :remote => true %>
   <%end%>

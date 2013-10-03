@@ -49,3 +49,14 @@ def create_confirmed_user
   u.confirm!
   u
 end
+
+def create_confirmed_user_and_sign_in
+  u = create_confirmed_user
+  visit '/users/sign_in'
+  within("#new_user") do
+    fill_in 'user_email', :with => u.email
+    fill_in 'user_password', :with => u.password
+  end
+  click_button 'Sign in'
+  u
+ end

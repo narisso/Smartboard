@@ -148,3 +148,13 @@
 	visibility: hidden;
 }
 
+.task h5{
+	padding-right:5px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.modal-header h1{
+	//width:700px;
+	word-wrap:break-word;
+}

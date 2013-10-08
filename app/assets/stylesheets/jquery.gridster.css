@@ -48,6 +48,8 @@
     -moz-transition: left .3s, top .3s!important;
     -o-transition: left .3s, top .3s!important;
     transition:  left .3s, top .3s!important;
+
+
 }
 
 .gridster .dragging {
@@ -59,6 +61,13 @@
 }
 
 /* Uncomment this if you set helper : "clone" in draggable options */
-/*.gridster .player {
-  opacity:0;
-}*/
+.gridster .player {
+        /* Firefox */
+        -moz-transform: scale(1) rotate(-7deg) translate(50px);
+        /* WebKit */
+        -webkit-transform: scale(1) rotate(-7deg) translate(50px);
+        /* Opera */
+        -o-transform: scale(1) rotate(-7deg) translate(50px);
+        /* Standard */
+        transform: scale(1) rotate(-7deg) translate(50px);
+}

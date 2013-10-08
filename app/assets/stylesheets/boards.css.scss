@@ -7,15 +7,16 @@
 	
 	width: auto;
 	height: 60px;
-	background-color: gray;
+	margin-bottom: 10px;
 
 }
 
 .board-body {
 
 	height:100%;
-	overflow-y: auto;
 	width: auto;
+	overflow-y: auto;
+	
 
 }
 
@@ -25,43 +26,122 @@
 
 }
 
+.board-head li {
+
+	margin: -2px;
+
+}
 
 .column {
 	width: 280px;
 	padding: 10px;
-	display:inline-block;
-	vertical-align:top;	
-}
-
-.task{
-	height: 100px;
-
-	padding: 5px;
+	margin: 0;
 
 	background-color: rgba(255,255,255,0.5);
-	-moz-box-shadow: 0 0 2px #888;
-	-webkit-box-shadow: 0 0 2px#888;
-	box-shadow: 0 0 2px #888;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.2);
 
-	border-radius: 5px;
+	display: inline-block;
+	vertical-align: top;	
+}
+
+
+.task {
+
+	height: 100px;
+	padding: 0;
+
+	background-color: rgba(255,255,255,0.5);
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	box-shadow: 0 0 5px rgba(0,0,0,0.2);
+
 
 	cursor: pointer;
 
+}
 
+.task-info {
+
+	height: 10px;
+	margin: 0;
+	padding: 0;
+
+}
+
+.task-type {
+	
+	width: auto;
+	height: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+
+.task-time {
+	
+	width: auto;
+	height: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: LightSteelBlue;
+
+	color: white;
+	font-weight:bold;
+	font-size: 12px;
+
+}
+
+.task h5 {
+	
+	height: 30px;
+	padding: 0;
+
+}
+
+.task-users {
+	
+	height: 40px;
+	background-color: rgba(176,196,222,0.6); 
 
 }
 
 .task img {
-	height:30px;
+
+	height: 30px;
 	width: 30px;
 
-
-	margin:5px;
+	margin: 5px;
 	border-radius: 4px;
 
 }
 
-.ltl-nav{
+.hide {
+	
+	visibility: hidden;
+
+}
+
+.center-progress {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	margin-top: -15px;
+	margin-left: -200px;
+
+	height: 30px;
+	width: 400px;
+	z-index: 100;
+}
+
+.ltl-nav {
+
 	position: absolute;
 	top: 42px;
 	bottom: 0px;
@@ -82,11 +162,12 @@
 }
 
 .main-content{
+
 	position: absolute;
 	width: auto;
 	top: 42px;
 	bottom: 0px;
-	left: 290px;
+	left: 185px;
 	right: 0px;
 
 	overflow-x: auto;
@@ -95,11 +176,11 @@
 }
 
 .main-content-small{
-	left: 240px;
+	left: 185px;
 }
 
 .main-content-big{
-	left: 80px;
+	left: 35px;
 }
 
 .close-btn{

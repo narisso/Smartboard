@@ -49,6 +49,7 @@ Iic21542::Application.routes.draw do
 
 
     get 'api/v1/getProjects' => 'api#getProjects'
+    get 'api/v1/getDocuments' => 'api#getDocuments'
     post 'api/v1/login' => 'api#login'
     delete 'api/v1/logout' => 'api#logout'
 

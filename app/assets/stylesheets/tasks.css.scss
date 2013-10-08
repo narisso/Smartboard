@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.span8 dd{
+	word-wrap:break-word;
+	margin-left:0px;
+}
+
 #select_task_options{
 	float:left;
 	width:40%;

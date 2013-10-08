@@ -1,0 +1,25 @@
+<h1>Listing use_case_templates</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Template form</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @use_case_templates.each do |use_case_template| %>
+  <tr>
+    <td><%= use_case_template.name %></td>
+    <td><%= use_case_template.template_form %></td>
+    <td><%= link_to 'Show', use_case_template %></td>
+    <td><%= link_to 'Edit', edit_use_case_template_path(use_case_template) %></td>
+    <td><%= link_to 'Destroy', use_case_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Use case template', new_use_case_template_path %>

@@ -1,5 +1,8 @@
 Iic21542::Application.routes.draw do
 
+  resources :use_case_templates
+
+
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 
   get "/tasks/show_comments_of_task"

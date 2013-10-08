@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @use_case_template.name %>
+</p>
+
+<p>
+  <b>Template form:</b>
+  <%= @use_case_template.template_form %>
+</p>
+
+
+<%= link_to 'Edit', edit_use_case_template_path(@use_case_template) %> |
+<%= link_to 'Back', use_case_templates_path %>

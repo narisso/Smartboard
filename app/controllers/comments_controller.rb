@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
 
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comment }
@@ -41,14 +42,21 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
+    @user = current_user
+    @task = Task.find(params[:task_id])
+    @comment.user_id = @user.id
+    @comment.task_id = @task.id
+    @comment.approved = true
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
+        format.js { render :js => %(window.location = '#{redirect_to project_status_task_path}') and return}
       else
         format.html { render action: "new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { redirect_to project_status_task_path}
       end
     end
   end

@@ -4,9 +4,7 @@ Iic21542::Application.routes.draw do
 
   get "/tasks/show_comments_of_task"
 
-  resources :comments
-
-   # route to getting task for a project
+  # route to getting task for a project
   match 'tasks/project_tasks/:id', :controller =>'tasks' , :action => 'project_tasks'
   match 'statuses/project_tasks/:id', :controller =>'statuses' , :action => 'project_statuses'
 
@@ -18,13 +16,9 @@ Iic21542::Application.routes.draw do
 
  
 
-  resources :comments
-
   #resources :project_statuses
-  resources :comments
   root :to => 'application#home'
 
-  resources :comments
   resources :evaluations
   resources :test_cases
   resources :bugs
@@ -50,7 +44,9 @@ Iic21542::Application.routes.draw do
       #resources :project_role_users
     end
     resources :statuses do
-      resources :tasks
+      resources :tasks do
+        resources :comments
+      end
     end
   end
 

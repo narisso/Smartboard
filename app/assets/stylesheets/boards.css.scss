@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+.span3 dd b{
+	color:green;
+}
 
 
 .column {
@@ -148,3 +150,13 @@
 	visibility: hidden;
 }
 
+.task h5{
+	padding-right:5px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.modal-header h1{
+	//width:700px;
+	word-wrap:break-word;
+}

@@ -16,3 +16,8 @@
 	background-repeat: repeat;
 
 }
+
+#modal-large{
+	width:80%;
+	margin-left:-40%;
+}

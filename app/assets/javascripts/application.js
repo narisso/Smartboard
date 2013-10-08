@@ -11,14 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
 
-/* BUG require turbolinks*/
-
-jQuery(document).ready(function($){
+$(document).bind("page:load", function() {
 
 function ltl_bar_change(){
 	if($('.ltl-nav-open').length>0){
@@ -56,11 +53,9 @@ $('#modal').on('hide', function () {
     $("#modal-header").empty();
   })
 
-})
-
+});
 
 // Script to active chosen select
-function chosenSelect() {
-	$('.chosen-select').chosen({ search_contains: true });
+function chosenSelect(pixels) {
+    $('.chosen-select').chosen({ search_contains: true, width: pixels+'px' });
 }
-

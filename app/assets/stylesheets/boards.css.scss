@@ -3,24 +3,39 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.board-head {
+	
+	width: auto;
+	height: 60px;
+	background-color: gray;
+
+}
+
+.board-body {
+
+	height:100%;
+	overflow-y: auto;
+	width: auto;
+
+}
+
+.gridster ul {
+
+	list-style-type: none;
+
+}
 
 
 .column {
 	width: 280px;
-	height:100%;
 	padding: 10px;
-	top: 0;
-	margin-right:5px;
-	border-right: 1px dashed black;
 	display:inline-block;
-	vertical-align:top;
-	overflow-y: auto;
+	vertical-align:top;	
 }
 
 .task{
 	height: 100px;
 
-	margin: 5px;
 	padding: 5px;
 
 	background-color: rgba(255,255,255,0.5);

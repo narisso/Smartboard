@@ -1,8 +1,8 @@
 <%= render :partial => 'lateral' %>
 
-        <ul class="main-content main-content-big">
+<ul class="main-content main-content-big">
 
-
+<div class="board-head" >
 <% @statuses.each do |status|%>
 
 	<li class='column'>
@@ -11,37 +11,59 @@
 		<h4 class='block text-center'><%= status.name%></h4>
 		<div class='' data-id='<%=status.id%>'> </div>
 
-		<% status.tasks.each do |task| %>
-			<div class='task block'>
-				<i class='icon-move pull-right'></i>
-				<h5>
-					<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
-				</h5>
 
-
-				<span class='label label-info' style="background-color: <%= task.label.color %>" >
-					<%= task.label.name %>
-				</span>
-				<span class='badge'>
-					<%= task.estimated_hours %>
-				</span>
-				<div class="block">
-					<% task.users.each do |user| %>
-						<img src='/assets/NA.jpg' data-toggle='tooltip' title="<%=user.email%>"></img>
-					<% end %>
-				</div>
-			</div>
-		<% end %>
-  	</li>
-
-
-<% end %>
+	<% end %>
 <%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"btn",:style=>"margin-top:50px;" %>
+</div>
+
+<div class="board-body">
+	<div class="gridster">
+	    <ul>
+
+				<% @statuses.each do |status|%>
+						<% status.tasks.each_with_index do |task , i| %>
+						<li data-row="<%= i %>" data-col="<%= status.order %>" data-sizex="1" data-sizey="1">
+							<div class='task block'>
+								<h5>
+									<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
+								</h5>
+
+
+								<span class='label label-info' style="background-color: <%= task.label.color %>" >
+									<%= task.label.name %>
+								</span>
+								<span class='badge'>
+									<%= task.estimated_hours %>
+								</span>
+								<div class="block">
+									<% task.users.each do |user| %>
+										<img src='/assets/NA.jpg' data-toggle='tooltip' title="<%=user.email%>"></img>
+									<% end %>
+								</div>
+							</div>
+						<% end %>
+
+					</li>	
+				<% end %>
+
+	    </ul>
+	</div>
+</div>
 
 
 <%- content_for(:javascripts) do -%>
   <!-- <script type="text/javascript">var p_id =<%= @project.id %></script> -->
   <!-- <%= javascript_include_tag "boards_controller" %> -->
+  <script type="text/javascript">
+  $(function(){ //DOM Ready
+ 
+    $(".gridster ul").gridster({
+        widget_margins: [10, 5],
+        widget_base_dimensions: [280, 110],
+        min_cols: 12
+    });
+ 
+});</script>
 <%- end -%>
 
 </ul>

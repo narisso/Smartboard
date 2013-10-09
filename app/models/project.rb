@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token
+  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token, :github_token
 
   belongs_to :project_status
 

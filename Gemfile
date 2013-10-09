@@ -53,6 +53,8 @@ gem 'simple_form'
 gem "flash_render"
 gem 'dropbox-sdk'
 
+# Integration with GitHub
+gem "github_api"
 
 # To breadScrumbs
 gem 'gretel'

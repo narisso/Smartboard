@@ -7,11 +7,18 @@
   <% end %>
 
   <% if @linkDropbox %>
-  <a class="btn btn-success" href="" style="margin-left:220px;">Linked to Dropbox</a>
+  <a class="btn btn-success" href=<%= dropbox_auth_path  %> style="margin-left:220px;">Linked to Dropbox</a>
   <%= f.hidden_field :dropbox_token, :value => @dropbox_token %>
   <% else %>
   <a class="btn" href= <%= dropbox_auth_path  %>  style="margin-left:220px;">Link To dropbox</a>
   <% end %>
+
+  <% if @linkGithub %>
+  <a class="btn btn-success" href=<%= github_auth_path  %> style="margin-left:220px;">Linked to Github</a>
+  <%= f.hidden_field :github_token, :value => @github_token %>
+  <% else %>
+  <a class="btn" href= <%= github_auth_path  %>  style="margin-left:220px;">Link To github</a>
+  <% end %>  
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

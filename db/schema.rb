@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926201248) do
+ActiveRecord::Schema.define(:version => 20131008175037) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130926201248) do
     t.datetime "updated_at",        :null => false
     t.integer  "project_status_id"
     t.string   "dropbox_token"
+    t.string   "github_token"
   end
 
   create_table "reported_hours", :force => true do |t|

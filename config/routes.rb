@@ -1,5 +1,9 @@
 Iic21542::Application.routes.draw do
 
+  get "github/authorize"
+
+  get "github/callback"
+
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 
   get "/tasks/show_comments_of_task"
@@ -16,6 +20,9 @@ Iic21542::Application.routes.draw do
   match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
   post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
 
+  #Github Routes
+  match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
+  match '/github/callback' => 'github#callback' , :method => :get , :as =>  :github_callback
  
 
   resources :comments

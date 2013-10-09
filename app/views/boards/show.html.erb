@@ -4,7 +4,7 @@
 
 <%= render :partial => 'lateral' %>
 
-<ul class="main-content main-content-big hide">
+<ul class="main-content main-content-big scroll hide">
 
 <div class="board-head" >
 <% @statuses.each do |status|%>
@@ -20,7 +20,7 @@
 <%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"btn",:style=>"margin-top:50px;" %>
 </div>
 
-<div class="board-body">
+<div class="board-body scroll">
 	<div class="gridster">
 	    <ul>
 

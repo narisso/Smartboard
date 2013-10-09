@@ -16,6 +16,8 @@ Iic21542::Application.routes.draw do
   match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
   post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
 
+
+
  
 
   resources :comments
@@ -48,6 +50,9 @@ Iic21542::Application.routes.draw do
       get '/boards/' => 'boards#show' , :as => 'boards'
       post :finish
       #resources :project_role_users
+    end
+    member do
+      post 'tasks/update_status', :controller => 'tasks', :action => 'update_status', :as => 'update_status'
     end
     resources :statuses do
       resources :tasks

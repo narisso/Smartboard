@@ -24,9 +24,10 @@
 	<div class="gridster">
 	    <ul>
 
-				<% @statuses.each do |status|%>
+				<% @statuses.each_with_index do |status , j| %>
 						<% status.tasks.each_with_index do |task , i| %>
-						<li data-row="<%= i %>" data-col="<%= status.order %>" data-sizex="1" data-sizey="1">
+
+						<li data-id="<%= task.id %>" data-row="<%= i + 1 %>" data-col="<%= j + 1 %>"  data-sizex="1" data-sizey="1">
 							<div class='task block'>
 
 								<div class="task-info block">
@@ -74,7 +75,17 @@
     $(".gridster ul").gridster({
         widget_margins: [10, 5],
         widget_base_dimensions: [280, 110],
-        min_cols: <%= @statuses.count %>
+        min_cols: <%= @statuses.count %>,
+        draggable: {
+            stop: function(event, ui){
+                var id = this.$helper[0].attributes[0].value;
+                var row = this.$helper[0].attributes[1].value;
+                var col = this.$helper[0].attributes[2].value;
+                $.post( "tasks/update_status", { task_id: id, col: col } );
+            }
+        }
+
+
     });
  	
   $('.ltl-nav').removeClass('hide');

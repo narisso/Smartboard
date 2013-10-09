@@ -31,6 +31,8 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap_helper'
 
 # Users, authorization and sessions
 gem 'devise'

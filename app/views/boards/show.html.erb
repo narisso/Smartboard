@@ -92,13 +92,15 @@
   $('.main-content').removeClass('hide');
 	$('.progress').addClass('hide');
 
-	$('.main-content').addClass('slide-down');
+	$('.main-content').addClass('slide-left');
 	$('.ltl-nav').addClass('slide-right');
 	var w = $('.column').outerWidth()*<%= @statuses.count %>;
 	$('.board-head').css( "width", w );
 	$('.board-body').css( "width", w );
 
-});</script>
+});
+
+  </script>
 <%- end -%>
 
 </ul>

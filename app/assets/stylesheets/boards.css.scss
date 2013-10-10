@@ -150,7 +150,7 @@
 
 }
 
-.hide {
+.main-content .hide {
 	
 	visibility: hidden;
 
@@ -190,41 +190,41 @@
 	width: 55px;
 }
 
-.slide-down {
-  -webkit-animation-duration: 1s;
-  -webkit-animation-name: slidedown;
+.slide-left {
+  -webkit-animation-duration: 2s;
+  -webkit-animation-name: slideleft;
 
-  animation-duration: 0.5s;
-  animation-name: slidedown;
+  animation-duration: 2s;
+  animation-name: slideleft;
 
 }
 
 .slide-right {
-  -webkit-animation-duration: 0.5s;
+  -webkit-animation-duration: 1s;
   -webkit-animation-name: slideright;
 
-  animation-duration: 0.5s;
+  animation-duration: 1s;
   animation-name: slideright;
 
 }
 
-@keyframes slidedown {
+@keyframes slideleft {
   from {
-    height: 0%;
+    margin-left: 100%;
   }
 
   to {
-    height: 100%;
+    margin-left: 0%;
   }
 }
 
-@-webkit-keyframes slidedown {
+@-webkit-keyframes slideleft {
   from {
-    height: 0%;
+    margin-left: 100%;
   }
 
   to {
-    height: 100%;
+    margin-left: 0%;
   }
 }
 

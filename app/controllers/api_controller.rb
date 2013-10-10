@@ -77,8 +77,6 @@ class ApiController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
-
 	def upload
 		require 'dropbox_sdk'
 
@@ -141,9 +139,6 @@ class ApiController < ApplicationController
 
 	end
 
-
-
-=======
 	def getDocuments
 		@document_projects = DocumentProject.where(:project_id => params[:project_id])
 		if @document_projects.nil?
@@ -152,5 +147,4 @@ class ApiController < ApplicationController
 			render :json => @document_projects
 		end
 	end
->>>>>>> api_getDocuments
 end

@@ -4,9 +4,9 @@
 
 <%= render :partial => 'lateral' %>
 
-<ul class="main-content main-content-big scroll hide">
+<div id="board" class="main-content main-content-big scroll hide">
 
-<div class="board-head" >
+<ul id="board-head" class="board-head" >
 <% @statuses.each do |status|%>
 
 	<li class='column'>
@@ -17,10 +17,10 @@
 
 	</li>
 	<% end %>
-<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"btn",:style=>"margin-top:50px;" %>
-</div>
+<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"add" %>
+</ul>
 
-<div class="board-body scroll">
+<div id="board-body" class="board-body scroll">
 	<div class="gridster">
 	    <ul>
 
@@ -74,7 +74,7 @@
  
     $(".gridster ul").gridster({
         widget_margins: [10, 5],
-        widget_base_dimensions: [280, 110],
+        widget_base_dimensions: [240, 110],
         min_cols: <%= @statuses.count %>,
         draggable: {
             stop: function(event, ui){
@@ -94,6 +94,9 @@
 
 	$('.main-content').addClass('slide-down');
 	$('.ltl-nav').addClass('slide-right');
+	var w = $('.column').outerWidth()*<%= @statuses.count %>;
+	$('.board-head').css( "width", w );
+	$('.board-body').css( "width", w );
 
 });</script>
 <%- end -%>

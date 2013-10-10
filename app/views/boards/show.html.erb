@@ -1,8 +1,12 @@
+<div class="progress progress-striped active center-progress">
+  <div class="bar" style="width: 100%;"></div>
+</div>
+
 <%= render :partial => 'lateral' %>
 
-        <ul class="main-content main-content-big">
+<div id="board" class="main-content main-content-big scroll hide">
 
-
+<ul id="board-head" class="board-head" >
 <% @statuses.each do |status|%>
 
 	<li class='column'>
@@ -11,37 +15,92 @@
 		<h4 class='block text-center'><%= status.name%></h4>
 		<div class='' data-id='<%=status.id%>'> </div>
 
-		<% status.tasks.each do |task| %>
-			<div class='task block'>
-				<i class='icon-move pull-right'></i>
-				<h5>
-					<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
-				</h5>
+	</li>
+	<% end %>
+<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"add" %>
+</ul>
+
+<div id="board-body" class="board-body scroll">
+	<div class="gridster">
+	    <ul>
+
+				<% @statuses.each_with_index do |status , j| %>
+						<% status.tasks.each_with_index do |task , i| %>
+
+						<li data-id="<%= task.id %>" data-row="<%= i + 1 %>" data-col="<%= j + 1 %>"  data-sizex="1" data-sizey="1">
+							<div class='task block'>
+
+								<div class="task-info block">
+									<span class='task-type' style="background-color: <%= task.label.color %>" >
+										<%= task.label.name %>
+									</span>
+									<span class='task-time'>
+										<%= task.estimated_hours %>
+									</span>
+								</div>
 
 
-				<span class='label label-info' style="background-color: <%= task.label.color %>" >
-					<%= task.label.name %>
-				</span>
-				<span class='badge'>
-					<%= task.estimated_hours %>
-				</span>
-				<div class="block">
-					<% task.users.each do |user| %>
-						<img src='/assets/NA.jpg' data-toggle='tooltip' title="<%=user.email%>"></img>
-					<% end %>
-				</div>
-			</div>
-		<% end %>
-  	</li>
+								<h5>
+									<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
+								</h5>
 
 
-<% end %>
-<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"btn",:style=>"margin-top:50px;" %>
+
+								<div class="task-users block">
+									<% task.users.each do |user| %>
+										<img src='/assets/NA.png' data-toggle='tooltip' title="<%=user.email%>"></img>
+									<% end %>
+								</div>
+							</div>
+						<% end %>
+
+					</li>	
+				<% end %>
+
+	    </ul>
+	</div>
+</div>
+
+
+
 
 
 <%- content_for(:javascripts) do -%>
   <!-- <script type="text/javascript">var p_id =<%= @project.id %></script> -->
   <!-- <%= javascript_include_tag "boards_controller" %> -->
+  <script type="text/javascript">
+
+  $(function(){ //DOM Ready
+ 
+    $(".gridster ul").gridster({
+        widget_margins: [10, 5],
+        widget_base_dimensions: [240, 110],
+        min_cols: <%= @statuses.count %>,
+        draggable: {
+            stop: function(event, ui){
+                var id = this.$helper[0].attributes[0].value;
+                var row = this.$helper[0].attributes[1].value;
+                var col = this.$helper[0].attributes[2].value;
+                $.post( "tasks/update_status", { task_id: id, col: col } );
+            }
+        }
+
+
+    });
+ 	
+  $('.ltl-nav').removeClass('hide');
+  $('.main-content').removeClass('hide');
+	$('.progress').addClass('hide');
+
+	$('.main-content').addClass('slide-left');
+	$('.ltl-nav').addClass('slide-right');
+	var w = $('.column').outerWidth()*<%= @statuses.count %>;
+	$('.board-head').css( "width", w );
+	$('.board-body').css( "width", w );
+
+});
+
+  </script>
 <%- end -%>
 
 </ul>

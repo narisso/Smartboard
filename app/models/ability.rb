@@ -10,6 +10,7 @@ class Ability
 
     can :manage, Project do |project|
         project.users.include? user 
+        
     end 
 
     #Roles del proyecto

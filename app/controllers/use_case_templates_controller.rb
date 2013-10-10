@@ -42,10 +42,12 @@ class UseCaseTemplatesController < ApplicationController
   # POST /use_case_templates.json
   def create
     @use_case_template = UseCaseTemplate.new(params[:use_case_template])
+    @use_case_template.project = Project.find(params[:project_id])
+    @use_case_template.template_form = params[:parameters].to_json
 
     respond_to do |format|
       if @use_case_template.save
-        format.html { redirect_to @use_case_template, notice: 'Use case template was successfully created.' }
+        format.html { redirect_to [@use_case_template.project, @use_case_template], notice: 'Use case template was successfully created.' }
         format.json { render json: @use_case_template, status: :created, location: @use_case_template }
       else
         format.html { render action: "new" }

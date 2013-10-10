@@ -1,6 +1,7 @@
 Iic21542::Application.routes.draw do
+  get "github/authorize"
 
-  #resources :use_case_templates
+  get "github/callback"
 
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
@@ -19,7 +20,9 @@ Iic21542::Application.routes.draw do
   match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
   post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
 
- 
+  #Github Routes
+  match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
+  match '/github/callback' => 'github#callback' , :method => :get , :as =>  :github_callback
 
   resources :comments
 
@@ -52,6 +55,9 @@ Iic21542::Application.routes.draw do
       post :finish
       #resources :project_role_users
     end
+    member do
+      post 'tasks/update_status', :controller => 'tasks', :action => 'update_status', :as => 'update_status'
+    end
     resources :statuses do
       resources :tasks
     end
@@ -61,6 +67,7 @@ Iic21542::Application.routes.draw do
 
 
     get 'api/v1/getProjects' => 'api#getProjects'
+    get 'api/v1/getDocuments' => 'api#getDocuments'
     post 'api/v1/login' => 'api#login'
     delete 'api/v1/logout' => 'api#logout'
     post 'api/v1/upload' => 'api#upload'

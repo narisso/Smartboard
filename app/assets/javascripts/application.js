@@ -11,14 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require twitter/bootstrap
 //= require chosen-jquery
 
-/* BUG require turbolinks*/
-
-jQuery(document).ready(function($){
+$(document).bind("page:load", function() {
 
 chosenSelect();
 
@@ -58,12 +56,11 @@ $('#modal').on('hide', function () {
     $("#modal-header").empty();
   })
 
-})
-
+});
 
 // Script to active chosen select
-function chosenSelect() {
-	$('.chosen-select').chosen({ search_contains: true });
+function chosenSelect(pixels) {
+    $('.chosen-select').chosen({ search_contains: true, width: pixels+'px' });
 }
 
 function replaceAll( text, busca, reemplaza ){
@@ -72,5 +69,3 @@ function replaceAll( text, busca, reemplaza ){
 
   return text;
 }
-
-

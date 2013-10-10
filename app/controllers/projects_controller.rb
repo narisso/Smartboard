@@ -27,12 +27,20 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @linkDropbox = false
+    @linkGithub = false
 
     if session[:dropbox_session]
       @linkDropbox = true
       @dropbox_token = session[:dropbox_session]
       session.delete :dropbox_session
     end
+
+    if session[:github_session]
+      @linkGithub = true
+      @github_token = session[:github_session]
+      session.delete = :github_session
+    end
+
 
     @project = Project.new
 
@@ -52,7 +60,21 @@ class ProjectsController < ApplicationController
       session.delete :dropbox_session
     elsif @project.dropbox_token
       @linkDropbox = true
+      @dropbox_token = @project.dropbox_token
     end
+
+    if session[:github_session]
+      @linkGithub = true
+      @github_token = session[:github_session]
+      session.delete :github_session
+    elsif @project.github_token
+      @linkGithub = true
+      @github_token = @project.github_token
+    end
+      
+
+
+
   end
 
   # POST /projects

@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20131008183748) do
     t.datetime "updated_at",        :null => false
     t.integer  "project_status_id"
     t.string   "dropbox_token"
+    t.string   "github_token"
   end
 
   create_table "reported_hours", :force => true do |t|

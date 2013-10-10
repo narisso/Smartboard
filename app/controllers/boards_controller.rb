@@ -1,6 +1,5 @@
 class BoardsController < ApplicationController
-
-
+	
 	def show
 		@project = Project.find(params[:id])
 		authorize! :manage, @project
@@ -10,7 +9,6 @@ class BoardsController < ApplicationController
         respond_to do |format|
             format.html
         end
-
 	end
 
 end

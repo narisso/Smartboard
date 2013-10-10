@@ -1,8 +1,10 @@
 <p class="well"><strong>Instrucctions: </strong>Select the data type and click the '+' button to add a field to the Template.</p>
+
+
 <%= form_for [@use_case_template.project, @use_case_template], :html => { :class => 'form-horizontal' } do |f| %>
 	<div class="control-group">
-		<div class="control-label"> <%= label_tag(:name) %> </div>
-		<div class="controls"> <%= text_field_tag(:name) %> </div>
+		<%= f.label :name, 'Name' ,:class => "control-label string required" %>
+		<div class="controls required"> <%= f.text_field :name %> </div>
 	</div>
 	<div class="control-group">
 		<div class="controls"> <%= link_to 'Add Atributte +', '#', :id => 'add_atributte', :class => "btn" %> </div>
@@ -23,11 +25,14 @@
 
 <% content_for :javascripts do %>
 	<script type="text/javascript">
+		var i = 1;
 		$("#add_atributte").click(function() {
-			var html = "<%= escape_javascript(render 'parameter') %>";
+			var html = "<%= escape_javascript(render 'parameter').gsub('\"', '\'' ).html_safe %>";
+			html = replaceAll(html, "identifier", i);
 			$("#template_input").append(html);
 			chosenSelect();
-			$('.input-tag').tag();
+			//$('.input-tag').tag();
+			i++;
 		})
 	</script>
 <% end %>

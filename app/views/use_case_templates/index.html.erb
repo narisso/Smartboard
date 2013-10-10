@@ -15,7 +15,7 @@
   <tbody>
     <% @use_case_templates.each do |use_case_template| %>
       <tr>
-        <td><%= link_to use_case_template.id, use_case_template_path(use_case_template) %></td>
+        <td><%= link_to use_case_template.id, project_use_case_template_path(use_case_template.project, use_case_template) %></td>
         <td><%= use_case_template.name %></td>
         <td><%= use_case_template.template_form %></td>
         <td><%=l use_case_template.created_at %></td>

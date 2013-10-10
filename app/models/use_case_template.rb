@@ -1,6 +1,8 @@
 class UseCaseTemplate < ActiveRecord::Base
   attr_accessible :name, :template_form, :project_id
 
+  validates :name, :presence => true
+
   belongs_to :project
 
   def input_options

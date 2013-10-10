@@ -1,12 +1,33 @@
-<%= simple_form_for(@use_case_template) do |f| %>
-  <%= f.error_notification %>
+<p class="well"><strong>Instrucctions: </strong>Select the data type and click the '+' button to add a field to the Template.</p>
+<%= form_for [@use_case_template.project, @use_case_template], :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="control-group">
+		<div class="control-label"> <%= label_tag(:name) %> </div>
+		<div class="controls"> <%= text_field_tag(:name) %> </div>
+	</div>
+	<div class="control-group">
+		<div class="controls"> <%= link_to 'Add Atributte +', '#', :id => 'add_atributte', :class => "btn" %> </div>
+	</div>
+	<div id="template_input">
+		
+	</div>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :template_form %>
-  </div>
-
+  
+  
+  <!--%= f.input :template_form %-->
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_use_case_templates_path, :class => 'btn' %>
   </div>
+<% end %>
+
+<% content_for :javascripts do %>
+	<script type="text/javascript">
+		$("#add_atributte").click(function() {
+			var html = "<%= escape_javascript(render 'parameter') %>";
+			$("#template_input").append(html);
+			chosenSelect();
+			$('.input-tag').tag();
+		})
+	</script>
 <% end %>

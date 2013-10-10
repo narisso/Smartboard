@@ -2,7 +2,7 @@ class UseCaseTemplatesController < ApplicationController
   # GET /use_case_templates
   # GET /use_case_templates.json
   def index
-    @use_case_templates = UseCaseTemplate.all
+    @use_case_templates = UseCaseTemplate.where(params[:project_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class UseCaseTemplatesController < ApplicationController
   # GET /use_case_templates/new.json
   def new
     @use_case_template = UseCaseTemplate.new
+    @use_case_template.project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb

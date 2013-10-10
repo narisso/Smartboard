@@ -1,5 +1,13 @@
 class UseCaseTemplate < ActiveRecord::Base
-  attr_accessible :name, :template_form
+  attr_accessible :name, :template_form, :project_id
 
-  has_many :user_case_templates
+  belongs_to :project
+
+  def input_options
+  	options = [['radio-button', 1], ['select', 2], ['check-box', 3]]
+  end
+
+  def data_types
+  	options = [['string', 1], ['text', 2], ['integer', 3], ['datetime', 4], ['boolean', 5]]
+  end
 end

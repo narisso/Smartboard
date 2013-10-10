@@ -1,6 +1,5 @@
-<h1>Editing use_case_template</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @use_case_template %> |
-<%= link_to 'Back', use_case_templates_path %>
+<%- model_class = UseCaseTemplate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

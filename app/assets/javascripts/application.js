@@ -20,6 +20,8 @@
 
 jQuery(document).ready(function($){
 
+chosenSelect();
+
 function ltl_bar_change(){
 	if($('.ltl-nav-open').length>0){
 

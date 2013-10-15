@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
-        format.js { render :js => %(window.location = '#{redirect_to project_status_task_path}') and return}
+        format.js { render :js => %(window.location = '#{redirect_to project_status_task_comment_path}') and return}
       else
         format.html { render action: "new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

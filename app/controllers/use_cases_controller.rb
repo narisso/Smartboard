@@ -1,4 +1,7 @@
 class UseCasesController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :use_case, :through => :project
+
   # GET /use_cases
   # GET /use_cases.json
   def index

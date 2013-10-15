@@ -17,7 +17,7 @@
   <tbody>
     <% @use_cases.each do |use_case| %>
       <tr>
-        <td><%= link_to use_case.id, use_case_path(use_case) %></td>
+        <td><%= link_to use_case.id, project_use_case_path(use_case.project, use_case) %></td>
         <td><%= use_case.name %></td>
         <td><%= use_case.actors %></td>
         <td><%= use_case.synopsis %></td>
@@ -25,7 +25,7 @@
         <td><%=l use_case.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_project_use_case_path(use_case), :class => 'btn btn-mini' %>
+                      edit_project_use_case_path(user_case.project, use_case), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       project_use_case_path(use_case),
                       :method => :delete,

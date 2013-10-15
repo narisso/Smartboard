@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   load_and_authorize_resource
+  skip_before_filter :check_session, only: [:hook]
+  skip_authorize_resource :only => :hook
 
   def index   
     @projects = current_user.projects
@@ -74,6 +76,25 @@ class ProjectsController < ApplicationController
       
 
 
+
+  end
+
+
+  def hook
+    
+    
+
+
+    c = JSON.parse(params[:payload])
+    commit = Commit.new
+    commit.author_email = c["head_commit"]["author"]["email"]
+    commit.author_name = c["head_commit"]["author"]["name"]
+    commit.message = c["head_commit"]["message"]
+    sp = c["head_commit"]["message"].split "#"
+    commit.task_id = sp[-1].to_i
+    commit.save
+
+    #respond 200
 
   end
 

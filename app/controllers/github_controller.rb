@@ -6,7 +6,7 @@ class GithubController < ApplicationController
   def authorize
   	session[:return_to] = request.referer
   	github  = Github.new :client_id => GITHUB_CLIENT_ID , :client_secret => GITHUB_CLIENT_SECRET
-    address = github.authorize_url scope: 'repo'
+    address = github.authorize_url :scope => ['repo', 'user']
     redirect_to address
   end
 

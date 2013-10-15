@@ -9,6 +9,8 @@
 
   <div class="span3">
 
+    <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
+    <dd>#<%= @task.id %></dd>
     <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
     <dd><%= @task.priority %></dd>
     <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
@@ -47,7 +49,11 @@
     <div class="tab-pane active" id="description"><%=@task.description%></div>
     <div class="tab-pane" id="comments">Coments ...</div>
     <div class="tab-pane" id="bugs">Bugs ...</div>
-    <div class="tab-pane" id="commits">Commits ...</div>
+    <div class="tab-pane" id="commits">
+      <% @task.commits.each do |commit|%>
+        <b><%=commit.author_name%></b>(<%= commit.author_email%>): <%= commit.message%>
+      <% end %>
+    </div>
     <div class="tab-pane" id="documents">Documents ...</div>
   </div>
 

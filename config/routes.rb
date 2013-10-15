@@ -24,6 +24,9 @@ Iic21542::Application.routes.draw do
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
   match '/github/callback' => 'github#callback' , :method => :get , :as =>  :github_callback
 
+  #Hook Route
+  match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
+
   resources :comments
 
   #resources :project_statuses

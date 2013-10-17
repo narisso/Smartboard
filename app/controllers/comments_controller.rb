@@ -2,10 +2,12 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @task = Task.find(params[:task_id])
+    @project = @task.project
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.js 
+      #format.html # index.html.erb
       format.json { render json: @comments }
     end
   end
@@ -42,9 +44,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
-    @user = current_user
+    @comment.user = current_user
     @task = Task.find(params[:task_id])
-    @comment.user_id = @user.id
     @comment.task_id = @task.id
     @comment.approved = true
 
@@ -52,11 +53,11 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
-        format.js { render :js => %(window.location = '#{redirect_to project_status_task_comment_path}') and return}
+        format.js { redirect_to project_status_task_comments_path }
       else
         format.html { render action: "new" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js { redirect_to project_status_task_path}
+        format.js { redirect_to project_status_task_comments_path}
       end
     end
   end
@@ -65,6 +66,8 @@ class CommentsController < ApplicationController
   # PUT /comments/1.json
   def update
     @comment = Comment.find(params[:id])
+    @task = Task.find(params[:task_id])
+    @project = @task.project
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
@@ -73,6 +76,7 @@ class CommentsController < ApplicationController
       else
         format.html { render action: "edit" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js { redirect_to project_status_task_comments_path }
       end
     end
   end
@@ -81,11 +85,14 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+    @task = Task.find(params[:task_id])
+    @project = @task.project
     @comment.destroy
 
     respond_to do |format|
       format.html { redirect_to comments_url }
       format.json { head :no_content }
+      format.js { redirect_to project_status_task_comments_path }
     end
   end
 end

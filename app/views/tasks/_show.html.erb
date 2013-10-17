@@ -43,7 +43,10 @@
 
   <div class="tab-content span8 offset2">
     <div class="tab-pane active" id="comments">
-    <%= render 'comments/new.html.erb'%> </div>
+    <div id="comment" >
+      <%= render :partial => 'comment' %>
+    </div>
+      <%= render 'comments/new.html.erb'%> </div>
     <div class="tab-pane" id="bugs">Bugs ...</div>
     <div class="tab-pane" id="commits">Commits ...</div>
     <div class="tab-pane" id="documents">Documents ...</div>

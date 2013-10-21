@@ -36,6 +36,7 @@ gem 'bootstrap_helper'
 
 # Users, authorization and sessions
 gem 'devise'
+gem 'devise_invitable'
 
 # Permissions
 gem 'cancan'

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
 
   # Taken out for heroku deploy: :confirmable
-  devise :invitable, :database_authenticatable, :token_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :token_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
          
 

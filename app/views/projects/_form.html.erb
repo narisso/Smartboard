@@ -20,6 +20,13 @@
   <a class="btn" href= <%= github_auth_path  %>  style="margin-left:220px;">Link To github</a>
   <% end %>  
 
+  <% if !@github_token.empty? %>
+    <% if !@project.get_repo_names(@github_username,@github_token).empty?%>
+      <%= f.input :repo_name, collection: @project.get_repo_names(@github_username,@github_token), :include_blank => false %>
+      <%= f.hidden_field :github_user, :value => @github_username %>
+    <% end %>
+  <% end %>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

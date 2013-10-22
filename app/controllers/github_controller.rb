@@ -1,7 +1,6 @@
 class GithubController < ApplicationController
 
-  attr_accessor :github
-
+attr_accessor :github
 
   def authorize
   	session[:return_to] = request.referer
@@ -18,4 +17,14 @@ class GithubController < ApplicationController
     flash[:success] = "You have successfully authorized with github."
     redirect_to session[:return_to]	
   end
+
+  def github_client
+    p = Project.find(params[:id])
+    if p.github_token
+      github = Github.new :oauth_token => p.github_token
+    else
+      github = Github.new :client_id => GITHUB_CLIENT_ID , :client_secret => GITHUB_CLIENT_SECRET
+    end
+  end
+
 end

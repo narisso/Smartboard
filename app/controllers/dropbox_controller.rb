@@ -2,6 +2,7 @@ class DropboxController < ApplicationController
 require 'dropbox_sdk'
 
 def authorize
+
 	session[:return_to] = request.referer
 	dbsession = DropboxSession.new(DROPBOX_APP_KEY, DROPBOX_APP_KEY_SECRET)
 	#serialize and save this DropboxSession
@@ -16,11 +17,16 @@ end
 def callback
  
 	dbsession = DropboxSession.deserialize(session[:dropbox_session])
+	#if dbsession.authorized?
 	dbsession.get_access_token #we've been authorized, so now request an access_token
 	session[:dropbox_session] = dbsession.serialize
+	#end 
+
 	flash[:success] = "You have successfully authorized with dropbox."
-	 
-	redirect_to session[:return_to]				
+	redirect_to session[:return_to]	
+rescue 
+	redirect_to session[:return_to]	
+
 end # end of dropbox_callback action
 
 end

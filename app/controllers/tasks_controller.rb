@@ -33,8 +33,12 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(params[:project_id])
+    @status = Status.find(params[:status_id])
     @task = Task.find(params[:id])
-
+    @comment = Comment.new
+    @comment.task = @task
+    @comment.user = current_user
     respond_to do |format|
       format.js # show.html.erb
       format.json { render json: @task }
@@ -159,11 +163,9 @@ class TasksController < ApplicationController
   def update_status
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
-    @statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
-    i = params[:col].to_f-1
-    @status = @statuses[i]
+    @status = Status.find(params[:col])
 
-    @task.status = @status;
+    @task.status = @status
     
     respond_to do |format|
       if @task.save

@@ -40,7 +40,9 @@ class ProjectsController < ApplicationController
     if session[:github_session]
       @linkGithub = true
       @github_token = session[:github_session]
-      session.delete = :github_session
+      session.delete :github_session
+      @g = Github.new :oauth_token => @github_token
+      @github_username = @g.users.get.body["login"]
     end
 
 
@@ -73,16 +75,19 @@ class ProjectsController < ApplicationController
       @linkGithub = true
       @github_token = @project.github_token
     end
-      
+    
+    if @github_token  
+    if !@github_token.empty?
+      @g = Github.new :oauth_token => @github_token
+      @github_username = @g.users.get.body["login"]
+    end  
+  end
 
 
 
   end
 
-
   def hook
-    
-    
 
 
     c = JSON.parse(params[:payload])
@@ -90,12 +95,47 @@ class ProjectsController < ApplicationController
     commit.author_email = c["head_commit"]["author"]["email"]
     commit.author_name = c["head_commit"]["author"]["name"]
     commit.message = c["head_commit"]["message"]
+    commit.url = c["head_commit"]["url"]
+    commit.sha = c["head_commit"]["id"]
+    commit.date = c["head_commit"]["timestamp"]
     sp = c["head_commit"]["message"].split "#"
     commit.task_id = sp[-1].to_i
     commit.save
 
     #respond 200
 
+  end
+
+  def create_hook
+    github = Github.new :oauth_token => @project.github_token
+
+    #Check if hook already exists
+
+    url = URL_HOOK
+    url = url.sub(":id",@project.id.to_s)
+
+
+    already_exists = false
+
+    (github.repos.hooks.list @project.github_user, @project.repo_name).body.each do |hook|
+      h_url = hook["config"]["url"]
+      if url == h_url
+        already_exists = true
+      end
+    end
+
+
+
+    if !already_exists
+      github.repos.hooks.create @project.github_user, @project.repo_name,
+        "name" =>  "web",
+        "active" => true,
+        "config" => {
+          "url" => url
+        }
+
+    end
+    
   end
 
   # POST /projects
@@ -106,6 +146,10 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
+        if @project.github_token? && @project.repo_name?
+          create_hook
+        end
+
         Status.create({name: 'Backlog', project_id: @project.id, order: 1 })
         Status.create({name: 'In Progress', project_id: @project.id, order: 2})
         Status.create({name: 'Done', project_id: @project.id, order: 3})
@@ -123,9 +167,13 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    #@old_repo = @project.repo_name
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        if @project.github_token? && @project.repo_name?
+          create_hook
+        end
         format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
@@ -151,4 +199,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+
+
+   
+
 end

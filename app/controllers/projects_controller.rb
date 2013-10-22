@@ -199,4 +199,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+
+
+   
+
 end

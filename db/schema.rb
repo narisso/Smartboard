@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022152157) do
+ActiveRecord::Schema.define(:version => 20131022164235) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -219,6 +219,9 @@ ActiveRecord::Schema.define(:version => 20131022152157) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

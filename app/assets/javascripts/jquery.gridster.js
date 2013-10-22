@@ -803,6 +803,7 @@
         this.$style_tags = $([]);
 
         this.init();
+        
     }
 
     Gridster.generated_stylesheets = [];
@@ -2369,6 +2370,7 @@
 
         return this;
     };
+
 
 
     /**

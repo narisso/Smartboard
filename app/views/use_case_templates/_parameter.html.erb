@@ -1,0 +1,18 @@
+<div class='well'>
+	<div class='control-group'>
+		<div class='control-label'>Name</div>
+		<div class='controls atribbute-input'><%= text_field_tag 'parameters[parameter_identifier][name]' %></div>
+	</div>
+	<div class='control-group'>
+		<div class='control-label'>Input Type</div>
+		<div class='controls satribbute-input'><%= select_tag('parameters[parameter_identifier][input_type]', options_for_select(@use_case_template.input_options), :class => 'chosen-select')  %></div>
+	</div>
+	<div class='control-group'>
+		<div class='control-label'>Data Type</div>
+		<div class='controls atribbute-input'><%= select_tag('parameters[parameter_identifier][data_type]', options_for_select(@use_case_template.data_types), :class => 'chosen-select') %></div>
+	</div>
+	<div class='control-group'>
+		<div class='control-label'>Input Values</div>
+		<div class='controls atribbute-input'><%= text_field_tag 'parameters[parameter_identifier][data_input]', nil, :class => 'input-tag', :'data-provide' => 'tag' %></div>
+	</div>
+</div>

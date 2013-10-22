@@ -1,8 +1,8 @@
 Iic21542::Application.routes.draw do
-
   get "github/authorize"
 
   get "github/callback"
+
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 
@@ -40,7 +40,7 @@ Iic21542::Application.routes.draw do
   #resources :statuses
   resources :requirement_templates
   resources :requirements
-  resources :use_cases
+  #resources :use_cases
   #resources :tasks
 
 
@@ -56,11 +56,16 @@ Iic21542::Application.routes.draw do
     member do
       post 'tasks/update_status', :controller => 'tasks', :action => 'update_status', :as => 'update_status'
     end
+    member do
+      post 'statuses/update_order', :controller => 'statuses', :action => 'update_order', :as => 'update_order'
+    end
     resources :statuses do
       resources :tasks do
         resources :comments
       end
     end
+    resources :use_cases
+    resources :use_case_templates
   end
 
 

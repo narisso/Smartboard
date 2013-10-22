@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
-
-
+  
+	
 	def show
 		@project = Project.find(params[:id])
 		authorize! :read, @project
@@ -20,7 +20,7 @@ class BoardsController < ApplicationController
 	
 
         respond_to do |format|
-            format.html
+            format.html 
         end
 
     #Sucede cuando soy un cliente y no estaoy autorizado, me redirecciona al board de clientes 

@@ -101,9 +101,14 @@
                     </ul>
 
           <!--Fin Breadcrumbs-->
-
-
-          <%= yield %>
+          <% if @project %>
+            <div class="span1">
+              <%= render 'layouts/lateral' %>
+            </div>
+          <% end %>
+          <div id="board" class="main-content-big scroll span6">
+            <%= yield %>
+          </div>
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
@@ -112,9 +117,9 @@
       <div id="modal-large" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
       </div>
 
-      <footer>
+      <!--footer>
         <%= render "layouts/footer" unless @skip_footer %>
-      </footer>
+      </footer -->
 
     </div> <!-- /container -->
 
@@ -122,8 +127,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %> 
+    <script src="/assets/tsort.js"></script>
+    <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <%= yield(:javascripts) %>
-    <script src="/assets/jquery.gridster.js"></script>
+    
 
   </body>
 </html>

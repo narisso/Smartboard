@@ -119,7 +119,7 @@ class ProjectsController < ApplicationController
 
     (github.repos.hooks.list @project.github_user, @project.repo_name).body.each do |hook|
       h_url = hook["config"]["url"]
-      if url = h_url
+      if url == h_url
         already_exists = true
       end
     end
@@ -146,7 +146,7 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       if @project.save
-        if @project.github_token && @project.repo_name
+        if @project.github_token? && @project.repo_name?
           create_hook
         end
 
@@ -171,7 +171,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        if @project.github_token && @project.repo_name
+        if @project.github_token? && @project.repo_name?
           create_hook
         end
         format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
@@ -199,4 +199,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+
+
+   
+
 end

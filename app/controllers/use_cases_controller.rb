@@ -1,8 +1,10 @@
 class UseCasesController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :use_case, :through => :project
   # GET /use_cases
   # GET /use_cases.json
   def index
-    @use_cases = UseCase.all
+    @use_cases = UseCase.where(:project_id => params[:project_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +27,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases/new.json
   def new
     @use_case = UseCase.new
+    @use_case.project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +47,7 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.save
-        format.html { redirect_to @use_case, notice: 'Use case was successfully created.' }
+        format.html { redirect_to project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
         format.json { render json: @use_case, status: :created, location: @use_case }
       else
         format.html { render action: "new" }

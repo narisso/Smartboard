@@ -96,4 +96,27 @@ class StatusesController < ApplicationController
     end
   end
 
+
+
+
+  def update_order
+
+      @project = Project.find(params[:id])
+      @status = Status.find(params[:status_id]);
+      @status.order = params[:num]
+
+      @status.save
+
+    respond_to do |format|
+      if @status.save
+        format.js { render :js => "" }
+        format.json { head :no_content }
+      else
+        format.js { render :js => "alert('error')" }
+        format.json { head :no_content }
+      end
+    end
+
+  end
+
 end

@@ -163,11 +163,9 @@ class TasksController < ApplicationController
   def update_status
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
-    @statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
-    i = params[:col].to_f-1
-    @status = @statuses[i]
+    @status = Status.find(params[:col])
 
-    @task.status = @status;
+    @task.status = @status
     
     respond_to do |format|
       if @task.save

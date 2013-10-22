@@ -55,6 +55,9 @@ Iic21542::Application.routes.draw do
     member do
       post 'tasks/update_status', :controller => 'tasks', :action => 'update_status', :as => 'update_status'
     end
+    member do
+      post 'statuses/update_order', :controller => 'statuses', :action => 'update_order', :as => 'update_order'
+    end
     resources :statuses do
       resources :tasks do
         resources :comments

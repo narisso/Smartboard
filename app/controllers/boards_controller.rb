@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
 		@skip_footer = true
 
         respond_to do |format|
-            format.html
+            format.html 
         end
 	end
 

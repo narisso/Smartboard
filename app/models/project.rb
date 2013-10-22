@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token, :github_token
+  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token, :github_token, :repo_name, :github_user
 
   belongs_to :project_status
 
@@ -17,6 +17,30 @@ class Project < ActiveRecord::Base
   before_create :set_starting_status
 
   validates :name, :presence => true
+
+  def get_repo_names github_username , git_token
+    repo_names = Array.new
+    github = Github.new :oauth_token => git_token
+
+    github.repos.list.body.each do |repo|
+      if github_username == repo["owner"]["login"]
+        repo_names << repo["name"]
+      end
+    end
+
+    repo_names
+  end
+
+  def get_repo_users
+    repo_users = Array.new
+    github = Github.new :oauth_token => github_token
+
+    github.repos.list.body.each do |repo|
+      repo_users << repo["owner"]["login"]
+    end
+
+    repo_users
+  end
 
   def add_user_role user, role
     user_role = ProjectRoleUser.new

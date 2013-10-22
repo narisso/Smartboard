@@ -1,11 +1,8 @@
-<%= simple_form_for @comment, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :user_id %>
-  <%= f.input :task_id %>
-  <%= f.input :message %>
-  <%= f.input :approved %>
+
+<%= simple_form_for [@project, @status, @task, @comment], :remote => true do |f| %>
+  <%= f.input :message, :label => false, :input_html => {:style=> 'width: 95%', :rows=> 3, :value=>"", :placeholder=>"New Message" } %>
+ <!-- <%= f.hidden_field :user_id, :value => current_user.id %> -->
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                comments_path, :class => 'btn' %>
+    <%= f.button :submit, :class => 'btn-primary', :value => "Comment"%>
   </div>
 <% end %>

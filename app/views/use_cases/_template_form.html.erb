@@ -1,0 +1,31 @@
+<p>ID = <%= @use_case_template.id %> </p>
+	<% @json_obj.each do |p| %>
+		<p>Name <%= p[1] %></p>
+		<% if p[1]["input_type"] == "text_field_tag" %>
+			<div class='control-group'>
+				<label class='control-label'><%= p[1]["name"] %></label>
+				<div class='controls satribbute-input'><%= text_field_tag p[1]["name"] %></div>
+			</div>
+		<% elsif p[1]["input_type"] == "radio_button_tag" %>
+			<div class='control-group'>
+				<label class='control-label'><%= p[1]["name"] %></label>
+				<% p[1]["data_input"].split(',').each do |value| %>
+					<div class='controls satribbute-input'><%= label_tag(:proband, value) %> <%= radio_button_tag p[1]["name"], value %> </div>
+				<% end %>
+			</div>
+		<% elsif p[1]["input_type"] == "select_tag"%>
+			<div class='control-group'>
+				<label class='control-label'><%= p[1]["name"] %></label>
+				<% p[1]["data_input"].split(',').each do |value| %>
+					<div class='controls satribbute-input'><%= label_tag(:label_check, value) %> <%= radio_button_tag p[1]["name"], value %> </div>
+				<% end %>
+			</div>
+		<% elsif p[1]["input_type"] == "check_box_tag"%>
+			<div class='control-group'>
+				<label class='control-label'><%= p[1]["name"] %></label>
+				<% p[1]["data_input"].split(',').each do |value| %>
+					<div class='controls satribbute-input'><%= label_tag(:proband, value) %> <%= radio_button_tag p[1]["name"], value %> </div>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>

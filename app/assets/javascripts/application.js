@@ -16,48 +16,6 @@
 //= require twitter/bootstrap
 //= require chosen-jquery
 
-$(document).bind("page:load", function() {
-
-chosenSelect();
-
-function ltl_bar_change(){
-	if($('.ltl-nav-open').length>0){
-
-		$('.ltl-nav-open').addClass('ltl-nav-close');
-		$('.ltl-nav-open').removeClass('ltl-nav-open');
-		$('.main-content-small').addClass('main-content-big');
-		$('.main-content-small').removeClass('main-content-small');
-	}
-	else{
-		
-		$('.ltl-nav-close').addClass('ltl-nav-open');
-		$('.ltl-nav-close').removeClass('ltl-nav-close');
-		$('.main-content-big').addClass('main-content-small');
-		$('.main-content-big').removeClass('main-content-big');
-	}
-
-}
-
-$('#side_close_button').click(ltl_bar_change);
-
-
-// Script for tabs on task modal    
-$('#task_tab a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-})
-
-// Script for tabs on task modal 
-$(function () {
-  $('#task_tab a:last').tab('show');
-})
-
-$('#modal').on('hide', function () {
-    $("#modal-header").empty();
-  })
-
-});
-
 // Script to active chosen select
 function chosenSelect(pixels) {
     $('.chosen-select').chosen({ search_contains: true, width: pixels+'px' });
@@ -69,3 +27,51 @@ function replaceAll( text, busca, reemplaza ){
 
   return text;
 }
+
+$(document).ready(function(){
+	chosenSelect(220);
+});
+
+$(document).bind("page:load", function() {
+	
+	
+
+	function ltl_bar_change(){
+		if($('.ltl-nav-open').length>0){
+
+			$('.ltl-nav-open').addClass('ltl-nav-close');
+			$('.ltl-nav-open').removeClass('ltl-nav-open');
+			$('.main-content-small').addClass('main-content-big');
+			$('.main-content-small').removeClass('main-content-small');
+		}
+		else{
+			
+			$('.ltl-nav-close').addClass('ltl-nav-open');
+			$('.ltl-nav-close').removeClass('ltl-nav-close');
+			$('.main-content-big').addClass('main-content-small');
+			$('.main-content-big').removeClass('main-content-big');
+		}
+
+	}
+
+	
+
+	$('#side_close_button').click(ltl_bar_change);
+
+
+	// Script for tabs on task modal    
+	$('#task_tab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	});
+
+	// Script for tabs on task modal 
+	$(function () {
+	  $('#task_tab a:last').tab('show');
+	});
+
+	$('#modal').on('hide', function () {
+	    $("#modal-header").empty();
+	});
+
+});

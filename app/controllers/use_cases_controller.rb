@@ -84,4 +84,13 @@ class UseCasesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def template_use_case
+    @use_case_template = UseCaseTemplate.find(params[:use_case_template_id])
+    @json_obj = JSON.parse(@use_case_template.template_form)
+
+    respond_to do |format|
+      format.js {render 'template_form'}
+    end
+  end
 end

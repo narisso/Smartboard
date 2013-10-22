@@ -2,8 +2,6 @@
   <div class="bar" style="width: 100%;"></div>
 </div>
 
-<%= render :partial => 'lateral' %>
-
 <div id="board" class="main-content main-content-big scroll hide">
 
 <ul id="board-head" class="board-head" >
@@ -75,6 +73,8 @@
 
   $(function(){ //DOM Ready
  
+$(function(){ //DOM Ready
+ 
     $(".gridster ul").gridster({
         widget_margins: [10, 5],
         widget_base_dimensions: [240, 110],
@@ -90,6 +90,18 @@
 
 
     });
+ 	
+  $('.ltl-nav').removeClass('hide');
+  $('.main-content').removeClass('hide');
+	$('.progress').addClass('hide');
+
+	$('.main-content').addClass('slide-left');
+	$('.ltl-nav').addClass('slide-right');
+	var w = $('.column').outerWidth()*<%= @statuses.count %>;
+	$('.board-head').css( "width", w );
+	$('.board-body').css( "width", w );
+
+});
  	
   $('.ltl-nav').removeClass('hide');
   $('.main-content').removeClass('hide');

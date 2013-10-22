@@ -16,6 +16,8 @@
 //= require twitter/bootstrap
 //= require chosen-jquery
 
+
+
 $(document).bind("page:load", function() {
 
 chosenSelect();
@@ -69,3 +71,26 @@ function replaceAll( text, busca, reemplaza ){
 
   return text;
 }
+
+
+$(function(){ //DOM Ready
+ 
+	$(function(){ //DOM Ready
+	  
+		  $('.ltl-nav').removeClass('hide');
+		  $('.main-content').removeClass('hide');
+		  $('.progress').addClass('hide');
+
+		  $('.main-content').addClass('slide-left');
+		  $('.ltl-nav').addClass('slide-right');
+
+	});
+	  
+	  $('.ltl-nav').removeClass('hide');
+	  $('.main-content').removeClass('hide');
+	  $('.progress').addClass('hide');
+
+	  $('.main-content').addClass('slide-left');
+	  $('.ltl-nav').addClass('slide-right');
+
+});

@@ -1,4 +1,6 @@
 class UseCaseTemplatesController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :use_case_template, :through => :project
   # GET /use_case_templates
   # GET /use_case_templates.json
   def index

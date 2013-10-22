@@ -7,10 +7,12 @@
 
 <div class="modal-body row-fluid">
 
-  <div class="span3">
+  <div class="span1">
 
     <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
     <dd>#<%= @task.id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+    <dd><%= @task.description %></dd>
     <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
     <dd><%= @task.priority %></dd>
     <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
@@ -24,20 +26,16 @@
         <%= user.email%>
         <% rep_hours = ReportedHours.find_by_user_id_and_task_id(user.id,@task.id) %>
         <% if(rep_hours)%>
-          <b>(<%= rep_hours.reporting_hours %>)</b>
+          (<%= rep_hours.reporting_hours %>)
         <% end %>
       </dd>
     <% end %>
   </div>
 
 
-  <div class="span8 offset0">
-    <!--dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-    <dd><%= @task.description %></dd>
-    <dl/-->
+  <div class="span8 offset2">
     <ul id="task_tab" class="nav nav-tabs">
-        <li id="Description" class="tab-pane active"><%= link_to "Description", "#description", :data => {:remote => true, :toggle => "tab"} %></li>
-        <li id="Comments" class="tab-pane"><%= link_to "Comments", "#comments", 
+        <li id="Comments" class="tab-pane active"><%= link_to "Comments", "#comments", 
         :data => {:remote => true, :toggle => "tab"},'data-type' => :html%></li>
         <li id="Bugs" class="tab-pane"><%= link_to "Bugs", "#bugs", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Commits" class="tab-pane"><%= link_to "Commits", "#commits", :data => {:remote => true, :toggle => "tab"} %></li>
@@ -45,9 +43,12 @@
     </ul>
   </div>
 
-  <div class="tab-content span8 offset0">
-    <div class="tab-pane active" id="description"><%=@task.description%></div>
-    <div class="tab-pane" id="comments">Coments ...</div>
+  <div class="tab-content span8 offset2">
+    <div class="tab-pane active" id="comments">
+    <div id="comment" >
+      <%= render :partial => 'comment' %>
+    </div>
+      <%= render 'comments/new.html.erb'%> </div>
     <div class="tab-pane" id="bugs">Bugs ...</div>
     <div class="tab-pane" id="commits">
       <% @task.commits.each do |commit|%>

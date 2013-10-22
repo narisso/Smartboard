@@ -28,6 +28,7 @@ class StatusesController < ApplicationController
     @project = Project.find(params[:project_id])
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @status }
     end

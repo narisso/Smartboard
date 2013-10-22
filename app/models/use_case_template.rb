@@ -6,7 +6,7 @@ class UseCaseTemplate < ActiveRecord::Base
   belongs_to :project
 
   def input_options
-  	options = [['radio-button', 1], ['select', 2], ['check-box', 3]]
+  	options = [['radio-button', 1], ['select', 2], ['check-box', 3], ['string', 4], ['text', 5]]
   end
 
   def data_types

@@ -9,13 +9,11 @@ class BoardsController < ApplicationController
 
 		if session[:dropbox_session]
 
-				#dbsession = DropboxSession.deserialize(session[:dropbox_session])
-				#if dbsession.authorized?
-			    @project.dropbox_token = session[:dropbox_session]
-			   	@project.save
-			   	session.delete :dropbox_session 
-		      	#end
-		      	flash[:success] = ""  
+				@project.dropbox_token = session[:dropbox_session]
+				@project.save
+				session.delete :dropbox_session 
+			    
+		      	flash[:success] = ""
 		end
 	
 

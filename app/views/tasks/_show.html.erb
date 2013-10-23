@@ -65,11 +65,15 @@
     <%= link_to "Report Hours", new_reported_hours_path(@task, current_user), :remote => true, :class => 'btn' %>
   <% end %>
   <%= link_to "Close", "", :data => {:dismiss => "modal"}, :class => 'btn'  %>
+  <% if can? :update, @task %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_status_task_path(@task.status.project, @task.status, @task), :remote => true, :class => 'btn' %>
+  <% end %>
+  <% if can? :destroy, @task %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               project_status_task_path(@task.status.project, @task.status, @task),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+  <% end %>
 </div>

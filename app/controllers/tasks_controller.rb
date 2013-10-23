@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
 
+  load_and_authorize_resource :project
+  load_and_authorize_resource :task, :through => :project, :shallow => true
+
   def show_comments_of_task
     @task = Task.find(params[:id])
     @comments = @task.comments

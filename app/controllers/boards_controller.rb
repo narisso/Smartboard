@@ -20,15 +20,12 @@ class BoardsController < ApplicationController
         respond_to do |format|
             format.html 
         end
-<<<<<<< HEAD
-=======
+
 
     #Sucede cuando soy un cliente y no estaoy autorizado, me redirecciona al board de clientes 
     rescue 
     	
     	redirect_to boards_client_project_path(@project)
-
->>>>>>> mejoras_aplicacion2
 	end
 
 	def show_client

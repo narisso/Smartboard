@@ -7,8 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:actors) %></th>
-      <th><%= model_class.human_attribute_name(:synopsis) %></th>
+      <th><%= model_class.human_attribute_name(:data) %></th>
       <th><%= model_class.human_attribute_name(:project_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,15 +18,14 @@
       <tr>
         <td><%= link_to use_case.id, project_use_case_path(use_case.project, use_case) %></td>
         <td><%= use_case.name %></td>
-        <td><%= use_case.actors %></td>
-        <td><%= use_case.synopsis %></td>
+        <td><%= use_case.data %></td>
         <td><%= use_case.project_id %></td>
         <td><%=l use_case.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_project_use_case_path(user_case.project, use_case), :class => 'btn btn-mini' %>
+                      edit_project_use_case_path(use_case.project, use_case), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      project_use_case_path(use_case),
+                      project_use_case_path(use_case.project, use_case),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>

@@ -45,6 +45,8 @@ class UseCasesController < ApplicationController
   # POST /use_cases.json
   def create
     @use_case = UseCase.new(params[:use_case])
+    @use_case.project_id = params[:project_id]
+    @use_case.data = params[:data].to_json
 
     respond_to do |format|
       if @use_case.save
@@ -80,7 +82,7 @@ class UseCasesController < ApplicationController
     @use_case.destroy
 
     respond_to do |format|
-      format.html { redirect_to use_cases_url }
+      format.html { redirect_to project_use_cases_path @project }
       format.json { head :no_content }
     end
   end

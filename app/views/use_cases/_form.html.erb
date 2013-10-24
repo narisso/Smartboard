@@ -1,7 +1,9 @@
 <%= simple_form_for [@use_case.project, @use_case], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= f.association :use_case_template,
+  <div class="well">
+  	<%= f.input :name %>
+  	<%= f.association :use_case_template,
   					:input_html => { class: 'chosen-select selectpicker'} %>
+  </div>
   <div id="template">
   </div>
 

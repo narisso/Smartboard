@@ -1,4 +1,7 @@
 Iic21542::Application.routes.draw do
+  resources :use_case_groups
+
+
   get "github/authorize"
 
   get "github/callback"

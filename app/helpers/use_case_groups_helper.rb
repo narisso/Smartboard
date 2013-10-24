@@ -1,0 +1,2 @@
+module UseCaseGroupsHelper
+end

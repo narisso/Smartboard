@@ -36,7 +36,6 @@
         <li id="Description" class="tab-pane active"><%= link_to "Description", "#description", :data => {:remote => true, :toggle => "tab"} %></li> 
         <li id="Comments" class="tab-pane"><%= link_to "Comments", "#comments", 
         :data => {:remote => true, :toggle => "tab"},'data-type' => :html%></li>
-        <li id="Bugs" class="tab-pane"><%= link_to "Bugs", "#bugs", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Commits" class="tab-pane"><%= link_to "Commits", "#commits", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Documentos" class="tab-pane"><%= link_to "Documents", "#documents", :data => {:remote => true, :toggle => "tab"} %></li>
     </ul>
@@ -49,7 +48,6 @@
       <%= render :partial => 'comment' %>
     </div>
       <%= render 'comments/new.html.erb'%> </div>
-    <div class="tab-pane" id="bugs">Bugs ...</div>
     <div class="tab-pane" id="commits">
       <% @task.commits.each do |commit|%>
         <b><%=commit.author_name%></b>(<%= commit.author_email%>) <%= link_to commit.sha[0..5], commit.url%>: <%= commit.message%>

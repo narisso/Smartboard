@@ -22,3 +22,12 @@
 	width:80%;
 	margin-left:-40%;
 }
+
+.tab-content{
+	height:300px;
+	overflow:auto;
+}
+
+#modal-large{
+	position:relative;
+}

@@ -9,6 +9,8 @@
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:version) %></th>
+        <th><%= model_class.human_attribute_name(:origin) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
@@ -17,6 +19,8 @@
       <% @document_projects.each do |document_project| %>
         <tr>
           <td><%= link_to document_project.name, document_project.url_path %></td>
+          <td><%= document_project.version %></td>
+          <td><%= document_project.origin %></td>  
           <td><%= document_project.description %></td>
           <td>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

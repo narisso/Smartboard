@@ -27,8 +27,7 @@
 					<% end %>
 				</div>
 			</div>
-		<% end %>
-		<% elsif p[1]["input_type"] == "text"%>
+		<% elsif p[1]["input_type"] == "text_area_tag"%>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
 				<div class='controls atribbute-input'><%= text_area_tag p[1]["name"] %></div>

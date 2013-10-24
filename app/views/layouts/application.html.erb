@@ -93,7 +93,7 @@
                     </ul>
 
           <!--Fin Breadcrumbs-->
-          <% if @project %>
+          <% if Project.exists? @project %>
             <div class="span1">
               <%= render 'layouts/lateral' %>
             </div>

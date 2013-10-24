@@ -15,7 +15,6 @@ class UseCaseTemplate < ActiveRecord::Base
 
   def self.create_default project
   	data = YAML::load_file(File.join(Rails.root, 'config', 'default_use_case_templates.yml'))
-  	puts data
 
   	data.each do |d|
   		template = UseCaseTemplate.new

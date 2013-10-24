@@ -4,8 +4,6 @@
   					:input_html => { class: 'chosen-select selectpicker'} %>
   <div id="template">
   </div>
-  <%= f.input :actors %>
-  <%= f.input :synopsis %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
@@ -21,6 +19,8 @@
 			var response = $.ajax({
   									url: "<%= template_use_case_project_use_cases_path %>",
 					  				data: {use_case_template_id: use_case_template_id}
+							}).done(function(){
+								chosenSelect(200);
 							});
 		});
 	</script>

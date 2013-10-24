@@ -57,7 +57,15 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
-              <%if user_signed_in?%>
+             <% if @project and not @project.id.nil? %>
+                  <li><%= link_to image_tag('icon1.png', :alt => 'Dropbox github' ), '#' %></li>
+                     <%if @project and not @project.dropbox_token.nil? %>
+                        <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
+                  <%else %>
+                        <li><%= link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' %></li>
+                  <% end %>
+             <% end %>
+             <%if user_signed_in?%>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
              <%else%>
@@ -74,7 +82,7 @@
       <div class="row-fluid">
         
           <%= bootstrap_flash %>
-          <!--Para los breadcrumbs-->
+          <!--Para los breadcrumbs (feedback navegación)-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>
                     <ul class="breadcrumb">                            
@@ -93,12 +101,13 @@
                     </ul>
 
           <!--Fin Breadcrumbs-->
+
           <% if Project.exists? @project %>
             <div class="span1">
               <%= render 'layouts/lateral' %>
             </div>
           <% end %>
-          <div id="board" class="main-content-big scroll span6">
+          <div class="main-content-big scroll span6">
             <%= yield %>
           </div>
       </div><!--/row-->
@@ -119,7 +128,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %> 
-    <script src="/assets/tsort.js"></script>
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <%= yield(:javascripts) %>
     

@@ -53,8 +53,10 @@ ActiveRecord::Schema.define(:version => 20131024204038) do
     t.text     "description"
     t.string   "url_path"
     t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "version",     :default => 0
+    t.string   "origin"
   end
 
   create_table "document_tasks", :force => true do |t|

@@ -45,14 +45,23 @@ class DocumentProjectsController < ApplicationController
   def create
 
     @project = Project.find(params[:project_id])
-    @document_project = DocumentProject.new({name: params[:document_project][:name], description: params[:document_project][:description] })
+    @document_project = DocumentProject.new({name: params[:document_project][:name], description: params[:document_project][:description]})
     @document_project.project = @project
+    docs =  DocumentProject.find_all_by_name(@document_project.name)
+    
+    unless docs.empty? then
+      @document_project.version = docs[docs.length-1].version + 1
+    end
+
+    @document_project.origin = "web"
 
     if @project.dropbox_token then
       if params[:document_project][:file] then
         require 'dropbox_sdk'
         file = params[:document_project][:file].read
-        @file_path ="IIC2154/" + @project.name + "/" + params[:document_project][:file].original_filename
+        whole_name = params[:document_project][:file].original_filename
+        final_name = @document_project.name + ".v" + @document_project.version.to_s + File.extname(whole_name)
+        @file_path ="SmartBoard/" + @project.name + "/" + final_name
         dbsession = DropboxSession.deserialize(@project.dropbox_token)
         client = DropboxClient.new(dbsession)
         response = client.put_file(@file_path, file)

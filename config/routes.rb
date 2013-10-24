@@ -52,6 +52,7 @@ Iic21542::Application.routes.draw do
     resources :document_projects
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
+      get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       post :finish
       #resources :project_role_users
     end

@@ -4,18 +4,51 @@ class Ability
 
   def initialize(user)
 
-    # Por ahora todos los usuarios pueden hacer manage pero luego hay que configurarlo para
+ # Por ahora todos los usuarios pueden hacer manage pero luego hay que configurarlo para
     # Acorde con el rol dentro del proyecto tenga distintas opciones
+    user ||= User.new
+    
+    
+    ## Permisos de acceso y administracion de proyectos ##
     can :create, Project
+   
+    can :read, Project do |project|
+        # Son las dos condiciones (if) que se deben cumplir para poder entrar al kanban de un proyecto
+        
+        ## Permisos dentro de un proyecto ##s
+        if project.get_role(user) == "Administrator"
+            can :manage, Task
 
     can :manage, Project do |project|
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"
             can :manage, UseCase
-        end
-        
+        elsif project.get_role(user) == "Project Manager"
+            can :manage, Task
+
+        elsif project.get_role(user) == "Developer"   
+            can :create, Task
+            can :read, Task
+            can :update, Task do |task|
+              task.users.include? user
+            end     
+            
+        else #Caso en el que es cliente
+            ##No puede manejar tareas             
+        end 
+
+        not project.get_role(user) == "Client"
     end 
+    
+    can :update, Project do |project|
+        project.get_role(user) == "Administrator" || project.get_role(user) == "Project Manager"
+    end 
+
+    can :destroy, Project do |project|
+        project.get_role(user) == "Administrator"
+    end 
+       
 
     can :manage, UseCase
     can :manage, UseCaseTemplate

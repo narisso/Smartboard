@@ -77,7 +77,6 @@ class ApiController < ApplicationController
 		end
 	end
 
-
 	def upload
 		require 'dropbox_sdk'
 
@@ -85,7 +84,6 @@ class ApiController < ApplicationController
 		@file = params[:file]
 		@user = User.find_by_authentication_token(params[:token])
 		@file_name = params[:name]
-
 
 				
 		if @user.nil?
@@ -119,27 +117,29 @@ class ApiController < ApplicationController
 				return
 			else
 				file = @file.read
-				@file_path ="IIC2154/" + @project.name + "/" + @file_name
+
+				docs =  DocumentProject.find_all_by_name(@file_name)
+			    version = 0
+			    unless docs.empty? then
+			      version = docs[docs.length-1].version + 1
+			    end
+
+				@final_file_name = File.basename(@file_name,File.extname(@file_name)) + ".v" + version.to_s + File.extname(@file_name)
+
+				@file_path ="SmartBoard/" + @project.name + "/" + @final_file_name
 				dbsession = DropboxSession.deserialize(@dropbox_token)
 				client = DropboxClient.new(dbsession)
 				response = client.put_file(@file_path, file)
 				puts "uploaded:", response.inspect
 
 				link = client.shares(response["path"])
-				DocumentProject.create({name: @file_name, project_id: @project.id, url_path: link["url"]})
+				DocumentProject.create({name: @file_name, project_id: @project.id, url_path: link["url"], version: version, origin: "mobile"})
 
 				render :json=>{:message=>response, :link=>link["url"]}
 			end
 
 		end
-
-
-
-
-
-
 	end
-
 
 	def getDocuments
 		@document_projects = DocumentProject.where(:project_id => params[:project_id])
@@ -149,5 +149,4 @@ class ApiController < ApplicationController
 			render :json => @document_projects
 		end
 	end
-
 end

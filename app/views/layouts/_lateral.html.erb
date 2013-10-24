@@ -3,7 +3,6 @@
             <ul class="ltl-nav-list">
               <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed"), boards_project_path(@project) %><h4>Tasks</h4></li>
               <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed") %><h4>Tests</h4></li>
-              <li><%= image_tag("ltl_bar_bugs.png", :alt => "rss feed") %><h4>Bugs</h4></li>
               <li><%= link_to image_tag("ltl_bar_docs.png", :alt => "rss feed"), project_document_projects_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %><h4>Docs</h4></li>
               <li><%= image_tag("ltl_bar_cal.png", :alt => "rss feed") %><h4>Calendar</h4></li>
               <li><%= link_to image_tag("ltl_bar_use.png", :alt => "rss feed"), project_use_cases_path(@project) %><h4>Use Cases</h4></li>

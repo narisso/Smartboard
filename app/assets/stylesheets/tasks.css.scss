@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#description{
+	word-wrap:break-word;
+	overflow:auto;
+	height:300px;
+}
+
 .span8 dd{
 	word-wrap:break-word;
 	margin-left:0px;

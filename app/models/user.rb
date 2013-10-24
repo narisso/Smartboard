@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   # Taken out for heroku deploy: :confirmable
   devise :database_authenticatable, :token_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
          
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password
@@ -41,6 +41,15 @@ class User < ActiveRecord::Base
         user.confirm!
         user.save!
       end
+    end
+  end
+
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = ActiveSupport::JSON.decode(access_token.get('https://graph.facebook.com/me?'))
+    if user = User.find_by_email(data["email"])
+      user
+    else # Create an user with a stub password.
+      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
     end
   end
 

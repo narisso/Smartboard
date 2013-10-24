@@ -13,4 +13,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			redirect_to new_user_registration_url
 		end
 	end
+
+	def facebook
+		user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
+	end
 end

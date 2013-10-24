@@ -28,7 +28,11 @@ class Project < ActiveRecord::Base
 
   def get_role user
     project_role_user = ProjectRoleUser.where(:project_id => self, :user_id => user).first
-    project_role_user.role.name
+    if project_role_user
+      project_role_user.role.name
+    else
+      nil
+    end
   end
 
   private

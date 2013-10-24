@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024203400) do
+ActiveRecord::Schema.define(:version => 20131024204038) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20131024203400) do
     t.string   "sha"
     t.string   "author_name"
     t.string   "author_email"
-    t.string   "date"
+    t.datetime "date"
     t.string   "message"
     t.integer  "task_id"
     t.datetime "created_at",   :null => false
@@ -109,8 +109,6 @@ ActiveRecord::Schema.define(:version => 20131024203400) do
     t.integer  "project_status_id"
     t.string   "dropbox_token"
     t.string   "github_token"
-    t.string   "repo_name"
-    t.string   "github_user"
   end
 
   create_table "reported_hours", :force => true do |t|
@@ -191,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20131024203400) do
 
   create_table "use_case_groups", :force => true do |t|
     t.string   "name"
+    t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

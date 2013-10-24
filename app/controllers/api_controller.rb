@@ -141,5 +141,13 @@ class ApiController < ApplicationController
 	end
 
 
+	def getDocuments
+		@document_projects = DocumentProject.where(:project_id => params[:project_id])
+		if @document_projects.nil?
+			render :json=>{:message=>"There's no project whit that id."}
+		else
+			render :json => @document_projects
+		end
+	end
 
 end

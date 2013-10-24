@@ -33,8 +33,12 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(params[:project_id])
+    @status = Status.find(params[:status_id])
     @task = Task.find(params[:id])
-
+    @comment = Comment.new
+    @comment.task = @task
+    @comment.user = current_user
     respond_to do |format|
       format.js # show.html.erb
       format.json { render json: @task }
@@ -156,6 +160,24 @@ class TasksController < ApplicationController
 
   #end
 
+  def update_status
+    @task = Task.find(params[:task_id])
+    @project = Project.find(params[:id])
+    @status = Status.find(params[:col])
+
+    @task.status = @status
+    
+    respond_to do |format|
+      if @task.save
+        format.js { render :js => "" }
+        format.json { head :no_content }
+      else
+        format.js { render :js => "alert('error')" }
+        format.json { head :no_content }
+      end
+    end
+
+  end
 
 
 end

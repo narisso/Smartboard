@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
-
-
+  
+	
 	def show
 		@project = Project.find(params[:id])
 		authorize! :manage, @project
@@ -8,9 +8,8 @@ class BoardsController < ApplicationController
 		@skip_footer = true
 
         respond_to do |format|
-            format.html
+            format.html 
         end
-
 	end
 
 end

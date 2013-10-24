@@ -13,6 +13,9 @@ class Ability
         
     end 
 
+    can :manage, UseCase
+    can :manage, UseCaseTemplate
+
     #Roles del proyecto
     #   Admin, project manager, developer, cliente 
 

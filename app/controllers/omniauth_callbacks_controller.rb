@@ -1,4 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+
+	skip_before_filter :check_session
+	
 	def google_oauth2
 		user = User.from_omniauth(request.env["omniauth.auth"])
 		if user.persisted?

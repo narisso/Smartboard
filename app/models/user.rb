@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :notifications
 
   # attr_accessible :title, :body
 
@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :project_role_users
 
   has_many :reported_hours
+
+  has_many :notifications
 
 
 

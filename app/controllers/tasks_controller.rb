@@ -74,6 +74,19 @@ class TasksController < ApplicationController
     #@task.project = Project.find(params[:project_id])
     #@task.status = Project.find(params[:status_id])
 
+    @task.users.each do |user|
+
+      @notification = Notification.new
+      @notification.user = user
+      @notification.link = boards_project_path(@task.project_id)
+      @notification.description = "hola"
+      @notification.viewed = false
+
+      @notification.save
+
+    end
+
+
     respond_to do |format|
       if @task.save
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131022152157) do
+=======
+ActiveRecord::Schema.define(:version => 20131024204038) do
+>>>>>>> create_use_case_with_template
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -189,6 +193,13 @@ ActiveRecord::Schema.define(:version => 20131022152157) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "use_case_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "use_case_templates", :force => true do |t|
     t.string   "name"
     t.text     "template_form"
@@ -199,13 +210,12 @@ ActiveRecord::Schema.define(:version => 20131022152157) do
 
   create_table "use_cases", :force => true do |t|
     t.string   "name"
-    t.text     "actors"
-    t.text     "synopsis"
     t.integer  "project_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "use_case_template_id"
     t.text     "data"
+    t.integer  "use_case_group_id"
   end
 
   create_table "users", :force => true do |t|

@@ -10,6 +10,11 @@ class Ability
 
     can :manage, Project do |project|
         project.users.include? user 
+
+        if project.get_role(user) == "Administrator"
+            can :manage, UseCase
+        end
+        
     end 
 
     can :manage, UseCase

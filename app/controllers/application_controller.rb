@@ -6,10 +6,9 @@ class ApplicationController < ActionController::Base
    end
  
   protect_from_forgery
-  #before_filter :authenticate_user!
   before_filter :check_session , :except => [:home]
 
-   def check_session
+  def check_session
     Rails.logger.debug(params[:controller])
     unless (params[:controller] == "devise/sessions" || 
       params[:controller] == "devise_invitable/registrations" || 

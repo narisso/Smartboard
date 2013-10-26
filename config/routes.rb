@@ -76,8 +76,10 @@ Iic21542::Application.routes.draw do
   #resources :boards
 
   # resources :users always below devise_for
-  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions", :invitations => 'users/invitations'}
   resources :users, :only => [:create]
+
+
 
 
 

@@ -58,12 +58,24 @@
     <div class="tab-pane" id="subtasks">
       <% @task.sub_tasks.each do |subtask|%>
         <dd id="subtask<%= subtask.id%>" class="well well-small">
-        <%= best_in_place subtask, :curr_state, :type => :checkbox , :collection => [raw("<i class='icon-check-empty'></i>"), raw("<i class='icon-check'></i>")],:path => update_subtask_path(@task.project, subtask) %>  
-        <b><%= best_in_place subtask, :name, :type => :input , :path => update_subtask_path(@task.project, subtask) %>:</b>
-        <%= best_in_place subtask, :description, :type => :textarea , :path => update_subtask_path(@task.project, subtask) %>
-        <%= link_to "X", delete_subtask_path(@task.project,subtask), :class => 'close', :remote => true  , :method => 'delete'%>
+        <span id="subtask_delete" class="pull-right">
+          <%= link_to "x", delete_subtask_path(@task.project,subtask), :class => 'close', :remote => true  , :method => 'delete'%>
+        </span>
+        <span id="subtask_box" class="pull-left"> 
+          <%= best_in_place subtask, :curr_state, :type => :checkbox , :collection => [raw("<span class='btn btn-danger'>Not Ready</span>"), raw("<span class='btn btn-success' style='width:67px;'>Ready</span>")],:path => update_subtask_path(@task.project, subtask) %> 
+        </span> 
+
+        <span id="subtask_name" class='pull-left'>
+          <b><%= best_in_place subtask, :name, :type => :input , :path => update_subtask_path(@task.project, subtask) %>:</b>
+        </span>
+
+        <br/>
+        <span id="subtask_description">
+          <%= best_in_place subtask, :description, :type => :textarea , :path => update_subtask_path(@task.project, subtask) %>
+        </span>
         <!--dd id="subtask<%= subtask.id%>"><%=subtask.name%>: <%=subtask.curr_state%>
-        </dd--></dd>
+        </dd-->
+        </dd>
       <% end %>
       <%= link_to "Create SubTask", new_subtask_path(@task.project,@task), :remote => true, :class => 'btn' %>
     </div>

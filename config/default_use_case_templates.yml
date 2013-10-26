@@ -1,0 +1,22 @@
+template1:
+  name: name1
+  attributes:
+    attribute1:
+      name: A1
+      input_type: 1
+      data_type: 1
+      data_input: V1,V2,V3
+    atribuete2:
+      name: A2
+      input_type: 1
+      data_type: 1
+      data_input: V1,V2,V3
+
+template2:
+  name: name2
+  attributes:
+    attribute1:
+      name: A1
+      input_type: 1
+      data_type: 1
+      data_input: V1,V2,V3

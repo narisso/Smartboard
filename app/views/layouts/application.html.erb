@@ -101,12 +101,13 @@
                     </ul>
 
           <!--Fin Breadcrumbs-->
-          <% if @project %>
+
+          <% if Project.exists? @project %>
             <div class="span1">
               <%= render 'layouts/lateral' %>
             </div>
           <% end %>
-          <div id="board" class="main-content-big scroll span6">
+          <div class="main-content-big scroll span6">
             <%= yield %>
           </div>
       </div><!--/row-->
@@ -127,7 +128,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %> 
-    <script src="/assets/tsort.js"></script>
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <%= yield(:javascripts) %>
     

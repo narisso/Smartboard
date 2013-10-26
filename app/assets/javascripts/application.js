@@ -24,20 +24,20 @@ $(document).bind("page:load", function() {
 chosenSelect();
 
 function ltl_bar_change(){
-	if($('.ltl-nav-open').length>0){
+        if($('.ltl-nav-open').length>0){
 
-		$('.ltl-nav-open').addClass('ltl-nav-close');
-		$('.ltl-nav-open').removeClass('ltl-nav-open');
-		$('.main-content-small').addClass('main-content-big');
-		$('.main-content-small').removeClass('main-content-small');
-	}
-	else{
-		
-		$('.ltl-nav-close').addClass('ltl-nav-open');
-		$('.ltl-nav-close').removeClass('ltl-nav-close');
-		$('.main-content-big').addClass('main-content-small');
-		$('.main-content-big').removeClass('main-content-big');
-	}
+                $('.ltl-nav-open').addClass('ltl-nav-close');
+                $('.ltl-nav-open').removeClass('ltl-nav-open');
+                $('.main-content-small').addClass('main-content-big');
+                $('.main-content-small').removeClass('main-content-small');
+        }
+        else{
+                
+                $('.ltl-nav-close').addClass('ltl-nav-open');
+                $('.ltl-nav-close').removeClass('ltl-nav-close');
+                $('.main-content-big').addClass('main-content-small');
+                $('.main-content-big').removeClass('main-content-big');
+        }
 
 }
 
@@ -67,8 +67,8 @@ function chosenSelect(pixels) {
 }
 
 function replaceAll( text, busca, reemplaza ){
-	while (text.toString().indexOf(busca) != -1)
-		text = text.toString().replace(busca,reemplaza);
+        while (text.toString().indexOf(busca) != -1)
+                text = text.toString().replace(busca,reemplaza);
 
   return text;
 }
@@ -76,23 +76,23 @@ function replaceAll( text, busca, reemplaza ){
 
 $(function(){ //DOM Ready
  
-	$(function(){ //DOM Ready
-	  
-		  $('.ltl-nav').removeClass('hide');
-		  $('.main-content').removeClass('hide');
-		  $('.progress').addClass('hide');
+        $(function(){ //DOM Ready
+          
+                  $('.ltl-nav').removeClass('hide');
+                  $('.main-content').removeClass('hide');
+                  $('.progress').addClass('hide');
 
-		  $('.main-content').addClass('slide-left');
-		  $('.ltl-nav').addClass('slide-right');
+                  $('.main-content').addClass('slide-left');
+                  $('.ltl-nav').addClass('slide-right');
 
-	});
-	  
-	  $('.ltl-nav').removeClass('hide');
-	  $('.main-content').removeClass('hide');
-	  $('.progress').addClass('hide');
+        });
+          
+          $('.ltl-nav').removeClass('hide');
+          $('.main-content').removeClass('hide');
+          $('.progress').addClass('hide');
 
-	  $('.main-content').addClass('slide-left');
-	  $('.ltl-nav').addClass('slide-right');
+          $('.main-content').addClass('slide-left');
+          $('.ltl-nav').addClass('slide-right');
 
 });
 

@@ -1,0 +1,6 @@
+development:
+  app_id: 231080420388691
+  api_key: 155403d2e9560e8faffe7934287225b3
+production:
+  app_id: 669665959719063
+  api_key: e943fcfb7c10b77e5fbfc374d82294b7

@@ -1,4 +1,7 @@
 Iic21542::Application.routes.draw do
+  resources :use_case_groups
+
+
   get "github/authorize"
 
   get "github/callback"
@@ -72,7 +75,11 @@ Iic21542::Application.routes.draw do
         resources :comments
       end
     end
-    resources :use_cases
+    resources :use_cases do
+      collection do
+        get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'
+      end
+    end
     resources :use_case_templates
   end
 
@@ -86,7 +93,7 @@ Iic21542::Application.routes.draw do
   #resources :boards
 
   # resources :users always below devise_for
-  devise_for :users, :controller => {:registrations => "registrations", :sessions => "sessions"}
+  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions", :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:create]
 
 

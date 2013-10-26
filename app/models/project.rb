@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   has_many :roles, :through => :project_role_users
 
   before_create :set_starting_status
+  after_create  :create_default_templates
 
   validates :name, :presence => true
 
@@ -52,12 +53,20 @@ class Project < ActiveRecord::Base
 
   def get_role user
     project_role_user = ProjectRoleUser.where(:project_id => self, :user_id => user).first
-    project_role_user.role.name
+    if project_role_user
+      project_role_user.role.name
+    else
+      nil
+    end
   end
 
   private
     def set_starting_status
       self.project_status = ProjectStatus.first
+    end
+
+    def create_default_templates
+      UseCaseTemplate.create_default self
     end
 
 end

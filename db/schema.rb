@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024155836) do
+ActiveRecord::Schema.define(:version => 20131024204038) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(:version => 20131024155836) do
     t.text     "description"
     t.string   "url_path"
     t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "version",     :default => 0
+    t.string   "origin"
   end
 
   create_table "document_tasks", :force => true do |t|
@@ -198,6 +200,13 @@ ActiveRecord::Schema.define(:version => 20131024155836) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "use_case_groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "use_case_templates", :force => true do |t|
     t.string   "name"
     t.text     "template_form"
@@ -208,13 +217,12 @@ ActiveRecord::Schema.define(:version => 20131024155836) do
 
   create_table "use_cases", :force => true do |t|
     t.string   "name"
-    t.text     "actors"
-    t.text     "synopsis"
     t.integer  "project_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "use_case_template_id"
     t.text     "data"
+    t.integer  "use_case_group_id"
   end
 
   create_table "users", :force => true do |t|
@@ -238,6 +246,9 @@ ActiveRecord::Schema.define(:version => 20131024155836) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

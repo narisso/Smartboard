@@ -4,7 +4,7 @@ class UseCaseTemplatesController < ApplicationController
   # GET /use_case_templates
   # GET /use_case_templates.json
   def index
-    @use_case_templates = UseCaseTemplate.where(params[:project_id])
+    @use_case_templates = UseCaseTemplate.where(:project_id => params[:project_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,7 +81,7 @@ class UseCaseTemplatesController < ApplicationController
     @use_case_template.destroy
 
     respond_to do |format|
-      format.html { redirect_to use_case_templates_url }
+      format.html { redirect_to project_use_case_templates_path @project }
       format.json { head :no_content }
     end
   end

@@ -1,0 +1,7 @@
+$('#subtasks').html("<%= escape_javascript(render 'new_subtask') %>");
+$('#subtasks.tab-pane.active a.btn').hide();
+$('#subtasks.tab-pane.active .modal-footer a.btn').show();
+
+$(document).ready(function(){
+	chosenSelect();
+});

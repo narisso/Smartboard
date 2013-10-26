@@ -38,6 +38,7 @@
         :data => {:remote => true, :toggle => "tab"},'data-type' => :html%></li>
         <li id="Commits" class="tab-pane"><%= link_to "Commits", "#commits", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Documentos" class="tab-pane"><%= link_to "Documents", "#documents", :data => {:remote => true, :toggle => "tab"} %></li>
+        <li id="Subtasks" class="tab-pane"><%= link_to "Subtasks", "#subtasks", :data => {:remote => true, :toggle => "tab"} %></li>
     </ul>
   </div>
 
@@ -54,6 +55,18 @@
       <% end %>
     </div>
     <div class="tab-pane" id="documents">Documents ...</div>
+    <div class="tab-pane" id="subtasks">
+      <% @task.sub_tasks.each do |subtask|%>
+        <dd id="subtask<%= subtask.id%>" class="well well-small">
+        <%= best_in_place subtask, :curr_state, :type => :checkbox , :collection => [raw("<i class='icon-check-empty'></i>"), raw("<i class='icon-check'></i>")],:path => update_subtask_path(@task.project, subtask) %>  
+        <b><%= best_in_place subtask, :name, :type => :input , :path => update_subtask_path(@task.project, subtask) %>:</b>
+        <%= best_in_place subtask, :description, :type => :textarea , :path => update_subtask_path(@task.project, subtask) %>
+        <%= link_to "X", delete_subtask_path(@task.project,subtask), :class => 'close', :remote => true  , :method => 'delete'%>
+        <!--dd id="subtask<%= subtask.id%>"><%=subtask.name%>: <%=subtask.curr_state%>
+        </dd--></dd>
+      <% end %>
+      <%= link_to "Create SubTask", new_subtask_path(@task.project,@task), :remote => true, :class => 'btn' %>
+    </div>
   </div>
 
 </div>

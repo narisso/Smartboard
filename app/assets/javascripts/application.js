@@ -15,7 +15,8 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require chosen-jquery
-
+//= require jquery.purr
+//= require best_in_place
 
 
 $(document).bind("page:load", function() {
@@ -93,4 +94,9 @@ $(function(){ //DOM Ready
 	  $('.main-content').addClass('slide-left');
 	  $('.ltl-nav').addClass('slide-right');
 
+});
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
 });

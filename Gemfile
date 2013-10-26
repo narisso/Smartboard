@@ -64,6 +64,9 @@ gem 'gretel'
 # Add a fine select to forms
 gem 'chosen-rails'
 
+#Best in place
+gem 'best_in_place'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

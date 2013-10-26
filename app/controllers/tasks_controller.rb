@@ -3,6 +3,8 @@ class TasksController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :task, :through => :project, :shallow => true
 
+  respond_to :html, :json
+
   def show_comments_of_task
     @task = Task.find(params[:id])
     @comments = @task.comments
@@ -42,6 +44,7 @@ class TasksController < ApplicationController
     @comment = Comment.new
     @comment.task = @task
     @comment.user = current_user
+    @subtask = SubTask.new
     respond_to do |format|
       format.js # show.html.erb
       format.json { render json: @task }
@@ -157,6 +160,36 @@ class TasksController < ApplicationController
     @rh.save
 
     redirect_to boards_project_path(@task.status.project)
+  end
+
+  def create_subtask
+    @project = Project.find(params[:project_id])
+    @subtask = SubTask.new(params[:subtask])
+    @task = Task.find(params[:task_id])
+    @subtask.task = @task
+    @subtask.save
+    redirect_to boards_project_path(@project)
+  end
+
+  def new_subtask
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:task_id])
+    @subtask = SubTask.new
+  end
+
+  def delete_subtask
+    @subtask=SubTask.find(params[:sub_task_id])
+    @subtask.destroy
+  end
+
+  def update_subtask
+    @project = Project.find(params[:project_id])
+    @subtask = SubTask.find(params[:sub_task_id])
+    @subtask.update_attributes(params[:sub_task])
+
+    respond_with @subtask
+
+    
   end
 
   #def reported_hours_index

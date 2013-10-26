@@ -18,6 +18,14 @@ Iic21542::Application.routes.draw do
   match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
   post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
 
+  #Subtasks
+  match 'tasks/new_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'new_subtask', :as => 'new_subtask'
+  post 'tasks/create_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'create_subtask', :as => 'create_subtask'
+  match 'tasks/delete_subtask/:project_id/:sub_task_id', :controller => 'tasks', :action => 'delete_subtask', :as => 'delete_subtask'
+  put 'tasks/update_subtask/:project_id/:sub_task_id',:controller => 'tasks', :action => 'update_subtask', :as => 'update_subtask'
+
+
+
   #Github Routes
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
   match '/github/callback' => 'github#callback' , :method => :get , :as =>  :github_callback

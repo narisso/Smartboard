@@ -1,8 +1,11 @@
 class UseCaseGroupsController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :use_case_group, :through => :project
+
   # GET /use_case_groups
   # GET /use_case_groups.json
   def index
-    @use_case_groups = UseCaseGroup.all
+    @use_case_groups = @project.use_case_groups
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,10 +44,11 @@ class UseCaseGroupsController < ApplicationController
   # POST /use_case_groups.json
   def create
     @use_case_group = UseCaseGroup.new(params[:use_case_group])
+    @use_case_group.project = Project.find(params[:project_id])
 
     respond_to do |format|
       if @use_case_group.save
-        format.html { redirect_to @use_case_group, notice: 'Use case group was successfully created.' }
+        format.html { redirect_to project_use_cases_path @project, notice: 'Use case group was successfully created.' }
         format.json { render json: @use_case_group, status: :created, location: @use_case_group }
       else
         format.html { render action: "new" }

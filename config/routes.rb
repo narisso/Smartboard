@@ -1,5 +1,5 @@
 Iic21542::Application.routes.draw do
-  resources :use_case_groups
+  
 
 
   get "github/authorize"
@@ -48,12 +48,8 @@ Iic21542::Application.routes.draw do
   resources :commits
   resources :document_tasks
   resources :goals
-  #resources :statuses
   resources :requirement_templates
   resources :requirements
-  #resources :use_cases
-  #resources :tasks
-
 
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
@@ -81,6 +77,7 @@ Iic21542::Application.routes.draw do
       end
     end
     resources :use_case_templates
+    resources :use_case_groups
   end
 
 

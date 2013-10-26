@@ -12,15 +12,14 @@ class Ability
     ## Permisos de acceso y administracion de proyectos ##
     can :create, Project
 
-    can :manage, Project do |project|
+
+    can :read, Project do |project|
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"
-            can :manage, UseCase
-            can :manage, Task
+            can :manage, :all
         elsif project.get_role(user) == "Project Manager"
             can :manage, Task
-
         elsif project.get_role(user) == "Developer"   
             can :create, Task
             can :read, Task
@@ -34,7 +33,7 @@ class Ability
 
         not project.get_role(user) == "Client"
     end 
-    
+
     can :update, Project do |project|
         project.get_role(user) == "Administrator" || project.get_role(user) == "Project Manager"
     end 
@@ -42,10 +41,6 @@ class Ability
     can :destroy, Project do |project|
         project.get_role(user) == "Administrator"
     end 
-       
-
-    can :manage, UseCase
-    can :manage, UseCaseTemplate
 
     #Roles del proyecto
     #   Admin, project manager, developer, cliente 

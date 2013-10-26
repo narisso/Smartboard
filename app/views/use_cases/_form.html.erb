@@ -4,9 +4,14 @@
     <%= f.association :use_case_group, :collection => UseCaseGroup.where(:project_id => @project),
             :input_html => { class: 'chosen-select selectpicker'} %>
   	<%= f.association :use_case_template,
+            :collection => UseCaseTemplate.where(:project_id => @project)
   					:input_html => { class: 'chosen-select selectpicker'} %>
   </div>
   <div id="template">
+    <% if params[:action] == "edit" %>
+      <%= render 'template_form', :@json_obj => JSON.parse(@use_case.use_case_template.template_form),
+                                  :@data => JSON.parse(@use_case.data) %>
+    <% end %>
   </div>
 
   <div class="form-actions">

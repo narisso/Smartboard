@@ -2,21 +2,26 @@
 		<% if p[1]["input_type"] == "text_field_tag" %>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
-				<div class='controls atribbute-input'><%= text_field_tag "data[#{p[0]}]" %></div>
+				<div class='controls atribbute-input'>
+						<%= text_field_tag "data[#{p[0]}]", @data[p[0]].nil? ? '' : @data[p[0]] %>
+				</div>
 			</div>
 		<% elsif p[1]["input_type"] == "radio_button_tag" %>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
 				<div class="controls">
 					<% p[1]["data_input"].split(',').each do |value| %>
-						<div class='radio inline'><%= radio_button_tag "data[#{p[0]}]", value %> value </div>
+						<div class='radio inline'>
+							<%= radio_button_tag "data[#{p[0]}]", value, @data[p[0]].nil? ? false : @data[p[0]] == value %> value </div>
 					<% end %>
 				</div>
 			</div>
 		<% elsif p[1]["input_type"] == "select_tag"%>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
-					<div class='controls satribbute-input'><%= select_tag "data[#{p[0]}]", options_for_select(["value1", "value 2", "value3"]), :class => "chosen-select" %> </div>
+					<div class='controls satribbute-input'>
+						<%= select_tag "data[#{p[0]}]", options_for_select(["value1", "value 2", "value3"]), :class => "chosen-select" %> 
+					</div>
 			</div>
 		<% elsif p[1]["input_type"] == "check_box_tag"%>
 			<div class='control-group'>

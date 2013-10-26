@@ -4,7 +4,7 @@
     <%= f.association :use_case_group, :collection => UseCaseGroup.where(:project_id => @project),
             :input_html => { class: 'chosen-select selectpicker'} %>
   	<%= f.association :use_case_template,
-            :collection => UseCaseTemplate.where(:project_id => @project)
+            :collection => UseCaseTemplate.where(:project_id => @project),
   					:input_html => { class: 'chosen-select selectpicker'} %>
   </div>
   <div id="template">

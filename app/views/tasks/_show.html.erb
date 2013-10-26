@@ -47,8 +47,9 @@
     <div class="tab-pane" id="comments">
     <div id="comment" >
       <%= render :partial => 'comment' %>
-    </div>
-      <%= render 'comments/new.html.erb'%> </div>
+      </div>
+        <%= render 'comments/new.html.erb'%> 
+      </div>
     <div class="tab-pane" id="commits">
       <% @task.commits.each do |commit|%>
         <b><%=commit.author_name%></b>(<%= commit.author_email%>) <%= link_to commit.sha[0..5], commit.url%>: <%= commit.message%>

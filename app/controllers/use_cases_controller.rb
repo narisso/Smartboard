@@ -5,7 +5,7 @@ class UseCasesController < ApplicationController
   # GET /use_cases
   # GET /use_cases.json
   def index
-    @use_cases = UseCase.where(:project_id => params[:project_id])
+    @use_case_groups = @project.use_case_groups
 
     respond_to do |format|
       format.html # index.html.erb
@@ -63,10 +63,11 @@ class UseCasesController < ApplicationController
   # PUT /use_cases/1.json
   def update
     @use_case = UseCase.find(params[:id])
+    @use_case.data = params[:data].to_json
 
     respond_to do |format|
       if @use_case.update_attributes(params[:use_case])
-        format.html { redirect_to @use_case, notice: 'Use case was successfully updated.' }
+        format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

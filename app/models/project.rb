@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   has_many :bugs
   has_many :statuses
   has_many :use_case_templates
+  has_many :use_case_groups
 
   has_many :project_role_users
   has_many :users, :through => :project_role_users

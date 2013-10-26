@@ -1,5 +1,5 @@
 Iic21542::Application.routes.draw do
-  resources :use_case_groups
+  
 
 
   get "github/authorize"
@@ -27,7 +27,8 @@ Iic21542::Application.routes.draw do
   match 'tasks/delete_subtask/:project_id/:sub_task_id', :controller => 'tasks', :action => 'delete_subtask', :as => 'delete_subtask'
   put 'tasks/update_subtask/:project_id/:sub_task_id',:controller => 'tasks', :action => 'update_subtask', :as => 'update_subtask'
 
-
+  #Comments
+  put '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:id' => 'comments#update', :as => 'update_project_status_task_comment'
 
   #Github Routes
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
@@ -48,12 +49,8 @@ Iic21542::Application.routes.draw do
   resources :commits
   resources :document_tasks
   resources :goals
-  #resources :statuses
   resources :requirement_templates
   resources :requirements
-  #resources :use_cases
-  #resources :tasks
-
 
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
@@ -81,6 +78,7 @@ Iic21542::Application.routes.draw do
       end
     end
     resources :use_case_templates
+    resources :use_case_groups
   end
 
 

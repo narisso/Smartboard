@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :provider, :uid, :avatar
 
   # attr_accessible :title, :body
 
@@ -44,15 +44,20 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = ActiveSupport::JSON.decode(access_token.get('https://graph.facebook.com/me?'))
-    if user = User.find_by_email(data["email"])
-      user
-    else # Create an user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(name:auth.extra.raw_info.name,
+                           provider:auth.provider,
+                           uid:auth.uid,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20]
+                           )
+      user.confirm!
+      user.save!
     end
+    user
   end
-
 
 
 end

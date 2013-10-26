@@ -11,19 +11,13 @@ class Ability
     
     ## Permisos de acceso y administracion de proyectos ##
     can :create, Project
-   
-    can :read, Project do |project|
-        # Son las dos condiciones (if) que se deben cumplir para poder entrar al kanban de un proyecto
-        
-        ## Permisos dentro de un proyecto ##s
-        if project.get_role(user) == "Administrator"
-            can :manage, Task
 
     can :manage, Project do |project|
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"
             can :manage, UseCase
+            can :manage, Task
         elsif project.get_role(user) == "Project Manager"
             can :manage, Task
 

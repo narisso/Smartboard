@@ -1,4 +1,3 @@
-
 <div class="progress progress-striped active center-progress">
   <div class="bar" style="width: 100%;"></div>
 </div>
@@ -9,42 +8,42 @@
 
 <% @statuses.each_with_index do |status , j|%>
 
-	<li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>" data-selector ="status" class='column' >
-		
-		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
-		<h4 class='block text-center handle'><%= status.name%></h4>
+        <li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>" data-selector ="status" class='column' >
+                
+                <%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
+                <h4 class='block text-center handle'><%= status.name%></h4>
 
-		<ul class='sortable test' data-id='<%=status.id%>' data-dropzone="tasks"> 
-			<% status.tasks.each_with_index do |task , i| %>
-
-
-					<li data-id="<%= task.id %>" class='task block' data-selector="task">
-
-						<div class="task-info block">
-
-									<span class='task-type' style="background-color: <%= task.label.color %>" >
-										<%= task.label.name %>
-									</span>
-									<span class='task-time'>
-										<%= task.estimated_hours %>
-									</span>
-						</div>
-						<h5>
-							<%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
-						</h5>
+                <ul class='sortable test' data-id='<%=status.id%>' data-dropzone="tasks"> 
+                        <% status.tasks.each_with_index do |task , i| %>
 
 
-						<div class="task-users block">
-							<% task.users.each do |user| %>
-								<img src='/assets/NA.png' data-toggle='tooltip' title="<%=user.email%>"></img>
-							<% end %>
-						</div>
-					</li>
-	
-			<% end %>
-		</ul>
+                                        <li data-id="<%= task.id %>" class='task block' data-selector="task">
 
-	</li>
+                                                <div class="task-info block">
+
+                                                                        <span class='task-type' style="background-color: <%= task.label.color %>" >
+                                                                                <%= task.label.name %>
+                                                                        </span>
+                                                                        <span class='task-time'>
+                                                                                <%= task.estimated_hours %>
+                                                                        </span>
+                                                </div>
+                                                <h5>
+                                                        <%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
+                                                </h5>
+
+
+                                                <div class="task-users block">
+                                                        <% task.users.each do |user| %>
+                                                                <img src='/assets/NA.png' data-toggle='tooltip' title="<%=user.email%>"></img>
+                                                        <% end %>
+                                                </div>
+                                        </li>
+        
+                        <% end %>
+                </ul>
+
+        </li>
 <% end %>
 
 <%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"add" %>
@@ -60,33 +59,33 @@
   var elementUp;
 
   function onColumn(elem){
-  	elementUp = elem;
+          elementUp = elem;
 
-  	console.log($(elementUp));
+          console.log($(elementUp));
   }
 
 
   function makeItDraggable(elem){
 
-  	 var parentElem = elem.parentElement;
+           var parentElem = elem.parentElement;
             if (!parentElem) {
                 parentElem = elem.parentNode;
             }
             if (parentElem) {
-  							parentElem.setAttribute('draggable', true);
-  					}
+                                                          parentElem.setAttribute('draggable', true);
+                                          }
 
   }
 
   function notMoreDraggable(elem){
 
-  	var parentElem = elem.parentElement;
+          var parentElem = elem.parentElement;
             if (!parentElem) {
                 parentElem = elem.parentNode;
             }
             if (parentElem) {
-  							parentElem.setAttribute('draggable', false);
-  					}
+                                                          parentElem.setAttribute('draggable', false);
+                                          }
 
   }
 
@@ -114,8 +113,8 @@ function hasClass(element, cls) {
     });*/
 
     
-	//$('.sortable').sortable();
-	//$('.sortable').tsort({});
+        //$('.sortable').sortable();
+        //$('.sortable').tsort({});
 
 $('#board').sortable({
   handle: ".handle",
@@ -153,21 +152,21 @@ $('#board').sortable({
 
       }
     });
- 	
+         
   $('.ltl-nav').removeClass('hide');
   $('.main-content').removeClass('hide');
-	$('.progress').addClass('hide');
+        $('.progress').addClass('hide');
 
-	$('.main-content').addClass('slide-left');
-	$('.ltl-nav').addClass('slide-right');
-	var w = $('.column').outerWidth()*<%= @statuses.count %>;
+        $('.main-content').addClass('slide-left');
+        $('.ltl-nav').addClass('slide-right');
+        var w = $('.column').outerWidth()*<%= @statuses.count %>;
 
   //$('#board').tsort({handle: '.handle'});
 
 /*
-	$(".column").each(
+        $(".column").each(
 function(){
-	this.addEventListener('dragstart', function(event) {
+        this.addEventListener('dragstart', function(event) {
   console.log('Drag Interaction Started!');
 
   if(hasClass(event.target,"column")){
@@ -181,8 +180,8 @@ function(){
 this.addEventListener("dragenter", function( event ) {
 
 if(hasClass(event.target,"column")){
-	elementUp = event.target;}
-	else {
+        elementUp = event.target;}
+        else {
 
 var parentElem = event.target.parentElement;
             if (!parentElem) {
@@ -192,59 +191,59 @@ var parentElem = event.target.parentElement;
 
             if(parentElem){
 
-            	if(hasClass(parentElem,"column")){
-								elementUp = parentElem;}
-								else{
+                    if(hasClass(parentElem,"column")){
+                                                                elementUp = parentElem;}
+                                                                else{
 
-										var parentParentElem = parentElem.parentElement;
+                                                                                var parentParentElem = parentElem.parentElement;
             if (!parentParentElem) {
                 parentParentElem = parentElem.parentNode;
             }
             if(parentParentElem){
-							elementUp = parentParentElem;
+                                                        elementUp = parentParentElem;
 
             }
 
 
 
 
-								}
+                                                                }
 
 
             }
 
 
-	}
+        }
 
 });
 
 
 
 
-	this.addEventListener('dragend', function(event) {
+        this.addEventListener('dragend', function(event) {
 
 
-		if(hasClass(event.target,"column")){
-			event.target.setAttribute('draggable', false);
-  		console.log('Drag Interaction Stoped!');
+                if(hasClass(event.target,"column")){
+                        event.target.setAttribute('draggable', false);
+                  console.log('Drag Interaction Stoped!');
 
-  		if(elementUp!=event.target){
+                  if(elementUp!=event.target){
 
    var el = $(event.target);
    el.remove();
 
-  		$(event.target).insertAfter(elementUp);
+                  $(event.target).insertAfter(elementUp);
 $('.sortable').sortable();
 
-  	}
-		}
+          }
+                }
 
 });
 
 
 
 }
-		);
+                );
 */
 });
 

@@ -37,6 +37,10 @@ gem 'bootstrap_helper'
 # Users, authorization and sessions
 gem 'devise'
 
+# Google and Facebook Login
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
 # Permissions
 gem 'cancan'
 

@@ -27,7 +27,8 @@ Iic21542::Application.routes.draw do
   match 'tasks/delete_subtask/:project_id/:sub_task_id', :controller => 'tasks', :action => 'delete_subtask', :as => 'delete_subtask'
   put 'tasks/update_subtask/:project_id/:sub_task_id',:controller => 'tasks', :action => 'update_subtask', :as => 'update_subtask'
 
-
+  #Comments
+  put '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:id' => 'comments#update', :as => 'update_project_status_task_comment'
 
   #Github Routes
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth

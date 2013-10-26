@@ -1,11 +1,11 @@
 class UseCasesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :use_case, :through => :project
-  load_and_authorize_resource :use_case_group, :through => :project
   
   # GET /use_cases
   # GET /use_cases.json
   def index
+    @use_case_groups = @project.use_case_groups
 
     respond_to do |format|
       format.html # index.html.erb

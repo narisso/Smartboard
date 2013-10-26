@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131022152157) do
-=======
 ActiveRecord::Schema.define(:version => 20131024204038) do
->>>>>>> create_use_case_with_template
 
   create_table "bugs", :force => true do |t|
     t.text     "description"

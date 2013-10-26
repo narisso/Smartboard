@@ -4,9 +4,13 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
+<%= bootstrap_flash %>
+
 <%= render 'nav_bar' %>
 
-<table class="table table-striped">
+
+
+<!--table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
@@ -37,7 +41,7 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table-->
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_use_case_path,

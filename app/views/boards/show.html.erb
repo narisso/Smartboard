@@ -4,21 +4,21 @@
 
 <%= render :partial => 'lateral' %>
 
-<ul id="board" class="main-content main-content-big scroll hide" data-dropzone="statuses">
+<ul  class="board board-big scroll hide">
 
 
 <% @statuses.each_with_index do |status , j|%>
 
-	<li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>" data-selector ="status" class='column' >
+	<li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>"  class='column' >
 		
 		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
 		<h4 class='block text-center handle'><%= status.name%></h4>
 
-		<ul class='sortable test' data-id='<%=status.id%>' data-dropzone="tasks"> 
+		<ul class='sortable scroll' data-id='<%=status.id%>'> 
 			<% status.tasks.each_with_index do |task , i| %>
 
 
-					<li data-id="<%= task.id %>" class='task block' data-selector="task">
+					<li data-id="<%= task.id %>" class='task'>
 
 						<div class="task-info block">
 
@@ -59,91 +59,35 @@
   <!-- <script type="text/javascript">var p_id =<%= @project.id %></script> -->
   <!-- <%= javascript_include_tag "boards_controller" %> -->
   <script type="text/javascript">
- /* var grids;
-
-  var elementUp;
-
-  function onColumn(elem){
-  	elementUp = elem;
-
-  	console.log($(elementUp));
-  }
-
-
-  function makeItDraggable(elem){
-
-  	 var parentElem = elem.parentElement;
-            if (!parentElem) {
-                parentElem = elem.parentNode;
-            }
-            if (parentElem) {
-  							parentElem.setAttribute('draggable', true);
-  					}
-
-  }
-
-  function notMoreDraggable(elem){
-
-  	var parentElem = elem.parentElement;
-            if (!parentElem) {
-                parentElem = elem.parentNode;
-            }
-            if (parentElem) {
-  							parentElem.setAttribute('draggable', false);
-  					}
-
-  }
-
-function hasClass(element, cls) {
-    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-}
-*/ 
+ 
 
   $(function(){ //DOM Ready
  
-     /*grids = $(".gridster ul").gridster({
-        widget_margins: [10, 5],
-        widget_base_dimensions: [240, 110],
-        min_cols: <%= @statuses.count %>,
-        draggable: {
-            stop: function(event, ui){
-                var id = this.$helper[0].attributes[0].value;
-                var row = this.$helper[0].attributes[1].value;
-                var col = this.$helper[0].attributes[2].value;
-                $.post( "tasks/update_status", { task_id: id, col: col } );
 
-            }
-        }
+    $('ul.board').sortable({
+      handle: ".handle",
+       stop: function(event, ui){
+                var children = $(ui.item).parents(".board").children("li");
 
-    });*/
+                children.each(function() {
 
-    
-	//$('.sortable').sortable();
-	//$('.sortable').tsort({});
+                  var id = $(this).data("id");
+                  var col = $(this).index();
 
-$('#board').sortable({
-  handle: ".handle",
-   stop: function(event, ui){
-            var children = $(ui.item).parents("#board").children("li");
+                  console.log(id +":" + col);
 
-            children.each(function() {
+                  $.post( "statuses/update_order", { status_id: id, num: col } );
 
-              var id = $(this).data("id");
-              var col = $(this).index();
-
-              console.log(id +":"+col);
-
-              $.post( "statuses/update_order", { status_id: id, num: col } );
-
-            })
-            
+                })
+                
 
 
-      }
-});
+          }
+    });
 
   $( "ul.sortable" ).sortable({
       connectWith: "ul.sortable",
+      placeholder: "ui-state-highlight",
       start: function (event, ui) {
             $(ui.item).addClass("dragging");    
             ui.placeholder.addClass("sortable-placeholder") ;                           
@@ -159,98 +103,42 @@ $('#board').sortable({
     });
  	
   $('.ltl-nav').removeClass('hide');
-  $('.main-content').removeClass('hide');
+  $('.board').removeClass('hide');
 	$('.progress').addClass('hide');
 
-	$('.main-content').addClass('slide-left');
+	$('.board').addClass('slide-left');
 	$('.ltl-nav').addClass('slide-right');
 	var w = $('.column').outerWidth()*<%= @statuses.count %>;
 
-  //$('#board').tsort({handle: '.handle'});
 
-/*
-	$(".column").each(
-function(){
-	this.addEventListener('dragstart', function(event) {
-  console.log('Drag Interaction Started!');
 
-  if(hasClass(event.target,"column")){
 
- }
+
+
+$('#side_close_button').click(ltl_bar_change);
+
+
 
 });
 
 
+function ltl_bar_change(){
+  if($('.ltl-nav-open').length>0){
 
-this.addEventListener("dragenter", function( event ) {
-
-if(hasClass(event.target,"column")){
-	elementUp = event.target;}
-	else {
-
-var parentElem = event.target.parentElement;
-            if (!parentElem) {
-                parentElem = event.target.parentNode;
-            }
-
-
-            if(parentElem){
-
-            	if(hasClass(parentElem,"column")){
-								elementUp = parentElem;}
-								else{
-
-										var parentParentElem = parentElem.parentElement;
-            if (!parentParentElem) {
-                parentParentElem = parentElem.parentNode;
-            }
-            if(parentParentElem){
-							elementUp = parentParentElem;
-
-            }
-
-
-
-
-								}
-
-
-            }
-
-
-	}
-
-});
-
-
-
-
-	this.addEventListener('dragend', function(event) {
-
-
-		if(hasClass(event.target,"column")){
-			event.target.setAttribute('draggable', false);
-  		console.log('Drag Interaction Stoped!');
-
-  		if(elementUp!=event.target){
-
-   var el = $(event.target);
-   el.remove();
-
-  		$(event.target).insertAfter(elementUp);
-$('.sortable').sortable();
-
-  	}
-		}
-
-});
-
-
-
+    $('.ltl-nav-open').addClass('ltl-nav-close');
+    $('.ltl-nav-open').removeClass('ltl-nav-open');
+    $('.main-content-small').addClass('main-content-big');
+    $('.main-content-small').removeClass('main-content-small');
+  }
+  else{
+    
+    $('.ltl-nav-close').addClass('ltl-nav-open');
+    $('.ltl-nav-close').removeClass('ltl-nav-close');
+    $('.main-content-big').addClass('main-content-small');
+    $('.main-content-big').removeClass('main-content-big');
+  }
 }
-		);
-*/
-});
+
 
   </script>
 <%- end -%>

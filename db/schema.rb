@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(:version => 20131022192945) do
     t.text     "description"
     t.string   "url_path"
     t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "version",     :default => 0
+    t.string   "origin"
   end
 
   create_table "document_tasks", :force => true do |t|
@@ -200,13 +202,23 @@ ActiveRecord::Schema.define(:version => 20131022192945) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "use_case_templates", :force => true do |t|
+    t.string   "name"
+    t.text     "template_form"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "project_id"
+  end
+
   create_table "use_cases", :force => true do |t|
     t.string   "name"
     t.text     "actors"
     t.text     "synopsis"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "use_case_template_id"
+    t.text     "data"
   end
 
   create_table "users", :force => true do |t|

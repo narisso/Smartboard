@@ -80,4 +80,16 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+#POsT /users/notifications
+def notifications
+  @notifications = Notification.where("user_id = ? AND viewed = ?", params[:user_id], false)
+    respond_to do |format|
+      format.html { render :layout => false } # notification.html.erb
+      format.json { render json: @notifications }
+    end
+end
+
+
 end

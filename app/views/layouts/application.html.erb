@@ -57,7 +57,13 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
+
+
               <%if user_signed_in?%>
+                            <li>
+                <div class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
+                  <div>
+                <li>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
              <%else%>
@@ -114,10 +120,17 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %> 
-    <script src="/assets/tsort.js"></script>
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <%= yield(:javascripts) %>
-    
+    <script type="text/javascript">
+
+      var html =$.post( "../../users/notifications", { user_id: 1 },
+      function( data ) {
+  $('.dropdown').append(data);
+} );
+      
+
+    </script>
 
   </body>
 </html>

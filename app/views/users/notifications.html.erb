@@ -1,0 +1,14 @@
+
+<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+	<% @notifications.each_with_index do | notification , i |%>
+	
+		<li>
+			<a href="<%= notification.link %>"> New Task! </a>
+		</li>
+
+	<% end %>
+
+	<li class="divider"></li>
+	<li> <a> See All... </a> </li>
+
+</ul>

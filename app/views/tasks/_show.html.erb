@@ -93,7 +93,7 @@
 
 <div class="modal-footer">
   <% if @task.users.include? current_user %>
-    <%= link_to "Report Hours", new_reported_hours_path(@task, current_user), :remote => true, :class => 'btn' %>
+    <%= link_to "Report Hours", new_reported_hours_project_status_task_path(@project, @status ,@task), :remote => true, :class => 'btn' %>
   <% end %>
   <%= link_to "Close", "", :data => {:dismiss => "modal"}, :class => 'btn'  %>
   <% if can? :update, @task %>

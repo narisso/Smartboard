@@ -11,16 +11,8 @@ class TasksController < ApplicationController
     @comments = @task.comments
 
     respond_to do |format|
-      format.html {
-        if request.xhr?
-
-        else
-
-        end
-      }
-      format.js{
-
-      }
+      format.html
+      format.js
     end
 
   end
@@ -28,8 +20,6 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -128,8 +118,7 @@ class TasksController < ApplicationController
   # GET /tasks/project_tasks/1
   # GET /tasks/project_tasks/1.json
   def project_tasks
-
-    @tasks=Task.where(:project_id => params[:id])
+    @tasks = @project.tasks
 
 
     respond_to do |format|
@@ -140,15 +129,17 @@ class TasksController < ApplicationController
 
   def new_reported_hours
     @rh = ReportedHours.new
-    @task = Task.find(params[:task_id])
     @rh.task = @task
     @rh.user = current_user
 
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create_reported_hours
     @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:task_id])
-    @task = Task.find(params[:task_id])
       
     if @rh
       @rh.reporting_hours = params[:rh][:reporting_hours]

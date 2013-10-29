@@ -18,9 +18,8 @@ Iic21542::Application.routes.draw do
   #Dropbox Routes
   match '/dropbox/authorize'   => 'dropbox#authorize' , :method => :get , :as => :dropbox_auth
   match '/dropbox/callback' => 'dropbox#callback' , :method => :get , :as =>  :dropbox_callback
-  match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
-  post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
-  #match 'tasks/change_lock/:task_id', :controller => 'tasks', :action => 'change_lock', :as => 'change_lock'
+  #match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
+  #post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
 
   #Subtasks
   match 'tasks/new_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'new_subtask', :as => 'new_subtask'
@@ -60,7 +59,6 @@ Iic21542::Application.routes.draw do
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       post :finish
-      #resources :project_role_users
     end
     member do
       post 'tasks/update_status', :controller => 'tasks', :action => 'update_status', :as => 'update_status'
@@ -71,7 +69,9 @@ Iic21542::Application.routes.draw do
     resources :statuses do
       resources :tasks do
         member do
-          get :change_lock
+          get  :change_lock
+          get  :new_reported_hours
+          post :create_reported_hours 
         end
         resources :comments
       end

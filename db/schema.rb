@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.string   "link"
+    t.string   "description"
+    t.integer  "user_id"
+    t.boolean  "viewed"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "task_id"
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "project_role_users", :force => true do |t|
     t.integer  "project_id"
     t.integer  "role_id"

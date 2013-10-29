@@ -57,6 +57,7 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
+
              <% if @project and not @project.id.nil? %>
                   <li><%= link_to image_tag('icon1.png', :alt => 'Dropbox github' ), '#' %></li>
                      <%if @project and not @project.dropbox_token.nil? %>
@@ -66,6 +67,15 @@
                   <% end %>
              <% end %>
              <%if user_signed_in?%>
+
+
+
+              <%if user_signed_in?%>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span id="notification-badge" class="badge badge-inverse">0</span></a>
+                  
+                <li>
+
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
              <%else%>
@@ -107,9 +117,8 @@
               <%= render 'layouts/lateral' %>
             </div>
           <% end %>
-          <div class="main-content-big scroll span6">
             <%= yield %>
-          </div>
+
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
@@ -130,7 +139,34 @@
     <%= javascript_include_tag "application" %> 
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <%= yield(:javascripts) %>
-    
+    <script type="text/javascript">
+
+
+           $.post( "../../users/notifications", { user_id: 1 },
+      function( data ) {
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
+
+
+    setInterval(function(){
+      
+           $.post( "../../users/notifications", { user_id: 1 },
+      function( data ) {
+        $(".dropdown").children(".dropdown-menu").remove();
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
+
+
+    },10000);
+
+
+      
+
+    </script>
 
   </body>
 </html>

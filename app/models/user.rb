@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :provider, :uid, :avatar
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :provider, :uid, :avatar, :notifications
+
 
   # attr_accessible :title, :body
 
@@ -24,6 +26,9 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :project_role_users
 
   has_many :reported_hours
+  has_many :notifications
+
+
 
   def self.from_omniauth(auth)
     if user = User.find_by_email(auth.info.email)
@@ -59,6 +64,8 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+
 
 
 end

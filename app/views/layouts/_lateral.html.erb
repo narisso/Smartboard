@@ -1,6 +1,7 @@
         <div class="">
           <div class=" sidebar-nav ltl-nav ltl-nav-close hide">
             <ul class="ltl-nav-list">
+
               <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed"), boards_project_path(@project) %><h4>Tasks</h4></li>
               <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed") %><h4>Tests</h4></li>
               <li><%= link_to image_tag("ltl_bar_docs.png", :alt => "rss feed"), project_document_projects_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %><h4>Docs</h4></li>

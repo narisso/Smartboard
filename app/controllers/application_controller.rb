@@ -8,9 +8,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :check_session , :except => [:home]
 
-   def check_session
+  def check_session
+    Rails.logger.debug(params[:controller])
     unless (params[:controller] == "devise/sessions" || 
-      params[:controller] == "devise/registrations" || 
+      params[:controller] == "devise_invitable/registrations" || 
+      params[:controller] == "devise/invitations" ||
       params[:controller] == "devise/confirmations" ||
       params[:controller] == "devise/passwords")
       unless user_signed_in?
@@ -32,7 +34,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_inactive_sign_up_path_for(resource)
-  	new_user_registration_path
+  	 new_user_registration_path
+  end
+
+  def after_accept_path_for(resource)
+      new_user_registration_path
   end
 
 	def home 

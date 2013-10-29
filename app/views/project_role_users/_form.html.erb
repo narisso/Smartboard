@@ -41,6 +41,8 @@
       <%= f.input :project_id,:as => :hidden, :input_html => { :value => "#{@project.id}" } %>
     </div>
     <div class="modal-footer">
+     <!-- Le entregamos a la invitacion mediante el link_to el id del proyecto -->
+     <div class="btn btn"> <%= link_to 'invite', new_user_invitation_path(:id => @project.id) %> </div>
 		  <%= f.button :submit, 'Add user', :class => 'btn-primary' %>
 		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), "", :class => 'btn', :data => {:dismiss => "modal"} %>
 	   </div>

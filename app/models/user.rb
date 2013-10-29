@@ -4,9 +4,10 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
 
   # Taken out for heroku deploy: :confirmable
-  devise :database_authenticatable, :token_authenticatable, :registerable, :confirmable,
+
+  devise :invitable, :database_authenticatable, :token_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
-         
+
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :provider, :uid, :avatar
 

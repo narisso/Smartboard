@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 
-  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users
+  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users, :lock 
 
   belongs_to :label
   belongs_to :project
@@ -26,9 +26,18 @@ class Task < ActiveRecord::Base
   has_many :sub_tasks
 
   attr_accessible :user_ids
+  before_create :set_unlock
 
   validates :name, :presence => true
   validate :label, :presence => true  
   validates :estimated_hours, :numericality => { :greater_than_or_equal_to => 1 }
+
+  def set_unlock 
+    self.lock = false
+  end 
+
+  def set_lock
+    self.lock = true
+  end
 
 end

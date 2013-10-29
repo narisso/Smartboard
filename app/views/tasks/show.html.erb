@@ -5,14 +5,15 @@
 </div>
 
 <div id="left">
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @task.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
-  <dd><%= @task.priority %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
-  <dd><%= @task.task_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
-  <dd><%= @task.estimated_hours %></dd>
+
+      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+      <dd><%= @task.description %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
+      <dd><%= @task.priority %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
+      <dd><%= @task.task_type %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
+      <dd><%= @task.estimated_hours %></dd>
 
 
   <dt>Owner:</dt>
@@ -41,6 +42,7 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               boards_project_path(params[:pr_id]), :class => 'btn'  %>
+  
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_task_path(@task, :status_id=> params[:status_id],:pr_id => params[:pr_id]), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

@@ -8,7 +8,7 @@
 <div class="modal-body row-fluid">
 
   <div class="span3">
-
+  <% if @task.lock == false %>
     <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
     <dd>#<%= @task.id %></dd>
     <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
@@ -17,6 +17,13 @@
     <dd><%= @task.task_type %></dd>
     <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
     <dd><%= @task.estimated_hours %></dd>
+    
+
+  <% else %>
+
+    <img src="/assets/icon3.png" >
+
+  <% end %>
 
     <dt>Owner:</dt>
     <% @task.users.each do |user| %>
@@ -93,6 +100,10 @@
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_project_status_task_path(@task.status.project, @task.status, @task), :remote => true, :class => 'btn' %>
   <% end %>
+
+  <%= link_to t('.lock', :default => t("helpers.links.lock")),
+              change_lock_path(@task), :data => {:dismiss => "modal"}, :remote => true, :class => 'btn' %> 
+
   <% if can? :destroy, @task %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               project_status_task_path(@task.status.project, @task.status, @task),

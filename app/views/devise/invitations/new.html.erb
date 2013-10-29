@@ -7,16 +7,12 @@
 
   <%= f.input field %> 
 
+  <p> Select role of the new user </p>
+  <%= select_tag :role_guest, options_for_select( @roles_name, "Developer") %>
 
-  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
-
-      <%= f.association :role, :include_blank => false, 
-                               :input_html => { class: 'chosen-select selectpicker' } %>
-
-  <% end %>   
   <%= hidden_field_tag :project_id, @project.id %>
 
 <% end -%>
-
-<%= f.submit t("devise.invitations.new.submit_button") %>
+</br></br>
+<%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-primary" %>
 <% end %>

@@ -5,7 +5,14 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def new 
      @project = Project.find(params[:id])
-   
+     roles = Role.all  
+     @roles_name = Array.new
+     i = 0
+     roles.each do |r|
+        @roles_name[i] = r.name
+        i=i+1
+      end 
+
 
      self.resource = resource_class.new
      render :new
@@ -18,13 +25,13 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
 
-   def create
+  def create
 
     self.resource = invite_resource
 
     #Una vez que se ha creado el usuario que fue invitado, lo incluimos en el proyecto 
     project = Project.find(params[:project_id])
-    role = Role.find_by_name("Developer")
+    role = Role.find_by_name(params[:role_guest])
 
     p_role = ProjectRoleUser.new 
 

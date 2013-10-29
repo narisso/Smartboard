@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008175037) do
+ActiveRecord::Schema.define(:version => 20131029045753) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20131008175037) do
     t.string   "sha"
     t.string   "author_name"
     t.string   "author_email"
-    t.datetime "date"
+    t.string   "date"
     t.string   "message"
     t.integer  "task_id"
     t.datetime "created_at",   :null => false
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(:version => 20131008175037) do
     t.integer  "project_status_id"
     t.string   "dropbox_token"
     t.string   "github_token"
+    t.string   "repo_name"
+    t.string   "github_user"
   end
 
   create_table "reported_hours", :force => true do |t|
@@ -176,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20131008175037) do
     t.datetime "updated_at",       :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
+    t.boolean  "lock"
   end
 
   create_table "test_cases", :force => true do |t|
@@ -187,18 +190,28 @@ ActiveRecord::Schema.define(:version => 20131008175037) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "use_case_templates", :force => true do |t|
+    t.string   "name"
+    t.text     "template_form"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "project_id"
+  end
+
   create_table "use_cases", :force => true do |t|
     t.string   "name"
     t.text     "actors"
     t.text     "synopsis"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "use_case_template_id"
+    t.text     "data"
   end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "encrypted_password",     :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -217,9 +230,18 @@ ActiveRecord::Schema.define(:version => 20131008175037) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token", :unique => true
+  add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

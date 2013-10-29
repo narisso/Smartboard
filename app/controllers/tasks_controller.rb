@@ -177,6 +177,18 @@ class TasksController < ApplicationController
 
   end
 
+  def change_lock
+
+     @task = Task.find(params[:task_id])
+     if(not @task.lock == nil )
+       @task.lock = !@task.lock
+     else
+       @task.lock = false
+     end 
+     @task.save
+     redirect_to boards_project_path(@task.project)
+  end 
+
 
 end
 

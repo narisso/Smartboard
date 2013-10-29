@@ -60,9 +60,9 @@
 
 
               <%if user_signed_in?%>
-                            <li>
-                <div class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
-                  <div>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span id="notification-badge" class="badge badge-inverse">0</span></a>
+                  
                 <li>
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
@@ -124,10 +124,29 @@
     <%= yield(:javascripts) %>
     <script type="text/javascript">
 
-      var html =$.post( "../../users/notifications", { user_id: 1 },
+
+           $.post( "../../users/notifications", { user_id: 1 },
       function( data ) {
-  $('.dropdown').append(data);
-} );
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").append(n);
+      } );
+
+
+    setInterval(function(){
+      
+           $.post( "../../users/notifications", { user_id: 1 },
+      function( data ) {
+        $(".dropdown").children(".dropdown-menu").remove();
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
+
+
+    },10000);
+
+
       
 
     </script>

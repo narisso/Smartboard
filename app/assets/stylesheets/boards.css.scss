@@ -73,12 +73,16 @@
 
 .task {
 	height: 100px;
-	padding: 0;
+	padding: 0x;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 2px;
 	width: 240px;
 	float: left;
 	display:inline-block;
 	position:relative;
-	vertical-align: top;	
+	vertical-align: top;
+	border-radius: 2px;	
 
 	background-color: rgba(255,255,255,0.5);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -184,9 +188,12 @@
 .ui-state-highlight {
 	float:left;
 	height:100px;
-	border-color: black;
+	border-color: rgba(0,0,0,0.5);
+	border-style: dotted;
 	vertical-align: top;
 	width: 240px;
+	background-color: white;
+	color: white;
 }
 
 //Lateral Bar

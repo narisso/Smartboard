@@ -29,7 +29,8 @@
 	width: auto;
 	bottom: 0px;
 	left: 205px;
-	right: 250px;
+	right: 0px;
+	z-index: 20;
 
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -115,13 +116,13 @@
 	min-height: 100px;
 	padding-top: 5px;
 	padding-bottom:5px;
-
+	z-index: 0;
 	overflow-y: auto;
 }
 
 .task {
 	height: 100px;
-	padding: 0x;
+	padding: 0;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	margin-left: 2px;
@@ -145,7 +146,9 @@
   -moz-transform: rotate(-5deg);
   -ms-transform: rotate(-5deg);
   -o-transform: rotate(-5deg);
-  transform: rotate(-5deg);}
+  transform: rotate(-5deg);
+  z-index: 10;
+}
 
 
 

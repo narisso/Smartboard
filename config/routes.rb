@@ -27,6 +27,7 @@ Iic21542::Application.routes.draw do
 
 
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
+  match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
   #resources :project_statuses
   root :to => 'application#home'

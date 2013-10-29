@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 
-  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users
+  attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, :priority, :project_id, :requirement_id, :status_id, :status_update_at, :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users, :created_at
 
   belongs_to :label
   belongs_to :project

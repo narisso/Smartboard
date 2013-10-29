@@ -3,13 +3,33 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+@media screen and (max-width: 900px) {
+    .board, .fixed-right{
+        top: 122px;
+    }
+    .filters-container {
+    	top: 82px;
+    }
+
+}
+
+@media screen and (min-width: 901px) {
+    .board, .fixed-right{
+        top: 82px;
+    }
+    .filters-container {
+    	top: 42px;
+    }
+}
+
+
+
 .board {
 	position: absolute;
 	width: auto;
-	top: 42px;
 	bottom: 0px;
 	left: 205px;
-	right: 0px;
+	right: 250px;
 
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -25,13 +45,11 @@
 .board ul {
 	margin-left: 0;
 	list-style-type: none;
-}
-
-.board li {
-
-
+	margin: 0;
 
 }
+
+
 
 .board-small {
 	left: 205px;
@@ -40,6 +58,28 @@
 .board-big {
 	left: 60px;
 }
+
+
+.filters-container {
+	position: absolute;
+	width: auto;
+	height: 40px;
+	left: 50px;
+	right: 0px;
+
+	background-color: #f6f6f6;
+	z-index:0;
+
+}
+
+#filters * {
+	display: inline-block;
+}
+
+
+
+
+
 
 .column {
 	height: 98%;
@@ -56,13 +96,21 @@
 	box-shadow: 0 1px 1px rgba(0,0,0,0.2);	
 }
 
+.fixed-right {
+	position: absolute;
+	right: 0px;
+	bottom: 25px;
+	height: auto;
+	z-index: 0;
+}
+
 .column h4 {
 	
 	cursor: pointer;
 }
 
 .sortable {
-	height: 90%;
+	height: 83%;
 	width: 250px;
 	min-height: 100px;
 	padding-top: 5px;
@@ -188,12 +236,11 @@
 .ui-state-highlight {
 	float:left;
 	height:100px;
-	border-color: rgba(0,0,0,0.5);
-	border-style: dotted;
+	border-color: rgba(0,0,0,0.3);
+	border-style: double;
 	vertical-align: top;
 	width: 240px;
-	background-color: white;
-	color: white;
+	background-color: black;
 }
 
 //Lateral Bar

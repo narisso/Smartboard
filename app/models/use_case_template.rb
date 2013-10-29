@@ -20,7 +20,7 @@ class UseCaseTemplate < ActiveRecord::Base
   		template = UseCaseTemplate.new
       template.project = project
   		template.name = d[1]["name"]
-      template.template_form = d[1]["attributes"].to_s
+      template.template_form = d[1]["attributes"].to_json
       template.save
   	end
   end

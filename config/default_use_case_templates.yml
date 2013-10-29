@@ -1,22 +1,38 @@
 template1:
-  name: name1
+  name: RUP Template
   attributes:
     attribute1:
-      name: A1
-      input_type: 1
-      data_type: 1
-      data_input: V1,V2,V3
+      name: Use Case Name
+      input_type: text_field_tag
+      data_type: string
+      data_input: 
     atribuete2:
-      name: A2
-      input_type: 1
-      data_type: 1
-      data_input: V1,V2,V3
-
-template2:
-  name: name2
-  attributes:
-    attribute1:
-      name: A1
-      input_type: 1
-      data_type: 1
-      data_input: V1,V2,V3
+      name: Scope
+      input_type: input
+      data_type: string
+      data_input:
+    atribuete3:
+      name: Primary Actor
+      input_type: text_field_tag
+      data_type: string
+      data_input:
+    atribuete4:
+      name: Basic Flow
+      input_type: text_area_tag
+      data_type: text
+      data_input:
+    atribuete5:
+      name: Alternate Flow 1
+      input_type: text_area_tag
+      data_type: text
+      data_input:
+    atribuete6:
+      name: Alternate Flow 2
+      input_type: text_area_tag
+      data_type: text
+      data_input:
+    atribuete7:
+      name: Alternate Flow 3
+      input_type: text_area_tag
+      data_type: text
+      data_input:

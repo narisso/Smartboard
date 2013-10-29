@@ -5,7 +5,8 @@
             :input_html => { class: 'chosen-select selectpicker'} %>
   	<%= f.association :use_case_template,
             :collection => UseCaseTemplate.where(:project_id => @project),
-  					:input_html => { class: 'chosen-select selectpicker'} %>
+  					:input_html => { class: 'chosen-select selectpicker'},
+            :include_blank => true %>
   </div>
   <div id="template">
     <% if params[:action] == "edit" %>

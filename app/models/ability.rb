@@ -14,6 +14,8 @@ class Ability
 
 
     can :read, Project do |project|
+        can :manage, Status
+        
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"

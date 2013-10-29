@@ -20,7 +20,7 @@ Iic21542::Application.routes.draw do
   match '/dropbox/callback' => 'dropbox#callback' , :method => :get , :as =>  :dropbox_callback
   match 'tasks/reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'new_reported_hours', :as => 'new_reported_hours'
   post 'tasks/create_reported_hours/:task_id/:user_id', :controller => 'tasks', :action => 'create_reported_hours', :as => 'create_reported_hours'
-  match 'tasks/change_lock/:task_id', :controller => 'tasks', :action => 'change_lock', :as => 'change_lock'
+  #match 'tasks/change_lock/:task_id', :controller => 'tasks', :action => 'change_lock', :as => 'change_lock'
 
   #Subtasks
   match 'tasks/new_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'new_subtask', :as => 'new_subtask'
@@ -70,6 +70,9 @@ Iic21542::Application.routes.draw do
     end
     resources :statuses do
       resources :tasks do
+        member do
+          get :change_lock
+        end
         resources :comments
       end
     end

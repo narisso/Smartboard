@@ -102,7 +102,7 @@
   <% end %>
 
   <%= link_to t('.lock', :default => t("helpers.links.lock")),
-              change_lock_path(@task), :data => {:dismiss => "modal"}, :remote => true, :class => 'btn' %> 
+              change_lock_project_status_task_path(@project, @status, @task), :data => {:dismiss => "modal"}, :remote => true, :class => 'btn' %> 
 
   <% if can? :destroy, @task %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

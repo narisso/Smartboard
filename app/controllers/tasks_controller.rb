@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
 
   load_and_authorize_resource :project
-  load_and_authorize_resource :task, :through => :project, :shallow => true
+  load_and_authorize_resource :status, :through => :project
+  load_and_authorize_resource :task, :through => :status
 
   respond_to :html, :json
 
@@ -217,14 +218,14 @@ class TasksController < ApplicationController
 
   def change_lock
 
-     @task = Task.find(params[:task_id])
+     @task = Task.find(params[:id])
      if(not @task.lock == nil )
        @task.lock = !@task.lock
      else
        @task.lock = false
      end 
      @task.save
-     redirect_to boards_project_path(@task.project)
+     redirect_to boards_project_path(@project)
   end 
 
 

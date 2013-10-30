@@ -13,8 +13,10 @@
       <option>Today</option>
     </select>
     <label class="tasks-created-label" for="tasks-created" style=" width: 100px;">All</label>
-    <div class="btn"  onClick="filterByDateClick();"> Filter </div>
+    <!--<div class="btn"  onClick="filterByDateClick();"> Filter </div>-->
+    <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;" %>
   </form>
+
 </div>
 
 <%= render :partial => 'lateral' %>
@@ -29,7 +31,7 @@
 		
 		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
 		<h4 class='block text-center handle'><%= status.name%></h4>
-    <p class='block text-center handle'><%= status.tasks.length*100/@total %>% of total tasks</p>
+    <p class='block text-center handle task-percentage'><%= status.tasks.length*100/@total %>% of total tasks</p>
 
 		<ul class='sortable scroll' data-id='<%=status.id%>'> 
 			<% status.tasks.each_with_index do |task , i| %>
@@ -65,7 +67,7 @@
         </li>
 <% end %>
 
-<%= link_to "+", new_project_status_path(:project_id => @project.id),:class=>"add" %>
+
 
 </ul>
 
@@ -74,7 +76,7 @@
     
     <%= link_to "+", new_project_status_task_path(@project, @statuses.last), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
     <h4 class='block text-center handle'><%= @statuses.last.name%></h4>
-    <p class='block text-center handle'><%= @statuses.last.tasks.length*100/@total %>% of total tasks</p>
+    <p class='block text-center handle task-percentage'><%= @statuses.last.tasks.length*100/@total %>% of total tasks</p>
 
     <ul class='sortable scroll' data-id='<%=@statuses.last.id%>' style="margin:0px;"> 
       <% @statuses.last.tasks.each_with_index do |task , i| %>
@@ -123,6 +125,8 @@
   <script type="text/javascript">
  
 
+var totalTasks = <%= @total%>;
+
 function filterByDateClick(){
 
   if($( "#tasks-created" )[0].value =="Last Week") {
@@ -168,13 +172,28 @@ function filterByDate(date){
 
       var dateItem = new Date(stringdate);
 
-      if(dateItem>date)
+      if(dateItem>date){
         $(this).show();
-      else
+        $(this).removeAttr("vis");
+      }
+      else{
         $(this).hide();
+        $(this).attr("vis","hidden");
+      }
+
+
 
 
     });
+
+
+      $(".sortable").each(function(index) {
+            var i = $(this).children("[vis!='hidden']").length*100/totalTasks;
+
+            $(this).parent().children(".task-percentage").html(i + "% of total tasks");
+            console.log($(this).parent().children(".task-percentage"));
+
+      });
 
 
 }
@@ -193,10 +212,8 @@ function filterByDate(date){
       slide: function( event, ui ) {
         select[ 0 ].selectedIndex = ui.value - 1;
         $(".tasks-created-label").html(select[ 0 ].value)
+        filterByDateClick();
       }
-    });
-    $( "#tasks-created" ).change(function() {
-      slider.slider( "value", this.selectedIndex + 1 );
     });
   });
 
@@ -214,7 +231,6 @@ function filterByDate(date){
                   var id = $(this).data("id");
                   var col = $(this).index();
 
-                  console.log(id +":" + col);
 
                   $.post( "statuses/update_order", { status_id: id, num: col } );
 
@@ -226,19 +242,27 @@ function filterByDate(date){
     });
 
   $( "ul.sortable" ).sortable({
+      cursor: "move",
       connectWith: "ul.sortable",
       placeholder: "ui-state-highlight",
       forcePlaceholderSize: true,
+      helper: "clone",
+        appendTo: 'body',
+        containment: 'body',        
+        scroll: false,   
       start: function (event, ui) {
-            $(ui.item).addClass("dragging");                              
+            var i = ($(ui.item).parent().children().length-2)*100/totalTasks;
+            $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
+            $(ui.helper).addClass("dragging"); 
+            $(ui.helper).appendTo('body');
+
       },
       stop: function(event, ui){
-            $(ui.item).removeClass("dragging");
             var id = $(ui.item).data("id");
             var col = $(ui.item).parents(".column").data("id");
             $.post( "tasks/update_status", { task_id: id, col: col } );
-
-
+            var i = $(ui.item).parent().children().length*100/totalTasks;
+            $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
       }
     });
          

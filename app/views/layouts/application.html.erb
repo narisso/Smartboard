@@ -139,7 +139,7 @@
     <script type="text/javascript">
 
 
-           $.post( "../../users/notifications", { user_id: 1 },
+           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>", { user_id: 1 },
       function( data ) {
         $('.dropdown').append(data);
         var n = $(data).children().size() - 2;
@@ -149,7 +149,7 @@
 
     setInterval(function(){
       
-           $.post( "../../users/notifications", { user_id: 1 },
+           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>", { user_id: 1 },
       function( data ) {
         $(".dropdown").children(".dropdown-menu").remove();
         $('.dropdown').append(data);

@@ -152,7 +152,7 @@ class ProjectsController < ApplicationController
 
         Status.create({name: 'Backlog', project_id: @project.id, order: 1 })
         Status.create({name: 'In Progress', project_id: @project.id, order: 2})
-        Status.create({name: 'Done', project_id: @project.id, order: 3})
+        Status.create({name: 'Done', project_id: @project.id, order: 9999})
         @project.add_user_role(current_user, Role.first)
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }

@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
 
-  load_and_authorize_resource :project
-  load_and_authorize_resource :status, :through => :project
-  load_and_authorize_resource :task, :through => :status
+  #load_and_authorize_resource :project
+  #load_and_authorize_resource :status, :through => :project
+  #load_and_authorize_resource :task, :through => :status
 
-  respond_to :html, :json
+  #respond_to :html, :json
 
   def show_comments_of_task
     @task = Task.find(params[:id])
@@ -67,30 +67,26 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-    @task.task_type = @task.label.name
+    #@task.task_type = @task.label.name
     #@task.project = Project.find(params[:project_id])
-    #@task.status = Project.find(params[:status_id])
-
-    @task.users.each do |user|
-
-      @notification = Notification.new
-      @notification.user = user
-      @notification.link = boards_project_path(@task.project_id)
-      @notification.description = "hola"
-      @notification.viewed = false
-
-      @notification.save
-
-    end
-
+    #@task.status = Status.find(params[:status_id])
 
     respond_to do |format|
       if @task.save
+            @task.users.each do |user|
+              @notification = Notification.new
+              @notification.user = user
+              @notification.link = boards_project_path(@task.project_id)
+              @notification.description = "hola"
+              @notification.viewed = false
+              @notification.task = @task
+              @notification.save
+          end
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Error'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

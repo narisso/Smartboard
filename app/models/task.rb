@@ -28,7 +28,7 @@ class Task < ActiveRecord::Base
   has_many :sub_tasks
 
   attr_accessible :user_ids
-  before_create :set_unlock
+  before_save :set_unlock
 
   validates :name, :presence => true
   validate :label, :presence => true  
@@ -36,10 +36,12 @@ class Task < ActiveRecord::Base
 
   def set_unlock 
     self.lock = false
+    true
   end 
 
   def set_lock
     self.lock = true
+    true
   end
 
 end

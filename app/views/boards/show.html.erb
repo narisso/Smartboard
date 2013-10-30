@@ -70,7 +70,7 @@
 </ul>
 
 
-<div draggable="false" data-id="<%= @statuses.last.id %>" data-pos="<%= @statuses.last.order %>"  class='column fixed-right'  >
+<div draggable="false" data-id="<%= @statuses.last.id %>" data-pos="<%= @statuses.last.order %>"  class='column fixed-right last hide'  >
     
     <%= link_to "+", new_project_status_task_path(@project, @statuses.last), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right" %>
     <h4 class='block text-center handle'><%= @statuses.last.name%></h4>
@@ -242,14 +242,10 @@ function filterByDate(date){
       }
     });
          
-  $('.ltl-nav').removeClass('hide');
-  $('.board').removeClass('hide');
-  $('.filters-container').removeClass('hide');
+  $('.hide').removeClass('hide');
+
 	$('.progress').addClass('hide');
 
-	$('.board').addClass('slide-left');
-	$('.ltl-nav').addClass('slide-right');
-	var w = $('.column').outerWidth()*<%= @statuses.count %>;
 
 
 

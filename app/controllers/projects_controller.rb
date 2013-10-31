@@ -31,11 +31,13 @@ class ProjectsController < ApplicationController
     @linkDropbox = false
     @linkGithub = false
 
-    if session[:dropbox_session]
+    
+    if session[:dropbox_session]  
       @linkDropbox = true
       @dropbox_token = session[:dropbox_session]
-      session.delete :dropbox_session
-    end
+      session.delete :dropbox_session   
+    end 
+    
 
     if session[:github_session]
       @linkGithub = true
@@ -199,8 +201,6 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
-
-
-   
+  
 
 end

@@ -14,8 +14,11 @@ class Users::InvitationsController < Devise::InvitationsController
       end 
 
 
-     self.resource = resource_class.new
-     render :new
+      self.resource = resource_class.new
+      respond_to do |format|
+        format.json { render json: @current_user }
+        format.js
+      end
      
   end
 

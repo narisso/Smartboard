@@ -8,7 +8,9 @@
 <div class="modal-body row-fluid">
 
   <div class="span3">
-  <% if @task.lock == false %>
+
+  <% if @task.lock == false or @task.lock == nil  %>
+
     <dt><strong><%= model_class.human_attribute_name(:id) %>:</strong></dt>
     <dd>#<%= @task.id %></dd>
     <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
@@ -20,7 +22,6 @@
     
 
   <% else %>
-
     <img src="/assets/icon3.png" >
 
   <% end %>

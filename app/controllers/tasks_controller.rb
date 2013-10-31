@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
 
-  #load_and_authorize_resource :project
-  #load_and_authorize_resource :status, :through => :project
-  #load_and_authorize_resource :task, :through => :status
+ load_and_authorize_resource :project
+ load_and_authorize_resource :status, :through => :project
+ load_and_authorize_resource :task, :through => :status
 
-  #respond_to :html, :json
+ respond_to :html, :json
 
   def show_comments_of_task
     @task = Task.find(params[:id])
@@ -222,7 +222,7 @@ class TasksController < ApplicationController
      if(not @task.lock == nil )
        @task.lock = !@task.lock
      else
-       @task.lock = false
+       @task.lock = true
      end 
      @task.save
      redirect_to boards_project_path(@project)

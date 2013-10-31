@@ -29,6 +29,10 @@ class BoardsController < ApplicationController
 		end
 	
 
+
+			@highlight = params[:task_highlight]
+
+
         respond_to do |format|
             format.html 
         end

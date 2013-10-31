@@ -40,7 +40,7 @@ gem 'devise_invitable'
 
 # Google and Facebook Login
 gem 'omniauth-google-oauth2'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '1.4.0'
 
 # Permissions
 gem 'cancan'

@@ -1,1 +1,2 @@
-$('#modal').html("<%= escape_javascript(render 'form') %>");
+$('#modal').html('<%= escape_javascript(render :partial => 'form', :object => @status) %>');
+$('#modal').modal('show')

@@ -79,7 +79,7 @@ class TasksController < ApplicationController
               @notification.link = boards_project_path(@task.project_id)
               @notification.description = "hola"
               @notification.viewed = false
-              @notification.task = @task
+              @notification.task_id = @task.id
               @notification.save
           end
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }

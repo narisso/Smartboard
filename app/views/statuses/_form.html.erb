@@ -6,7 +6,7 @@
 <%= simple_form_for [@project, @status] , :html => { :class => 'form-horizontal' } do |f| %>
 	<div class="modal-body">
 	<%= f.input :name %>
-	<%= f.input :order,  :input_html =>{ :value => 1 } %>
+	<%= f.input :order,  :input_html =>{ :value => 1, :maxlength => 4  } %>
   	</div>
 
   	<div class="modal-footer">

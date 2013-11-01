@@ -14,7 +14,7 @@
     </select>
     <label class="tasks-created-label" for="tasks-created" style=" width: 100px;">All</label>
     <!--<div class="btn"  onClick="filterByDateClick();"> Filter </div>-->
-    <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;" %>
+    <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;",:data => {:toggle => "modal", :remote => true} %>
   </form>
 
 </div>

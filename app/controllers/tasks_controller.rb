@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
 
- load_and_authorize_resource :project
- load_and_authorize_resource :status, :through => :project
- load_and_authorize_resource :task, :through => :status
+ load_and_authorize_resource :project, :except => [:update_status]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status]
 
  respond_to :html, :json
 
@@ -202,6 +202,7 @@ class TasksController < ApplicationController
   #end
 
   def update_status
+
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])

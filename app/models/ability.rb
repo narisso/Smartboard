@@ -15,6 +15,9 @@ class Ability
 
     can :read, Project do |project|
         can :manage, Status
+        can :manage, UseCase
+        can :manage, UseCaseTemplate
+        can :manage, UseCaseGroup
         
         project.users.include? user 
 

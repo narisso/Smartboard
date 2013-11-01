@@ -1,5 +1,5 @@
 <% @task.comments.reverse.each do |c| %>
-	<div class="well">
+	<div id="comment<%= c.id%>" class="well">
 
       	<% if c.user.name != nil && c.user.name != "" %>
       		<h5><%= c.user.name %></h5>
@@ -8,7 +8,7 @@
       	<% end %>
       	<% if current_user == c.user %>
       	<%= link_to "x", delete_project_status_task_comment_path(c.task.project, c.task.status, c.task, c), :class => 'close', :remote => true  , :method => 'delete'%>
-		<p><%= best_in_place c, :message, :type => :textarea, :style => { width: => '200px'},:path => update_project_status_task_comment_path(c.task.project, c.task.status, c.task, c) %></p>
+		<p><%= best_in_place c, :message, :type => :textarea, :style => { :width => '200px'},:path => update_project_status_task_comment_path(c.task.project, c.task.status, c.task, c) %></p>
 		<% else %>
 		<p><%= c.message %></p>
 		<% end %>

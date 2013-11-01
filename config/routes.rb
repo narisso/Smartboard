@@ -27,6 +27,8 @@ Iic21542::Application.routes.draw do
 
   #Comments
   put '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:id' => 'comments#update', :as => 'update_project_status_task_comment'
+  delete '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:id' => 'comments#destroy', :as => 'delete_project_status_task_comment'
+
 
   #Github Routes
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth

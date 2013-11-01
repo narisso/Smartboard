@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+
+  respond_to :html, :json
+
   # GET /comments
   # GET /comments.json
   def index
@@ -84,7 +87,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params[:comment_id])
     @task = Task.find(params[:task_id])
     @project = @task.project
     @comment.destroy
@@ -95,4 +98,11 @@ class CommentsController < ApplicationController
       format.js { redirect_to project_status_task_comments_path }
     end
   end
+
+  def delete_comment
+    @status = Status.find(params[:status_id])
+    @comment=Comment.find(params[:comment_id])
+    @comment.destroy
+  end
+
 end

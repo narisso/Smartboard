@@ -196,6 +196,9 @@
 	
 	height: 30px;
 	padding: 0;
+//	overflow:hidden;
+//	text-overflow:ellipsis;
+	word-wrap:break-word;
 
 }
 

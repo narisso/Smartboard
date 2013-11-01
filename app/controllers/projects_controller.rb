@@ -190,6 +190,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    
     @project.destroy
 
     respond_to do |format|

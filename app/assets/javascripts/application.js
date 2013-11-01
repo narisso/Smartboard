@@ -77,6 +77,10 @@ $(document).ready(function() {
   $('#popover_docs').popover({ trigger: "hover" });
   $('#popover_cal').popover({ trigger: "hover" });
   $('#popover_cases').popover({ trigger: "hover" });
+  $('#popover_config').popover({ trigger: "hover" });
+
+  $(".task").click(function(){
+  });
 
 });
 

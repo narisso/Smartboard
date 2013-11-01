@@ -29,7 +29,7 @@
 		
 		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right",:style=>"position:absolute; margin:5px;"%>
 		<h4 class='block text-center handle'><%= status.name%></h4>
-    <p class='block text-center handle task-percentage'><%= status.tasks.length*100/@total %>% of total tasks</p>
+    <p class='block text-center handle task-percentage'><%= status.tasks.length.to_i*100/@total.to_i %>% of total tasks</p>
 
 		<ul class='sortable scroll' data-id='<%=status.id%>'> 
 			<% status.tasks.each_with_index do |task , i| %>
@@ -186,7 +186,7 @@ function filterByDate(date){
 
 
       $(".sortable").each(function(index) {
-            var i = $(this).children("[vis!='hidden']").length*100/totalTasks;
+            var i = Math.floor( $(this).children("[vis!='hidden']").length*100/totalTasks );
 
             $(this).parent().children(".task-percentage").html(i + "% of total tasks");
 
@@ -242,14 +242,14 @@ function filterByDate(date){
   $( "ul.sortable" ).sortable({
       cursor: "move",
       connectWith: "ul.sortable",
-      placeholder: "ui-state-highlight",
+      placeholder: "ui-state-highlight-board",
       forcePlaceholderSize: true,
       helper: "clone",
         appendTo: 'body',
         containment: 'body',        
         scroll: false,   
       start: function (event, ui) {
-            var i = ($(ui.item).parent().children().length-2)*100/totalTasks;
+            var i = Math.floor(  ($(ui.item).parent().children().length-2)*100/totalTasks );
             $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
             $(ui.helper).addClass("dragging"); 
             $(ui.helper).appendTo('body');
@@ -259,7 +259,7 @@ function filterByDate(date){
             var id = $(ui.item).data("id");
             var col = $(ui.item).parents(".column").data("id");
             $.post( "tasks/update_status", { task_id: id, col: col } );
-            var i = $(ui.item).parent().children().length*100/totalTasks;
+            var i = Math.floor(  $(ui.item).parent().children().length*100/totalTasks );
             $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
       }
     });

@@ -35,7 +35,8 @@ class ProjectsController < ApplicationController
     if session[:dropbox_session]  
       @linkDropbox = true
       @dropbox_token = session[:dropbox_session]
-      session.delete :dropbox_session   
+      session.delete :dropbox_session 
+      send_confirmation_doc  
     end 
     
 
@@ -202,5 +203,20 @@ class ProjectsController < ApplicationController
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
   
+  def send_confirmation_doc
+
+      dbsession = DropboxSession.deserialize(@dropbox_token)
+      @file_path ="SMARTBOARD/README_DROPBOX.txt"
+      file = open(@file_path)
+      client = DropboxClient.new(dbsession)
+      response = client.put_file(@file_path, file)
+      flash[:success] = "We have send a document to your dropbox "
+
+      puts "uploaded:", response.inspect
+  rescue 
+
+      @dropbox_token = nil
+      flash[:success] = "Failed authorized "
+  end
 
 end

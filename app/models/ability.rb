@@ -15,18 +15,32 @@ class Ability
 
     can :read, Project do |project|
         can :manage, Status
-        
+
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"
             can :manage, :all
+            cannot :update, Task do |task|
+                task.lock == true 
+            end 
+            cannot :destroy, Task do |task|
+                task.lock == true 
+            end 
         elsif project.get_role(user) == "Project Manager"
             can :manage, Task
+            cannot :update, Task do |task|
+                task.lock == true 
+            end 
+            cannot :destroy, Task do |task|
+                task.lock == true 
+            end 
         elsif project.get_role(user) == "Developer"   
             can :create, Task
             can :read, Task
             can :update, Task do |task|
-              task.users.include? user
+                if task.lock == false  
+                    task.users.include? user
+                end 
             end     
             
         else #Caso en el que es cliente

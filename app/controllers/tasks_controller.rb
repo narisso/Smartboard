@@ -164,6 +164,7 @@ class TasksController < ApplicationController
   end
 
   def create_subtask
+    @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
     @subtask = SubTask.new(params[:subtask])
     @task = Task.find(params[:task_id])
@@ -173,17 +174,20 @@ class TasksController < ApplicationController
   end
 
   def new_subtask
+    @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:task_id])
     @subtask = SubTask.new
   end
 
   def delete_subtask
+    @status = Status.find(params[:status_id])
     @subtask=SubTask.find(params[:sub_task_id])
     @subtask.destroy
   end
 
   def update_subtask
+    @status = Status.find(params[:status_id])    
     @project = Project.find(params[:project_id])
     @subtask = SubTask.find(params[:sub_task_id])
     @subtask.update_attributes(params[:sub_task])

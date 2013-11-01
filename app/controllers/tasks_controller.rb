@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
 
  load_and_authorize_resource :project, :except => [:update_status]
- load_and_authorize_resource :status, :through => :project, :except => [:update_status]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
+
 
  respond_to :html, :json
 

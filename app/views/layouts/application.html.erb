@@ -59,12 +59,18 @@
             <ul class="nav pull-right">
 
              <% if @project and not @project.id.nil? %>
-                  <li><%= link_to image_tag('icon1.png', :alt => 'Dropbox github' ), '#' %></li>
-                     <%if @project and not @project.dropbox_token.nil? %>
-                        <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
-                    <%else %>
-                        <li><%= link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' %></li>
-                    <% end %>
+                   <!-- Github Icons-->
+                  <%if @project and not @project.github_token.nil? %>
+                      <li><%= link_to image_tag('github_color.png', :alt => 'Github vinculo' ), '#' %></li>
+                  <%else %>
+                      <li><%= link_to image_tag('github.png', :alt => 'Github vinculo' ), github_auth_path %></li>
+                  <% end %>    
+                  <!-- Dropbox Icons-->
+                  <%if @project and not @project.dropbox_token.nil? %>
+                      <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
+                  <%else %>
+                      <li><%= link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' %></li>
+                  <% end %>
              <% end %>
 
               <%if user_signed_in?%>

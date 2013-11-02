@@ -45,6 +45,11 @@ class StatusesController < ApplicationController
     @status = Status.new(params[:status])
     @project= Project.find(params[:project_id])
     @status.project_id = params[:project_id]
+    if @status.name == "" || @status.name == nil
+      aux =Status.last.id+1
+      @status.name = "Default"+aux.to_s
+    end
+
 
     respond_to do |format|
       if @status.save

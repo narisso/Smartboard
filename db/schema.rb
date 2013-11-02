@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.string   "link"
+    t.string   "description"
+    t.integer  "user_id"
+    t.boolean  "viewed"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "task_id"
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "project_role_users", :force => true do |t|
     t.integer  "project_id"
     t.integer  "role_id"
@@ -247,6 +259,9 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -254,9 +269,6 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

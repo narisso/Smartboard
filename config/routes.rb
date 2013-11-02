@@ -20,13 +20,15 @@ Iic21542::Application.routes.draw do
   match '/dropbox/callback' => 'dropbox#callback' , :method => :get , :as =>  :dropbox_callback
 
   #Subtasks
-  match 'tasks/new_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'new_subtask', :as => 'new_subtask'
-  post 'tasks/create_subtask/:project_id/:task_id', :controller => 'tasks', :action => 'create_subtask', :as => 'create_subtask'
-  match 'tasks/delete_subtask/:project_id/:sub_task_id', :controller => 'tasks', :action => 'delete_subtask', :as => 'delete_subtask'
-  put 'tasks/update_subtask/:project_id/:sub_task_id',:controller => 'tasks', :action => 'update_subtask', :as => 'update_subtask'
+  match 'tasks/new_subtask/:status_id/:project_id/:task_id', :controller => 'tasks', :action => 'new_subtask', :as => 'new_subtask'
+  post 'tasks/create_subtask/:status_id/:project_id/:task_id', :controller => 'tasks', :action => 'create_subtask', :as => 'create_subtask'
+  match 'tasks/delete_subtask/:status_id/:project_id/:sub_task_id', :controller => 'tasks', :action => 'delete_subtask', :as => 'delete_subtask'
+  put 'tasks/update_subtask/:status_id/:project_id/:sub_task_id',:controller => 'tasks', :action => 'update_subtask', :as => 'update_subtask'
 
   #Comments
   put '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:id' => 'comments#update', :as => 'update_project_status_task_comment'
+  match '/projects/:project_id/statuses/:status_id/tasks/:task_id/comments/:comment_id' => 'comments#delete_comment', :as => 'delete_project_status_task_comment'
+
 
   #Github Routes
   match '/github/authorize'   => 'github#authorize' , :method => :get , :as => :github_auth
@@ -34,6 +36,10 @@ Iic21542::Application.routes.draw do
 
   #Hook Route
   match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
+
+
+  match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
+  match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
   #resources :project_statuses
   root :to => 'application#home'

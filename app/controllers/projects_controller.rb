@@ -31,11 +31,14 @@ class ProjectsController < ApplicationController
     @linkDropbox = false
     @linkGithub = false
 
-    if session[:dropbox_session]
+    
+    if session[:dropbox_session]  
       @linkDropbox = true
       @dropbox_token = session[:dropbox_session]
-      session.delete :dropbox_session
-    end
+      session.delete :dropbox_session 
+      send_confirmation_doc  
+    end 
+    
 
     if session[:github_session]
       @linkGithub = true
@@ -152,7 +155,7 @@ class ProjectsController < ApplicationController
 
         Status.create({name: 'Backlog', project_id: @project.id, order: 1 })
         Status.create({name: 'In Progress', project_id: @project.id, order: 2})
-        Status.create({name: 'Done', project_id: @project.id, order: 3})
+        Status.create({name: 'Done', project_id: @project.id, order: 9999})
         @project.add_user_role(current_user, Role.first)
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
@@ -187,6 +190,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    
     @project.destroy
 
     respond_to do |format|
@@ -199,8 +203,21 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+  
+  def send_confirmation_doc
 
+      dbsession = DropboxSession.deserialize(@dropbox_token)
+      @file_path ="SMARTBOARD/README_DROPBOX.txt"
+      file = open(@file_path)
+      client = DropboxClient.new(dbsession)
+      response = client.put_file(@file_path, file)
+      flash[:success] = "We have send a document to your dropbox "
 
-   
+      puts "uploaded:", response.inspect
+  rescue 
+
+      @dropbox_token = nil
+      flash[:success] = "Failed authorized "
+  end
 
 end

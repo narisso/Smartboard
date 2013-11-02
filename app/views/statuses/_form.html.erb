@@ -1,19 +1,15 @@
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h1>Add Column</h1>
-</div>
-
 <%= simple_form_for [@project, @status] , :html => { :class => 'form-horizontal' } do |f| %>
-	<div class="modal-body">
-	<%= f.input :name %>
-	<%= f.input :order,  :input_html =>{ :value => 1 } %>
-  	</div>
-
-  	<div class="modal-footer">
-  
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h1>Add Column</h1>
+  </div>
+  <div class="modal-body form-horizontal">
+    <%= f.input :name, :label =>"Name", :required => false %>
+  	<%= f.input :order,  :as => :hidden, :input_html => { :value => "1" } %>
+  </div>
+  <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 '#', :class => 'btn', :data => {:dismiss => "modal"} %>
-    </div>
-  
+  </div>
 <% end %>

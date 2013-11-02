@@ -19,6 +19,11 @@ def callback
 	dbsession = DropboxSession.deserialize(session[:dropbox_session])
 	dbsession.get_access_token #we've been authorized, so now request an access_token
 	session[:dropbox_session] = dbsession.serialize	
+	@file_path ="doc/README_DROPBOX.txt"
+	file = open(@file_path)
+	client = DropboxClient.new(dbsession)
+	response = client.put_file(@file_path, file)
+	puts "uploaded:", response.inspect
 	flash[:success] = "You have successfully authorized with dropbox."
 
 	redirect_to session[:return_to]	

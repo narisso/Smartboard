@@ -57,15 +57,51 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
+
              <% if @project and not @project.id.nil? %>
-                  <li><%= link_to image_tag('icon1.png', :alt => 'Dropbox github' ), '#' %></li>
+                    <%if @project and not @project.github_token.nil? %>
+                        <li><%= link_to image_tag('github_color.png', :alt => 'Github'), '#github_menu' %></li>
+
+                        <div id = "#github_menu" role="menu" class="dropdown-menu">
+                          <li><a tabindex="-1" href="#">Action</a></li>
+
+
+                        </div>
+
+
+
+                    <%else %>
+                        <li><%= link_to image_tag('github.png', :alt => 'Github' ), '/github/authorize' %></li>
+                    <% end %>
+                  <!--li><%= link_to image_tag('icon1.png', :alt => 'Github' ), '#' %></li-->
                      <%if @project and not @project.dropbox_token.nil? %>
-                        <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
-                  <%else %>
-                        <li><%= link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' %></li>
-                  <% end %>
+                 <!-- Dropbox Icons-->
+                  <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
+                <%else %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"><%= image_tag('dropbox.png', :alt => 'Dropbox vinculo', :height => "5px" ) %></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Inbox</a></li>
+                      <li><a href="#">Drafts</a></li>
+                      <li><a href="#">Sent Items</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Trash</a></li>
+                    </ul>
+                  </li>
+                      <!-- link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' -->
+
+                     <!-- <ul class="dropdown-menu">
+                        <li role="presentation"><a data-target="#" href="/dropbox/authorize" tabindex="-1" role="menuitem">Link to dropbox</a></li>
+                      </ul>
+                    </li>-->
+                <% end %>
              <% end %>
-             <%if user_signed_in?%>
+
+              <%if user_signed_in?%>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span id="notification-badge" class="badge badge-inverse">0</span></a>
+                  
+                
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
              <%else%>
@@ -107,9 +143,8 @@
               <%= render 'layouts/lateral' %>
             </div>
           <% end %>
-          <div class="main-content-big scroll span6">
             <%= yield %>
-          </div>
+
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
@@ -129,8 +164,42 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %> 
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
-    
+    <script type="text/javascript">
+
+<%if user_signed_in?%>
+      $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+      function( data ) {
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
+
+
+    setInterval(function(){
+      
+           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+      function( data ) {
+        $(".dropdown").children(".dropdown-menu").remove();
+        $('.dropdown').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
+
+
+    },10000);
+
+    <%end%>
+
+
+    $( document ).ready(function() {
+      $("#ltl-bar-nav").show();
+  });
+
+      
+
+    </script>
 
   </body>
 </html>

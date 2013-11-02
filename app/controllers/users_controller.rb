@@ -80,4 +80,36 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+#POST /users/notifications
+def notifications
+  id = current_user.id
+
+  @notifications = Notification.where("user_id = ? AND viewed = ?", id, false)
+    respond_to do |format|
+      format.html { render :layout => false } # notification.html.erb
+      format.json { render json: @notifications }
+    end
+end
+
+#GET /users/notifications/1
+def notification
+  @notification = Notification.find(params[:notification_id])
+  @notification.viewed = true
+    respond_to do |format|
+      if @notification.save
+        format.html { redirect_to @notification.link, :params => {:task_highlight => @notification.task_id} } # notification.html.erb
+        format.json { render json: @notification }
+      else
+        format.html { redirect_to @notification.link } # notification.html.erb
+        format.json { render json: @notification }
+      end
+    end
+end
+
+
+
+
+
 end

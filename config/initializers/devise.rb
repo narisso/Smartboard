@@ -253,8 +253,8 @@ Devise.setup do |config|
   raise "#{devise_config_file} is missing!" unless File.exists? devise_config_file
   devise_config = YAML.load_file(devise_config_file)[Rails.env].symbolize_keys
 
-  config.omniauth :google_oauth2, '632640567465.apps.googleusercontent.com', 'Eb5A8KadNoCzUPY4esc2Bkk4'
-  config.omniauth :facebook, devise_config[:app_id], devise_config[:api_key], {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  config.omniauth :google_oauth2, '632640567465.apps.googleusercontent.com', 'Eb5A8KadNoCzUPY4esc2Bkk4', {:client_options => {:ssl => {:verify => false}}}
+  config.omniauth :facebook, devise_config[:app_id], devise_config[:api_key], {:scope => 'email, offline_access', :client_options => {:ssl => {:verify => false}}}
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

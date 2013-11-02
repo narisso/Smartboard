@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
 
-  load_and_authorize_resource :project
-  load_and_authorize_resource :status, :through => :project
-  load_and_authorize_resource :task, :through => :status
+ load_and_authorize_resource :project, :except => [:update_status]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
 
-  respond_to :html, :json
+
+ respond_to :html, :json
 
   def show_comments_of_task
     @task = Task.find(params[:id])
@@ -65,17 +66,27 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-    @task.task_type = @task.label.name
-    @task.project = Project.find(params[:project_id])
-    @task.status = Status.find(params[:status_id])
+
+    #@task.task_type = @task.label.name
+    #@task.project = Project.find(params[:project_id])
+    #@task.status = Status.find(params[:status_id])
 
     respond_to do |format|
       if @task.save
+            @task.users.each do |user|
+              @notification = Notification.new
+              @notification.user = user
+              @notification.link = boards_project_path(@task.project_id)
+              @notification.description = "You were assigned to a new task"
+              @notification.viewed = false
+              @notification.task_id = @task.id
+              @notification.save
+          end
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        format.js { redirect_to new_project_status_task_path, alert: 'Error when creating Task'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Error'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -153,6 +164,7 @@ class TasksController < ApplicationController
   end
 
   def create_subtask
+    @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
     @subtask = SubTask.new(params[:subtask])
     @task = Task.find(params[:task_id])
@@ -162,17 +174,20 @@ class TasksController < ApplicationController
   end
 
   def new_subtask
+    @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:task_id])
     @subtask = SubTask.new
   end
 
   def delete_subtask
+    @status = Status.find(params[:status_id])
     @subtask=SubTask.find(params[:sub_task_id])
     @subtask.destroy
   end
 
   def update_subtask
+    @status = Status.find(params[:status_id])    
     @project = Project.find(params[:project_id])
     @subtask = SubTask.find(params[:sub_task_id])
     @subtask.update_attributes(params[:sub_task])
@@ -187,6 +202,7 @@ class TasksController < ApplicationController
   #end
 
   def update_status
+
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])
@@ -211,7 +227,7 @@ class TasksController < ApplicationController
      if(not @task.lock == nil )
        @task.lock = !@task.lock
      else
-       @task.lock = false
+       @task.lock = true
      end 
      @task.save
      redirect_to boards_project_path(@project)

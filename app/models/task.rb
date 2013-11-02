@@ -26,10 +26,10 @@ class Task < ActiveRecord::Base
   has_many :sub_tasks
 
   attr_accessible :user_ids
-  before_create :set_unlock
+  after_create :set_unlock
 
   validates :name, :presence => true
-  validate :label, :presence => true  
+  validates :label, :presence => true  
   validates :estimated_hours, :numericality => { :greater_than_or_equal_to => 1 }
 
   def set_unlock 

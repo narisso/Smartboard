@@ -46,8 +46,6 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
-    @task.project = Project.find(params[:project_id])
-    @task.status = Status.find(params[:status_id])
     @editing = false
 
     respond_to do |format|
@@ -68,8 +66,8 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.task_type = @task.label.name
-    #@task.project = Project.find(params[:project_id])
-    #@task.status = Project.find(params[:status_id])
+    @task.project = Project.find(params[:project_id])
+    @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
       if @task.save
@@ -77,7 +75,7 @@ class TasksController < ApplicationController
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        format.js { redirect_to new_project_status_task_path, alert: 'Name must not be blank'}
+        format.js { redirect_to new_project_status_task_path, alert: 'Error when creating Task'}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

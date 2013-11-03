@@ -243,6 +243,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
@@ -275,7 +276,7 @@ DEPENDENCIES
   railroady
   rails (= 3.2.13)
   rails-erd
-  rspec-rails (~> 2.6.1)
+  rspec-rails (~> 2.0)
   sass-rails (~> 3.2.5)
   simple_form
   sqlite3

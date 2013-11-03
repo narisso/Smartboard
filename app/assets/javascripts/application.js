@@ -25,7 +25,6 @@ chosenSelect();
 
 $('#side_close_button').click(ltl_bar_change);
 
-
 // Script for tabs on task modal    
 $('#task_tab a').click(function (e) {
   e.preventDefault();
@@ -80,6 +79,8 @@ $(document).ready(function() {
   $('#popover_config').popover({ trigger: "hover" });
 
   $(".task").click(function(){
+
+   // $(this).find("a")[0].click()
   });
 
 });

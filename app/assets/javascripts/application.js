@@ -80,7 +80,7 @@ $(document).ready(function() {
 
   $(".task").click(function(){
 
-    $(this).find("a")[0].click()
+   // $(this).find("a")[0].click()
   });
 
 });

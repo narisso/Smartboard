@@ -60,14 +60,37 @@
 
              <% if @project and not @project.id.nil? %>
                     <%if @project and not @project.github_token.nil? %>
-                        <li><%= link_to image_tag('github_color.png', :alt => 'Github'), '#github_menu' %></li>
+                        <!--li><%= link_to image_tag('github_color.png', :alt => 'Github'), '#github_menu' %></li-->
 
-                        <div id = "#github_menu" role="menu" class="dropdown-menu">
-                          <li><a tabindex="-1" href="#">Action</a></li>
+                        <li>
+                        <div class="btn-group">
+                          <div class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+                            <!--span class="caret"></span-->
+                            <%= image_tag('github_color.png', :alt => 'Github') %>
+                          </div>
+                          <ul class="dropdown-menu">
+                            <!--li><a tabindex="-1" href="#">Action</a></li>
+                            <li><a tabindex="-1" href="#">Another action</a></li>
+                            <li><a tabindex="-1" href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="#">Separated link</a></li-->
+                            <% if @project.github_token %>
+                             <% if !@project.github_token.empty? %>
+                                <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
+                                <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
+                                  <% repo_list.each do |repo|%>
+                                    <li><a tabindex="-1" href="#"><%=repo%></a></li>
+                                  <% end %>
 
 
-                        </div>
+                                <% end %>
+                             <% end %>
+                            <% end %>
 
+
+
+                          </ul>
+                        </div></li>
 
 
                     <%else %>
@@ -77,7 +100,7 @@
                      <%if @project and not @project.dropbox_token.nil? %>
                  <!-- Dropbox Icons-->
                   <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
-                <%else %>
+                     <%else %>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle"><%= image_tag('dropbox.png', :alt => 'Dropbox vinculo', :height => "5px" ) %></a>
                     <ul class="dropdown-menu">
@@ -166,7 +189,7 @@
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
-    <script type="text/javascript">
+    <!--script type="text/javascript">
 
 
            $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>", { user_id: 1 },
@@ -193,7 +216,7 @@
 
       
 
-    </script>
+    </script-->
 
   </body>
 </html>

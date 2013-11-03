@@ -78,7 +78,7 @@ class TasksController < ApplicationController
               @notification = Notification.new
               @notification.user = user
               @notification.link = boards_project_path(@task.project_id)
-              @notification.description = "hola"
+              @notification.description = "You were assigned to a new task"
               @notification.viewed = false
               @notification.task_id = @task.id
               @notification.save

@@ -84,7 +84,9 @@ class UsersController < ApplicationController
 
 #POST /users/notifications
 def notifications
-  @notifications = Notification.where("user_id = ? AND viewed = ?", params[:user_id], false)
+  id = current_user.id
+
+  @notifications = Notification.where("user_id = ? AND viewed = ?", id, false)
     respond_to do |format|
       format.html { render :layout => false } # notification.html.erb
       format.json { render json: @notifications }

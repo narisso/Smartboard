@@ -25,7 +25,6 @@ chosenSelect();
 
 $('#side_close_button').click(ltl_bar_change);
 
-
 // Script for tabs on task modal    
 $('#task_tab a').click(function (e) {
   e.preventDefault();

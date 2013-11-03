@@ -91,19 +91,24 @@ class ProjectsController < ApplicationController
   end
 
   def hook
+    @project = Project.find(params[:id])
 
-
-    c = JSON.parse(params[:payload])
-    commit = Commit.new
-    commit.author_email = c["head_commit"]["author"]["email"]
-    commit.author_name = c["head_commit"]["author"]["name"]
-    commit.message = c["head_commit"]["message"]
-    commit.url = c["head_commit"]["url"]
-    commit.sha = c["head_commit"]["id"]
-    commit.date = c["head_commit"]["timestamp"]
     sp = c["head_commit"]["message"].split "#"
-    commit.task_id = sp[-1].to_i
-    commit.save
+    taskid = sp[-1].to_i
+    da_task = @project.tasks.find(taskid)
+
+    if da_task then
+      c = JSON.parse(params[:payload])
+      commit = Commit.new
+      commit.author_email = c["head_commit"]["author"]["email"]
+      commit.author_name = c["head_commit"]["author"]["name"]
+      commit.message = c["head_commit"]["message"]
+      commit.url = c["head_commit"]["url"]
+      commit.sha = c["head_commit"]["id"]
+      commit.date = c["head_commit"]["timestamp"]
+      commit.task_id = taskid
+      commit.save
+    end
 
     #respond 200
 

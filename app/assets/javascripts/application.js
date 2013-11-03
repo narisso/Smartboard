@@ -23,26 +23,7 @@ $(document).bind("page:load", function() {
 
 chosenSelect();
 
-function ltl_bar_change(){
-        if($('.ltl-nav-open').length>0){
-
-                $('.ltl-nav-open').addClass('ltl-nav-close');
-                $('.ltl-nav-open').removeClass('ltl-nav-open');
-                $('.main-content-small').addClass('main-content-big');
-                $('.main-content-small').removeClass('main-content-small');
-        }
-        else{
-                
-                $('.ltl-nav-close').addClass('ltl-nav-open');
-                $('.ltl-nav-close').removeClass('ltl-nav-close');
-                $('.main-content-big').addClass('main-content-small');
-                $('.main-content-big').removeClass('main-content-big');
-        }
-
-}
-
 $('#side_close_button').click(ltl_bar_change);
-
 
 // Script for tabs on task modal    
 $('#task_tab a').click(function (e) {
@@ -76,29 +57,32 @@ function replaceAll( text, busca, reemplaza ){
 
 $(function(){ //DOM Ready
  
-        $(function(){ //DOM Ready
-          
-                  $('.ltl-nav').removeClass('hide');
-                  $('.main-content').removeClass('hide');
-                  $('.progress').addClass('hide');
+  $('.ltl-nav').removeClass('hide');
+  $('.main-content').removeClass('hide');
+  $('.progress').addClass('hide');
 
-                  $('.main-content').addClass('slide-left');
-                  $('.ltl-nav').addClass('slide-right');
-
-        });
-          
-          $('.ltl-nav').removeClass('hide');
-          $('.main-content').removeClass('hide');
-          $('.progress').addClass('hide');
-
-          $('.main-content').addClass('slide-left');
-          $('.ltl-nav').addClass('slide-right');
+  $('.main-content').addClass('slide-left');
+  $('.ltl-nav').addClass('slide-right');
 
 });
 
 $(document).ready(function() {
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
+
+  $('#popover_tasks').popover({ trigger: "hover" });
+  $('#popover_tests').popover({ trigger: "hover" });
+  $('#popover_bugs').popover({ trigger: "hover" });
+  $('#popover_docs').popover({ trigger: "hover" });
+  $('#popover_cal').popover({ trigger: "hover" });
+  $('#popover_cases').popover({ trigger: "hover" });
+  $('#popover_config').popover({ trigger: "hover" });
+
+  $(".task").click(function(){
+
+    $(this).find("a")[0].click()
+  });
+
 });
 
 jQuery(document).ready(function($) {

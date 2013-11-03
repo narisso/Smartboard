@@ -1,13 +1,26 @@
-        <div class="">
-          <div class=" sidebar-nav ltl-nav ltl-nav-close hide">
-            <ul class="ltl-nav-list">
+<div id="ltl-bar-nav" class="" >
+  <div class=" sidebar-nav ltl-nav ltl-nav-close">
+    <ul class="ltl-nav-list">
 
-              <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed"), boards_project_path(@project) %><h4>Tasks</h4></li>
-              <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed") %><h4>Tests</h4></li>
-              <li><%= link_to image_tag("ltl_bar_docs.png", :alt => "rss feed"), project_document_projects_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %><h4>Docs</h4></li>
-              <li><%= image_tag("ltl_bar_cal.png", :alt => "rss feed") %><h4>Calendar</h4></li>
-              <li><%= link_to image_tag("ltl_bar_use.png", :alt => "rss feed"), project_use_cases_path(@project) %><h4>Use Cases</h4></li>
-            </ul>
-            <div class="close-btn" id="side_close_button"></div>
-          </div><!--/.well -->
-        </div><!--/span-->
+      <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed", :id => "popover_tasks", "data-content"=>"Tasks",:rel=> "popover", "data-placement"=>"right" ), boards_project_path(@project) %><h4>Tasks</h4></li>
+
+      <li><%= link_to image_tag("ltl_bar_docs.png", :alt => "rss feed", :id => "popover_docs", "data-content"=>"Documents",:rel=> "popover", "data-placement"=>"right"), project_document_projects_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %><h4>Docs</h4></li>
+      <!--
+      <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed", :id => "popover_tests", "data-content"=>"Tests",:rel=> "popover", "data-placement"=>"right") %><h4>Tests</h4></li>
+
+      <li><%= image_tag("ltl_bar_bugs.png", :alt => "rss feed", :id => "popover_bugs", "data-content"=>"Bugs",:rel=> "popover", "data-placement"=>"right") %><h4>Bugs</h4></li>
+      
+      <li><%= image_tag("ltl_bar_cal.png", :alt => "rss feed", :id => "popover_cal", "data-content"=>"Calendar",:rel=> "popover", "data-placement"=>"right") %><h4>Calendar</h4></li>
+
+      -->
+
+      <li><%= link_to image_tag("ltl_bar_use.png", :alt => "rss feed", :id => "popover_cases", "data-content"=>"UseCases",:rel=> "popover", "data-placement"=>"right"), project_use_cases_path(@project) %><h4>Use Cases</h4></li>
+
+      <li><%= link_to image_tag("ltl_bar_list.png", :alt => "rss feed", :id => "popover_config", "data-content"=>"Details",:rel=> "popover", "data-placement"=>"right"), project_path(@project) %><h4>Use Cases</h4></li>
+
+    </ul>
+    <div class="close-btn" id="side_close_button"></div>
+  </div><!--/.well -->
+</div><!--/span-->
+
+

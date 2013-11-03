@@ -6,15 +6,15 @@
 		<%= f.label :name, 'Name' ,:class => "control-label string required" %>
 		<div class="controls required"> <%= f.text_field :name %> </div>
 	</div>
+
+    <div id="template_input">
+        
+    </div>
+
 	<div class="control-group">
 		<div class="controls"> <%= link_to 'Add Atributte +', '#', :id => 'add_atributte', :class => "btn" %> </div>
 	</div>
-	<div id="template_input">
-		
-	</div>
-
-  
-  
+	
   <!--%= f.input :template_form %-->
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -117,9 +117,12 @@ class ProjectsController < ApplicationController
   end
 
   def set_hook
+
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
+
     delete_hooks
+
     @old_repo_name = @project.repo_name
 
     @project.repo_name = @new_repo_name
@@ -132,6 +135,7 @@ class ProjectsController < ApplicationController
   end
 
   def create_hook
+
     github = Github.new :oauth_token => @project.github_token
 
     #Check if hook already exists
@@ -164,18 +168,23 @@ class ProjectsController < ApplicationController
   end
 
   def delete_hooks
-    github = Github.new :oauth_token => @project.github_token
-    url = URL_HOOK
-    url = url.sub(":id",@project.id.to_s)
 
-    hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
+    unless @project.repo_name.nil? then
 
-    hooks.each do |hook|
-      h_url = hook["config"]["url"]
-      hook_id = hook["id"]
-      if url == h_url
-        github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
+      github = Github.new :oauth_token => @project.github_token
+      url = URL_HOOK
+      url = url.sub(":id",@project.id.to_s)
+
+      hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
+
+      hooks.each do |hook|
+        h_url = hook["config"]["url"]
+        hook_id = hook["id"]
+        if url == h_url
+          github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
+        end
       end
+
     end
 
   end

@@ -7,6 +7,9 @@ class BoardsController < ApplicationController
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;
 
+        flash[:success] = ""
+        flash[:notice] = ""
+
 		@statuses.each do |status|
 
 			@total = @total + status.tasks.length

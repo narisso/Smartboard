@@ -79,6 +79,8 @@ $(document).ready(function() {
   $('#popover_config').popover({ trigger: "hover" });
 
   $(".task").click(function(){
+
+    $(this).find("a")[0].click()
   });
 
 });

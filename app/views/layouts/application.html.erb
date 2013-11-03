@@ -75,16 +75,24 @@
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#">Separated link</a></li-->
                             <% if @project.github_token %>
-                             <% if !@project.github_token.empty? %>
+                              <% if !@project.github_token.empty? %>
                                 <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
-                                <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
+                                  <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
                                   <% repo_list.each do |repo|%>
-                                    <li><a tabindex="-1" href="#"><%=repo%></a></li>
+                                    <li><!--a tabindex="-1" href="#"-->
+                                      <% rep = repo %> 
+                                      <% if repo ==@project.repo_name %>
+                                        <% rep = raw("&#10004; #{repo}") %>
+                                      <% end %>  
+                                      <%= link_to rep, set_hook_path(@project,:repo_name => repo), :remote => true ,:id => "github_#{repo}" %>
+                                        
+                                    <!--/a--></li>
+                                
                                   <% end %>
-
-
+                                <% else %>
+                                <li><a tabindex="-1" href="#">No repositories available</a></li>
                                 <% end %>
-                             <% end %>
+                              <% end %>
                             <% end %>
 
 
@@ -94,7 +102,7 @@
 
 
                     <%else %>
-                        <li><%= link_to image_tag('github.png', :alt => 'Github' ), '/github/authorize' %></li>
+                        <li><%= link_to image_tag('github.png', :alt => 'Github' ), github_auth_path(:project_id=>@project) %></li>
                     <% end %>
                   <!--li><%= link_to image_tag('icon1.png', :alt => 'Github' ), '#' %></li-->
                      <%if @project and not @project.dropbox_token.nil? %>

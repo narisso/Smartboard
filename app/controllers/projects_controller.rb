@@ -2,8 +2,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   load_and_authorize_resource
-  skip_before_filter :check_session, only: [:hook]
-  skip_authorize_resource :only => :hook
+  skip_before_filter :check_session, only: [:hook, :set_hook]
+  skip_authorize_resource :only => [:hook, :set_hook]
+
+  respond_to :html, :json
 
   def index   
     @projects = current_user.projects
@@ -114,6 +116,21 @@ class ProjectsController < ApplicationController
 
   end
 
+  def set_hook
+    @project = Project.find(params[:project_id])
+    @new_repo_name = params[:repo_name]
+    delete_hooks
+    @old_repo_name = @project.repo_name
+
+    @project.repo_name = @new_repo_name
+    @project.save
+
+    create_hook
+
+    #respond_with @project
+
+  end
+
   def create_hook
     github = Github.new :oauth_token => @project.github_token
 
@@ -144,6 +161,23 @@ class ProjectsController < ApplicationController
 
     end
     
+  end
+
+  def delete_hooks
+    github = Github.new :oauth_token => @project.github_token
+    url = URL_HOOK
+    url = url.sub(":id",@project.id.to_s)
+
+    hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
+
+    hooks.each do |hook|
+      h_url = hook["config"]["url"]
+      hook_id = hook["id"]
+      if url == h_url
+        github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
+      end
+    end
+
   end
 
   # POST /projects

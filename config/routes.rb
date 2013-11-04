@@ -36,11 +36,13 @@ Iic21542::Application.routes.draw do
 
   #Hook Route
   match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
+  match '/projects/:project_id/set_hook' => 'projects#set_hook', :method => :get, :as => :set_hook
 
 
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
+  match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :put, :as => :delete_dbtoken
   #resources :project_statuses
   root :to => 'application#home'
 

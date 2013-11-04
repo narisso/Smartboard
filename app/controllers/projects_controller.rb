@@ -2,8 +2,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   load_and_authorize_resource
-  skip_before_filter :check_session, only: [:hook]
-  skip_authorize_resource :only => :hook
+  skip_before_filter :check_session, only: [:hook, :set_hook]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken]
+
+  respond_to :html, :json
 
   def index   
     @projects = current_user.projects
@@ -91,25 +93,49 @@ class ProjectsController < ApplicationController
   end
 
   def hook
+    @project = Project.find(params[:id])
 
-
-    c = JSON.parse(params[:payload])
-    commit = Commit.new
-    commit.author_email = c["head_commit"]["author"]["email"]
-    commit.author_name = c["head_commit"]["author"]["name"]
-    commit.message = c["head_commit"]["message"]
-    commit.url = c["head_commit"]["url"]
-    commit.sha = c["head_commit"]["id"]
-    commit.date = c["head_commit"]["timestamp"]
     sp = c["head_commit"]["message"].split "#"
-    commit.task_id = sp[-1].to_i
-    commit.save
+    taskid = sp[-1].to_i
+    da_task = @project.tasks.find(taskid)
+
+    if da_task then
+      c = JSON.parse(params[:payload])
+      commit = Commit.new
+      commit.author_email = c["head_commit"]["author"]["email"]
+      commit.author_name = c["head_commit"]["author"]["name"]
+      commit.message = c["head_commit"]["message"]
+      commit.url = c["head_commit"]["url"]
+      commit.sha = c["head_commit"]["id"]
+      commit.date = c["head_commit"]["timestamp"]
+      commit.task_id = taskid
+      commit.save
+    end
 
     #respond 200
 
   end
 
+  def set_hook
+
+    @project = Project.find(params[:project_id])
+    @new_repo_name = params[:repo_name]
+
+    delete_hooks
+
+    @old_repo_name = @project.repo_name
+
+    @project.repo_name = @new_repo_name
+    @project.save
+
+    create_hook
+
+    #respond_with @project
+
+  end
+
   def create_hook
+
     github = Github.new :oauth_token => @project.github_token
 
     #Check if hook already exists
@@ -139,6 +165,28 @@ class ProjectsController < ApplicationController
 
     end
     
+  end
+
+  def delete_hooks
+
+    unless @project.repo_name.nil? then
+
+      github = Github.new :oauth_token => @project.github_token
+      url = URL_HOOK
+      url = url.sub(":id",@project.id.to_s)
+
+      hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
+
+      hooks.each do |hook|
+        h_url = hook["config"]["url"]
+        hook_id = hook["id"]
+        if url == h_url
+          github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
+        end
+      end
+
+    end
+
   end
 
   # POST /projects
@@ -203,17 +251,23 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+
+  def delete_dbtoken
+    @project = Project.find(params[:id])
+    @project.dropbox_token=nil
+    @project.save
+    redirect_to boards_project_path(@project)
+  end
   
   def send_confirmation_doc
 
       dbsession = DropboxSession.deserialize(@dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"
-      file = open(@file_path)
+      file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)
       flash[:success] = "We have send a document to your dropbox "
 
-      puts "uploaded:", response.inspect
   rescue 
 
       @dropbox_token = nil

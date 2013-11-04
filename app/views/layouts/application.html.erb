@@ -57,37 +57,85 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
+<div class="modal" id="loading" style="display: none;text-align:center;">Creating Web Hook with Github. Please wait...</div>
 
              <% if @project and not @project.id.nil? %>
                     <%if @project and not @project.github_token.nil? %>
-                        <li><%= link_to image_tag('github_color.png', :alt => 'Github'), '#github_menu' %></li>
+                        
+                        <li class="dropdown" >
 
-                        <div id = "#github_menu" role="menu" class="dropdown-menu">
-                          <li><a tabindex="-1" href="#">Action</a></li>
+                          <a href="#" class="dropdown-toggle">
+
+                            <%= image_tag('github_color.png', :alt => 'Github') %>
+                          </a>
+
+                          <ul id="github_dropdown" class="dropdown-menu">
+                            <!--li><a tabindex="-1" href="#">Action</a></li>
+                            <li><a tabindex="-1" href="#">Another action</a></li>
+                            <li><a tabindex="-1" href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="#">Separated link</a></li-->
+                            <% if @project.github_token %>
+                              <% if !@project.github_token.empty? %>
+                                <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
+                                  <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
+                                  <% repo_list.each do |repo|%>
+                                    <li id="repo"><!--a tabindex="-1" href="#"-->
+                                      <% rep = repo %> 
+                                      <% if repo ==@project.repo_name %>
+                                        <% rep = raw("&#10004; #{repo}") %>
+                                      <% end %>  
+                                      <%= link_to rep, set_hook_path(@project,:repo_name => repo), :remote => true ,:id => "github_#{repo}" %>
+                                        
+                                    <!--/a--></li>
+                                
+                                  <% end %>
+                                <% else %>
+                                <li><a tabindex="-1" href="#">No repositories available</a></li>
+                                <% end %>
+                              <% end %>
+                            <% end %>
 
 
-                        </div>
 
+                          </ul>
+                        </li>
 
 
                     <%else %>
-                        <li><%= link_to image_tag('github.png', :alt => 'Github' ), '/github/authorize' %></li>
+
+                        <li class="dropdown" >
+
+                          <a href="#" class="dropdown-toggle">
+                            <%= image_tag('github.png', :alt => 'Github') %>
+                          </a>
+
+                          <ul class="dropdown-menu">
+
+                          <li><%= link_to "Link to Github", github_auth_path(:project_id=>@project) %></li>
+                          </ul>
+                        </li>
+
                     <% end %>
-                  <!--li><%= link_to image_tag('icon1.png', :alt => 'Github' ), '#' %></li-->
-                     <%if @project and not @project.dropbox_token.nil? %>
-                 <!-- Dropbox Icons-->
-                  <li><%= link_to image_tag('dropbox_color.png', :alt => 'Dropbox vinculo'), '#' %></li> 
-                <%else %>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle"><%= image_tag('dropbox.png', :alt => 'Dropbox vinculo', :height => "5px" ) %></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Inbox</a></li>
-                      <li><a href="#">Drafts</a></li>
-                      <li><a href="#">Sent Items</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Trash</a></li>
-                    </ul>
-                  </li>
+                 
+                      <!-- Dropbox Icons-->
+
+                  <%if @project and not @project.dropbox_token.nil? %>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"><%= image_tag('dropbox_color.png', :alt => 'Dropbox vinculo') %></a>
+                        <ul class="dropdown-menu">
+                        <li><%= link_to "Unlink of dropbox", delete_dbtoken_path(@project) %></li>
+                        </ul>
+                    </li>                                 
+                                    
+                  <%else %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"><%= image_tag('dropbox.png', :alt => 'Dropbox vinculo') %></a>
+                        <ul class="dropdown-menu">
+                        <li><%= link_to "Link to Dropbox", '/dropbox/authorize' %></li>
+                        </ul>
+                    </li>
                       <!-- link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' -->
 
                      <!-- <ul class="dropdown-menu">
@@ -166,7 +214,7 @@
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
-    <script type="text/javascript">
+    <!--script type="text/javascript">
 
 <%if user_signed_in?%>
       $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
@@ -199,7 +247,7 @@
 
       
 
-    </script>
+    </script-->
 
   </body>
 </html>

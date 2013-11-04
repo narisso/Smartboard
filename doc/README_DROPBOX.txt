@@ -1,1 +1,1 @@
-Congratulations you are link your proyecto to Dropbox
+Congratulations your project is now linked to this Dropbox account !

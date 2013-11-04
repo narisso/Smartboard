@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken]
 
   respond_to :html, :json
 
@@ -251,17 +251,23 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
+
+  def delete_dbtoken
+    @project = Project.find(params[:id])
+    @project.dropbox_token=nil
+    @project.save
+    redirect_to boards_project_path(@project)
+  end
   
   def send_confirmation_doc
 
       dbsession = DropboxSession.deserialize(@dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"
-      file = open(@file_path)
+      file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)
       flash[:success] = "We have send a document to your dropbox "
 
-      puts "uploaded:", response.inspect
   rescue 
 
       @dropbox_token = nil

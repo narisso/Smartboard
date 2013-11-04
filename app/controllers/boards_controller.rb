@@ -51,6 +51,7 @@ class BoardsController < ApplicationController
 				send_confirmation_doc
 			    
 		      	flash[:success] = ""
+
 		end
 	
 
@@ -75,17 +76,11 @@ class BoardsController < ApplicationController
 
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"
-      file = open(@file_path)
+      file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)
       flash[:success] = "We have send a document to your dropbox "
 
-      puts "uploaded:", response.inspect
-  	rescue 
-
-      @project.dropbox_token = nil
-      @project.save
-      flash[:success] = "Failed authorized"
 
  	end
 

@@ -7,6 +7,30 @@ class BoardsController < ApplicationController
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;
 
+
+		#check Github_token
+		begin
+			if @project.github_token
+				g=Github.new :oauth_token => @project.github_token
+  				g.repos.list
+  			end
+		rescue Github::Error::GithubError => e
+  			#puts e.message
+
+		 # if e.is_a? Github::Error::Unauthorized
+		  	@project.github_token = nil
+		  	@project.github_user = nil
+		  	@project.repo_name = nil
+		  	@project.save
+		  	
+		  #end
+		end
+
+
+
+        flash[:success] = ""
+        flash[:notice] = ""
+
 		@statuses.each do |status|
 
 			@total = @total + status.tasks.length
@@ -27,6 +51,7 @@ class BoardsController < ApplicationController
 				send_confirmation_doc
 			    
 		      	flash[:success] = ""
+
 		end
 	
 
@@ -38,11 +63,6 @@ class BoardsController < ApplicationController
             format.html 
         end
 
-
-    #Sucede cuando soy un cliente y no estaoy autorizado, me redirecciona al board de clientes 
-    rescue 
-    	
-    	redirect_to boards_client_project_path(@project)
 	end
 
 	def show_client
@@ -56,17 +76,11 @@ class BoardsController < ApplicationController
 
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"
-      file = open(@file_path)
+      file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)
       flash[:success] = "We have send a document to your dropbox "
 
-      puts "uploaded:", response.inspect
-  	rescue 
-
-      @project.dropbox_token = nil
-      @project.save
-      flash[:success] = "Failed authorized"
 
  	end
 

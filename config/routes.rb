@@ -1,6 +1,4 @@
 Iic21542::Application.routes.draw do
-  
-
 
   get "github/authorize"
 
@@ -36,11 +34,13 @@ Iic21542::Application.routes.draw do
 
   #Hook Route
   match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
+  match '/projects/:project_id/set_hook' => 'projects#set_hook', :method => :get, :as => :set_hook
 
 
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
+  match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :put, :as => :delete_dbtoken
   #resources :project_statuses
   root :to => 'application#home'
 
@@ -51,10 +51,8 @@ Iic21542::Application.routes.draw do
   resources :task_users
   resources :labels
   resources :commits
-  resources :document_tasks
   resources :goals
   resources :requirement_templates
-  resources :requirements
 
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
@@ -78,15 +76,20 @@ Iic21542::Application.routes.draw do
           post :create_reported_hours 
         end
         resources :comments
+        resources :document_tasks
       end
     end
     resources :use_cases do
       collection do
         get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'
       end
+      resources :document_use_cases
     end
     resources :use_case_templates
     resources :use_case_groups
+    resources :requirements do
+      resources :document_requirements
+    end
   end
 
 

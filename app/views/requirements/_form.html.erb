@@ -1,12 +1,24 @@
-<%= simple_form_for @requirement, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :type %>
-  <%= f.input :data %>
-  <%= f.input :template_id %>
-  <%= f.input :use_case_id %>
+<%= simple_form_for [@project, @requirement], :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="well">
+    <%= f.input :name %>
+    <%= f.association :use_cases, 
+                      :collection => UseCase.where(:project_id => @project), 
+                      :input_html => { :class => "chosen-select"}  %>
+    <%= f.association :tasks, 
+                      :collection => Task.where(:project_id => @project),
+                      :input_html => { :class => "chosen-select"}  %>
+    <%= f.input :description, :input_html => { :cols => 30, :rows => 4 } %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                requirements_path, :class => 'btn' %>
+                project_requirements_path(@project), :class => 'btn' %>
   </div>
+<% end %>
+
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(chosenSelect(220));
+  </script>
 <% end %>

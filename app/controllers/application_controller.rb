@@ -16,11 +16,13 @@ class ApplicationController < ActionController::Base
       params[:controller] == "devise/confirmations" ||
       params[:controller] == "devise/passwords")
       unless user_signed_in?
+        Rails.logger.debug("User is not signed in")
         redirect_to root_path
         flash[:error] = "You need to sign in to access"
         return
       end
     end
+    Rails.logger.debug("User is signed in")
   end
 
   def after_sign_in_path_for(resource)

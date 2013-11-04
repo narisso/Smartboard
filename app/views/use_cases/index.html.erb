@@ -1,5 +1,8 @@
 
 <%- model_class = UseCase -%>
+
+<div class="use_cases">
+
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
@@ -20,7 +23,12 @@
         <div class="accordion-inner">
           <ul>
             <% group.use_cases.each do |use_case| %>
-              <li><%= link_to use_case.name, project_use_case_path(@project, use_case) %></li>
+              <li>
+                <%= link_to use_case.name, project_use_case_path(@project, use_case) %>
+                <% if not use_case.requirement.nil? %>
+                  (<%= link_to(use_case.requirement.name, edit_project_requirement_path(@project, use_case.requirement)) %>)
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>
@@ -32,12 +40,3 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_project_use_case_path,
             :class => 'btn btn-primary' %>
-
-            <%- content_for(:javascripts) do -%>
-  <!-- <script type="text/javascript">var p_id =<%= @project.id %></script> -->
-  <!-- <%= javascript_include_tag "boards_controller" %> -->
-  <script type="text/javascript">
-
-
-  </script>
-<%- end -%>

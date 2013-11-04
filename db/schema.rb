@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131029045753) do
+ActiveRecord::Schema.define(:version => 20131104042301) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -55,10 +55,28 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.string   "origin"
   end
 
+  create_table "document_requirements", :force => true do |t|
+    t.text     "description"
+    t.string   "name"
+    t.integer  "requirement_id"
+    t.string   "url_path"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "document_tasks", :force => true do |t|
     t.text     "description"
     t.string   "name"
     t.integer  "task_id"
+    t.string   "url_path"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "document_use_cases", :force => true do |t|
+    t.text     "description"
+    t.string   "name"
+    t.integer  "use_case_id"
     t.string   "url_path"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -150,6 +168,8 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.integer  "use_case_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "description"
+    t.integer  "project_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -197,11 +217,12 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.integer  "estimated_hours"
     t.integer  "effective_hours"
     t.integer  "priority"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
-    t.boolean  "lock",             :default => false
+    t.boolean  "lock"
+    t.integer  "use_case_id"
   end
 
   create_table "test_cases", :force => true do |t|
@@ -236,6 +257,7 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.integer  "use_case_template_id"
     t.text     "data"
     t.integer  "use_case_group_id"
+    t.integer  "requirement_id"
   end
 
   create_table "users", :force => true do |t|
@@ -259,9 +281,6 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "avatar"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -269,6 +288,9 @@ ActiveRecord::Schema.define(:version => 20131029045753) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

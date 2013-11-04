@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
 
- load_and_authorize_resource :project
- load_and_authorize_resource :status, :through => :project
- load_and_authorize_resource :task, :through => :status
+ load_and_authorize_resource :project, :except => [:update_status]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
+
 
  respond_to :html, :json
 
@@ -46,8 +47,6 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
-    @task.project = Project.find(params[:project_id])
-    @task.status = Status.find(params[:status_id])
     @editing = false
 
     respond_to do |format|
@@ -67,6 +66,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
+
     #@task.task_type = @task.label.name
     #@task.project = Project.find(params[:project_id])
     #@task.status = Status.find(params[:status_id])
@@ -77,7 +77,7 @@ class TasksController < ApplicationController
               @notification = Notification.new
               @notification.user = user
               @notification.link = boards_project_path(@task.project_id)
-              @notification.description = "hola"
+              @notification.description = "You were assigned to a new task"
               @notification.viewed = false
               @notification.task_id = @task.id
               @notification.save
@@ -202,6 +202,7 @@ class TasksController < ApplicationController
   #end
 
   def update_status
+
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])

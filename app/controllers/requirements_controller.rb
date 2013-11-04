@@ -1,8 +1,9 @@
 class RequirementsController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :requirement, :through => :project
   # GET /requirements
   # GET /requirements.json
   def index
-    @requirements = Requirement.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,10 +42,11 @@ class RequirementsController < ApplicationController
   # POST /requirements.json
   def create
     @requirement = Requirement.new(params[:requirement])
+    @requirement.project = @project
 
     respond_to do |format|
       if @requirement.save
-        format.html { redirect_to @requirement, notice: 'Requirement was successfully created.' }
+        format.html { redirect_to project_requirements_path(@project), notice: 'Requirement was successfully created.' }
         format.json { render json: @requirement, status: :created, location: @requirement }
       else
         format.html { render action: "new" }
@@ -60,7 +62,7 @@ class RequirementsController < ApplicationController
 
     respond_to do |format|
       if @requirement.update_attributes(params[:requirement])
-        format.html { redirect_to @requirement, notice: 'Requirement was successfully updated.' }
+        format.html { redirect_to project_requirements_path(@project), notice: 'Requirement was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +78,7 @@ class RequirementsController < ApplicationController
     @requirement.destroy
 
     respond_to do |format|
-      format.html { redirect_to requirements_url }
+      format.html { redirect_to project_requirements_url(@project) }
       format.json { head :no_content }
     end
   end

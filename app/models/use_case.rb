@@ -1,14 +1,19 @@
 class UseCase < ActiveRecord::Base
-  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id
+  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, 
+                  :requirement_id, :task_ids
 
   belongs_to :project
   belongs_to :use_case_template
   belongs_to :use_case_group
-  has_many :requirements
+  belongs_to :requirement
 
-  validates :name, presence: true
-  validates :project_id, presence: true
-  validates :use_case_template_id, presence: true
+  has_many :tasks
+  has_many :document_use_cases
+  
+  validates :name, :presence => true
+  validates :project_id, :presence => true
+  validates :use_case_template_id, :presence => true
+  validates :use_case_group_id, :presence => true
 
   def parse_data
   	template = JSON.parse(self.use_case_template.template_form)

@@ -1,0 +1,10 @@
+<%= simple_form_for [@project, @requirement, @document_requirement], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :url_path, :label => :File, :as => :file %>
+  <%= f.input :description, :input_html => {:cols => 30, :rows => 4} %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_requirements_path(@project), :class => 'btn' %>
+  </div>
+<% end %>

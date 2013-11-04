@@ -1,11 +1,20 @@
-<%= simple_form_for @document_task, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :description %>
-  <%= f.input :name %>
-  <%= f.input :task_id %>
-  <%= f.input :url_path %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                document_tasks_path, :class => 'btn' %>
-  </div>
-<% end %>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h1>New Document for <%= @task.name %> </h1>
+</div>
+
+
+	<%= simple_form_for [@project, @status, @task, @document_task], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+	<div class="modal-body">
+	  <%= f.input :name %>
+	  <%= f.input :url_path, :as => :file, :label => :File %>
+	  <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 }  %>
+	</div>
+	  <div class="modal-footer">
+	    <%= f.button :submit, :class => 'btn-primary' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                project_status_task_path(@project, @status, @task, :tab => 'document'), 
+	                :class => 'btn', :remote => true %>
+	  </div>
+	<% end %>
+</div>

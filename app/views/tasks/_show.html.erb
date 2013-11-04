@@ -19,6 +19,20 @@
     <dd><%= @task.task_type %></dd>
     <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
     <dd><%= @task.estimated_hours %></dd>
+
+    <dt><strong>Requirement</strong></dt>
+    <% if @task.requirement %>
+      <dd><%= @task.requirement.name %></dd>
+    <% else %>
+      <dd> - </dd>
+    <% end %>
+
+    <dt><strong>Use Case</strong></dt>
+    <% if @task.use_case %>
+      <dd><%= @task.use_case.name %></dd>
+    <% else %>
+      <dd> - </dd>
+    <% end %>
     
 
   <% else %>
@@ -41,17 +55,17 @@
 
   <div class="span8 offset0">
     <ul id="task_tab" class="nav nav-tabs">
-        <li id="Description" class="tab-pane active"><%= link_to "Description", "#description", :data => {:remote => true, :toggle => "tab"} %></li> 
+        <li id="Description" class="tab-pane <%= params[:tab].nil? ? 'active' : '' %>"><%= link_to "Description", "#description", :data => {:remote => true, :toggle => "tab"} %></li> 
         <li id="Comments" class="tab-pane"><%= link_to "Comments", "#comments", 
         :data => {:remote => true, :toggle => "tab"},'data-type' => :html%></li>
         <li id="Commits" class="tab-pane"><%= link_to "Commits", "#commits", :data => {:remote => true, :toggle => "tab"} %></li>
-        <li id="Documentos" class="tab-pane"><%= link_to "Documents", "#documents", :data => {:remote => true, :toggle => "tab"} %></li>
+        <li id="Documentos" class="tab-pane <%= params[:tab]=='document' ? 'active' : '' %>"><%= link_to "Documents", "#documents", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Subtasks" class="tab-pane"><%= link_to "Subtasks", "#subtasks", :data => {:remote => true, :toggle => "tab"} %></li>
     </ul>
   </div>
 
   <div class="tab-content span8 offset0">
-    <div class="tab-pane active" id="description"><%=@task.description%></div> 
+    <div class="tab-pane <%= params[:tab].nil? ? 'active' : '' %>" id="description"><%= @task.description %></div> 
     <div class="tab-pane" id="comments">
     <div id="comment" >
       <%= render :partial => 'comment' %>
@@ -63,7 +77,9 @@
         <b><%=commit.author_name%></b>(<%= commit.author_email%>) <%= link_to commit.sha[0..5], commit.url%>: <%= commit.message%>
       <% end %>
     </div>
-    <div class="tab-pane" id="documents">Documents ...</div>
+    <div class="tab-pane <%= params[:tab]=='document' ? 'active' : '' %>" id="documents">
+      <%= render 'documents' %>
+    </div>
     <div class="tab-pane" id="subtasks">
       <% @task.sub_tasks.each do |subtask|%>
         <dd id="subtask<%= subtask.id%>" class="well well-small">

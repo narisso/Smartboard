@@ -8,7 +8,7 @@
                       :collection => Requirement.where(:project_id => @project), 
                       :input_html => { class: 'chosen-select'} %>
     <%= f.association :tasks, 
-                      :collection => UseCase.where(:project_id => @project), 
+                      :collection => Task.where(:project_id => @project), 
                       :input_html => { class: 'chosen-select'} %>
   	<%= f.association :use_case_template,
                       :collection => UseCaseTemplate.where(:project_id => @project),

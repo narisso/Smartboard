@@ -7,6 +7,7 @@ class Requirement < ActiveRecord::Base
   
   has_many :tasks
   has_many :use_cases
+  has_many :document_requirements
 
   validates :name, :presence => true
 end

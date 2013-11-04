@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104033025) do
+ActiveRecord::Schema.define(:version => 20131104042301) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(:version => 20131104033025) do
     t.datetime "updated_at",                 :null => false
     t.integer  "version",     :default => 0
     t.string   "origin"
+  end
+
+  create_table "document_requirements", :force => true do |t|
+    t.text     "description"
+    t.string   "name"
+    t.integer  "requirement_id"
+    t.string   "url_path"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "document_tasks", :force => true do |t|

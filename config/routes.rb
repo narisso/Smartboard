@@ -1,5 +1,5 @@
 Iic21542::Application.routes.draw do
-  
+
   get "github/authorize"
 
   get "github/callback"
@@ -86,7 +86,9 @@ Iic21542::Application.routes.draw do
     end
     resources :use_case_templates
     resources :use_case_groups
-    resources :requirements
+    resources :requirements do
+      resources :document_requirements
+    end
   end
 
 

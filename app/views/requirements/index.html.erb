@@ -40,6 +40,18 @@
             </ul>
           <% end %>
 
+          <% if requirement.document_requirements.count > 0 %>
+            <h5>Documents</h5>
+            <ul>
+              <% requirement.document_requirements.each do |d| %>
+                <li><a href="<%= d.url_path %>"><%= d.name %></a></li>
+              <% end %>
+          <% end %>
+
+          <br/>
+          <%= link_to new_project_requirement_document_requirement_path(@project, requirement) do %>
+            <i class="icon-file"></i>
+          <% end %>
           <%= link_to edit_project_requirement_path(@project, requirement) do %>
             <i class="icon-edit inline"></i>
           <% end %>
@@ -47,7 +59,7 @@
                       :method => 'delete',
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do %>
             <i class="icon-trash"></i>
-          <% end %>
+          <% end %>          
         </div>
       </div>
     </div>

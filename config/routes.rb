@@ -2,6 +2,9 @@ Iic21542::Application.routes.draw do
   
 
 
+  resources :document_use_cases
+
+
   get "github/authorize"
 
   get "github/callback"

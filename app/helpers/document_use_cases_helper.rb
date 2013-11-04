@@ -1,0 +1,2 @@
+module DocumentUseCasesHelper
+end

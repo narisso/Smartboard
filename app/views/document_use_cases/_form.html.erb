@@ -1,0 +1,11 @@
+<%= simple_form_for @document_use_case, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :description %>
+  <%= f.input :name %>
+  <%= f.input :use_case_id %>
+  <%= f.input :url_path %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                document_use_cases_path, :class => 'btn' %>
+  </div>
+<% end %>

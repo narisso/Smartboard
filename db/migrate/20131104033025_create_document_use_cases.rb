@@ -4,7 +4,7 @@ class CreateDocumentUseCases < ActiveRecord::Migration
       t.text :description
       t.string :name
       t.integer :use_case_id
-      t.integer :url_path
+      t.string :url_path
 
       t.timestamps
     end

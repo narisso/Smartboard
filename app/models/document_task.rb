@@ -11,10 +11,10 @@ class DocumentTask < ActiveRecord::Base
   validates :url_path, :presence => true
 
   def upload_file
-	project = self.task.project
-	task = self.task
+	  project = self.task.project
+	  task = self.task
 
-	file = url_path.read
+    file = url_path.read
     whole_name = url_path.original_filename
     final_name = self.task.project.name + ".v1.0" + File.extname(whole_name)
     file_path ="SmartBoard/" + project.name + "/" + task.name + "/" + final_name

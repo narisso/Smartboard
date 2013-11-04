@@ -1,11 +1,10 @@
-<%= simple_form_for @document_use_case, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :description %>
+<%= simple_form_for [@project, @use_case, @document_use_case], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :use_case_id %>
-  <%= f.input :url_path %>
+  <%= f.input :url_path, :label => :File, :as => :file %>
+  <%= f.input :description, :input_html => { :cols => 30, :rows => 4 } %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                document_use_cases_path, :class => 'btn' %>
+                project_use_case_path(@project, @use_case), :class => 'btn' %>
   </div>
 <% end %>

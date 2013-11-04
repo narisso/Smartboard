@@ -1,10 +1,5 @@
 Iic21542::Application.routes.draw do
   
-
-
-  resources :document_use_cases
-
-
   get "github/authorize"
 
   get "github/callback"
@@ -87,6 +82,7 @@ Iic21542::Application.routes.draw do
       collection do
         get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'
       end
+      resources :document_use_cases
     end
     resources :use_case_templates
     resources :use_case_groups

@@ -1,8 +1,11 @@
 class DocumentUseCasesController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :use_case, :through => :project
+  load_and_authorize_resource :document_use_case, :through => :use_case
+
   # GET /document_use_cases
   # GET /document_use_cases.json
   def index
-    @document_use_cases = DocumentUseCase.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,10 +44,11 @@ class DocumentUseCasesController < ApplicationController
   # POST /document_use_cases.json
   def create
     @document_use_case = DocumentUseCase.new(params[:document_use_case])
+    @document_use_case.use_case = @use_case
 
     respond_to do |format|
       if @document_use_case.save
-        format.html { redirect_to @document_use_case, notice: 'Document use case was successfully created.' }
+        format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Document use case was successfully created.' }
         format.json { render json: @document_use_case, status: :created, location: @document_use_case }
       else
         format.html { render action: "new" }

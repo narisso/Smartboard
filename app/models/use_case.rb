@@ -7,6 +7,7 @@ class UseCase < ActiveRecord::Base
   belongs_to :requirement
 
   has_many :tasks
+  has_many :document_use_cases
   
   validates :name, :presence => true
   validates :project_id, :presence => true

@@ -42,7 +42,7 @@ Iic21542::Application.routes.draw do
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
-  match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :post, :as => :delete_dbtoken
+  match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :put, :as => :delete_dbtoken
   #resources :project_statuses
   root :to => 'application#home'
 

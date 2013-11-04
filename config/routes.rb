@@ -52,7 +52,6 @@ Iic21542::Application.routes.draw do
   resources :task_users
   resources :labels
   resources :commits
-  resources :document_tasks
   resources :goals
   resources :requirement_templates
   resources :requirements
@@ -79,6 +78,7 @@ Iic21542::Application.routes.draw do
           post :create_reported_hours 
         end
         resources :comments
+        resources :document_tasks
       end
     end
     resources :use_cases do

@@ -1,0 +1,1 @@
+$("#modal-large").html("<%= escape_javascript(render 'form') %>")

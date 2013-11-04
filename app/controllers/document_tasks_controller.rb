@@ -1,4 +1,9 @@
 class DocumentTasksController < ApplicationController
+ load_and_authorize_resource :project
+ load_and_authorize_resource :status, :through => :project
+ load_and_authorize_resource :task, :through => :status
+ load_and_authorize_resource :document_task, :through => :task
+
   # GET /document_tasks
   # GET /document_tasks.json
   def index
@@ -27,6 +32,7 @@ class DocumentTasksController < ApplicationController
     @document_task = DocumentTask.new
 
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @document_task }
     end
@@ -41,10 +47,11 @@ class DocumentTasksController < ApplicationController
   # POST /document_tasks.json
   def create
     @document_task = DocumentTask.new(params[:document_task])
+    @document_task.task = @task
 
     respond_to do |format|
       if @document_task.save
-        format.html { redirect_to @document_task, notice: 'Document task was successfully created.' }
+        format.html { redirect_to boards_project_path(@project), notice: 'Document task was successfully created.' }
         format.json { render json: @document_task, status: :created, location: @document_task }
       else
         format.html { render action: "new" }

@@ -1,0 +1,20 @@
+<% if @task.document_tasks.count > 0 %>
+      <% @task.document_tasks.reverse.each do |d| %>
+      	<div id="document<%= d.id%>" class="well">
+            	<h5><a href="<%= d.url_path %>"><%= d.name %></h5>
+                  <p><%= d.description %></p>
+      	</div>
+      <% end %>
+<% else %>
+      <div class="well">
+            <p>No documents attached to task <%= @task.name %></p>
+      </div>
+<% end %>
+
+<% if @project.dropbox_token %>
+      <div class="form-actions">
+            <%= link_to t('.new', :default => t("helpers.links.new")),
+                  new_project_status_task_document_task_path(@project, @status, @task), 
+                  :class => 'btn btn-primary', :remote => true %>
+      </div>
+<% end %>

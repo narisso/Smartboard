@@ -88,3 +88,11 @@ $(document).ready(function() {
 jQuery(document).ready(function($) {
   $('.dropdown-toggle').dropdown();
 });
+
+//Loading for Hooks
+$( "#github_dropdown #repo" ).click(function() {
+  $( "#loading" ).show();
+});
+$( document ).ajaxStop(function() {
+  $( "#loading" ).hide();
+});

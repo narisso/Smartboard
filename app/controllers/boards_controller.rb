@@ -7,6 +7,27 @@ class BoardsController < ApplicationController
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;
 
+
+		#check Github_token
+		begin
+			if @project.github_token
+				g=Github.new :oauth_token => @project.github_token
+  				g.repos.list
+  			end
+		rescue Github::Error::GithubError => e
+  			#puts e.message
+
+		 # if e.is_a? Github::Error::Unauthorized
+		  	@project.github_token = nil
+		  	@project.github_user = nil
+		  	@project.repo_name = nil
+		  	@project.save
+		  	
+		  #end
+		end
+
+
+
         flash[:success] = ""
         flash[:notice] = ""
 

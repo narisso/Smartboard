@@ -57,6 +57,7 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
+<div class="modal" id="loading" style="display: none;text-align:center;">Creating Web Hook with Github. Please wait...</div>
 
              <% if @project and not @project.id.nil? %>
                     <%if @project and not @project.github_token.nil? %>
@@ -69,7 +70,7 @@
                             <%= image_tag('github_color.png', :alt => 'Github') %>
                           </a>
 
-                          <ul class="dropdown-menu">
+                          <ul id="github_dropdown" class="dropdown-menu">
                             <!--li><a tabindex="-1" href="#">Action</a></li>
                             <li><a tabindex="-1" href="#">Another action</a></li>
                             <li><a tabindex="-1" href="#">Something else here</a></li>
@@ -80,7 +81,7 @@
                                 <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
                                   <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
                                   <% repo_list.each do |repo|%>
-                                    <li><!--a tabindex="-1" href="#"-->
+                                    <li id="repo"><!--a tabindex="-1" href="#"-->
                                       <% rep = repo %> 
                                       <% if repo ==@project.repo_name %>
                                         <% rep = raw("&#10004; #{repo}") %>

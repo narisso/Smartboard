@@ -54,7 +54,6 @@ Iic21542::Application.routes.draw do
   resources :commits
   resources :goals
   resources :requirement_templates
-  resources :requirements
 
   resources :projects do
     resources :project_role_users, only: [:new, :create, :destroy]
@@ -88,6 +87,7 @@ Iic21542::Application.routes.draw do
     end
     resources :use_case_templates
     resources :use_case_groups
+    resources :requirements
   end
 
 

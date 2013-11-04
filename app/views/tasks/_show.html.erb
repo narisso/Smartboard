@@ -19,6 +19,20 @@
     <dd><%= @task.task_type %></dd>
     <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
     <dd><%= @task.estimated_hours %></dd>
+
+    <dt><strong>Requirement</strong></dt>
+    <% if @task.requirement %>
+      <dd><%= @task.requirement.name %></dd>
+    <% else %>
+      <dd> - </dd>
+    <% end %>
+
+    <dt><strong>Use Case</strong></dt>
+    <% if @task.use_case %>
+      <dd><%= @task.use_case.name %></dd>
+    <% else %>
+      <dd> - </dd>
+    <% end %>
     
 
   <% else %>

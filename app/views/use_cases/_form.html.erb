@@ -1,12 +1,19 @@
 <%= simple_form_for [@use_case.project, @use_case], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="well">
   	<%= f.input :name %>
-    <%= f.association :use_case_group, :collection => UseCaseGroup.where(:project_id => @project),
-            :input_html => { class: 'chosen-select selectpicker'} %>
+    <%= f.association :use_case_group, 
+                      :collection => UseCaseGroup.where(:project_id => @project),
+                      :input_html => { class: 'chosen-select selectpicker'} %>
+    <%= f.association :requirement, 
+                      :collection => Requirement.where(:project_id => @project), 
+                      :input_html => { class: 'chosen-select'} %>
+    <%= f.association :tasks, 
+                      :collection => UseCase.where(:project_id => @project), 
+                      :input_html => { class: 'chosen-select'} %>
   	<%= f.association :use_case_template,
-            :collection => UseCaseTemplate.where(:project_id => @project),
-  					:input_html => { class: 'chosen-select selectpicker'},
-            :include_blank => true %>
+                      :collection => UseCaseTemplate.where(:project_id => @project),
+  					          :input_html => { class: 'chosen-select selectpicker'},
+                      :include_blank => true %>
   </div>
   <div id="template">
     <% if params[:action] == "edit" %>

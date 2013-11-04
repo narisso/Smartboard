@@ -6,15 +6,28 @@
 
 <div id="left">
 
-      <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-      <dd><%= @task.description %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
-      <dd><%= @task.priority %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
-      <dd><%= @task.task_type %></dd>
-      <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
-      <dd><%= @task.estimated_hours %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @task.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
+  <dd><%= @task.priority %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:task_type) %>:</strong></dt>
+  <dd><%= @task.task_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
+  <dd><%= @task.estimated_hours %></dd>
+  
+  <dt><strong>Requirement</strong></dt>
+  <% if task.requirement %>
+    <dd><%= task.requirement.name %></dd>
+  <% else %>
+    <dd> - </dd>
+  <% end %>
 
+  <dt><strong>Use Case</strong></dt>
+  <% if task.use_case %>
+    <dd><%= task.use_case.name %></dd>
+  <% else %>
+    <dd> - </dd>
+  <% end %>
 
   <dt>Owner:</dt>
   <% @task.users.each do |user| %>

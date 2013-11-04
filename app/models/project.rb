@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
   has_many :statuses
   has_many :use_case_templates
   has_many :use_case_groups
+  has_many :requirements
 
   has_many :project_role_users, dependent: :destroy
   has_many :users, :through => :project_role_users

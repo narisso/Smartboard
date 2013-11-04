@@ -1,44 +1,63 @@
 <%- model_class = Requirement -%>
+
+<div class="use_cases">
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%= t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
-      <th><%= model_class.human_attribute_name(:data) %></th>
-      <th><%= model_class.human_attribute_name(:template_id) %></th>
-      <th><%= model_class.human_attribute_name(:use_case_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @requirements.each do |requirement| %>
-      <tr>
-        <td><%= link_to requirement.id, requirement_path(requirement) %></td>
-        <td><%= requirement.name %></td>
-        <td><%= requirement.type %></td>
-        <td><%= requirement.data %></td>
-        <td><%= requirement.template_id %></td>
-        <td><%= requirement.use_case_id %></td>
-        <td><%=l requirement.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_requirement_path(requirement), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      requirement_path(requirement),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<%= bootstrap_flash %>
+
+<%= render 'nav_bar' %>
+
+<div class="accordion" id="#accordion_groups">
+  <% @requirements.each do |requirement| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{requirement.id}" %>'>
+          <%= requirement.name %>
+        </a>         
+      </div>
+      <div id='collapse<%= "_#{requirement.id}"%>' class="accordion-body collapse">
+        <div class="accordion-inner">
+          <p><%= requirement.description %></p>
+          
+          <% if requirement.use_cases.count > 0 %>
+            <h5>Use cases</h5>
+            <ul>
+              <% requirement.use_cases.each do |use_case| %>
+                <li><%= link_to use_case.name, project_use_case_path(@project, use_case) %></li>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <% if requirement.tasks.count > 0 %>
+            <h5>Tasks</h5>
+            <ul>
+              <% requirement.tasks.each do |task| %>
+                <li><%= task.name %>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <%= link_to edit_project_requirement_path(@project, requirement) do %>
+            <i class="icon-edit inline"></i>
+          <% end %>
+          <%= link_to project_requirement_path(@project, requirement),
+                      :method => 'delete',
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } do %>
+            <i class="icon-trash"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_requirement_path,
+            new_project_requirement_path,
             :class => 'btn btn-primary' %>
+
+<%- content_for(:javascripts) do -%>
+  
+<%- end -%>

@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
     if user = User.find_by_email(auth.info.email)
       user.provider = auth.provider
       user.uid = auth.uid
+      if user.name == nil || user.name == ""
+        user.name=auth.info.name
+      end
       user
     else
       where(auth.slice(:provider, :uid)).first_or_create do |user|
@@ -54,6 +57,9 @@ class User < ActiveRecord::Base
     if user = User.find_by_email(auth.info.email)
       user.provider = auth.provider
       user.uid = auth.uid
+      if user.name == nil || user.name == ""
+        user.name=auth.info.name
+      end
       user
     else
       where(auth.slice(:provider, :uid)).first_or_create do |user|

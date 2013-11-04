@@ -100,7 +100,7 @@
               <%if user_signed_in?%>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span id="notification-badge" class="badge badge-inverse">0</span></a>
-                  
+                </li>
                 
                <li><%= link_to ''+current_user.email, edit_user_registration_path %></li>
                <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete  %></li>
@@ -121,7 +121,11 @@
           <!--Para los breadcrumbs (feedback navegación)-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>
-                    <ul class="breadcrumb">                            
+                <% if @project and not @project.id.nil? %>
+                    <ul class="breadcrumb" style="margin-left: 35px;">
+                <% else %>
+                    <ul class="breadcrumb">
+                <% end %>                            
                           <% index = 0 %>
                           <% links.each do |link| %>
                          

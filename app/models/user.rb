@@ -16,17 +16,17 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :bugs
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :task_users
+  has_many :task_users, dependent: :destroy
   has_many :tasks, :through => :task_users
 
-  has_many :project_role_users
+  has_many :project_role_user, dependent: :destroys
   has_many :roles, :through => :project_role_users
   has_many :projects, :through => :project_role_users
 
   has_many :reported_hours
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
 
 

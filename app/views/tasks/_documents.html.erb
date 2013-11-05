@@ -9,9 +9,9 @@
       <div id='collapse_task' class="accordion-body collapse">
         <div class="accordion-inner">
           <ul>
-            <% @task.document_tasks do |d| %>
+            <% @task.document_tasks.each do |d| %>
               <li>
-                <a href="<%= d.url_path %>"><%= d.name %></a>
+                <a href="<%= d.url_path %>"><%= "#{d.name}.v#{d.version}" %></a>
               </li>
             <% end %>
           </ul>

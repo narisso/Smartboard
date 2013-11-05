@@ -26,8 +26,6 @@ class BoardsController < ApplicationController
 		  #end
 		end
 
-
-
         flash[:success] = ""
         flash[:notice] = ""
 

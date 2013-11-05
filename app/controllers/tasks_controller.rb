@@ -67,9 +67,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
 
-    #@task.task_type = @task.label.name
-    #@task.project = Project.find(params[:project_id])
-    #@task.status = Status.find(params[:status_id])
+    @task.task_type = @task.label.name
+    @task.project = Project.find(params[:project_id])
+    @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
       if @task.save

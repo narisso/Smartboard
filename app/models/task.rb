@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
 
   has_one :bug
   has_one :evaluation
+  has_many :notifications
   
   has_many :comments
   has_many :reported_hours

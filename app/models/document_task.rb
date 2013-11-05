@@ -16,7 +16,7 @@ class DocumentTask < ActiveRecord::Base
 
     file = url_path.read
     whole_name = url_path.original_filename
-    final_name = self.task.project.name + ".v1.0" + File.extname(whole_name)
+    final_name = whole_name + ".v1.0" + File.extname(whole_name)
     file_path ="SmartBoard/" + project.name + "/" + task.name + "/" + final_name
     dbsession = DropboxSession.deserialize(project.dropbox_token)
     client = DropboxClient.new(dbsession)

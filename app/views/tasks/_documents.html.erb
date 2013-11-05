@@ -11,7 +11,7 @@
           <ul>
             <% @task.document_tasks.each do |d| %>
               <li>
-                <a href="<%= d.url_path %>"><%= d.name %></a>
+                <a href="<%= d.url_path %>"><%= "#{d.name}.v#{d.version}" %></a>
               </li>
             <% end %>
           </ul>

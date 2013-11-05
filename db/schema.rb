@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104042301) do
+ActiveRecord::Schema.define(:version => 20131105170432) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -69,8 +69,10 @@ ActiveRecord::Schema.define(:version => 20131104042301) do
     t.string   "name"
     t.integer  "task_id"
     t.string   "url_path"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "version"
+    t.string   "original_name"
   end
 
   create_table "document_use_cases", :force => true do |t|
@@ -281,9 +283,6 @@ ActiveRecord::Schema.define(:version => 20131104042301) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "avatar"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -291,6 +290,9 @@ ActiveRecord::Schema.define(:version => 20131104042301) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

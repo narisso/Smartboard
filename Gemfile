@@ -21,9 +21,9 @@ group :development, :test do
   gem 'capybara'
   gem "better_errors"
   gem "binding_of_caller"
-  gem "rails-erd"
-  gem 'railroady'
-  gem 'railroad'
+  #gem "rails-erd"
+  #gem 'railroady'
+  #gem 'railroad'
 end
 
 gem 'quiet_assets', :group => :development

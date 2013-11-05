@@ -1,26 +1,37 @@
 <%= simple_form_for [@use_case.project, @use_case], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="well">
-  	<%= f.input :name %>
-    <%= f.association :use_case_group, 
-                      :collection => UseCaseGroup.where(:project_id => @project),
-                      :input_html => { class: 'chosen-select selectpicker'} %>
-    <%= f.association :requirement, 
-                      :collection => Requirement.where(:project_id => @project), 
-                      :input_html => { class: 'chosen-select'} %>
-    <%= f.association :tasks, 
-                      :collection => Task.where(:project_id => @project), 
-                      :input_html => { class: 'chosen-select'} %>
-  	<%= f.association :use_case_template,
-                      :collection => UseCaseTemplate.where(:project_id => @project),
-  					          :input_html => { class: 'chosen-select selectpicker'},
-                      :include_blank => true %>
-  </div>
-  <div id="template">
-    <% if params[:action] == "edit" %>
-      <%= render 'template_form', :@json_obj => JSON.parse(@use_case.use_case_template.template_form),
-                                  :@data => JSON.parse(@use_case.data) %>
-    <% end %>
-  </div>
+    <% if params[:action] == "attach_document" %>
+      <%= f.association :document_projects,
+                        :collectoin => DocumentProject.where(:project_id => @project),
+                        :as => :check_boxes %>
+      <%= f.hidden_field :data, :hidden => true, :value => @use_case.data %>
+      </div>
+    <% else %>
+    	<%= f.input :name %>
+      <%= f.association :use_case_group, 
+                        :collection => UseCaseGroup.where(:project_id => @project),
+                        :input_html => { class: 'chosen-select selectpicker'} %>
+      <%= f.association :requirement, 
+                        :collection => Requirement.where(:project_id => @project), 
+                        :input_html => { class: 'chosen-select'} %>
+      <%= f.association :tasks, 
+                        :collection => Task.where(:project_id => @project), 
+                        :input_html => { class: 'chosen-select'} %>
+      <%= f.association :document_projects,
+                        :collectoin => DocumentProject.where(:project_id => @project),
+                        :input_html => { class: 'chosen-select'} %>
+    	<%= f.association :use_case_template,
+                        :collection => UseCaseTemplate.where(:project_id => @project),
+    					          :input_html => { class: 'chosen-select selectpicker'},
+                        :include_blank => true %>
+    </div>
+    <div id="template">
+      <% if params[:action] == "edit" %>
+        <%= render 'template_form', :@json_obj => JSON.parse(@use_case.use_case_template.template_form),
+                                    :@data => JSON.parse(@use_case.data) %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -80,6 +80,9 @@ Iic21542::Application.routes.draw do
       end
     end
     resources :use_cases do
+      member do
+        get :attach_document
+      end
       collection do
         get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'
       end
@@ -88,6 +91,9 @@ Iic21542::Application.routes.draw do
     resources :use_case_templates
     resources :use_case_groups
     resources :requirements do
+      member do
+        get :attach_document
+      end
       resources :document_requirements
     end
   end

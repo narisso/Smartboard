@@ -96,4 +96,8 @@ class UseCasesController < ApplicationController
       format.js {render 'template_form'}
     end
   end
+
+  def attach_document
+    @requirement = UseCase.find(params[:id])
+  end
 end

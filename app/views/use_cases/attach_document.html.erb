@@ -1,0 +1,9 @@
+<div class="use_cases">
+<div class="use_cases">
+	<%- model_class = Requirement -%>
+	<div class="page-header">
+	  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
+	</div>
+	<%= render 'nav_bar' %>
+	<%= render :partial => 'form' %>
+</div>

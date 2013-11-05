@@ -82,4 +82,9 @@ class RequirementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def attach_document
+    @requirement = Requirement.find(params[:id])
+  end
+
 end

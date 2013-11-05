@@ -1,13 +1,22 @@
 <%= simple_form_for [@project, @requirement], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="well">
-    <%= f.input :name %>
-    <%= f.association :use_cases, 
-                      :collection => UseCase.where(:project_id => @project), 
-                      :input_html => { :class => "chosen-select"}  %>
-    <%= f.association :tasks, 
-                      :collection => Task.where(:project_id => @project),
-                      :input_html => { :class => "chosen-select"}  %>
-    <%= f.input :description, :input_html => { :cols => 30, :rows => 4 } %>
+    <% if params[:action] == "attach_document" %>
+      <%= f.association :document_projects,
+                        :collectoin => DocumentProject.where(:project_id => @project),
+                        :as => :check_boxes %>
+    <% else %>
+      <%= f.input :name %>
+      <% if params[:action] == "edit" %>
+        <%= f.association :use_cases, 
+                          :collection => UseCase.where(:project_id => @project), 
+                          :input_html => { :class => "chosen-select"}  %>
+        <%= f.association :tasks, 
+                          :collection => Task.where(:project_id => @project),
+                          :input_html => { :class => "chosen-select"}  %>
+      <% end %>
+        
+      <%= f.input :description, :input_html => { :cols => 30, :rows => 4 } %>
+    <% end %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

@@ -146,7 +146,7 @@
              <% end %>
 
               <%if user_signed_in?%>
-                <li class="dropdown">
+                <li class="dropdown-notification">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span id="notification-badge" class="badge badge-inverse">0</span></a>
                 </li>
                 
@@ -220,29 +220,7 @@
     <%= yield(:javascripts) %>
     <!--script type="text/javascript">
 
-<%if user_signed_in?%>
-      $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $('.dropdown').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
 
-
-    setInterval(function(){
-      
-           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $(".dropdown").children(".dropdown-menu").remove();
-        $('.dropdown').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
-
-
-    },10000);
-
-    <%end%>
 
 
     $( document ).ready(function() {

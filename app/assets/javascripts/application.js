@@ -42,31 +42,14 @@ $('#modal').on('hide', function () {
 
 
 
-    <%if user_signed_in?%>
-      $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $('.dropdown-notification').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
 
-
-    setInterval(function(){
-      
-           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $(".dropdown-notification").children(".dropdown-menu").remove();
-        $('.dropdown-notification').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
-
-
-    },10000);
-
-    <%end%>
 
 });
+
+
+
+
+
 
 // Script to active chosen select
 function chosenSelect(pixels) {

@@ -218,18 +218,35 @@
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
-    <!--script type="text/javascript">
+    <script type="text/javascript">
+
+        <%if user_signed_in?%>
+      $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+      function( data ) {
+        $('.dropdown-notification').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
 
 
+    setInterval(function(){
+      
+           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+      function( data ) {
+        $(".dropdown-notification").children(".dropdown-menu").remove();
+        $('.dropdown-notification').append(data);
+        var n = $(data).children().size() - 2;
+        $("#notification-badge").html(n);
+      } );
 
 
-    $( document ).ready(function() {
-      $("#ltl-bar-nav").show();
-  });
+    },10000);
+
+    <%end%>
 
       
 
-    </script-->
+    </script
 
   </body>
 </html>

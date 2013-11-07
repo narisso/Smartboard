@@ -1,3 +1,4 @@
+#Encoding: UTF-8
 class Users::InvitationsController < Devise::InvitationsController
 
   skip_before_filter :check_session
@@ -46,13 +47,16 @@ class Users::InvitationsController < Devise::InvitationsController
 
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions, :email => self.resource.email if self.resource.invitation_sent_at
-      respond_with resource, :location => after_invite_path_for(resource)
+      respond_with resource, :location => after_invite_path_for(resource, project)
     else
       respond_with_navigational(resource) { render :new }
     end
   end
 
  
+  def after_invite_path_for(resource, project)
+      request.referrer
+  end
 
 
 end

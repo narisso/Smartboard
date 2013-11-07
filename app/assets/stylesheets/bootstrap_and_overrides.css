@@ -45,3 +45,8 @@
 .modal-body{
     max-height:200px;
 }
+
+.modal-body-task
+{
+    max-height:400px;
+}

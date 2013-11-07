@@ -53,7 +53,8 @@
 
 .alert {
    font-weight: bold;
-   position:absolute; margin-left: 150px; z-index: 1;
+   right: 10px;
+   position:absolute; z-index: 1;
    width: 35%;
    -moz-border-radius: 4px 4px 4px 4px;
    -webkit-border-radius: 4px 4px 4px 4px;

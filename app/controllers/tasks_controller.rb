@@ -4,6 +4,9 @@ class TasksController < ApplicationController
  load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
  load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
 
+ skip_authorize_resource :only => [:create_reported_hours]
+
+
 
  respond_to :html, :json
 
@@ -148,19 +151,22 @@ class TasksController < ApplicationController
   end
 
   def create_reported_hours
-    @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:task_id])
+    @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:id])
+    @status = Status.find(params[:status_id])
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
       
     if @rh
-      @rh.reporting_hours = params[:rh][:reporting_hours]
+      @rh.update_attributes(params[:rh])
     else
       @rh = ReportedHours.new(params[:rh])
       @rh.task = @task
       @rh.user = current_user
+      @rh.save
     end
 
-    @rh.save
 
-    redirect_to boards_project_path(@task.status.project)
+    redirect_to boards_project_path(@project)
   end
 
   def create_subtask

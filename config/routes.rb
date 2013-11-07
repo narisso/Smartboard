@@ -36,6 +36,9 @@ Iic21542::Application.routes.draw do
   match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
   match '/projects/:project_id/set_hook' => 'projects#set_hook', :method => :get, :as => :set_hook
 
+  #Unlink Github
+  match '/projects/:project_id/unlink_github' => 'projects#unlink_github', :as => :unlink_github
+
 
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification

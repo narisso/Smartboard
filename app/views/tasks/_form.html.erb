@@ -9,7 +9,7 @@
 
 
 <%= simple_form_for [@project, @status, @task], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
-  <div class="modal-body">
+  <div class="modal-body modal-body-task">
   <%= f.input :name %>
   <%= f.association :label, 
                     :include_blank => false,

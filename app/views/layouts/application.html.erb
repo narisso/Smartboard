@@ -93,6 +93,8 @@
                                 <% else %>
                                 <li><a tabindex="-1" href="#">No repositories available</a></li>
                                 <% end %>
+                                <li class="divider"></li>
+                                <li><%= link_to "Unlink of Github", unlink_github_path(@project)%></li>
                               <% end %>
                             <% end %>
 
@@ -164,8 +166,8 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        
-          <!-- %= bootstrap_flash % -->
+          <div id="flash_hook"></div>
+          <%= bootstrap_flash %>
           <!--Para los breadcrumbs (feedback navegación)-->
           <% breadcrumbs do |links| %>
               <% if links.any? %>

@@ -37,7 +37,7 @@ gem 'jquery-ui-rails'
 gem 'bootstrap_helper'
 
 # Users, authorization and sessions
-gem 'devise'
+gem 'devise', '3.1.1' 
 gem 'devise_invitable'
 
 # Google and Facebook Login

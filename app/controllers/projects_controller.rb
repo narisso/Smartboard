@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github]
 
   respond_to :html, :json
 
@@ -186,6 +186,18 @@ class ProjectsController < ApplicationController
       end
 
     end
+
+  end
+
+  def unlink_github
+    @project = Project.find(params[:project_id])
+    delete_hooks    
+    @project.github_token = nil
+    @project.github_user = nil
+    @project.repo_name = nil
+    @project.save
+    redirect_to boards_project_path(@project)
+
 
   end
 

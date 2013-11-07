@@ -170,7 +170,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @subtask.task = @task
     @subtask.save
-    redirect_to boards_project_path(@project)
+   # redirect_to boards_project_path(@project)
   end
 
   def new_subtask

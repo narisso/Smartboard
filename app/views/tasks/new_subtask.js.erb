@@ -1,6 +1,8 @@
-$('#subtasks').html("<%= escape_javascript(render 'new_subtask') %>");
+$('#subtask_form').html("<%= escape_javascript(render 'new_subtask') %>");
 $('#subtasks.tab-pane.active a.btn').hide();
 $('#subtasks.tab-pane.active .modal-footer a.btn').show();
+$('#subtask_list').hide();
+$('#subtask_form').show();
 
 $(document).ready(function(){
 	chosenSelect();

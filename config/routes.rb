@@ -36,6 +36,9 @@ Iic21542::Application.routes.draw do
   match '/projects/:id/hook' => 'projects#hook', :method => :post , :as => :hook_path
   match '/projects/:project_id/set_hook' => 'projects#set_hook', :method => :get, :as => :set_hook
 
+  #Unlink Github
+  match '/projects/:project_id/unlink_github' => 'projects#unlink_github', :as => :unlink_github
+
 
   match '/users/notifications' => 'users#notifications', :method => :post, :as => :notifications
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
@@ -80,6 +83,10 @@ Iic21542::Application.routes.draw do
       end
     end
     resources :use_cases do
+      member do
+        get :attach_document
+        post :add_document
+      end
       collection do
         get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'
       end
@@ -88,6 +95,10 @@ Iic21542::Application.routes.draw do
     resources :use_case_templates
     resources :use_case_groups
     resources :requirements do
+      member do
+        get  :attach_document
+        post :add_document
+      end
       resources :document_requirements
     end
   end

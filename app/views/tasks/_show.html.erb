@@ -74,7 +74,7 @@
       </div>
     <div class="tab-pane" id="commits">
       <% @task.commits.each do |commit|%>
-        <b><%=commit.author_name%></b>(<%= commit.author_email%>) <%= link_to commit.sha[0..5], commit.url%>: <%= commit.message%>
+        <li><b><%=commit.author_name%></b>(<%= commit.author_email%>) <%= link_to commit.sha[0..5], commit.url%>: <%= commit.message%></li>
       <% end %>
     </div>
     <div class="tab-pane <%= params[:tab]=='document' ? 'active' : '' %>" id="documents">

@@ -95,7 +95,8 @@ Iic21542::Application.routes.draw do
     resources :use_case_groups
     resources :requirements do
       member do
-        get :attach_document
+        get  :attach_document
+        post :add_document
       end
       resources :document_requirements
     end

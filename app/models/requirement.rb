@@ -14,4 +14,14 @@ class Requirement < ActiveRecord::Base
   has_many :document_projects, :through => :document_project_requirement
 
   validates :name, :presence => true
+
+  def add_document doc
+    if not self.document_projects.include?(doc)
+      self.document_projects << doc
+    end
+  end
+
+  def remove_document doc
+    self.document_projects.delete(doc)
+  end
 end

@@ -85,6 +85,28 @@ class RequirementsController < ApplicationController
 
   def attach_document
     @requirement = Requirement.find(params[:id])
+    @document_projects = DocumentProject.where(:project_id => @project)
+
+    respond_to do |format|
+      format.html # show.html.erb      
+    end
+  end
+
+  def add_document
+    @requirement = Requirement.find(params[:id])
+    @document_project = DocumentProject.find(params[:document_project_id])
+
+    if params[:add] == "true"
+      @requirement.add_document(@document_project)
+      flash[:notice] = "Document added to project."
+    else
+      @requirement.remove_document(@document_project)
+      flash[:notice] = "Document removed from project."
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
 end

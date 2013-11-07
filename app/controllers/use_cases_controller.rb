@@ -98,6 +98,28 @@ class UseCasesController < ApplicationController
   end
 
   def attach_document
-    @requirement = UseCase.find(params[:id])
+    @use_case = UseCase.find(params[:id])
+    @document_projects = DocumentProject.where(:project_id => params[:project_id])
+
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+  def add_document
+    @use_case = UseCase.find(params[:id])
+    @document_project = DocumentProject.find(params[:document_project_id])
+
+    if params[:add] == "true"
+      @use_case.add_document(@document_project)
+      flash[:notice] = "Document added to use case."
+    else
+      @use_case.remove_document(@document_project)
+      flash[:notice] = "Document removed from use case."
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 end

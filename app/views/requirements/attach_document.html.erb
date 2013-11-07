@@ -1,5 +1,4 @@
 <div class="use_cases">
-<div class="use_cases">
 	<%- model_class = Requirement -%>
 	<div class="page-header">
 	  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
@@ -29,6 +28,13 @@
 	    </tbody>
   	</table>
 </div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              project_requirements_path(@project), :class => 'btn'  %>
+</div>
+
+
 
 <% content_for :javascripts do %>
 	<script type="text/javascript">

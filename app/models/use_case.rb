@@ -27,4 +27,14 @@ class UseCase < ActiveRecord::Base
   	end
   	return parse
   end
+
+  def add_document doc
+    if not self.document_projects.include?(doc)
+      self.document_projects << doc
+    end
+  end
+
+  def remove_document doc
+    self.document_projects.delete(doc)
+  end
 end

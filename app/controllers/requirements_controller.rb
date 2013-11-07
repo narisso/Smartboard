@@ -88,7 +88,7 @@ class RequirementsController < ApplicationController
     @document_projects = DocumentProject.where(:project_id => @project)
 
     respond_to do |format|
-      format.html # show.html.erb      
+      format.html 
     end
   end
 
@@ -98,10 +98,10 @@ class RequirementsController < ApplicationController
 
     if params[:add] == "true"
       @requirement.add_document(@document_project)
-      flash[:notice] = "Document added to project."
+      flash[:notice] = "Document added to requirement."
     else
       @requirement.remove_document(@document_project)
-      flash[:notice] = "Document removed from project."
+      flash[:notice] = "Document removed from requirement."
     end
 
     respond_to do |format|

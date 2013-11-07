@@ -85,6 +85,7 @@ Iic21542::Application.routes.draw do
     resources :use_cases do
       member do
         get :attach_document
+        post :add_document
       end
       collection do
         get '/template_use_case' => 'use_cases#template_use_case' ,:as => 'template_use_case'

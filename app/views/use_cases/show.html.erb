@@ -14,20 +14,35 @@
     <h5><%= attribute.first %>:</h5><%= attribute.last %>
   <% end %>
 
-  <% if @use_case.document_use_cases.count > 0 %>
+  <% if @use_case.document_projects.count > 0 %>
     <h5>Documents</h5>
-    <ul>
-      <% @use_case.document_use_cases.each do |d| %>
-        <li><a href="<%= d.url_path %>"><%= d.name %></a></li>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Origin</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @use_case.document_projects.each do |document_project| %>
+        <tr>
+          <td><%= link_to document_project.name, document_project.url_path %></td>
+          <td><%= document_project.version %></td>
+          <td><%= document_project.origin %></td>  
+          <td><%= document_project.description %></td>
+        </tr>
       <% end %>
-    </ul>
+    </tbody>
+  </table>
   <% end %>
 
 </div>
 
 <div class="form-actions">
-  <%= link_to "Add Document", 
-              new_project_use_case_document_use_case_path(@project, @use_case),
+  <%= link_to "Attach Document", 
+              attach_document_project_use_case_path(@project, @use_case),
               :class => 'btn' %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               project_use_cases_path, :class => 'btn'  %>

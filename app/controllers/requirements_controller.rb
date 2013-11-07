@@ -82,4 +82,31 @@ class RequirementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def attach_document
+    @requirement = Requirement.find(params[:id])
+    @document_projects = DocumentProject.where(:project_id => @project)
+
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+  def add_document
+    @requirement = Requirement.find(params[:id])
+    @document_project = DocumentProject.find(params[:document_project_id])
+
+    if params[:add] == "true"
+      @requirement.add_document(@document_project)
+      flash[:notice] = "Document added to requirement."
+    else
+      @requirement.remove_document(@document_project)
+      flash[:notice] = "Document removed from requirement."
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

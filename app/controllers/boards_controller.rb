@@ -15,19 +15,16 @@ class BoardsController < ApplicationController
   				g.repos.list
   			end
 		rescue Github::Error::GithubError => e
-  			#puts e.message
 
-		 # if e.is_a? Github::Error::Unauthorized
 		  	@project.github_token = nil
 		  	@project.github_user = nil
 		  	@project.repo_name = nil
 		  	@project.save
-		  	
-		  #end
+		  		  
 		end
 
         flash[:success] = ""
-        flash[:notice] = ""
+        #flash[:notice] = ""
 
 		@statuses.each do |status|
 
@@ -48,7 +45,7 @@ class BoardsController < ApplicationController
 				session.delete :dropbox_session 
 				send_confirmation_doc
 			    
-		      	#flash[:success] = ""
+		      	flash[:success] = ""
 
 		end
 	

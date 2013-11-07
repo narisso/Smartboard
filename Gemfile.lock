@@ -249,7 +249,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass
   compass-rails
-  devise
+  devise (= 3.1.1)
   devise_invitable
   dropbox-sdk
   flash_render

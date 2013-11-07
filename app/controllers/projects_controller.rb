@@ -94,13 +94,13 @@ class ProjectsController < ApplicationController
 
   def hook
     @project = Project.find(params[:id])
-
+    c = JSON.parse(params[:payload])
     sp = c["head_commit"]["message"].split "#"
     taskid = sp[-1].to_i
     da_task = @project.tasks.find(taskid)
 
     if da_task then
-      c = JSON.parse(params[:payload])
+      
       commit = Commit.new
       commit.author_email = c["head_commit"]["author"]["email"]
       commit.author_name = c["head_commit"]["author"]["name"]

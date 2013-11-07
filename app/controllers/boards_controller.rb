@@ -48,7 +48,7 @@ class BoardsController < ApplicationController
 				session.delete :dropbox_session 
 				send_confirmation_doc
 			    
-		      	flash[:success] = ""
+		      	#flash[:success] = ""
 
 		end
 	

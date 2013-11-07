@@ -258,6 +258,7 @@ function filterByDate(date){
       stop: function(event, ui){
             var id = $(ui.item).data("id");
             var col = $(ui.item).parents(".column").data("id");
+            $(ui.item).find("a").attr("href","<%= project_path(@project) %>"+"/statuses/"+col+"/tasks/"+id)
             $.post( "tasks/update_status", { task_id: id, col: col } );
             var i = Math.floor(  $(ui.item).parent().children().length*100/totalTasks );
             $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");

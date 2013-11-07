@@ -217,7 +217,7 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.save
-        format.js { render :js => "" }
+        format.json { render :js => project_status_task_path(@project,@status,@task) }
         format.json { head :no_content }
       else
         format.js { render :js => "alert('error')" }

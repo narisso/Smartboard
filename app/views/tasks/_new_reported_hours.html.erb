@@ -8,7 +8,7 @@
   <%= bootstrap_flash %>
 
 
-<%= simple_form_for :rh, :url => create_reported_hours_project_status_task_path(@project, @status, @task),:html => { :class => 'form-horizontal' }, :data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do |f| %>
+<%= simple_form_for :rh, :url => create_reported_hours_project_status_task_path(@project, @status, @task, :user_id => current_user),:html => { :class => 'form-horizontal' }, :data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do |f| %>
   <div class="modal-body">
   <%= f.input :reporting_hours %>
   </div>

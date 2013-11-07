@@ -39,11 +39,11 @@ class Task < ActiveRecord::Base
     documents = []
     if not self.requirement.nil?
       self.requirement.use_cases.each do |use_case|
-        documents.concat use_case.document_use_cases
+        documents.concat use_case.document_projects
       end
     end
     if not self.use_case.nil?
-      documents.concat self.use_case.document_use_cases
+      documents.concat self.use_case.document_projects
     end
 
     return documents.uniq

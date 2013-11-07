@@ -1,0 +1,5 @@
+$('#subtask_form').hide();
+$('#subtask_list').html("<%= escape_javascript(render 'subtask') %>");
+$('#subtasks.tab-pane.active a.btn').show();
+$('#subtasks.tab-pane.active .modal-footer a.btn').hide();
+$('#subtask_list').show();

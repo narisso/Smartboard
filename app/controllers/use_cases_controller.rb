@@ -126,6 +126,7 @@ class UseCasesController < ApplicationController
   def requirements
   @use_case = UseCase.find(params[:id])
   @project = @use_case.project
+  @requirements = Requirement.where(:use_case_id => @use_case.id)
     respond_to do |format|
       format.html 
     end

@@ -47,6 +47,7 @@ class RequirementsController < ApplicationController
 
     respond_to do |format|
       if @requirement.save
+        format.js { render :js => "location.reload();" }
         format.html { redirect_to project_requirements_path(@project), notice: 'Requirement was successfully created.' }
         format.json { render json: @requirement, status: :created, location: @requirement }
       else

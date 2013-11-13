@@ -52,6 +52,8 @@ class TasksController < ApplicationController
     @task = Task.new
     @editing = false
 
+    
+
     respond_to do |format|
       format.js
       format.html # new.html.erb
@@ -69,7 +71,6 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-
     @task.task_type = @task.label.name
     @task.project = Project.find(params[:project_id])
     @task.status = Status.find(params[:status_id])

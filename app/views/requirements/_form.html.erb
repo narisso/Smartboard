@@ -1,4 +1,12 @@
-<%= simple_form_for [@project, @requirement], :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      
+      <h1>Requirement</h1>
+
+  </div>
+  <%= bootstrap_flash %>
+
+<%= simple_form_for [@project, @requirement], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="well">
 
       <%= f.input :name %>
@@ -12,11 +20,17 @@
       <% end %>
         
       <%= f.input :description, :input_html => { :cols => 30, :rows => 4 } %>
+
+      <% if params[:use_case]%>
+
+       <%= f.input :use_case_id, :as => :hidden, :input_html => { :value => params[:use_case] } %>
+
+      <%end%>
     
   </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to to 'Cancel' , :data => {:dismiss => "modal"},:class => 'btn' %>
+    <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %> 
   </div>
 <% end %>
 

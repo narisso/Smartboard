@@ -6,3 +6,58 @@
 {
     margin-left: 50px;
 }
+
+.new-use-nav {
+  margin-left: 0;
+  list-style-type: none;
+
+  padding: 20px;
+  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #eeeeee;
+}
+
+.new-use-nav li {
+  display: inline-block;
+list-style-type: none;
+padding-right: 20px;
+
+width: 150px;
+}
+
+.new-use-nav li h5{
+  display: inline;
+margin-right:10px;
+border-color: #666;
+color:#666;
+}
+
+
+
+.numberCircle {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    behavior: url(PIE.htc);
+
+    width: 20px;
+    height: 20px;
+    padding-top: 6px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+    padding-right: 10px;
+
+
+    background: #fff;
+    border: 2px solid;
+
+    text-align: center;
+
+    font: 16px Arial, sans-serif
+}
+
+.new-use-nav li.active h5 {
+
+    border-color: #0088cc;
+    color: #0088cc;
+
+}

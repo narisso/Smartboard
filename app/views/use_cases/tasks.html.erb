@@ -1,0 +1,11 @@
+<div style="margin-left:30px;">
+	<%= render :partial => "new_step_bar", :locals => {:step => 3} %>
+
+
+	<div class="form-actions">
+    <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_use_cases_path, :class => 'btn' %>
+    </div>
+
+</div>

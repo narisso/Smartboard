@@ -1,11 +1,12 @@
 class UseCase < ActiveRecord::Base
-  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, 
-                  :requirement_id, :task_ids, :document_project_ids
+  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, :task_ids, 
+                  :document_project_ids
 
   belongs_to :project
   belongs_to :use_case_template
   belongs_to :use_case_group
-  belongs_to :requirement
+  has_many :requirement_use_cases
+  has_many :requirements, :through => :requirement_use_cases
 
   has_many :tasks
   has_many :document_use_cases

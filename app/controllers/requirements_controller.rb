@@ -1,6 +1,7 @@
 class RequirementsController < ApplicationController
-  load_and_authorize_resource :project
-  load_and_authorize_resource :requirement, :through => :project
+  load_and_authorize_resource :project, :except => :create
+  load_and_authorize_resource :requirement, :through => :project, :except => :create
+  
   # GET /requirements
   # GET /requirements.json
   def index
@@ -42,11 +43,16 @@ class RequirementsController < ApplicationController
   # POST /requirements
   # POST /requirements.json
   def create
-    @requirement = Requirement.new(params[:requirement])
+
+    @project = Project.find(params[:project_id])
+    @requirement = Requirement.new( {name: params[:requirement][:name], description: params[:requirement][:description]} )
+    
     @requirement.project = @project
 
     respond_to do |format|
       if @requirement.save
+        @requirement_use_case = RequirementUseCase.new({requirement_id: @requirement.id, use_case_id: params[:requirement][:use_case_id] })
+        @requirement_use_case.save
         format.js { render :js => "location.reload();" }
         format.html { redirect_to project_requirements_path(@project), notice: 'Requirement was successfully created.' }
         format.json { render json: @requirement, status: :created, location: @requirement }

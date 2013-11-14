@@ -24,9 +24,6 @@
             <% @use_cases.where("use_case_group_id is null").each do |use_case| %>
               <li>
                 <%= link_to use_case.name, project_use_case_path(@project, use_case) %>
-                <% if not use_case.requirement.nil? %>
-                  (<%= link_to(use_case.requirement.name, edit_project_requirement_path(@project, use_case.requirement)) %>)
-                <% end %>
               </li>
             <% end %>
           </ul>
@@ -47,9 +44,6 @@
             <% group.use_cases.each do |use_case| %>
               <li>
                 <%= link_to use_case.name, project_use_case_path(@project, use_case) %>
-                <% if not use_case.requirement.nil? %>
-                  (<%= link_to(use_case.requirement.name, edit_project_requirement_path(@project, use_case.requirement)) %>)
-                <% end %>
               </li>
             <% end %>
           </ul>

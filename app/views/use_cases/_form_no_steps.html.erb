@@ -11,7 +11,7 @@
       <%= f.association :use_case_group, 
                         :collection => UseCaseGroup.where(:project_id => @project),
                         :input_html => { class: 'chosen-select selectpicker'} %>
-      <%= f.association :requirement, 
+      <%= f.association :requirements, 
                         :collection => Requirement.where(:project_id => @project), 
                         :input_html => { class: 'chosen-select'} %>
       <%= f.association :tasks, 

@@ -16,18 +16,11 @@
       <%= f.association :use_case_group, 
                         :collection => UseCaseGroup.where(:project_id => @project),
                         :input_html => { class: 'chosen-select selectpicker'} %>
-      <%= f.association :document_projects,
-                        :collection => DocumentProject.where(:project_id => @project),
-                        :input_html => { class: 'chosen-select'} %>
-
       
     	<%= f.association :use_case_template,
                         :collection => UseCaseTemplate.where(:project_id => @project),
     					          :input_html => { class: 'chosen-select selectpicker'},
                         :include_blank => true %>
-
-      <%= link_to "New Template", new_project_use_case_template_path(:project_id => @project.id),:class=>"btn",:style =>"margin:5px; margin-left:180px; margin-top:-10px;"%>
-
 
     <div id="template">
       <% if params[:action] == "edit" %>

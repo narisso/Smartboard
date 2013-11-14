@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
 
- load_and_authorize_resource :project, :except => [:update_status]
- load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :project, :except => [:update_status,:assign_use_case]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status,:assign_use_case, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock]
 
  skip_authorize_resource :only => [:create_reported_hours]
 
@@ -52,6 +52,8 @@ class TasksController < ApplicationController
     @task = Task.new
     @editing = false
 
+    
+
     respond_to do |format|
       format.js
       format.html # new.html.erb
@@ -69,7 +71,6 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
-
     @task.task_type = @task.label.name
     @task.project = Project.find(params[:project_id])
     @task.status = Status.find(params[:status_id])
@@ -85,7 +86,7 @@ class TasksController < ApplicationController
               @notification.task_id = @task.id
               @notification.save
           end
-        format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
+        format.js { render :js => "location.reload();" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
@@ -238,6 +239,21 @@ class TasksController < ApplicationController
      @task.save
      redirect_to boards_project_path(@project)
   end 
+
+  def assign_use_case
+    @task = Task.find(params[:task_id])
+    @task.use_case_id = params[:use_case]
+
+    respond_to do |format|
+      if @task.save
+        format.js { render :js => "hola" }
+        format.json { head :no_content }
+      else
+        format.js { render :js => "alert('error')" }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 
 end

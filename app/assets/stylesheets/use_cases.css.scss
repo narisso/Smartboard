@@ -6,3 +6,174 @@
 {
     margin-left: 50px;
 }
+
+.new-use-nav {
+  margin-left: 0;
+  list-style-type: none;
+
+  padding: 20px;
+  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #eeeeee;
+}
+
+.new-use-nav li {
+  display: inline-block;
+list-style-type: none;
+padding-right: 20px;
+
+width: 150px;
+}
+
+.new-use-nav li h5{
+  display: inline;
+margin-right:10px;
+border-color: #666;
+color:#666;
+}
+
+.uc-tasks-container {
+  width: calc(100% - 240px);
+  margin-left:20px;
+  display:inline-block;
+  position:relative;
+  float:left;
+}
+
+.p-tasks-container {
+position:relative;
+float:left;
+  width: 210px;
+  height:100%;
+  padding-left:7px;
+  display:inline-block;
+}
+
+.uc-li {
+  width:100%;
+  border-radius: 2px;
+  list-style-type: none;
+
+    -moz-box-shadow: 0 0px 2px #0088cc;
+  -webkit-box-shadow: 0 0px 2px #0088cc;
+  box-shadow: 0 0px 2px #0088cc;
+
+  overflow:hidden;  
+
+}
+
+.uc-tasks-container ul{
+  margin:0;
+
+}
+
+.uc-task {
+  height:22px;
+  width:200px;
+  border-radius: 2px;
+  list-style-type: none;
+  cursor:pointer;
+  margin:2px;
+  padding: 1px;
+}
+
+.uc-task .name{
+  width:110px;
+  word-wrap:break-word;
+  display:inline-block;
+  float:left;
+  margin:0;
+}
+
+.uc-task .status{
+
+  width:80px;
+  word-wrap:break-word;
+  display:inline-block;
+  float:left;
+  margin:0;
+}
+
+.uc-tasks-container ul li .head{
+  width:100%;
+  background: #0088cc;
+  color: white;
+  padding: 5px;
+
+}
+.uc-li ul{
+  width:100%;
+  height:120px;
+  margin:0;
+    -webkit-columns: 210px;
+     -moz-columns: 210px;
+     -o-columns: 210px;
+    columns: 210px;
+}
+
+.uc-li .new{
+  width:100%;
+  height:22px;
+text-align:center;
+    -moz-box-shadow: 0 0px 2px #0088cc;
+  -webkit-box-shadow: 0 0px 2px #0088cc;
+  box-shadow: 0 0px 2px #0088cc;
+}
+
+.p-tasks-container div .head{
+  width:100%;
+  background: #666;
+  color: white;
+  padding: 5px;
+
+}
+
+.p-tasks-container div {
+  width:100%;
+  border-radius: 1px;
+  list-style-type: none;
+
+    -moz-box-shadow: 0 0px 2px #666;
+  -webkit-box-shadow: 0 0px 2px #666;
+  box-shadow: 0 0px 2px #666;
+
+  overflow:hidden;  
+
+}
+.p-tasks-container div ul{
+  width:100%;
+  min-height:300px;
+  padding:3px;
+  margin:0;
+
+}
+
+
+
+.numberCircle {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    behavior: url(PIE.htc);
+
+    width: 20px;
+    height: 20px;
+    padding-top: 6px;
+    padding-left: 10px;
+    padding-bottom: 6px;
+    padding-right: 10px;
+
+
+    background: #fff;
+    border: 2px solid;
+
+    text-align: center;
+
+    font: 16px Arial, sans-serif
+}
+
+.new-use-nav li.active h5 {
+
+    border-color: #0088cc;
+    color: #0088cc;
+
+}

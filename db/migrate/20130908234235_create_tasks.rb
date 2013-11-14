@@ -13,7 +13,6 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :estimated_hours
       t.integer :effective_hours
       t.integer :priority
-      t.boolean :lock
 
       t.timestamps
     end

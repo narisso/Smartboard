@@ -50,7 +50,7 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.save
-        format.html { redirect_to project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
+        format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
         format.json { render json: @use_case, status: :created, location: @use_case }
       else
         format.html { render action: "new" }
@@ -122,4 +122,24 @@ class UseCasesController < ApplicationController
       format.js
     end
   end
+
+  def requirements
+  @use_case = UseCase.find(params[:id])
+  @project = @use_case.project
+  @requirements = Requirement.where(:use_case_id => @use_case.id)
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+  def tasks
+  @use_case = UseCase.find(params[:id])
+  @project = @use_case.project
+
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+
 end

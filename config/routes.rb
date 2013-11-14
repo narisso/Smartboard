@@ -44,6 +44,9 @@ Iic21542::Application.routes.draw do
   match '/users/notification/:notification_id' => 'users#notification', :method => :post, :as => :notification
 
   match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :put, :as => :delete_dbtoken
+  
+
+
   #resources :project_statuses
   root :to => 'application#home'
 
@@ -70,6 +73,9 @@ Iic21542::Application.routes.draw do
     end
     member do
       post 'statuses/update_order', :controller => 'statuses', :action => 'update_order', :as => 'update_order'
+    end
+    member do
+      post 'tasks/assign_use_case', :controller => 'tasks', :action => 'assign_use_case', :as => 'assign_use_case'
     end
     resources :statuses do
       resources :tasks do

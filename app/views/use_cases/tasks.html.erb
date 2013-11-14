@@ -6,9 +6,9 @@
 	<ul>
 		<li class="uc-li">
 			<div class="head">General Use Case Tasks</div>
-			<ul class="sortable">
+			<ul class="sortable" data-type="use_case">
 				<% @use_case.tasks.each_with_index do |task , i| %>
-					<li class="uc-task">
+					<li class="uc-task" data-id="<%=task.id%>">
 						<p class="name"> <%= task.name %> </p>
 						<p class="status"> <%= task.status.name %> </p>
 					</li>
@@ -33,9 +33,9 @@
 <div class="p-tasks-container">
 		<div>
 			<div class="head">Project Tasks</div>
-			<ul class="sortable">
-				<% @project.tasks.each_with_index do |task , i| %>
-					<li class="uc-task">
+			<ul class="sortable" data-type="project">
+				<% @project.tasks.where("use_case_id != (?) OR use_case_id IS (?)", @use_case.id,nil).each_with_index do |task , i| %>
+					<li class="uc-task" data-id="<%=task.id%>">
 						<p class="name"> <%= task.name %> </p>
 						<p class="status"> <%= task.status.name %> </p>
 					</li>
@@ -69,12 +69,16 @@ $( "ul.sortable" ).sortable({
 
       },
       stop: function(event, ui){
-            /*var id = $(ui.item).data("id");
-            var col = $(ui.item).parents(".column").data("id");
-            $(ui.item).find("a").attr("href","<%= project_path(@project) %>"+"/statuses/"+col+"/tasks/"+id)
-            $.post( "tasks/update_status", { task_id: id, col: col } );
-            var i = Math.floor(  $(ui.item).parent().children().length*100/totalTasks );
-            $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");*/
+            var id = $(ui.item).data("id");
+            var type = $(ui.item).parent().data("type");
+
+            if(type=="project"){
+				$.post( "<%= assign_use_case_project_path(@project) %>", { task_id: id, use_case: null } );
+            }
+            else{
+            
+            $.post( "<%= assign_use_case_project_path(@project) %>", { task_id: id, use_case: <%=@use_case.id%>  } );
+        	}
       }
     });
 

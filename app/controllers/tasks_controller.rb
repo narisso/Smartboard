@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
 
- load_and_authorize_resource :project, :except => [:update_status]
- load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :project, :except => [:update_status,:assign_use_case]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status,:assign_use_case, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock]
 
  skip_authorize_resource :only => [:create_reported_hours]
 
@@ -239,6 +239,21 @@ class TasksController < ApplicationController
      @task.save
      redirect_to boards_project_path(@project)
   end 
+
+  def assign_use_case
+    @task = Task.find(params[:task_id])
+    @task.use_case_id = params[:use_case]
+
+    respond_to do |format|
+      if @task.save
+        format.js { render :js => "hola" }
+        format.json { head :no_content }
+      else
+        format.js { render :js => "alert('error')" }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 
 end

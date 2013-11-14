@@ -34,7 +34,7 @@
 		<div>
 			<div class="head">Project Tasks</div>
 			<ul class="sortable" data-type="project">
-				<% @project.tasks.where("use_case_id != (?) OR use_case_id IS (?)", @use_case.id,nil).each_with_index do |task , i| %>
+				<% @project.tasks.where("use_case_id != ? OR use_case_id IS ?", @use_case.id,nil).each_with_index do |task , i| %>
 					<li class="uc-task" data-id="<%=task.id%>">
 						<p class="name"> <%= task.name %> </p>
 						<p class="status"> <%= task.status.name %> </p>

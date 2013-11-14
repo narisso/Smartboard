@@ -76,9 +76,11 @@
   <% end %>
 </div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<div class="form-actions use-cases" style="margin-left:0px">
+<%= link_to t('.new', :default => t("New Requirement")),
             new_project_requirement_path,
             :class => 'btn btn-primary' %>
+</div>
 
 <%- content_for(:javascripts) do -%>
   

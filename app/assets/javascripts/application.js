@@ -18,6 +18,7 @@
 //= require jquery.purr
 //= require best_in_place
 //= require flash_message
+//= require d3
 
 
 $(document).bind("page:load", function() {

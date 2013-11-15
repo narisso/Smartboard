@@ -78,6 +78,8 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    d3-rails (3.3.7)
+      railties (>= 3.1)
     debug_inspector (0.0.2)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
@@ -249,6 +251,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass
   compass-rails
+  d3-rails
   devise (= 3.1.1)
   devise_invitable
   dropbox-sdk

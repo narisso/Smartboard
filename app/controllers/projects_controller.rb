@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports]
 
   respond_to :html, :json
 
@@ -284,6 +284,12 @@ class ProjectsController < ApplicationController
 
       @dropbox_token = nil
       flash[:success] = "Failed authorized "
+  end
+
+  def reports
+    respond_to do |format|
+      format.html
+    end
   end
 
 end

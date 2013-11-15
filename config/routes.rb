@@ -63,6 +63,7 @@ Iic21542::Application.routes.draw do
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
+      get :reports
       post :finish
     end
     member do

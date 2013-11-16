@@ -1,8 +1,10 @@
+# Manages requirement's information
 class RequirementsController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :requirement, :through => :project
-  # GET /requirements
-  # GET /requirements.json
+  # Gives the list of requirements as JSon
+  #
+  # @return [String] the list of requirements as JSon 
   def index
 
     respond_to do |format|
@@ -11,8 +13,10 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # GET /requirements/1
-  # GET /requirements/1.json
+  # Gives information about a certain requirement
+  #
+  # @param id [String] the requirement's id
+  # @return [String] the requirement's information as JSON
   def show
     @requirement = Requirement.find(params[:id])
 
@@ -22,8 +26,9 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # GET /requirements/new
-  # GET /requirements/new.json
+  # Gives the template for creating a new requirement
+  #
+  # @return [String] the information to fill about a new requirement as a JSON
   def new
     @requirement = Requirement.new
 
@@ -33,13 +38,17 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # GET /requirements/1/edit
+  # Gives the template for edit a requirement
+  #
+  # @param id [String] the requirement's id
   def edit
     @requirement = Requirement.find(params[:id])
   end
 
-  # POST /requirements
-  # POST /requirements.json
+  # Creates the information for a new requirement
+  #
+  # @param requirement [Requirement] the information of the new requirement from POST
+  # @return [String] the status of the creation, and the information of the requirement as JSON
   def create
     @requirement = Requirement.new(params[:requirement])
     @requirement.project = @project
@@ -55,8 +64,11 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # PUT /requirements/1
-  # PUT /requirements/1.json
+  # Changes the information of a requirement
+  #
+  # @param id [String] the requirement id
+  # @param requirement [Requirement] the information of the requirement from POST
+  # @return [String] the status of the update, and the information of the requirement as JSON
   def update
     @requirement = Requirement.find(params[:id])
 
@@ -71,8 +83,10 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # DELETE /requirements/1
-  # DELETE /requirements/1.json
+  # Deletes a requirement of the application
+  #
+  # @param id [String] the requirement's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @requirement = Requirement.find(params[:id])
     @requirement.destroy
@@ -83,6 +97,10 @@ class RequirementsController < ApplicationController
     end
   end
 
+  # Atach a project document to a requirement
+  #
+  # @param id [String] the requirement's id
+  # @param project_id [String] the project's id
   def attach_document
     @requirement = Requirement.find(params[:id])
     @document_projects = DocumentProject.where(:project_id => @project)
@@ -92,6 +110,10 @@ class RequirementsController < ApplicationController
     end
   end
 
+  # Add a new project document to a requirement
+  #
+  # @param id [String] the requirement's id
+  # @param project_id [String] the project's id
   def add_document
     @requirement = Requirement.find(params[:id])
     @document_project = DocumentProject.find(params[:document_project_id])

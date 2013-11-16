@@ -18,7 +18,7 @@ class DocumentProjectsController < ApplicationController
   # Gives information about a certain document of a project
   #
   # @param id [String] the document's id
-  # @return [String] the label's information as JSON
+  # @return [String] the document's information as JSON
   def show
     @document_project = DocumentProject.find(params[:id])
 
@@ -53,7 +53,7 @@ class DocumentProjectsController < ApplicationController
   # 
   # @param project_id [String] the project's id
   # @param document_project [DocumentProject] the document's information, which contains name, description and file
-  # @return [String] the status of the creation, and the information of the label as JSON
+  # @return [String] the status of the creation, and the information of the document as JSON
   def create
     @project = Project.find(params[:project_id])
     @document_project = DocumentProject.create_and_upload({name: params[:document_project][:name], description: params[:document_project][:description]}, params[:document_project][:file])
@@ -71,9 +71,9 @@ class DocumentProjectsController < ApplicationController
 
   # Changes the information of a label
   #
-  # @param id [String] the if of the document of a project
-  # @param document_project [DocumentProject] the information of the label from POST
-  # @return [String] the status of the update, and the information of the label as JSON
+  # @param id [String] the id of the document of a project
+  # @param document_project [DocumentProject] the information of the document from POST
+  # @return [String] the status of the update, and the information of the document as JSON
   def update
     @document_project = DocumentProject.find(params[:id])
 

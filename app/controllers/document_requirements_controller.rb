@@ -1,9 +1,12 @@
+# Manages requirement's documents information
 class DocumentRequirementsController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :requirement, :through => :project
   load_and_authorize_resource :document_requirement, :through => :requirement
-  # GET /document_requirements
-  # GET /document_requirements.json
+ 
+  # Gives the list of requirement's documents as JSon
+  #
+  # @return [String] the list of documments as JSon 
   def index
 
     respond_to do |format|
@@ -12,8 +15,10 @@ class DocumentRequirementsController < ApplicationController
     end
   end
 
-  # GET /document_requirements/1
-  # GET /document_requirements/1.json
+  # Gives information about a certain document
+  #
+  # @param id [String] the document id
+  # @return [String] the document's information as JSON
   def show
     @document_requirement = DocumentRequirement.find(params[:id])
 

@@ -1,9 +1,12 @@
+# Manages comment's information
 class CommentsController < ApplicationController
 
   respond_to :html, :json
 
-  # GET /comments
-  # GET /comments.json
+  # Gives the list of comments of the taks as JSon
+  #
+  # @param task_id [String] the task id 
+  # @return [String] the list of comments as JSon 
   def index
     @task = Task.find(params[:task_id])
     @project = @task.project
@@ -15,8 +18,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1
-  # GET /comments/1.json
+  # Gives information about a certain comment
+  #
+  # @param id [String] the comment id
+  # @return [String] the comment's information as JSON
   def show
     @comment = Comment.find(params[:id])
 
@@ -27,8 +32,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/new
-  # GET /comments/new.json
+  # Gives the template for creating a new comment
+  #
+  # @return [String] the information to fill about a new comment as a JSON
   def new
     @comment = Comment.new
 
@@ -38,13 +44,18 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1/edit
+  # Gives the template for edit a comment
+  #
+  # @param id [String] the comment id
   def edit
     @comment = Comment.find(params[:id])
   end
 
-  # POST /comments
-  # POST /comments.json
+  # Creates the information for a new comment
+  #
+  # @param comment [Comment] the information of the new comment from POST
+  # @param task_id [String] the task id 
+  # @return [String] the status of the creation, and the information of the comment as JSON
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
@@ -65,8 +76,12 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.json
+  # Changes the information of a comment
+  #
+  # @param id [String] the comment id
+  # @param task_id [String] the task id 
+  # @param comment [Comment] the information of the comment from POST
+  # @return [String] the status of the update, and the information of the comment as JSON
   def update
     @comment = Comment.find(params[:id])
     @task = Task.find(params[:task_id])
@@ -84,23 +99,12 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
-  def destroy
-    @comment = Comment.find(params[:comment_id])
-    @task = Task.find(params[:task_id])
-    @project = @task.project
-    @comment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to comments_url }
-      format.json { head :no_content }
-      format.js { redirect_to project_status_task_comments_path }
-    end
-  end
-
+  # Deletes a comment of the application
+  #
+  # @param comment_id [String] the comment id
+  # @param status_id [String] the task's status id 
+  # @return [String] the content of the deletion as JSON
   def delete_comment
-    @status = Status.find(params[:status_id])
     @comment=Comment.find(params[:comment_id])
     @comment.destroy
   end

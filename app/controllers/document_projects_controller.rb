@@ -1,6 +1,9 @@
+# Manages the information of the documents of a project
 class DocumentProjectsController < ApplicationController
-  # GET /document_projects
-  # GET /document_projects.json
+  # Gives the list of documents of a certain project as JSon
+  #
+  # @param project_id [String] the id of a project
+  # @return [String] the list of labels as JSon 
   def index
     @project = Project.find(params[:project_id])
     @document_projects = DocumentProject.where(:project_id => params[:project_id])
@@ -12,8 +15,10 @@ class DocumentProjectsController < ApplicationController
     end
   end
 
-  # GET /document_projects/1
-  # GET /document_projects/1.json
+  # Gives information about a certain document of a project
+  #
+  # @param id [String] the document's id
+  # @return [String] the label's information as JSON
   def show
     @document_project = DocumentProject.find(params[:id])
 
@@ -23,8 +28,10 @@ class DocumentProjectsController < ApplicationController
     end
   end
 
-  # GET /document_projects/new
-  # GET /document_projects/new.json
+  # Gives the template for creating a new document of a project
+  #
+  # @param project_id [String] the project's id
+  # @return [String] the information to fill about a new document of a project as a JSON
   def new
     @document_project = DocumentProject.new
     @document_project.project = Project.find(params[:project_id])
@@ -35,13 +42,18 @@ class DocumentProjectsController < ApplicationController
     end
   end
 
-  # GET /document_projects/1/edit
+  # Gives the template to edit a document's information of a project
+  #
+  # @param id [String] the document's id
   def edit
     @document_project = DocumentProject.find(params[:id])
   end
 
-  # POST /document_projects
-  # POST /document_projects.json
+  # Creates the information for a new document of a project
+  # FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  # @param project_id [String] the project's id
+  # @param document_project [DocumentProject] the document's information
+  # @return [String] the status of the creation, and the information of the label as JSON
   def create
 
     @project = Project.find(params[:project_id])

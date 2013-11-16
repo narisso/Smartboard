@@ -1,6 +1,9 @@
+# Manages commits's information
 class CommitsController < ApplicationController
-  # GET /commits
-  # GET /commits.json
+  
+  # Gives the list of commits of the application as JSon
+  #
+  # @return [String] the list of commits as JSon 
   def index
     @commits = Commit.all
 
@@ -10,8 +13,10 @@ class CommitsController < ApplicationController
     end
   end
 
-  # GET /commits/1
-  # GET /commits/1.json
+  # Gives information about a certain commit
+  #
+  # @param id [String] the commit id
+  # @return [String] the commit's information as JSON
   def show
     @commit = Commit.find(params[:id])
 
@@ -21,8 +26,9 @@ class CommitsController < ApplicationController
     end
   end
 
-  # GET /commits/new
-  # GET /commits/new.json
+  # Gives the template for creating a new commit
+  #
+  # @return [String] the information to fill about a new commit as a JSON
   def new
     @commit = Commit.new
 
@@ -32,13 +38,17 @@ class CommitsController < ApplicationController
     end
   end
 
-  # GET /commits/1/edit
+  # Gives the template for edit a comment
+  #
+  # @param id [String] the commit id
   def edit
     @commit = Commit.find(params[:id])
   end
 
-  # POST /commits
-  # POST /commits.json
+  # Creates the information for a new commit
+  #
+  # @param commit [Commit] the information of the new commit from POST
+  # @return [String] the status of the creation, and the information of the commit as JSON
   def create
     @commit = Commit.new(params[:commit])
 
@@ -53,8 +63,11 @@ class CommitsController < ApplicationController
     end
   end
 
-  # PUT /commits/1
-  # PUT /commits/1.json
+  # Changes the information of a commit
+  #
+  # @param id [String] the commit id
+  # @param commit [Commit] the information of the commit from POST
+  # @return [String] the status of the update, and the information of the commit as JSON
   def update
     @commit = Commit.find(params[:id])
 
@@ -69,8 +82,10 @@ class CommitsController < ApplicationController
     end
   end
 
-  # DELETE /commits/1
-  # DELETE /commits/1.json
+  # Deletes a commit of the application
+  #
+  # @param id [String] the commit id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @commit = Commit.find(params[:id])
     @commit.destroy

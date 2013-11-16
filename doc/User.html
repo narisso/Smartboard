@@ -160,6 +160,116 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getDocumentsAsJSon-class_method" title="getDocumentsAsJSon (class method)">+ (Object) <strong>getDocumentsAsJSon</strong>(proj_id) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getProjectsAsJSon-class_method" title="getProjectsAsJSon (class method)">+ (Object) <strong>getProjectsAsJSon</strong>(token) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loginAsJson-class_method" title="loginAsJson (class method)">+ (Object) <strong>loginAsJson</strong>(email, password) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logoutAsJSon-class_method" title="logoutAsJSon (class method)">+ (Object) <strong>logoutAsJSon</strong>(token) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uploadAsJSon-class_method" title="uploadAsJSon (class method)">+ (Object) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -304,12 +414,384 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="getDocumentsAsJSon-class_method">
+  
+    + (<tt>Object</tt>) <strong>getDocumentsAsJSon</strong>(proj_id) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+200
+201
+202
+203
+204
+205
+206
+207
+208</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 200</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getDocumentsAsJSon'>getDocumentsAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_proj_id'>proj_id</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_document_projects'>document_projects</span> <span class='op'>=</span> <span class='const'>DocumentProject</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_proj_id'>proj_id</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_document_projects'>document_projects</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>There's no project whit that id.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_document_projects'>document_projects</span>
+  <span class='kw'>end</span>
+  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getProjectsAsJSon-class_method">
+  
+    + (<tt>Object</tt>) <strong>getProjectsAsJSon</strong>(token) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getProjectsAsJSon'>getProjectsAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_us'>us</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_authentication_token'>find_by_authentication_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_us'>us</span> <span class='kw'>and</span> <span class='id identifier rubyid_token'>token</span>
+    <span class='id identifier rubyid_id_user'>id_user</span> <span class='op'>=</span> <span class='id identifier rubyid_us'>us</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+    <span class='id identifier rubyid_proj_of_user'>proj_of_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_id_user'>id_user</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_project_info'>project_info</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  
+    <span class='id identifier rubyid_proj_of_user'>proj_of_user</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
+      <span class='id identifier rubyid_array'>array</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>user_name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_us'>us</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
+      <span class='id identifier rubyid_proj'>proj</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>project_id</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_proj'>proj</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>project_name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_proj'>proj</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>project_description</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_proj'>proj</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>project_finish_date</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_proj'>proj</span><span class='period'>.</span><span class='id identifier rubyid_finish_date'>finish_date</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>project_status</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>ProjectStatus</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_proj'>proj</span><span class='period'>.</span><span class='id identifier rubyid_project_status'>project_status</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+      <span class='id identifier rubyid_array'>array</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>role_name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_role_id'>role_id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+      <span class='id identifier rubyid_project_info'>project_info</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_array'>array</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_project_info'>project_info</span> <span class='comment'>#@pr
+</span>  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:error</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error: There's no user with given token.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="loginAsJson-class_method">
+  
+    + (<tt>Object</tt>) <strong>loginAsJson</strong>(email, password) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_loginAsJson'>loginAsJson</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_password'>password</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>400</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The request must contain the user email and password.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_user'>user</span><span class='op'>=</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_email'>find_by_email</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_email'>email</span><span class='rbrace'>}</span><span class='tstring_content'> failed signin, user cannot be found.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>401</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid email or passoword.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># http://rdoc.info/github/plataformatec/devise/master/Devise/Models/TokenAuthenticatable
+</span>  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_ensure_authentication_token!'>ensure_authentication_token!</span>
+
+  <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_email'>email</span><span class='rbrace'>}</span><span class='tstring_content'> failed signin, password \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot; is invalid</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>401</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid email or password.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>200</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:token</span><span class='op'>=&gt;</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_authentication_token'>authentication_token</span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logoutAsJSon-class_method">
+  
+    + (<tt>Object</tt>) <strong>logoutAsJSon</strong>(token) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logoutAsJSon'>logoutAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_user'>user</span><span class='op'>=</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_authentication_token'>find_by_authentication_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Token not found.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>404</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid token.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_reset_authentication_token!'>reset_authentication_token!</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>200</span><span class='comma'>,</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:token</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Logout success.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="uploadAsJSon-class_method">
+  
+    + (<tt>Object</tt>) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uploadAsJSon'>uploadAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_project_id'>project_id</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>dropbox_sdk</span><span class='tstring_end'>'</span></span>
+  
+  <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_authentication_token'>find_by_authentication_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Token not found.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='symbol'>:status</span><span class='op'>=&gt;</span><span class='int'>404</span><span class='comma'>,</span> <span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid token.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_project_id'>project_id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> 
+        <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The request must contain project id.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The request must contain file.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Project doesn't exists.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_project_of_user'>project_of_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>user_id = ? AND project_id = ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='comma'>,</span> <span class='id identifier rubyid_project_id'>project_id</span> <span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_project_of_user'>project_of_user</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User doesn't have permissions.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    
+    <span class='id identifier rubyid_dropbox_token'>dropbox_token</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_dropbox_token'>dropbox_token</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_dropbox_token'>dropbox_token</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User doesn't have permissions.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+      <span class='id identifier rubyid_docs'>docs</span> <span class='op'>=</span>  <span class='const'>DocumentProject</span><span class='period'>.</span><span class='id identifier rubyid_find_all_by_name'>find_all_by_name</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='int'>0</span>
+      <span class='kw'>unless</span> <span class='id identifier rubyid_docs'>docs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>then</span>
+        <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='id identifier rubyid_docs'>docs</span><span class='lbracket'>[</span><span class='id identifier rubyid_docs'>docs</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span> <span class='op'>+</span> <span class='int'>1</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_final_file_name'>final_file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.v</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
+
+      <span class='id identifier rubyid_file_path'>file_path</span> <span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SmartBoard/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_final_file_name'>final_file_name</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_dbsession'>dbsession</span> <span class='op'>=</span> <span class='const'>DropboxSession</span><span class='period'>.</span><span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_dropbox_token'>dropbox_token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>DropboxClient</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dbsession'>dbsession</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put_file'>put_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>uploaded:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span>
+      <span class='kw'>rescue</span>
+        <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_dropbox_token'>dropbox_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+        <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+        <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Project has none Dropbox account associated.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_link'>link</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_shares'>shares</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>path</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>DocumentProject</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='label'>name:</span> <span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span> <span class='label'>project_id:</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>url_path:</span> <span class='id identifier rubyid_link'>link</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>version:</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='label'>origin:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mobile</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span>
+
+      <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='symbol'>:link</span><span class='op'>=&gt;</span><span class='id identifier rubyid_link'>link</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
     <div id="footer">
-  Generated on Sat Nov 16 11:56:54 2013 by
+  Generated on Sat Nov 16 12:31:54 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

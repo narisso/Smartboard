@@ -12,4 +12,6 @@ class DocumentProject < ActiveRecord::Base
   has_many :use_cases, :through => :document_project_use_case
 
   validates_presence_of :name, :project_id, :url_path, :version, :origin
+
+  
 end

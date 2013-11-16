@@ -14,7 +14,7 @@ class LabelsController < ApplicationController
 
   # Gives information about a certain label
   #
-  # @param id [String] the label id
+  # @param id [String] the label's id
   # @return [String] the label's information as JSON
   def show
     @label = Label.find(params[:id])
@@ -83,7 +83,7 @@ class LabelsController < ApplicationController
 
   # Deletes a label of the application
   #
-  # @param id [String] the label id
+  # @param id [String] the label's id
   # @return [String] the content of the deletion as JSON
   def destroy
     @label = Label.find(params[:id])

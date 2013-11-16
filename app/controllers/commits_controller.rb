@@ -15,7 +15,7 @@ class CommitsController < ApplicationController
 
   # Gives information about a certain commit
   #
-  # @param id [String] the commit id
+  # @param id [String] the commit's id
   # @return [String] the commit's information as JSON
   def show
     @commit = Commit.find(params[:id])
@@ -84,7 +84,7 @@ class CommitsController < ApplicationController
 
   # Deletes a commit of the application
   #
-  # @param id [String] the commit id
+  # @param id [String] the commit's id
   # @return [String] the content of the deletion as JSON
   def destroy
     @commit = Commit.find(params[:id])

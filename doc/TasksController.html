@@ -1,0 +1,1434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: TasksController
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo;
+    
+    
+    <span class="title">TasksController</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: TasksController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ActionController::Base</li>
+          
+            <li class="next"><span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></li>
+          
+            <li class="next">TasksController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">app/controllers/tasks_controller.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#change_lock-instance_method" title="#change_lock (instance method)">- (Object) <strong>change_lock</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>POST /tasks POST /tasks.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_reported_hours-instance_method" title="#create_reported_hours (instance method)">- (Object) <strong>create_reported_hours</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_subtask-instance_method" title="#create_subtask (instance method)">- (Object) <strong>create_subtask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_subtask-instance_method" title="#delete_subtask (instance method)">- (Object) <strong>delete_subtask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>DELETE /tasks/1 DELETE /tasks/1.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit-instance_method" title="#edit (instance method)">- (Object) <strong>edit</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /tasks/1/edit.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /tasks GET /tasks.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /tasks/new GET /tasks/new.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_reported_hours-instance_method" title="#new_reported_hours (instance method)">- (Object) <strong>new_reported_hours</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_subtask-instance_method" title="#new_subtask (instance method)">- (Object) <strong>new_subtask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_tasks-instance_method" title="#project_tasks (instance method)">- (Object) <strong>project_tasks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /tasks/project_tasks/1 GET /tasks/project_tasks/1.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show-instance_method" title="#show (instance method)">- (Object) <strong>show</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>GET /tasks/1 GET /tasks/1.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#show_comments_of_task-instance_method" title="#show_comments_of_task (instance method)">- (Object) <strong>show_comments_of_task</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>PUT /tasks/1 PUT /tasks/1.json.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_status-instance_method" title="#update_status (instance method)">- (Object) <strong>update_status</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>end.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_subtask-instance_method" title="#update_subtask (instance method)">- (Object) <strong>update_subtask</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="ApplicationController.html" title="ApplicationController (class)">ApplicationController</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ApplicationController.html#after_accept_path_for-instance_method" title="ApplicationController#after_accept_path_for (method)">#after_accept_path_for</a></span>, <span class='object_link'><a href="ApplicationController.html#after_inactive_sign_up_path_for-instance_method" title="ApplicationController#after_inactive_sign_up_path_for (method)">#after_inactive_sign_up_path_for</a></span>, <span class='object_link'><a href="ApplicationController.html#after_sign_in_path_for-instance_method" title="ApplicationController#after_sign_in_path_for (method)">#after_sign_in_path_for</a></span>, <span class='object_link'><a href="ApplicationController.html#after_sign_up_path_for-instance_method" title="ApplicationController#after_sign_up_path_for (method)">#after_sign_up_path_for</a></span>, <span class='object_link'><a href="ApplicationController.html#check_session-instance_method" title="ApplicationController#check_session (method)">#check_session</a></span>, <span class='object_link'><a href="ApplicationController.html#home-instance_method" title="ApplicationController#home (method)">#home</a></span></p>
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="change_lock-instance_method">
+  
+    - (<tt>Object</tt>) <strong>change_lock</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_change_lock'>change_lock</span>
+
+   <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+   <span class='kw'>if</span><span class='lparen'>(</span><span class='kw'>not</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='rparen'>)</span>
+     <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span>
+   <span class='kw'>else</span>
+     <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='op'>=</span> <span class='kw'>true</span>
+   <span class='kw'>end</span> 
+   <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+   <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@project</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>POST /tasks POST /tasks.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:task</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_task_type'>task_type</span> <span class='op'>=</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+          <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user'>user</span><span class='op'>|</span>
+            <span class='ivar'>@notification</span> <span class='op'>=</span> <span class='const'>Notification</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_link'>link</span> <span class='op'>=</span> <span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You were assigned to a new task</span><span class='tstring_end'>&quot;</span></span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_viewed'>viewed</span> <span class='op'>=</span> <span class='kw'>false</span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_task_id'>task_id</span> <span class='op'>=</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+            <span class='ivar'>@notification</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+        <span class='kw'>end</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:js</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window.location = '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='comment'>#, notice: 'Task was successfully created.' }
+</span>      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@task</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:created</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='ivar'>@task</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_new_project_status_task_path'>new_project_status_task_path</span><span class='comma'>,</span> <span class='label'>alert:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Error</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_reported_hours-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_reported_hours</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_reported_hours'>create_reported_hours</span>
+  <span class='ivar'>@rh</span> <span class='op'>=</span> <span class='const'>ReportedHours</span><span class='period'>.</span><span class='id identifier rubyid_find_by_user_id_and_task_id'>find_by_user_id_and_task_id</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    
+  <span class='kw'>if</span> <span class='ivar'>@rh</span>
+    <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rh</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@rh</span> <span class='op'>=</span> <span class='const'>ReportedHours</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:rh</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='ivar'>@task</span>
+    <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span>
+    <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+
+  <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@project</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_subtask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>create_subtask</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174
+175
+176
+177
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_subtask'>create_subtask</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span> <span class='op'>=</span> <span class='const'>SubTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:subtask</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:task_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='ivar'>@task</span>
+  <span class='ivar'>@subtask</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+ <span class='comment'># redirect_to boards_project_path(@project)
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete_subtask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete_subtask</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete_subtask'>delete_subtask</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span><span class='op'>=</span><span class='const'>SubTask</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sub_task_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="destroy-instance_method">
+  
+    - (<tt>Object</tt>) <strong>destroy</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>DELETE /tasks/1 DELETE /tasks/1.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_head'>head</span> <span class='symbol'>:no_content</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="edit-instance_method">
+  
+    - (<tt>Object</tt>) <strong>edit</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /tasks/1/edit</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@editing</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="index-instance_method">
+  
+    - (<tt>Object</tt>) <strong>index</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /tasks GET /tasks.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='comment'># index.html.erb
+</span>    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@tasks</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /tasks/new GET /tasks/new.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@editing</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='comment'># new.html.erb
+</span>    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@task</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_reported_hours-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_reported_hours</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_reported_hours'>new_reported_hours</span>
+  <span class='ivar'>@rh</span> <span class='op'>=</span> <span class='const'>ReportedHours</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='ivar'>@task</span>
+  <span class='ivar'>@rh</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_subtask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_subtask</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 182</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_subtask'>new_subtask</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:task_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span> <span class='op'>=</span> <span class='const'>SubTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_tasks-instance_method">
+  
+    - (<tt>Object</tt>) <strong>project_tasks</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /tasks/project_tasks/1 GET /tasks/project_tasks/1.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_tasks'>project_tasks</span>
+  <span class='ivar'>@tasks</span> <span class='op'>=</span> <span class='ivar'>@project</span><span class='period'>.</span><span class='id identifier rubyid_tasks'>tasks</span>
+
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='comment'># project_tasks.html.erb
+</span>    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@tasks</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='symbol'>:include</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:users</span><span class='comma'>,</span> <span class='symbol'>:label</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show-instance_method">
+  
+    - (<tt>Object</tt>) <strong>show</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>GET /tasks/1 GET /tasks/1.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@comment</span> <span class='op'>=</span> <span class='const'>Comment</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@comment</span><span class='period'>.</span><span class='id identifier rubyid_task'>task</span> <span class='op'>=</span> <span class='ivar'>@task</span>
+  <span class='ivar'>@comment</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span>
+  <span class='ivar'>@subtask</span> <span class='op'>=</span> <span class='const'>SubTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='comment'># show.html.erb
+</span>    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@task</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="show_comments_of_task-instance_method">
+  
+    - (<tt>Object</tt>) <strong>show_comments_of_task</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_show_comments_of_task'>show_comments_of_task</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@comments</span> <span class='op'>=</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_comments'>comments</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span>
+    <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>PUT /tasks/1 PUT /tasks/1.json</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_task_type'>task_type</span> <span class='op'>=</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:task</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:js</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>window.location = '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_boards_project_path'>boards_project_path</span><span class='lparen'>(</span><span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_head'>head</span> <span class='symbol'>:no_content</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='comment'>#format.html { render action: &quot;edit&quot; }
+</span>      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_edit_project_status_task_path'>edit_project_status_task_path</span><span class='comma'>,</span> <span class='label'>alert:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Name must not be blank</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:unprocessable_entity</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_status-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_status</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>end</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 210</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_status'>update_status</span>
+
+  <span class='ivar'>@task</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:task_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:col</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='ivar'>@status</span>
+  
+  <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='ivar'>@task</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:js</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_project_status_task_path'>project_status_task_path</span><span class='lparen'>(</span><span class='ivar'>@project</span><span class='comma'>,</span><span class='ivar'>@status</span><span class='comma'>,</span><span class='ivar'>@task</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_head'>head</span> <span class='symbol'>:no_content</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_js'>js</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='symbol'>:js</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>alert('error')</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_head'>head</span> <span class='symbol'>:no_content</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_subtask-instance_method">
+  
+    - (<tt>Object</tt>) <strong>update_subtask</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/controllers/tasks_controller.rb', line 195</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_subtask'>update_subtask</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:status_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>    
+  <span class='ivar'>@project</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span> <span class='op'>=</span> <span class='const'>SubTask</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sub_task_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@subtask</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:sub_task</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_respond_with'>respond_with</span> <span class='ivar'>@subtask</span>
+
+  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Nov 16 11:56:55 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

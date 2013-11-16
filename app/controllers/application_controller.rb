@@ -45,14 +45,9 @@ class ApplicationController < ActionController::Base
   end
 
 	def home 
-
 	end 
 
-
-
-
-  private
- 
+  private 
     def flash_to_headers
       return unless request.xhr?
       response.headers['X-Message'] = flash_message
@@ -74,7 +69,6 @@ class ApplicationController < ActionController::Base
         return type unless flash[type].blank?
       end
     end
-
 end
 
 

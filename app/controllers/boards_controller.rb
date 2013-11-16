@@ -43,40 +43,28 @@ class BoardsController < ApplicationController
 				@project.dropbox_token = session[:dropbox_session]
 				@project.save
 				session.delete :dropbox_session 
-				send_confirmation_doc
-			    
+				send_confirmation_doc			    
 		      	flash[:success] = ""
-
 		end
-	
-
-
 			@highlight = params[:task_highlight]
-
 
         respond_to do |format|
             format.html 
         end
-
 	end
 
 	def show_client
-
 	    respond_to do |format|
 	        format.html
 	    end
 	end 
 
 	def send_confirmation_doc
-
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"
       file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)
       flash[:success] = "We have send a document to your dropbox "
-
-
  	end
-
 end

@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   # Gives information about a certain comment
   #
-  # @param id [String] the comment id
+  # @param id [String] the comment's id
   # @return [String] the comment's information as JSON
   def show
     @comment = Comment.find(params[:id])
@@ -78,7 +78,7 @@ class CommentsController < ApplicationController
 
   # Changes the information of a comment
   #
-  # @param id [String] the comment id
+  # @param id [String] the comment's id
   # @param task_id [String] the task id 
   # @param comment [Comment] the information of the comment from POST
   # @return [String] the status of the update, and the information of the comment as JSON
@@ -101,7 +101,7 @@ class CommentsController < ApplicationController
 
   # Deletes a comment of the application
   #
-  # @param comment_id [String] the comment id
+  # @param comment_id [String] the comment's id
   # @param status_id [String] the task's status id 
   # @return [String] the content of the deletion as JSON
   def delete_comment

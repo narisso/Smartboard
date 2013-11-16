@@ -49,41 +49,15 @@ class DocumentProjectsController < ApplicationController
     @document_project = DocumentProject.find(params[:id])
   end
 
-  # Creates the information for a new document of a project
-  # FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  # Creates the information for a new document of a project, and upload it to Dropbox repository
+  # 
   # @param project_id [String] the project's id
-  # @param document_project [DocumentProject] the document's information
+  # @param document_project [DocumentProject] the document's information, which contains name, description and file
   # @return [String] the status of the creation, and the information of the label as JSON
   def create
-
     @project = Project.find(params[:project_id])
-    @document_project = DocumentProject.new({name: params[:document_project][:name], description: params[:document_project][:description]})
-    @document_project.project = @project
-    docs =  DocumentProject.find_all_by_name(@document_project.name)
+    @document_project = DocumentProject.create_and_upload({name: params[:document_project][:name], description: params[:document_project][:description]}, params[:document_project][:file])
     
-    unless docs.empty? then
-      @document_project.version = docs[docs.length-1].version + 1
-    end
-
-    @document_project.origin = "web"
-
-    if @project.dropbox_token then
-      if params[:document_project][:file] then
-        require 'dropbox_sdk'
-        file = params[:document_project][:file].read
-        whole_name = params[:document_project][:file].original_filename
-        final_name = @document_project.name + ".v" + @document_project.version.to_s + File.extname(whole_name)
-        @file_path ="SmartBoard/" + @project.name + "/" + final_name
-        dbsession = DropboxSession.deserialize(@project.dropbox_token)
-        client = DropboxClient.new(dbsession)
-        response = client.put_file(@file_path, file)
-        link = client.shares(response["path"])
-        @document_project.url_path = link["url"]
-      end
-    else
-      flash[:alert] = "No cloud storage linked"
-    end
-
     respond_to do |format|
       if @document_project.save
         format.html { redirect_to boards_project_path(@document_project.project_id) }
@@ -95,8 +69,11 @@ class DocumentProjectsController < ApplicationController
     end
   end
 
-  # PUT /document_projects/1
-  # PUT /document_projects/1.json
+  # Changes the information of a label
+  #
+  # @param id [String] the if of the document of a project
+  # @param document_project [DocumentProject] the information of the label from POST
+  # @return [String] the status of the update, and the information of the label as JSON
   def update
     @document_project = DocumentProject.find(params[:id])
 
@@ -111,8 +88,11 @@ class DocumentProjectsController < ApplicationController
     end
   end
 
-  # DELETE /document_projects/1
-  # DELETE /document_projects/1.json
+  # Deletes a document from a project
+  #
+  # @param id [String] the document's id
+  # @param project_id [String] theid of the project that contains the document
+  # @return [String] the content of the deletion as JSON
   def destroy
     @project = Project.find(params[:project_id])
     @document_project = DocumentProject.find(params[:id])

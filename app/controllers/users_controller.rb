@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   # Gives information about a certain user
   #
-  # @param id [String] the user id
+  # @param id [String] the user's id
   # @return [String] the user's information as JSON
   def show
     @user = User.find(params[:id])
@@ -105,7 +105,7 @@ class UsersController < ApplicationController
 
   # Gives the information of a certain notification, and set it as seen
   #
-  # @param notification_id [String] the notification id
+  # @param notification_id [String] the notification's id
   # @return [String] the content of the notification as JSON
   def notification
     @notification = Notification.find(params[:notification_id])

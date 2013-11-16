@@ -14,7 +14,7 @@ class BugsController < ApplicationController
 
   # Gives information about a certain bug
   #
-  # @param id [String] the bug id
+  # @param id [String] the bug's id
   # @return [String] the bug's information as JSON
   def show
     @bug = Bug.find(params[:id])
@@ -39,7 +39,7 @@ class BugsController < ApplicationController
 
   # Gives the template for edit a bug
   #
-  # @param id [String] the bug id
+  # @param id [String] the bug's id
   def edit
     @bug = Bug.find(params[:id])
   end
@@ -83,7 +83,7 @@ class BugsController < ApplicationController
 
   # Deletes a bug of the application
   #
-  # @param id [String] the bug id
+  # @param id [String] the bug's id
   # @return [String] the content of the deletion as JSON
   def destroy
     @bug = Bug.find(params[:id])

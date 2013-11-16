@@ -6,18 +6,17 @@ class DocumentRequirementsController < ApplicationController
  
   # Gives the list of requirement's documents as JSon
   #
-  # @return [String] the list of documments as JSon 
+  # @return [String] the list of labels as JSon 
   def index
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @document_requirements }
     end
   end
 
-  # Gives information about a certain document
+  # Gives information about a certain requirement's document
   #
-  # @param id [String] the document id
+  # @param id [String] the document's id
   # @return [String] the document's information as JSON
   def show
     @document_requirement = DocumentRequirement.find(params[:id])
@@ -28,8 +27,10 @@ class DocumentRequirementsController < ApplicationController
     end
   end
 
-  # GET /document_requirements/new
-  # GET /document_requirements/new.json
+  # Gives the template for creating a new requirement's document
+  #
+  # @param project_id [String] the project's id
+  # @return [String] the information to fill about a new document as a JSON
   def new
     @document_requirement = DocumentRequirement.new
 
@@ -39,13 +40,17 @@ class DocumentRequirementsController < ApplicationController
     end
   end
 
-  # GET /document_requirements/1/edit
+  # Gives the template to edit a document's information
+  #
+  # @param id [String] the document's id
   def edit
     @document_requirement = DocumentRequirement.find(params[:id])
   end
 
-  # POST /document_requirements
-  # POST /document_requirements.json
+  # Creates the information for a new requirement document
+  # 
+  # @param document_requirement [DocumentRequirement] the document's information
+  # @return [String] the status of the creation, and the information of the document as JSON
   def create
     @document_requirement = DocumentRequirement.new(params[:document_requirement])
     @document_requirement.requirement = @requirement
@@ -61,8 +66,11 @@ class DocumentRequirementsController < ApplicationController
     end
   end
 
-  # PUT /document_requirements/1
-  # PUT /document_requirements/1.json
+  # Changes the information of a document
+  #
+  # @param id [String] the if of the document of a requirement
+  # @param document_requirement [DocumentRequirement] the information of the document from POST
+  # @return [String] the status of the update, and the information of the document as JSON
   def update
     @document_requirement = DocumentRequirement.find(params[:id])
 
@@ -77,8 +85,10 @@ class DocumentRequirementsController < ApplicationController
     end
   end
 
-  # DELETE /document_requirements/1
-  # DELETE /document_requirements/1.json
+  # Deletes a document from a requirement
+  #
+  # @param id [String] the document's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @document_requirement = DocumentRequirement.find(params[:id])
     @document_requirement.destroy

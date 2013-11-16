@@ -1,12 +1,15 @@
+# Manages project's information
 class ProjectsController < ApplicationController
-  # GET /projects
-  # GET /projects.json
+
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
   skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github]
 
   respond_to :html, :json
 
+  # Gives the list of projects of the application as JSon
+  #
+  # @return [String] the list of projects as JSon 
   def index   
     @projects = current_user.projects
 
@@ -16,8 +19,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
+  # Gives information about a certain project
+  #
+  # @param id [String] the project's id
+  # @return [String] the project's information as JSON
   def show
     @project = Project.find(params[:id])
 
@@ -27,12 +32,12 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/new
-  # GET /projects/new.json
+  # Gives the template for creating a new project and, if it is possible, link it to Dropbox and Github
+  #
+  # @return [String] the information to fill about a new project as a JSON
   def new
     @linkDropbox = false
     @linkGithub = false
-
     
     if session[:dropbox_session]  
       @linkDropbox = true
@@ -41,7 +46,6 @@ class ProjectsController < ApplicationController
       send_confirmation_doc  
     end 
     
-
     if session[:github_session]
       @linkGithub = true
       @github_token = session[:github_session]
@@ -59,8 +63,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/edit
-  def edit
+  # Gives the template for edit a bug, and modifies information about the link of the project with Dropbox or Github
+  #
+  # @param id [String] the project's id
+def edit
     @project = Project.find(params[:id])
 
     if session[:dropbox_session]
@@ -82,14 +88,11 @@ class ProjectsController < ApplicationController
     end
     
     if @github_token  
-    if !@github_token.empty?
-      @g = Github.new :oauth_token => @github_token
-      @github_username = @g.users.get.body["login"]
-    end  
-  end
-
-
-
+      if !@github_token.empty?
+        @g = Github.new :oauth_token => @github_token
+        @github_username = @g.users.get.body["login"]
+      end  
+    end
   end
 
   def hook
@@ -111,9 +114,7 @@ class ProjectsController < ApplicationController
       commit.task_id = taskid
       commit.save
     end
-
     #respond 200
-
   end
 
   def set_hook
@@ -201,8 +202,10 @@ class ProjectsController < ApplicationController
 
   end
 
-  # POST /projects
-  # POST /projects.json
+  # Creates the information for a new project, set it status, and set it Project Manager
+  #
+  # @param project [Project] the information of the new bug from POST
+  # @return [String] the status of the creation, and the information of the project as JSON
   def create
     @project = Project.new(params[:project])
     @project.initial_date = Time.now
@@ -226,8 +229,11 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PUT /projects/1
-  # PUT /projects/1.json
+  # Changes the information of a project
+  #
+  # @param id [String] the project's id
+  # @param project [Project] the information of the project from POST
+  # @return [String] the status of the update, and the information of the project as JSON
   def update
     @project = Project.find(params[:id])
     #@old_repo = @project.repo_name
@@ -246,8 +252,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
-  # DELETE /projects/1.json
+  # Deletes a project of the application
+  #
+  # @param id [String] the project's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @project = Project.find(params[:id])
     
@@ -259,11 +267,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Declares a project as Finished
+  #
+  # @param id [String] the project's id
   def finish
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
 
+  # Deletes the link of a project with Dropbox
+  #
+  # @param id [String] the project's id
   def delete_dbtoken
     @project = Project.find(params[:id])
     @project.dropbox_token=nil
@@ -271,19 +285,19 @@ class ProjectsController < ApplicationController
     redirect_to boards_project_path(@project)
   end
   
+  # Sends confirmation document, and read me document to a recent linked Dropbox's repository
   def send_confirmation_doc
+    dbsession = DropboxSession.deserialize(@dropbox_token)
+    @file_path ="SMARTBOARD/README_DROPBOX.txt"
+    file = open('doc/README_DROPBOX.txt')
+    client = DropboxClient.new(dbsession)
+    response = client.put_file(@file_path, file)
+    flash[:success] = "We have send a document to your dropbox "
 
-      dbsession = DropboxSession.deserialize(@dropbox_token)
-      @file_path ="SMARTBOARD/README_DROPBOX.txt"
-      file = open('doc/README_DROPBOX.txt')
-      client = DropboxClient.new(dbsession)
-      response = client.put_file(@file_path, file)
-      flash[:success] = "We have send a document to your dropbox "
+    rescue 
 
-  rescue 
-
-      @dropbox_token = nil
-      flash[:success] = "Failed authorized "
+    @dropbox_token = nil
+    flash[:success] = "Failed authorized "
   end
 
 end

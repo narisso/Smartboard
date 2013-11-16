@@ -64,7 +64,7 @@ class BugsController < ApplicationController
 
   # Changes the information of a bug
   #
-  # @param id [String] the bug id
+  # @param id [String] the bug's id
   # @param bug [Bug] the information of the bug from POST
   # @return [String] the status of the update, and the information of the bug as JSON
   def update

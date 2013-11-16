@@ -1,6 +1,8 @@
+# Manages role's information
 class RolesController < ApplicationController
-  # GET /roles
-  # GET /roles.json
+  # Gives the list of roles as JSon
+  #
+  # @return [String] the list of roles as JSon 
   def index
     @roles = Role.all
 
@@ -10,8 +12,10 @@ class RolesController < ApplicationController
     end
   end
 
-  # GET /roles/1
-  # GET /roles/1.json
+  # Gives information about a certain role
+  #
+  # @param id [String] the role's id
+  # @return [String] the role's information as JSON
   def show
     @role = Role.find(params[:id])
 
@@ -21,8 +25,9 @@ class RolesController < ApplicationController
     end
   end
 
-  # GET /roles/new
-  # GET /roles/new.json
+  # Gives the template for creating a new role
+  #
+  # @return [String] the information to fill about a new role as a JSON
   def new
     @role = Role.new
 
@@ -32,13 +37,17 @@ class RolesController < ApplicationController
     end
   end
 
-  # GET /roles/1/edit
+  # Gives the template for edit a role
+  #
+  # @param id [String] the role's id
   def edit
     @role = Role.find(params[:id])
   end
 
-  # POST /roles
-  # POST /roles.json
+  # Creates the information for a new role
+  #
+  # @param bug [Bug] the information of the new role from POST
+  # @return [String] the status of the creation, and the information of the role as JSON
   def create
     @role = Role.new(params[:role])
 
@@ -53,8 +62,11 @@ class RolesController < ApplicationController
     end
   end
 
-  # PUT /roles/1
-  # PUT /roles/1.json
+  # Changes the information of a role
+  #
+  # @param id [String] the role's id
+  # @param role [Role] the information of the role from POST
+  # @return [String] the status of the update, and the information of the role as JSON
   def update
     @role = Role.find(params[:id])
 
@@ -69,8 +81,10 @@ class RolesController < ApplicationController
     end
   end
 
-  # DELETE /roles/1
-  # DELETE /roles/1.json
+  # Deletes a role of the application
+  #
+  # @param id [String] the role's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @role = Role.find(params[:id])
     @role.destroy

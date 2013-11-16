@@ -1,5 +1,4 @@
 class BoardsController < ApplicationController
-  
 	
 	def show
 		@project = Project.find(params[:id])

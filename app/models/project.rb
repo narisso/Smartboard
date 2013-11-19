@@ -61,7 +61,7 @@ class Project < ActiveRecord::Base
       nil
     end
   end
-
+  
   private
     def set_starting_status
       self.project_status = ProjectStatus.first

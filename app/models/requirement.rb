@@ -24,4 +24,14 @@ class Requirement < ActiveRecord::Base
   def remove_document doc
     self.document_projects.delete(doc)
   end
+
+  def add_remove_document(document_project,add)
+    if add == "true"
+      self.add_document(document_project)
+      return "Document added to use case."
+    else
+      self.remove_document(document_project)
+      return "Document removed from use case."
+    end
+  end
 end

@@ -14,34 +14,34 @@ class DocumentProject < ActiveRecord::Base
   validates_presence_of :name, :project_id, :url_path, :version, :origin
 
   def self.create_and_upload(project,attributes, file)
-  document = DocumentProject.new(attributes)
+    document = DocumentProject.new(attributes)
 
-  document.project = project
-  docs = DocumentProject.find_all_by_name(document.name)
+    document.project = project
+    docs = DocumentProject.find_all_by_name(document.name)
 
-  unless docs.empty? then
-    document.version = docs[docs.length-1].version + 1
-  end
-
-  document.origin = "web"
-
-  if project.dropbox_token then
-    if file then
-      require 'dropbox_sdk'
-      file_aux = file.read
-      whole_name = file.original_filename
-      final_name = document.name + ".v" + document.version.to_s + File.extname(whole_name)
-      file_path ="SmartBoard/" + project.name + "/" + final_name
-      dbsession = DropboxSession.deserialize(project.dropbox_token)
-      client = DropboxClient.new(dbsession)
-      response = client.put_file(file_path, file_aux)
-      link = client.shares(response["path"])
-      document.url_path = link["url"]
+    unless docs.empty? then
+      document.version = docs[docs.length-1].version + 1
     end
-  else
-    flash[:alert] = "No cloud storage linked"
-  end
 
-  return document
+    document.origin = "web"
+
+    if project.dropbox_token then
+      if file then
+        require 'dropbox_sdk'
+        file_aux = file.read
+        whole_name = file.original_filename
+        final_name = document.name + ".v" + document.version.to_s + File.extname(whole_name)
+        file_path ="SmartBoard/" + project.name + "/" + final_name
+        dbsession = DropboxSession.deserialize(project.dropbox_token)
+        client = DropboxClient.new(dbsession)
+        response = client.put_file(file_path, file_aux)
+        link = client.shares(response["path"])
+        document.url_path = link["url"]
+      end
+    else
+      flash[:alert] = "No cloud storage linked"
+    end
+
+    return document
   end
 end

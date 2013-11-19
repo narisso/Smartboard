@@ -5,4 +5,10 @@ class Status < ActiveRecord::Base
 
   has_many :tasks
   belongs_to :project
+
+  def set_default_name (aux)
+  	if self.name == "" || self.name == nil
+      self.name = "Default"+aux.to_s
+    end
+  end
 end

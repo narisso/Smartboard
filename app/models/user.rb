@@ -196,16 +196,12 @@ class User < ActiveRecord::Base
     end
   end
 
-
   def self.getDocumentsAsJSon(proj_id)
     document_projects = DocumentProject.where(:project_id => proj_id)
     if document_projects.nil?
       return :json=>{:message=>"There's no project whit that id."}
     else
       return :json => document_projects
-    end
-    
+    end    
   end
-
-
 end

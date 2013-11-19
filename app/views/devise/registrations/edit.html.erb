@@ -44,10 +44,12 @@
    </div>
  </div>
 
+ <!-- If the user doesn't have a password (Facebook or Google Login) it doesn't request one. 
+ The current password field is hidden -->
  <% unless @user.encrypted_password.blank? %>
    <% if @user.errors[:current_password].present?%>
      <div class="control-group error">
-   <%else%>  
+   <%else%>   
      <div class="control-group">
    <%end%>    
 
@@ -56,8 +58,6 @@
        <%=f.password_field :current_password , :class => 'text_field' %>
      </div>
    </div>
- <% else %>
-    <%=f.hidden_field :current_password, :value => nil %>
  <% end %>
 
  <div class="form-actions">

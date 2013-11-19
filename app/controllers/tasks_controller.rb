@@ -1,3 +1,4 @@
+# Manages task's information
 class TasksController < ApplicationController
 
  load_and_authorize_resource :project, :except => [:update_status]
@@ -6,10 +7,9 @@ class TasksController < ApplicationController
 
  skip_authorize_resource :only => [:create_reported_hours]
 
-
-
  respond_to :html, :json
-
+  
+  # Shows all the comments of a task
   def show_comments_of_task
     @task = Task.find(params[:id])
     @comments = @task.comments
@@ -21,8 +21,9 @@ class TasksController < ApplicationController
 
   end
 
-  # GET /tasks
-  # GET /tasks.json
+  # Gives the list of tasks as JSon
+  #
+  # @return [String] the list of tasks as JSon 
   def index
     respond_to do |format|
       format.html # index.html.erb
@@ -30,8 +31,12 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
+  # Gives information about a certain task, and prepare the task for new comments or subtasks.
+  #
+  # @param id [String] the task's id
+  # @param project_id [String] the project's id
+  # @param status_id [String] the status' id
+  # @return [String] the task's information as JSON
   def show
     @project = Project.find(params[:project_id])
     @status = Status.find(params[:status_id])
@@ -46,8 +51,9 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
+  # Gives the template for creating a new task
+  #
+  # @return [String] the information to fill about a new task as a JSON
   def new
     @task = Task.new
     @editing = false
@@ -59,32 +65,28 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1/edit
+  # Gives the template for edit a task
+  #
+  # @param id [String] the task's id
   def edit
     @task = Task.find(params[:id])
     @editing = true
   end
 
-  # POST /tasks
-  # POST /tasks.json
+  # Creates the information for a new task, and send the notification to all the users assigned to the task.
+  #
+  # @param task [Task] the information of the new task from POST
+  # @param project_id [String] the project's id
+  # @param status_id [String] the status' id
+  # @return [String] the status of the creation, and the information of the task as JSON
   def create
     @task = Task.new(params[:task])
-
     @task.task_type = @task.label.name
     @task.project = Project.find(params[:project_id])
     @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
-      if @task.save
-            @task.users.each do |user|
-              @notification = Notification.new
-              @notification.user = user
-              @notification.link = boards_project_path(@task.project_id)
-              @notification.description = "You were assigned to a new task"
-              @notification.viewed = false
-              @notification.task_id = @task.id
-              @notification.save
-          end
+      if @task.save_and_notify boards_project_path(@task.project_id)
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
@@ -95,8 +97,11 @@ class TasksController < ApplicationController
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+  # Changes the information of a task
+  #
+  # @param id [String] the task's id
+  # @param task [Task] the information of the task from POST
+  # @return [String] the status of the update, and the information of the task as JSON
   def update
     @task = Task.find(params[:id])
     @task.task_type = @task.label.name
@@ -113,8 +118,10 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # Deletes a task of the application
+  #
+  # @param id [String] the task's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
@@ -127,8 +134,9 @@ class TasksController < ApplicationController
 
 
 
-  # GET /tasks/project_tasks/1
-  # GET /tasks/project_tasks/1.json
+  # Gives the task's information of a project, including their users and the label.
+  #
+  # @return [String] the task's information
   def project_tasks
     @tasks = @project.tasks
 
@@ -139,6 +147,7 @@ class TasksController < ApplicationController
     end
   end
 
+  # Returns the template for creating a new instance of the reported hours of a task
   def new_reported_hours
     @rh = ReportedHours.new
     @rh.task = @task
@@ -150,25 +159,29 @@ class TasksController < ApplicationController
     end
   end
 
+  # Creates the information for a new instance of reported hours of a task.
+  #
+  # @param user_id [String] the user's id
+  # @param id [String] the task's id
+  # @param project_id [String] the project's id
+  # @param rh [String] the reported hours to register
   def create_reported_hours
-    @rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:id])
+    rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:id])
     @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
-    @task = Task.find(params[:id])
-      
-    if @rh
-      @rh.update_attributes(params[:rh])
-    else
-      @rh = ReportedHours.new(params[:rh])
-      @rh.task = @task
-      @rh.user = current_user
-      @rh.save
-    end
-
+    task = Task.find(params[:id])
+     
+    Task.report_hours(rh, params[:rh],current_user,task)
 
     redirect_to boards_project_path(@project)
   end
 
+  # Creates the information for a new instance of reported hours of a task.
+  #
+  # @param status_id [String] the status' id
+  # @param project_id [String] the project's id
+  # @param subtask [SubTask] the subtask to create
+  # @param task_id [String] the task's id of the task that contains the subtask
   def create_subtask
     @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
@@ -179,6 +192,11 @@ class TasksController < ApplicationController
    # redirect_to boards_project_path(@project)
   end
 
+  # Creates an instance of a new subtask.
+  #
+  # @param status_id [String] the status' id
+  # @param projcet_id [String] the project's id
+  # @param task_id [String] the id of the task that contains the subtask 
   def new_subtask
     @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
@@ -186,29 +204,36 @@ class TasksController < ApplicationController
     @subtask = SubTask.new
   end
 
+  # Deletes a subtask of the application
+  #
+  # @param status_id [String] the status' id
+  # @param sub_task_id [String] the subtask's id
   def delete_subtask
     @status = Status.find(params[:status_id])
     @subtask=SubTask.find(params[:sub_task_id])
     @subtask.destroy
   end
 
+  # Updates the information of a subtask
+  #
+  # @param status_id [String] the status' id
+  # @param sub_task_id [String] the subtask's id
+  # @param project_id [String] the project's id
   def update_subtask
     @status = Status.find(params[:status_id])    
     @project = Project.find(params[:project_id])
     @subtask = SubTask.find(params[:sub_task_id])
     @subtask.update_attributes(params[:sub_task])
 
-    respond_with @subtask
-
-    
+    respond_with @subtask   
   end
 
-  #def reported_hours_index
-
-  #end
-
+  # Updates the status of a task
+  #
+  # @param task_id [String] the task's id
+  # @param id [String] the project's id
+  # @param col [String] the id of the new status of the task
   def update_status
-
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])
@@ -227,18 +252,14 @@ class TasksController < ApplicationController
 
   end
 
+  # Locks if a task is unlocked, unlocks if a task is locked.
+  #
+  # @param id [String] the task's id
   def change_lock
-
-     @task = Task.find(params[:id])
-     if(not @task.lock == nil )
-       @task.lock = !@task.lock
-     else
-       @task.lock = true
-     end 
-     @task.save
+     task = Task.find(params[:id])
+     Task.lock_unlock(task)
      redirect_to boards_project_path(@project)
   end 
-
 
 end
 

@@ -49,4 +49,37 @@ class Task < ActiveRecord::Base
     return documents.uniq
   end
 
+  def save_and_notify(link)
+    self.users.each do |user|
+      @notification = Notification.new
+      @notification.user = user
+      @notification.link = link
+      @notification.description = "You were assigned to a new task"
+      @notification.viewed = false
+      @notification.task_id = self.id
+      @notification.save
+    end
+    return self.save
+  end
+
+  def self.report_hours(instance, rh,current_user,task)
+    if instance
+      instance.update_attributes(rh)
+    else
+      instance = ReportedHours.new(rh)
+      instance.task = task
+      instance.user = current_user
+      instance.save
+    end
+  end
+
+  def self.lock_unlock(task)
+    if(not task.lock == nil )
+       task.lock = !task.lock
+     else
+       task.lock = true
+     end 
+     task.save
+   end
+
 end

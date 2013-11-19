@@ -1,5 +1,9 @@
+# Manages board's information
 class BoardsController < ApplicationController
-	
+	# Shows the administrator, project manager and developer board's view and indicates the link with dropbox and github
+  	#
+  	# @param id [String] the project's id
+  	# @param task_highlight [String]
 	def show
 		@project = Project.find(params[:id])
 		authorize! :read, @project
@@ -37,12 +41,14 @@ class BoardsController < ApplicationController
         end
 	end
 
+	# Shows the client board's view
 	def show_client
 	    respond_to do |format|
 	        format.html
 	    end
 	end 
 
+	# Puts a README file on the folder of Dropbox, when the link has just been done. 
 	def send_confirmation_doc
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
       @file_path ="SMARTBOARD/README_DROPBOX.txt"

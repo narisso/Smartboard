@@ -237,11 +237,11 @@ ActiveRecord::Schema.define(:version => 20131114145011) do
     t.integer  "estimated_hours"
     t.integer  "effective_hours"
     t.integer  "priority"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
-    t.boolean  "lock",             :default => false
+    t.boolean  "lock"
     t.integer  "use_case_id"
   end
 
@@ -300,6 +300,9 @@ ActiveRecord::Schema.define(:version => 20131114145011) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -307,9 +310,6 @@ ActiveRecord::Schema.define(:version => 20131114145011) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

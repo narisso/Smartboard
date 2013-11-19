@@ -67,7 +67,12 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.update_attributes(params[:use_case])
-        format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
+
+        if params[:subaction]=="step"
+          format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully updated.' }
+        else
+          format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

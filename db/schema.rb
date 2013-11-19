@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105193316) do
+ActiveRecord::Schema.define(:version => 20131114145011) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -174,12 +174,18 @@ ActiveRecord::Schema.define(:version => 20131105193316) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "requirement_use_cases", :force => true do |t|
+    t.integer  "use_case_id"
+    t.integer  "requirement_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "requirements", :force => true do |t|
     t.string   "name"
     t.string   "type"
     t.text     "data"
     t.integer  "template_id"
-    t.integer  "use_case_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "description"
@@ -271,7 +277,6 @@ ActiveRecord::Schema.define(:version => 20131105193316) do
     t.integer  "use_case_template_id"
     t.text     "data"
     t.integer  "use_case_group_id"
-    t.integer  "requirement_id"
   end
 
   create_table "users", :force => true do |t|

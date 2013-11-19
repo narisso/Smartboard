@@ -1,0 +1,50 @@
+<div style="margin-left:30px;">
+	<%= render :partial => "new_step_bar", :locals => {:step => 2} %>
+
+<div class="accordion" id="#accordion_groups" style="margin-left:30px;">
+  <% @requirements.each do |requirement| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{requirement.id}" %>'>
+          <%= requirement.name %>
+        </a> 
+      </div>
+      <div id='collapse<%= "_#{requirement.id}"%>' class="accordion-body collapse">
+        <div class="accordion-inner">
+          <p><%= requirement.description %></p>
+
+          <% if requirement.tasks.count > 0 %>
+            <h5>Tasks</h5>
+            <ul>
+              <% requirement.tasks.each do |task| %>
+                <li><%= task.name %>
+              <% end %>
+            </ul>
+          <% end %>
+
+          <% if requirement.document_projects.count > 0 %>
+            <h5>Documents</h5>
+            <ul>
+              <% requirement.document_projects.each do |d| %>
+                <li><a href="<%= d.url_path %>"><%= d.name %></a></li>
+              <% end %>
+          <% end %>
+
+          <br/>
+          
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <br>
+  <%= link_to "New Requirement", new_project_requirement_path(@project,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn", :style=>""%>
+</div>
+
+	<div class="form-actions">
+    <%= link_to "Continue", tasks_project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_use_cases_path, :class => 'btn' %>
+    </div>
+
+</div>

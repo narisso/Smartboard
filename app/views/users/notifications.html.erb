@@ -3,7 +3,7 @@
 	<% @notifications.each_with_index do | notification , i |%>
 	
 		<li>
-			<a href="../../users/notification/<%= notification.id %>"> New Task! </a>
+			<a href="<%= notification_path(notification.id) %>"> New Task! </a>
 		</li>
 
 	<% end %>

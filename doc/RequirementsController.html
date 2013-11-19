@@ -103,7 +103,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Manages requirement's information</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -135,7 +146,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Add a new project document to a requirement.</p>
+</div></span>
   
 </li>
 
@@ -157,30 +170,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
     <span class="summary_desc"><div class='inline'>
-<p>POST /requirements POST /requirements.json.</p>
+<p>Atach a project document to a requirement.</p>
 </div></span>
   
 </li>
@@ -189,7 +180,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+      <a href="#create-instance_method" title="#create (instance method)">- (String) <strong>create</strong> </a>
     
 
     
@@ -204,7 +195,31 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>DELETE /requirements/1 DELETE /requirements/1.json.</p>
+<p>Creates the information for a new requirement.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (String) <strong>destroy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a requirement of the application.</p>
 </div></span>
   
 </li>
@@ -228,7 +243,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /requirements/1/edit.</p>
+<p>Gives the template for edit a requirement.</p>
 </div></span>
   
 </li>
@@ -237,7 +252,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+      <a href="#index-instance_method" title="#index (instance method)">- (String) <strong>index</strong> </a>
     
 
     
@@ -252,7 +267,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /requirements GET /requirements.json.</p>
+<p>Gives the list of requirements as JSon.</p>
 </div></span>
   
 </li>
@@ -261,7 +276,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+      <a href="#new-instance_method" title="#new (instance method)">- (String) <strong>new</strong> </a>
     
 
     
@@ -276,7 +291,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /requirements/new GET /requirements/new.json.</p>
+<p>Gives the template for creating a new requirement.</p>
 </div></span>
   
 </li>
@@ -285,7 +300,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#show-instance_method" title="#show (instance method)">- (Object) <strong>show</strong> </a>
+      <a href="#show-instance_method" title="#show (instance method)">- (String) <strong>show</strong> </a>
     
 
     
@@ -300,7 +315,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /requirements/1 GET /requirements/1.json.</p>
+<p>Gives information about a certain requirement.</p>
 </div></span>
   
 </li>
@@ -309,7 +324,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+      <a href="#update-instance_method" title="#update (instance method)">- (String) <strong>update</strong> </a>
     
 
     
@@ -324,7 +339,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>PUT /requirements/1 PUT /requirements/1.json.</p>
+<p>Changes the information of a requirement.</p>
 </div></span>
   
 </li>
@@ -360,31 +375,78 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add a new project document to a requirement</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>project_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the project’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110</pre>
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_document'>add_document</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -416,23 +478,70 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Atach a project document to a requirement</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>project_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the project’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
-91
-92
-93</pre>
+104
+105
+106
+107
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attach_document'>attach_document</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -450,7 +559,7 @@
       <div class="method_details ">
   <h3 class="signature " id="create-instance_method">
   
-    - (<tt>Object</tt>) <strong>create</strong> 
+    - (<tt>String</tt>) <strong>create</strong> 
   
 
   
@@ -459,13 +568,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>POST /requirements POST /requirements.json</p>
+<p>Creates the information for a new requirement</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>requirement</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Requirement.html" title="Requirement (class)">Requirement</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information of the new requirement from POST</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the status of the creation, and the information of the requirement as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -473,23 +620,23 @@
       <pre class="lines">
 
 
-43
-44
-45
-46
-47
-48
-49
-50
-51
 52
 53
 54
 55
-56</pre>
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:requirement</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -513,7 +660,7 @@
       <div class="method_details ">
   <h3 class="signature " id="destroy-instance_method">
   
-    - (<tt>Object</tt>) <strong>destroy</strong> 
+    - (<tt>String</tt>) <strong>destroy</strong> 
   
 
   
@@ -522,13 +669,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>DELETE /requirements/1 DELETE /requirements/1.json</p>
+<p>Deletes a requirement of the application</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the content of the deletion as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -536,18 +721,18 @@
       <pre class="lines">
 
 
-76
-77
-78
-79
-80
-81
-82
-83
-84</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -575,13 +760,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /requirements/1/edit</p>
+<p>Gives the template for edit a requirement</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -589,12 +794,12 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -607,7 +812,7 @@
       <div class="method_details ">
   <h3 class="signature " id="index-instance_method">
   
-    - (<tt>Object</tt>) <strong>index</strong> 
+    - (<tt>String</tt>) <strong>index</strong> 
   
 
   
@@ -616,13 +821,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /requirements GET /requirements.json</p>
+<p>Gives the list of requirements as JSon</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the list of requirements as JSon</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -630,16 +853,16 @@
       <pre class="lines">
 
 
-6
-7
 8
 9
 10
 11
-12</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
 
@@ -656,7 +879,7 @@
       <div class="method_details ">
   <h3 class="signature " id="new-instance_method">
   
-    - (<tt>Object</tt>) <strong>new</strong> 
+    - (<tt>String</tt>) <strong>new</strong> 
   
 
   
@@ -665,13 +888,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /requirements/new GET /requirements/new.json</p>
+<p>Gives the template for creating a new requirement</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information to fill about a new requirement as a JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -679,17 +920,17 @@
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
 32
 33
-34</pre>
+34
+35
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -707,7 +948,7 @@
       <div class="method_details ">
   <h3 class="signature " id="show-instance_method">
   
-    - (<tt>Object</tt>) <strong>show</strong> 
+    - (<tt>String</tt>) <strong>show</strong> 
   
 
   
@@ -716,13 +957,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /requirements/1 GET /requirements/1.json</p>
+<p>Gives information about a certain requirement</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement’s information as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -730,17 +1009,17 @@
       <pre class="lines">
 
 
-16
-17
-18
-19
 20
 21
 22
-23</pre>
+23
+24
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -758,7 +1037,7 @@
       <div class="method_details ">
   <h3 class="signature " id="update-instance_method">
   
-    - (<tt>Object</tt>) <strong>update</strong> 
+    - (<tt>String</tt>) <strong>update</strong> 
   
 
   
@@ -767,13 +1046,67 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>PUT /requirements/1 PUT /requirements/1.json</p>
+<p>Changes the information of a requirement</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the requirement id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>requirement</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Requirement.html" title="Requirement (class)">Requirement</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information of the requirement from POST</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the status of the update, and the information of the requirement as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -781,22 +1114,22 @@
       <pre class="lines">
 
 
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72</pre>
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/requirements_controller.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='ivar'>@requirement</span> <span class='op'>=</span> <span class='const'>Requirement</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -821,7 +1154,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Nov 16 12:31:57 2013 by
+  Generated on Tue Nov 19 11:52:39 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

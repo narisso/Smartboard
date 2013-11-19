@@ -1,6 +1,8 @@
+# Manages Test Case's information
 class TestCasesController < ApplicationController
-  # GET /test_cases
-  # GET /test_cases.json
+  # Gives the list of test cases as JSon
+  #
+  # @return [String] the list of test cases as JSon 
   def index
     @test_cases = TestCase.all
 
@@ -10,8 +12,10 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # GET /test_cases/1
-  # GET /test_cases/1.json
+  # Gives information about a certain test case
+  #
+  # @param id [String] the test case's id
+  # @return [String] the test case's information as JSON
   def show
     @test_case = TestCase.find(params[:id])
 
@@ -21,8 +25,9 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # GET /test_cases/new
-  # GET /test_cases/new.json
+  # Gives the template for creating a new bug
+  #
+  # @return [String] the information to fill about a new bug as a JSON
   def new
     @test_case = TestCase.new
 

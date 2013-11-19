@@ -103,7 +103,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Manages user's information</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -121,7 +132,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create-instance_method" title="#create (instance method)">- (Object) <strong>create</strong> </a>
+      <a href="#create-instance_method" title="#create (instance method)">- (String) <strong>create</strong> </a>
     
 
     
@@ -136,7 +147,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>POST /users POST /users.json.</p>
+<p>Creates the information for a new user.</p>
 </div></span>
   
 </li>
@@ -145,7 +156,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#destroy-instance_method" title="#destroy (instance method)">- (Object) <strong>destroy</strong> </a>
+      <a href="#destroy-instance_method" title="#destroy (instance method)">- (String) <strong>destroy</strong> </a>
     
 
     
@@ -160,7 +171,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>DELETE /users/1 DELETE /users/1.json.</p>
+<p>Deletes a user of the application.</p>
 </div></span>
   
 </li>
@@ -169,7 +180,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#edit-instance_method" title="#edit (instance method)">- (Object) <strong>edit</strong> </a>
+      <a href="#edit-instance_method" title="#edit (instance method)">- (String) <strong>edit</strong> </a>
     
 
     
@@ -184,7 +195,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /users/1/edit.</p>
+<p>Gives the template for edit a user.</p>
 </div></span>
   
 </li>
@@ -193,7 +204,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#index-instance_method" title="#index (instance method)">- (Object) <strong>index</strong> </a>
+      <a href="#index-instance_method" title="#index (instance method)">- (String) <strong>index</strong> </a>
     
 
     
@@ -208,7 +219,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /users GET /users.json.</p>
+<p>Gives the list of users of the application as JSon.</p>
 </div></span>
   
 </li>
@@ -217,7 +228,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#new-instance_method" title="#new (instance method)">- (Object) <strong>new</strong> </a>
+      <a href="#new-instance_method" title="#new (instance method)">- (String) <strong>new</strong> </a>
     
 
     
@@ -232,7 +243,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /users/new GET /users/new.json.</p>
+<p>Gives the template for creating a new user.</p>
 </div></span>
   
 </li>
@@ -241,7 +252,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#notification-instance_method" title="#notification (instance method)">- (Object) <strong>notification</strong> </a>
+      <a href="#notification-instance_method" title="#notification (instance method)">- (String) <strong>notification</strong> </a>
     
 
     
@@ -256,7 +267,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /users/notifications/1.</p>
+<p>Gives the information of a certain notification, and set it as seen.</p>
 </div></span>
   
 </li>
@@ -265,7 +276,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#notifications-instance_method" title="#notifications (instance method)">- (Object) <strong>notifications</strong> </a>
+      <a href="#notifications-instance_method" title="#notifications (instance method)">- (String) <strong>notifications</strong> </a>
     
 
     
@@ -280,7 +291,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>POST /users/notifications.</p>
+<p>Gives the unseen notifications of a certain user.</p>
 </div></span>
   
 </li>
@@ -289,7 +300,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#show-instance_method" title="#show (instance method)">- (Object) <strong>show</strong> </a>
+      <a href="#show-instance_method" title="#show (instance method)">- (String) <strong>show</strong> </a>
     
 
     
@@ -304,7 +315,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /users/1 GET /users/1.json.</p>
+<p>Gives information about a certain user.</p>
 </div></span>
   
 </li>
@@ -313,7 +324,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#update-instance_method" title="#update (instance method)">- (Object) <strong>update</strong> </a>
+      <a href="#update-instance_method" title="#update (instance method)">- (String) <strong>update</strong> </a>
     
 
     
@@ -328,7 +339,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>PUT /users/1 PUT /users/1.json.</p>
+<p>Changes the information of an user.</p>
 </div></span>
   
 </li>
@@ -358,7 +369,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="create-instance_method">
   
-    - (<tt>Object</tt>) <strong>create</strong> 
+    - (<tt>String</tt>) <strong>create</strong> 
   
 
   
@@ -367,13 +378,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>POST /users POST /users.json</p>
+<p>Creates the information for a new user</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information of the new user from POST</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the status of the creation, and the information of the user as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -381,21 +430,21 @@
       <pre class="lines">
 
 
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
 49
-50</pre>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -417,7 +466,7 @@
       <div class="method_details ">
   <h3 class="signature " id="destroy-instance_method">
   
-    - (<tt>Object</tt>) <strong>destroy</strong> 
+    - (<tt>String</tt>) <strong>destroy</strong> 
   
 
   
@@ -426,13 +475,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>DELETE /users/1 DELETE /users/1.json</p>
+<p>Deletes a user of the application</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the content of the deletion as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -440,17 +527,17 @@
       <pre class="lines">
 
 
-70
-71
-72
-73
-74
-75
-76
-77</pre>
+85
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -468,7 +555,7 @@
       <div class="method_details ">
   <h3 class="signature " id="edit-instance_method">
   
-    - (<tt>Object</tt>) <strong>edit</strong> 
+    - (<tt>String</tt>) <strong>edit</strong> 
   
 
   
@@ -477,13 +564,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /users/1/edit</p>
+<p>Gives the template for edit a user</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information to edit about a user as a JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -491,12 +596,12 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -509,7 +614,7 @@
       <div class="method_details ">
   <h3 class="signature " id="index-instance_method">
   
-    - (<tt>Object</tt>) <strong>index</strong> 
+    - (<tt>String</tt>) <strong>index</strong> 
   
 
   
@@ -518,13 +623,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /users GET /users.json</p>
+<p>Gives the list of users of the application as JSon</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the list of users as JSon</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -532,16 +655,16 @@
       <pre class="lines">
 
 
-4
-5
-6
 7
 8
 9
-10</pre>
+10
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -558,7 +681,7 @@
       <div class="method_details ">
   <h3 class="signature " id="new-instance_method">
   
-    - (<tt>Object</tt>) <strong>new</strong> 
+    - (<tt>String</tt>) <strong>new</strong> 
   
 
   
@@ -567,13 +690,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /users/new GET /users/new.json</p>
+<p>Gives the template for creating a new user</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information to fill about a new user as a JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -581,16 +722,16 @@
       <pre class="lines">
 
 
-24
-25
-26
-27
-28
-29
-30</pre>
+30
+31
+32
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -607,7 +748,7 @@
       <div class="method_details ">
   <h3 class="signature " id="notification-instance_method">
   
-    - (<tt>Object</tt>) <strong>notification</strong> 
+    - (<tt>String</tt>) <strong>notification</strong> 
   
 
   
@@ -616,13 +757,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /users/notifications/1</p>
+<p>Gives the information of a certain notification, and set it as seen</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>notification_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the notification’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the content of the notification as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -630,22 +809,22 @@
       <pre class="lines">
 
 
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102</pre>
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_notification'>notification</span>
   <span class='ivar'>@notification</span> <span class='op'>=</span> <span class='const'>Notification</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:notification_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -668,7 +847,7 @@
       <div class="method_details ">
   <h3 class="signature " id="notifications-instance_method">
   
-    - (<tt>Object</tt>) <strong>notifications</strong> 
+    - (<tt>String</tt>) <strong>notifications</strong> 
   
 
   
@@ -677,13 +856,31 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>POST /users/notifications</p>
+<p>Gives the unseen notifications of a certain user</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the list of notifications as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -691,17 +888,17 @@
       <pre class="lines">
 
 
-80
-81
-82
-83
-84
-85
-86
-87</pre>
+97
+98
+99
+100
+101
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_notifications'>notifications</span>
   <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_current_user'>current_user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
@@ -719,7 +916,7 @@
       <div class="method_details ">
   <h3 class="signature " id="show-instance_method">
   
-    - (<tt>Object</tt>) <strong>show</strong> 
+    - (<tt>String</tt>) <strong>show</strong> 
   
 
   
@@ -728,13 +925,51 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /users/1 GET /users/1.json</p>
+<p>Gives information about a certain user</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s information as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -742,16 +977,16 @@
       <pre class="lines">
 
 
-14
-15
-16
-17
-18
 19
-20</pre>
+20
+21
+22
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -768,7 +1003,7 @@
       <div class="method_details ">
   <h3 class="signature " id="update-instance_method">
   
-    - (<tt>Object</tt>) <strong>update</strong> 
+    - (<tt>String</tt>) <strong>update</strong> 
   
 
   
@@ -777,13 +1012,67 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>PUT /users/1 PUT /users/1.json</p>
+<p>Changes the information of an user</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the information of the user from POST</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the status of the update, and the information of the user as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -791,22 +1080,22 @@
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66</pre>
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/users_controller.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -831,7 +1120,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Nov 16 12:31:55 2013 by
+  Generated on Tue Nov 19 11:52:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

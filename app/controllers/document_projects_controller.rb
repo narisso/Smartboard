@@ -56,7 +56,7 @@ class DocumentProjectsController < ApplicationController
   # @return [String] the status of the creation, and the information of the document as JSON
   def create
     @project = Project.find(params[:project_id])
-    @document_project = DocumentProject.create_and_upload({name: params[:document_project][:name], description: params[:document_project][:description]}, params[:document_project][:file])
+    @document_project = DocumentProject.create_and_upload(@project,{name: params[:document_project][:name], description: params[:document_project][:description]}, params[:document_project][:file])
     
     respond_to do |format|
       if @document_project.save

@@ -81,7 +81,7 @@ class GoalsController < ApplicationController
     end
   end
 
-  # Deletes a goal of the application
+  # Deletes a goal of the application and redirects the webpage
   #
   # @param id [String] the goal's id
   # @return [String] the content of the deletion as JSON

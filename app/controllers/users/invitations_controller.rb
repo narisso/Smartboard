@@ -1,9 +1,14 @@
 #Encoding: UTF-8
+# Handles the invitations to an email account of the application
 class Users::InvitationsController < Devise::InvitationsController
 
   skip_before_filter :check_session
   skip_authorize_resource :only => :edit
 
+  # Creates an instance of an array of roles of a project, and fill it with the roles' project
+  #
+  # @param id [String] the project's id
+  # @return [String] the information of the current user as JSON
   def new 
      @project = Project.find(params[:id])
      roles = Role.all  
@@ -20,14 +25,21 @@ class Users::InvitationsController < Devise::InvitationsController
       end     
   end
 
+  # Allowes the edition of information of an invitation token.
+  #
+  # @param invitation_token [String] the invitation token.
   def edit
     resource.invitation_token = params[:invitation_token]
     render :edit
   end
 
+  # Includes the invited user in the project.
+  #
+  # @param project_id [String] the project's id
+  # @param role_guest [String] the name of the role of the guest.
   def create
     self.resource = invite_resource
-    #Una vez que se ha creado el usuario que fue invitado, lo incluimos en el proyecto 
+    #Once the invited user is created, it is included in the project 
     project = Project.find(params[:project_id])
     role = Role.find_by_name(params[:role_guest])
     p_role = ProjectRoleUser.new 
@@ -43,6 +55,10 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
+  # Handles the actions of the path of the webpage, after an user has been invited.
+  #
+  # @param resource [Resource] the resource of the instance, i.e., the user.
+  # @param project [Project] the project that's been handled.
   def after_invite_path_for(resource, project)
       request.referrer
   end

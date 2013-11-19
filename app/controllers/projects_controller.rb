@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
   # Gives the template for edit a bug, and modifies information about the link of the project with Dropbox or Github
   #
   # @param id [String] the project's id
-def edit
+  def edit
     @project = Project.find(params[:id])
 
     if session[:dropbox_session]
@@ -95,101 +95,39 @@ def edit
     end
   end
 
+  # Creates the hook of a commit
+  #
+  # @param id [String] the project's id
+  # @param payload [String] the payload as JSON
   def hook
     @project = Project.find(params[:id])
     c = JSON.parse(params[:payload])
-    sp = c["head_commit"]["message"].split "#"
-    taskid = sp[-1].to_i
-    da_task = @project.tasks.find(taskid)
 
-    if da_task then
-      
-      commit = Commit.new
-      commit.author_email = c["head_commit"]["author"]["email"]
-      commit.author_name = c["head_commit"]["author"]["name"]
-      commit.message = c["head_commit"]["message"]
-      commit.url = c["head_commit"]["url"]
-      commit.sha = c["head_commit"]["id"]
-      commit.date = c["head_commit"]["timestamp"]
-      commit.task_id = taskid
-      commit.save
-    end
+    @project.do_hook(c)
+
     #respond 200
   end
 
+  # Sets the hook of a commit
+  #
+  # @param project_id [String] the project's id
+  # @param repo_name [String] the name of the repository of Github
   def set_hook
-
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
 
-    delete_hooks
+    delete_hooks(@project)
 
-    @old_repo_name = @project.repo_name
+    change_repo_name(@project,@new_repo_name)
 
-    @project.repo_name = @new_repo_name
-    @project.save
-
-    create_hook
-
+    create_hook(@project)
     #respond_with @project
-
   end
 
-  def create_hook
 
-    github = Github.new :oauth_token => @project.github_token
-
-    #Check if hook already exists
-
-    url = URL_HOOK
-    url = url.sub(":id",@project.id.to_s)
-
-
-    already_exists = false
-
-    (github.repos.hooks.list @project.github_user, @project.repo_name).body.each do |hook|
-      h_url = hook["config"]["url"]
-      if url == h_url
-        already_exists = true
-      end
-    end
-
-
-
-    if !already_exists
-      github.repos.hooks.create @project.github_user, @project.repo_name,
-        "name" =>  "web",
-        "active" => true,
-        "config" => {
-          "url" => url
-        }
-
-    end
-    
-  end
-
-  def delete_hooks
-
-    unless @project.repo_name.nil? then
-
-      github = Github.new :oauth_token => @project.github_token
-      url = URL_HOOK
-      url = url.sub(":id",@project.id.to_s)
-
-      hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
-
-      hooks.each do |hook|
-        h_url = hook["config"]["url"]
-        hook_id = hook["id"]
-        if url == h_url
-          github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
-        end
-      end
-
-    end
-
-  end
-
+  # Unlinks a Github account of a project
+  #
+  # @param project_id [String] the project's id
   def unlink_github
     @project = Project.find(params[:project_id])
     delete_hooks    
@@ -198,8 +136,6 @@ def edit
     @project.repo_name = nil
     @project.save
     redirect_to boards_project_path(@project)
-
-
   end
 
   # Creates the information for a new project, set it status, and set it Project Manager
@@ -252,7 +188,7 @@ def edit
     end
   end
 
-  # Deletes a project of the application
+  # Deletes a project of the application and redirects the webpage
   #
   # @param id [String] the project's id
   # @return [String] the content of the deletion as JSON

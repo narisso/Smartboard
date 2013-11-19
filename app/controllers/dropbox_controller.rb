@@ -1,35 +1,38 @@
+# Handles the authorization and callback of the Dropbox account of a project.
 class DropboxController < ApplicationController
 require 'dropbox_sdk'
 
-def authorize
+	# Asks for authorization to Dropbox's account for access from SmartBoard to the files on it repository.
+	def authorize
 
-	session[:return_to] = request.referer
-	dbsession = DropboxSession.new(DROPBOX_APP_KEY, DROPBOX_APP_KEY_SECRET)
-	#serialize and save this DropboxSession
-	session[:dropbox_session] = dbsession.serialize
-	#pass to get_authorize_url a callback url that will return the user here
-	redirect_to dbsession.get_authorize_url url_for(:action => 'callback')
-end
- 
-# @Params : None
-# @Return : None
-# @Purpose : To callback for dropbox authorization
-def callback
- 
-	dbsession = DropboxSession.deserialize(session[:dropbox_session])
-	dbsession.get_access_token #we've been authorized, so now request an access_token
-	session[:dropbox_session] = dbsession.serialize	
-
-	flash[:success] = "You have successfully authorized with dropbox."
-
-	redirect_to session[:return_to]	
+		session[:return_to] = request.referer
+		dbsession = DropboxSession.new(DROPBOX_APP_KEY, DROPBOX_APP_KEY_SECRET)
+		#serialize and save this DropboxSession
+		session[:dropbox_session] = dbsession.serialize
+		#pass to get_authorize_url a callback url that will return the user here
+		redirect_to dbsession.get_authorize_url url_for(:action => 'callback')
+	end
 	
-rescue 
 
-	session[:dropbox_session] = nil
-    flash[:success] = "Failed authorized "
-	redirect_to session[:return_to]	
+	# To callback for Dropbox authorization 
+	# @Params : None
+	# @Return : None
+	# @Purpose : To callback for Dropbox authorization
+	def callback
+		dbsession = DropboxSession.deserialize(session[:dropbox_session])
+		dbsession.get_access_token #we've been authorized, so now request an access_token
+		session[:dropbox_session] = dbsession.serialize	
 
-end # end of dropbox_callback action
+		flash[:success] = "You have successfully authorized with dropbox."
+
+		redirect_to session[:return_to]	
+		
+	rescue 
+
+		session[:dropbox_session] = nil
+	    flash[:success] = "Failed authorized "
+		redirect_to session[:return_to]	
+
+	end # end of dropbox_callback action
 
 end

@@ -71,4 +71,85 @@ class Project < ActiveRecord::Base
       UseCaseTemplate.create_default self
     end
 
+    def do_hook(c)
+      sp = c["head_commit"]["message"].split "#"
+      taskid = sp[-1].to_i
+      da_task = self.tasks.find(taskid)
+
+      if da_task then
+        commit = Commit.new
+        commit.author_email = c["head_commit"]["author"]["email"]
+        commit.author_name = c["head_commit"]["author"]["name"]
+        commit.message = c["head_commit"]["message"]
+        commit.url = c["head_commit"]["url"]
+        commit.sha = c["head_commit"]["id"]
+        commit.date = c["head_commit"]["timestamp"]
+        commit.task_id = taskid
+        commit.save
+      end
+    end
+
+    def create_hook(project)
+
+      github = Github.new :oauth_token => project.github_token
+
+      #Check if hook already exists
+
+      url = URL_HOOK
+      url = url.sub(":id",project.id.to_s)
+
+
+      already_exists = false
+
+      (github.repos.hooks.list project.github_user, project.repo_name).body.each do |hook|
+        h_url = hook["config"]["url"]
+        if url == h_url
+          already_exists = true
+        end
+      end
+
+
+
+      if !already_exists
+        github.repos.hooks.create project.github_user, project.repo_name,
+          "name" =>  "web",
+          "active" => true,
+          "config" => {
+            "url" => url
+          }
+
+      end
+      
+    end
+
+    def delete_hooks(project)
+
+      unless project.repo_name.nil? then
+
+        github = Github.new :oauth_token => project.github_token
+        url = URL_HOOK
+        url = url.sub(":id",project.id.to_s)
+
+        hooks = (github.repos.hooks.list project.github_user, project.repo_name).body
+
+        hooks.each do |hook|
+          h_url = hook["config"]["url"]
+          hook_id = hook["id"]
+          if url == h_url
+            github.repos.hooks.delete project.github_user, project.repo_name, hook_id
+          end
+        end
+
+      end
+
+    end
+
+    def change_repo_name(project,new_repo_name)
+
+      old_repo_name = project.repo_name
+
+      project.repo_name = new_repo_name
+      project.save
+
+    end
 end

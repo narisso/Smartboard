@@ -1,8 +1,12 @@
+# Manages the information of the use case's templates
 class UseCaseTemplatesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :use_case_template, :through => :project
-  # GET /use_case_templates
-  # GET /use_case_templates.json
+  
+  # Gives the list of templates of use case of a project
+  #
+  # @param project_id [String] the project's id
+  # @return [String] the list of templates of the project as JSon
   def index
     @use_case_templates = UseCaseTemplate.where(:project_id => params[:project_id])
 
@@ -12,8 +16,10 @@ class UseCaseTemplatesController < ApplicationController
     end
   end
 
-  # GET /use_case_templates/1
-  # GET /use_case_templates/1.json
+  # Gives information about a certain template of use case
+  #
+  # @param id [String] the template's id
+  # @return [String] the template's information as JSON
   def show
     @use_case_template = UseCaseTemplate.find(params[:id])
 
@@ -23,8 +29,10 @@ class UseCaseTemplatesController < ApplicationController
     end
   end
 
-  # GET /use_case_templates/new
-  # GET /use_case_templates/new.json
+  # Gives the template for creating a new template of a use case
+  #
+  # @param project_id [String] the id of the project that contains the template
+  # @return [String] the information to fill about a new template as a JSON
   def new
     @use_case_template = UseCaseTemplate.new
     @use_case_template.project = Project.find(params[:project_id])
@@ -35,13 +43,19 @@ class UseCaseTemplatesController < ApplicationController
     end
   end
 
-  # GET /use_case_templates/1/edit
+  # Gives the template for edit a template of a use case
+  #
+  # @param id [String] the template's id
   def edit
     @use_case_template = UseCaseTemplate.find(params[:id])
   end
 
-  # POST /use_case_templates
-  # POST /use_case_templates.json
+  # Creates the information for a new template of use cases
+  #
+  # @param use_case_template [UseCaseTemplate] the information of the new template from POST
+  # @param project_id [String] the id of the project that contains the template
+  # @param parameters [String] the parameters of the template given from POST
+  # @return [String] the status of the creation, and the information of the role as JSON
   def create
     @use_case_template = UseCaseTemplate.new(params[:use_case_template])
     @use_case_template.project = Project.find(params[:project_id])
@@ -58,8 +72,11 @@ class UseCaseTemplatesController < ApplicationController
     end
   end
 
-  # PUT /use_case_templates/1
-  # PUT /use_case_templates/1.json
+  # Changes the information of a role
+  #
+  # @param id [String] the role's id
+  # @param role [Role] the information of the role from POST
+  # @return [String] the status of the update, and the information of the role as JSON
   def update
     @use_case_template = UseCaseTemplate.find(params[:id])
 
@@ -74,8 +91,10 @@ class UseCaseTemplatesController < ApplicationController
     end
   end
 
-  # DELETE /use_case_templates/1
-  # DELETE /use_case_templates/1.json
+  # Deletes a template of a use case from the application and redirects the webpage
+  #
+  # @param id [String] the template's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @use_case_template = UseCaseTemplate.find(params[:id])
     @use_case_template.destroy

@@ -134,7 +134,7 @@ class TasksController < ApplicationController
     end
   end
 
-  # Deletes a task of the application
+  # Deletes a task of the application and redirects the webpage
   #
   # @param id [String] the task's id
   # @return [String] the content of the deletion as JSON

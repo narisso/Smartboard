@@ -81,7 +81,7 @@ class RolesController < ApplicationController
     end
   end
 
-  # Deletes a role of the application
+  # Deletes a role of the application and redirects the webpage
   #
   # @param id [String] the role's id
   # @return [String] the content of the deletion as JSON

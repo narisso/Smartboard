@@ -1,4 +1,4 @@
-Iic21542::Application.routes.draw do
+  Iic21542::Application.routes.draw do
 
   get "github/authorize"
 
@@ -106,6 +106,7 @@ Iic21542::Application.routes.draw do
     end
     resources :use_case_templates
     resources :use_case_groups
+    resources :labels
     resources :requirements do
       member do
         get  :attach_document

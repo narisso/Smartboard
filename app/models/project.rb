@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token, :github_token, :repo_name, :github_user
+  attr_accessible :description, :finish_date, :initial_date, :name, :project_status_id, :dropbox_token, :github_token, :repo_name, :github_user, :labels
 
   belongs_to :project_status
 
@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   has_many :use_case_templates
   has_many :use_case_groups
   has_many :requirements
+  has_many :labels
 
   has_many :project_role_users, dependent: :destroy
   has_many :users, :through => :project_role_users

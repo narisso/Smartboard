@@ -52,12 +52,9 @@ class RequirementsController < ApplicationController
   # @param requirement [Requirement] the information of the new requirement from POST
   # @return [String] the status of the creation, and the information of the requirement as JSON
   def create
-
     @project = Project.find(params[:project_id])
     @requirement = Requirement.new( {name: params[:requirement][:name], description: params[:requirement][:description]} )
-    
     @requirement.project = @project
-
     respond_to do |format|
       if @requirement.save
         @requirement_use_case = RequirementUseCase.new({requirement_id: @requirement.id, use_case_id: params[:requirement][:use_case_id] })
@@ -79,7 +76,6 @@ class RequirementsController < ApplicationController
   # @return [String] the status of the update, and the information of the requirement as JSON
   def update
     @requirement = Requirement.find(params[:id])
-
     respond_to do |format|
       if @requirement.update_attributes(params[:requirement])
         format.html { redirect_to project_requirements_path(@project), notice: 'Requirement was successfully updated.' }
@@ -105,38 +101,30 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # Atach a project document to a requirement
-  #
+  # Gives the list of documents of a project to attach to a requirement
   # @param id [String] the requirement's id
   # @param project_id [String] the project's id
   def attach_document
     @requirement = Requirement.find(params[:id])
     @document_projects = DocumentProject.where(:project_id => @project)
-
     respond_to do |format|
       format.html 
     end
   end
 
-  # Add a new project document to a requirement
+  # Adds or removes a document of a requirement
   #
   # @param id [String] the requirement's id
+  # @param document_project_id [String] the document's id
+  # @param add [String] Indicates if you want to add (add = true) or remove (add = false) a document.
   # @param project_id [String] the project's id
   def add_document
     @requirement = Requirement.find(params[:id])
-    @document_project = DocumentProject.find(params[:document_project_id])
-
-    if params[:add] == "true"
-      @requirement.add_document(@document_project)
-      flash[:notice] = "Document added to requirement."
-    else
-      @requirement.remove_document(@document_project)
-      flash[:notice] = "Document removed from requirement."
-    end
-
+    document_project = DocumentProject.find(params[:project_id])
+    text = @requirement.add_remove_document(document_project,params[:add])
+    flash[:notice] = text
     respond_to do |format|
       format.js
     end
   end
-
 end

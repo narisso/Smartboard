@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :project_role_users
   has_many :projects, :through => :project_role_users
 
-  has_many :reported_hours
+  has_many :reported_hours, :class_name => "ReportedHours", :foreign_key => "user_id"
   has_many :notifications, dependent: :destroy
 
 
@@ -74,4 +74,18 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  #This method returns the sum of reported user hours in the tickets in JSON format
+  def get_total_reported_hours(initial_date, finish_date)
+
+      total = self.reported_hours.where("created_at >= ? and created_at < ? ", initial_date, finish_date).sum(:reporting_hours)
+      return total
+
+  end 
+
+  def get_tasks_with_hours
+    restriction = "user_id = #{self.id.to_s}" 
+    user_tasks = Task.joins("INNER JOIN reported_hours on tasks.id = reported_hours.task_id").where(restriction).select("name, reporting_hours as size").all
+  end
+
 end

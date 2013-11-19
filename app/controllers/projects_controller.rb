@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users ]
 
   respond_to :html, :json
 
@@ -286,6 +286,15 @@ class ProjectsController < ApplicationController
       flash[:success] = "Failed authorized "
   end
 
+  def reports_hours_users 
+    @project = Project.find(params[:id])
+    #@file = @project.get_hours_user
+    respond_to do |format|
+      format.json {render :file => "projects/reports_hours_users.json.erb", :content_type => 'application/json' }
+      #format.json {render @file }
+    
+    end 
+  end 
   def reports
     respond_to do |format|
       format.html

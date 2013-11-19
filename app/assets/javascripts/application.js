@@ -23,7 +23,7 @@
 
 $(document).bind("page:load", function() {
 
-chosenSelect();
+chosenSelect(200);
 
 $('#side_close_button').click(ltl_bar_change);
 

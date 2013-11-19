@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :project_role_users
   has_many :projects, :through => :project_role_users
 
-  has_many :reported_hours
+  has_many :reported_hours, :class_name => "ReportedHours", :foreign_key => "user_id"
   has_many :notifications, dependent: :destroy
 
 

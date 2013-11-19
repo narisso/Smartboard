@@ -35,6 +35,7 @@ class Task < ActiveRecord::Base
   validates :label, :presence => true  
   validates :estimated_hours, :numericality => { :greater_than_or_equal_to => 1 }
 
+
   def use_case_documents
     documents = []
     if not self.requirement.nil?

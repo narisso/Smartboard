@@ -45,8 +45,6 @@ Iic21542::Application.routes.draw do
 
   match '/projects/:id/delete_dbtoken' => 'projects#delete_dbtoken', :method => :put, :as => :delete_dbtoken
   
-
-
   #resources :project_statuses
   root :to => 'application#home'
 

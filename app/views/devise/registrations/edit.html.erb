@@ -44,17 +44,21 @@
    </div>
  </div>
 
- <% if @user.errors[:current_password].present?%>
-   <div class="control-group error">
- <%else%>  
-   <div class="control-group">
- <%end%>    
+ <% unless @user.encrypted_password.blank? %>
+   <% if @user.errors[:current_password].present?%>
+     <div class="control-group error">
+   <%else%>  
+     <div class="control-group">
+   <%end%>    
 
- <%= f.label :current_password, :class => 'control-label' %>
-   <div class="controls">
-     <%=f.password_field :current_password , :class => 'text_field' %>
+   <%= f.label :current_password, :class => 'control-label' %>
+     <div class="controls">
+       <%=f.password_field :current_password , :class => 'text_field' %>
+     </div>
    </div>
- </div>
+ <% else %>
+    <%=f.hidden_field :current_password, :value => nil %>
+ <% end %>
 
  <div class="form-actions">
    <%= f.submit 'Update', :class => 'btn btn-primary' %>

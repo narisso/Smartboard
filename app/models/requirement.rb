@@ -1,13 +1,13 @@
 class Requirement < ActiveRecord::Base
-  attr_accessible :data, :name, :template_id, :type, :use_case_id, :description, :use_case_ids, 
+  attr_accessible :data, :name, :template_id, :type, :description, 
   				  :task_ids, :document_project_ids
 
-  belongs_to :use_case
+  has_many :requirement_use_cases
+  has_many :use_cases, :through => :requirement_use_cases
   belongs_to :requirement_template
   belongs_to :project
   
   has_many :tasks
-  has_many :use_cases
   has_many :document_requirements
 
   has_many :document_project_requirement

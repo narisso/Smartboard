@@ -1,9 +1,9 @@
 # Manages task's information
 class TasksController < ApplicationController
 
- load_and_authorize_resource :project, :except => [:update_status]
- load_and_authorize_resource :status, :through => :project, :except => [:update_status, :change_lock]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status, :change_lock]
+ load_and_authorize_resource :project, :except => [:update_status,:assign_use_case]
+ load_and_authorize_resource :status, :through => :project, :except => [:update_status,:assign_use_case, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock]
 
  skip_authorize_resource :only => [:create_reported_hours]
 
@@ -58,6 +58,8 @@ class TasksController < ApplicationController
     @task = Task.new
     @editing = false
 
+    
+
     respond_to do |format|
       format.js
       format.html # new.html.erb
@@ -86,8 +88,22 @@ class TasksController < ApplicationController
     @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
+<<<<<<< HEAD
       if @task.save_and_notify boards_project_path(@task.project_id)
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
+=======
+      if @task.save
+            @task.users.each do |user|
+              @notification = Notification.new
+              @notification.user = user
+              @notification.link = boards_project_path(@task.project_id)
+              @notification.description = "You were assigned to a new task"
+              @notification.viewed = false
+              @notification.task_id = @task.id
+              @notification.save
+          end
+        format.js { render :js => "location.reload();" }
+>>>>>>> 3ee70de94c09cc203b30f37c67e7983c07ea90e4
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
@@ -260,6 +276,25 @@ class TasksController < ApplicationController
      Task.lock_unlock(task)
      redirect_to boards_project_path(@project)
   end 
+
+  # Assigns use cases to a certain cask.
+  #
+  # @param task_id [String] the task's id
+  # @param use_case [String] the use case's id
+  def assign_use_case
+    @task = Task.find(params[:task_id])
+    @task.use_case_id = params[:use_case]
+
+    respond_to do |format|
+      if @task.save
+        format.js { render :js => "hola" }
+        format.json { head :no_content }
+      else
+        format.js { render :js => "alert('error')" }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 end
 

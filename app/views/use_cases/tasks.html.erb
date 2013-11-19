@@ -1,0 +1,87 @@
+<div style="margin-left:30px;">
+	<%= render :partial => "new_step_bar", :locals => {:step => 3} %>
+
+<div class="uc-tasks-container">
+
+	<ul>
+		<li class="uc-li">
+			<div class="head">General Use Case Tasks</div>
+			<ul class="sortable" data-type="use_case">
+				<% @use_case.tasks.each_with_index do |task , i| %>
+					<li class="uc-task" data-id="<%=task.id%>">
+						<p class="name"> <%= task.name %> </p>
+						<p class="status"> <%= task.status.name %> </p>
+					</li>
+
+				<%end%>
+			</ul>
+			
+			<div class="new">
+		<%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"", :style=>""%>
+			</div>
+		</li>
+
+	</ul>
+
+
+	<div class="form-actions">
+    <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                project_use_cases_path, :class => 'btn' %>
+    </div>
+</div>
+<div class="p-tasks-container">
+		<div>
+			<div class="head">Project Tasks</div>
+			<ul class="sortable" data-type="project">
+				<% @project.tasks.where("use_case_id != ? OR use_case_id IS ?", @use_case.id,nil).each_with_index do |task , i| %>
+					<li class="uc-task" data-id="<%=task.id%>">
+						<p class="name"> <%= task.name %> </p>
+						<p class="status"> <%= task.status.name %> </p>
+					</li>
+
+				<%end%>
+
+			</ul>
+			
+		</div>
+
+
+</div>
+
+</div>
+
+<% content_for :javascripts do %>
+	<script type="text/javascript">
+
+$( "ul.sortable" ).sortable({
+      cursor: "move",
+      connectWith: "ul.sortable",
+      placeholder: "ui-state-highlight",
+      forcePlaceholderSize: true,
+      helper: "clone",
+        appendTo: 'body',
+        containment: 'body',        
+        scroll: false,   
+      start: function (event, ui) {
+            $(ui.helper).addClass("dragging"); 
+            $(ui.helper).appendTo('body');
+
+      },
+      stop: function(event, ui){
+            var id = $(ui.item).data("id");
+            var type = $(ui.item).parent().data("type");
+
+            if(type=="project"){
+				$.post( "<%= assign_use_case_project_path(@project) %>", { task_id: id, use_case: null } );
+            }
+            else{
+            
+            $.post( "<%= assign_use_case_project_path(@project) %>", { task_id: id, use_case: <%=@use_case.id%>  } );
+        	}
+      }
+    });
+
+
+	</script>
+<% end %>

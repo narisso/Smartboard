@@ -8,7 +8,7 @@
   <%= bootstrap_flash %>
 
 
-<%= simple_form_for [@project, @status, @task], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
+<%= simple_form_for [@project, @status, @task ], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="modal-body modal-body-task">
   <%= f.input :name %>
   <%= f.association :label, 
@@ -27,6 +27,9 @@
   <% if @editing %>
     <%= f.input :status_id, collection: Status.where(:project_id => params[:project_id]), :include_blank => false %>
    <% end %> 
+   <% if params[:use_case] %>
+   <%= f.input :use_case_id, :as => :hidden, :input_html => { :value => params[:use_case] } %>
+   <%end%>
    <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
   </div>
   <div class="modal-footer">

@@ -38,7 +38,7 @@ class BoardsController < ApplicationController
 		@skip_footer = true
 
 		if session[:dropbox_session]
-
+                
 				@project.dropbox_token = session[:dropbox_session]
 				@project.save
 				session.delete :dropbox_session 

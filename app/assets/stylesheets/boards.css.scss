@@ -7,7 +7,7 @@
     .board, .fixed-right{
         top: 122px;
     }
-    .filters-container {
+    .filters-container, .ltl-nav {
     	top: 82px;
     }
 
@@ -17,7 +17,7 @@
     .board, .fixed-right{
         top: 83px;
     }
-    .filters-container {
+    .filters-container, .ltl-nav {
     	top: 44px;
     }
 }
@@ -261,7 +261,6 @@
 .ltl-nav {
 
 	position: absolute;
-	top: 44px;
 	bottom: 0px;
 	left: 0px;
 	background-color: #f6f6f6;

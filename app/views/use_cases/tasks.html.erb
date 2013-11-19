@@ -1,33 +1,38 @@
 <div style="margin-left:30px;">
+	<h1>Add Tasks to Use Case <%= @use_case.name %></h1>
 	<%= render :partial => "new_step_bar", :locals => {:step => 3} %>
-
+<div class="alert alert-info" style="top:50px;">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Hint!</strong> Drag & Drop the tasks adding or removing them from the use case.
+</div>
 <div class="uc-tasks-container">
 
 	<ul>
 		<li class="uc-li">
-			<div class="head">General Use Case Tasks</div>
+			<div class="head"><%= @use_case.name %> Tasks
+<%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.sort_by{|e| e[:order]}.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right", :style=>"margin-right:20px;"%>
+			</div>
 			<ul class="sortable" data-type="use_case">
 				<% @use_case.tasks.each_with_index do |task , i| %>
 					<li class="uc-task" data-id="<%=task.id%>">
-						<p class="name"> <%= task.name %> </p>
 						<p class="status"> <%= task.status.name %> </p>
+						<p class="name"> <%= task.name %> </p>
 					</li>
 
 				<%end%>
 			</ul>
 			
-			<div class="new">
-		<%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"", :style=>""%>
-			</div>
 		</li>
 
 	</ul>
 
 
+
 	<div class="form-actions">
+	<%= link_to "Back", requirements_project_use_case_path(@project,@use_case),:class=>"btn",:style =>""%>
     <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                project_use_cases_path, :class => 'btn' %>
+                project_use_cases_path(@project,@use_case), :class => 'btn' %>
     </div>
 </div>
 <div class="p-tasks-container">
@@ -57,7 +62,7 @@
 $( "ul.sortable" ).sortable({
       cursor: "move",
       connectWith: "ul.sortable",
-      placeholder: "ui-state-highlight",
+      placeholder: "ui-state-highlight-task",
       forcePlaceholderSize: true,
       helper: "clone",
         appendTo: 'body',

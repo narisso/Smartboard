@@ -8,8 +8,6 @@
       <%= f.hidden_field :data, :hidden => true, :value => @use_case.data %>
       </div>
     <% else %>
-    <div class="row">
-      <%= render :partial => "new_step_bar", :locals => {:step => 1} %>
 
      <div class="block ">
     	<%= f.input :name %>
@@ -30,7 +28,14 @@
     </div>
 
     <div class="form-actions">
+
+    <% if params[:type]=="step" %>
+    <%= hidden_field_tag "subaction","step"%> 
+    <%= f.button :submit, "Update and Continue" , :class => 'btn-primary' %>
+    
+    <%else%>
     <%= f.button :submit, "Create and Continue" , :class => 'btn-primary' %>
+    <%end%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 project_use_cases_path, :class => 'btn' %>
     </div>
@@ -51,11 +56,13 @@
     $(chosenSelect(200));
 		$('#use_case_use_case_template_id').change(function(){
 			var use_case_template_id = $(this).val();
+      $(".btn").attr('disabled', 'disabled');
 			var response = $.ajax({
   									url: "<%= template_use_case_project_use_cases_path %>",
 					  				data: {use_case_template_id: use_case_template_id}
 							}).done(function(){
 								chosenSelect(200);
+                $(".btn").removeAttr('disabled');
 							});
 		});
 

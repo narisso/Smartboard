@@ -2,10 +2,25 @@
 
 <div class="use_cases">
 
+
+<% if params[:type]=="step" %>
+
+<div class="row" style="margin-left:-18px">
+	<h1>Edit Use Case <%= @use_case.name %></h1>
+      <%= render :partial => "new_step_bar", :locals => {:step => 1} %>
+
+
+<%= render :partial => 'form' %>
+
+</div>
+
+<%else%>
 <div class="page-header">
   <h1><%=t '.title', :default => "Edit Use Case", :model => model_class.model_name.human %></h1>
 </div>
 <%= render 'nav_bar' %>
 <%= render :partial => 'form_no_steps' %>
+
+<%end%>
 
 </div>

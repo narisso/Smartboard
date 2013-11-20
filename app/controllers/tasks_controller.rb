@@ -88,22 +88,9 @@ class TasksController < ApplicationController
     @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
-<<<<<<< HEAD
       if @task.save_and_notify boards_project_path(@task.project_id)
         format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
-=======
-      if @task.save
-            @task.users.each do |user|
-              @notification = Notification.new
-              @notification.user = user
-              @notification.link = boards_project_path(@task.project_id)
-              @notification.description = "You were assigned to a new task"
-              @notification.viewed = false
-              @notification.task_id = @task.id
-              @notification.save
-          end
-        format.js { render :js => "location.reload();" }
->>>>>>> 3ee70de94c09cc203b30f37c67e7983c07ea90e4
+
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else

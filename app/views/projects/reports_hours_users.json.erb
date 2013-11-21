@@ -1,15 +1,19 @@
-{
+{	
 	"name": "<%= @project.name %>",
 	"children": [
-		<% @project.users.each_with_index do |user, uindex| %>
+		<% id = @project.id %>
+		<% uindex = 0 %>		
+		<% @project.users.each do |user| %>
 		{
 		"name": "<%= user.email %>",
 		"children": [
-			<% user.get_tasks_with_hours.each_with_index do |task_hour, index| %>
+			
+			<% user.get_tasks_with_hours(id).each_with_index do |task_hour, index| %>
 			{"name": "<%= task_hour.name %>", "size": <%= task_hour.size %>}<%= index < user.get_tasks_with_hours.count - 1 ? "," : "" %>
 			<% end %>
 		]
 		}<%= uindex < @project.users.count - 1 ? "," : "" %>
+		<% uindex = uindex + 1%>
 		<% end %>
 	]
 }

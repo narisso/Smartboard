@@ -61,7 +61,10 @@ class Project < ActiveRecord::Base
       nil
     end
   end
-
+  def get_hours_users(user_id)
+      user = User.find(user_id)
+      user.get_tasks_with_hours( self.id )
+  end 
   private
     def set_starting_status
       self.project_status = ProjectStatus.first

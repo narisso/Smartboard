@@ -61,7 +61,7 @@ class DocumentProjectsController < ApplicationController
         file = params[:document_project][:file].read
         whole_name = params[:document_project][:file].original_filename
         final_name = @document_project.name + ".v" + @document_project.version.to_s + File.extname(whole_name)
-        @file_path ="SmartBoard/" + @project.name + "/" + final_name
+        @file_path = @project.name + "/" + final_name
         dbsession = DropboxSession.deserialize(@project.dropbox_token)
         client = DropboxClient.new(dbsession)
         response = client.put_file(@file_path, file)

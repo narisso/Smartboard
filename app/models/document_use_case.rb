@@ -16,7 +16,7 @@ class DocumentUseCase < ActiveRecord::Base
 	file = url_path.read
     whole_name = url_path.original_filename
     final_name = self.name + ".v1.0" + File.extname(whole_name)
-    file_path ="SmartBoard/" + project.name + "/UseCases/" + self.name + "/" + final_name
+    file_path = project.name + "/UseCases/" + self.name + "/" + final_name
     dbsession = DropboxSession.deserialize(project.dropbox_token)
     client = DropboxClient.new(dbsession)
     response = client.put_file(file_path, file)

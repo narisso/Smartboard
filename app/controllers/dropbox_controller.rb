@@ -24,12 +24,10 @@ def callback
 
 	redirect_to session[:return_to]	
 	
-rescue 
-
-	session[:dropbox_session] = nil
-    flash[:success] = "Failed authorized "
-	redirect_to session[:return_to]	
-
-end # end of dropbox_callback action
+	rescue 
+		session[:dropbox_session] = nil
+	    flash[:success] = "Failed authorize"
+		redirect_to session[:return_to]	
+	end # end of dropbox_callback action
 
 end

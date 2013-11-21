@@ -126,7 +126,7 @@ class ApiController < ApplicationController
 
 				@final_file_name = File.basename(@file_name,File.extname(@file_name)) + ".v" + version.to_s + File.extname(@file_name)
 
-				@file_path ="SmartBoard/" + @project.name + "/" + @final_file_name
+				@file_path = @project.name + "/" + @final_file_name
 				dbsession = DropboxSession.deserialize(@dropbox_token)
 				client = DropboxClient.new(dbsession)
 				response = client.put_file(@file_path, file)

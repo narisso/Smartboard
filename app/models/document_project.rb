@@ -41,7 +41,7 @@ class DocumentProject < ActiveRecord::Base
         file_aux = file.read
         whole_name = file.original_filename
         final_name = document.name + ".v" + document.version.to_s + File.extname(whole_name)
-        file_path ="SmartBoard/" + project.name + "/" + final_name
+        file_path = project.name + "/" + final_name
         dbsession = DropboxSession.deserialize(project.dropbox_token)
         client = DropboxClient.new(dbsession)
         response = client.put_file(file_path, file_aux)

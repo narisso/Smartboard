@@ -194,7 +194,7 @@ class User < ActiveRecord::Base
 
         final_file_name = File.basename(file_name,File.extname(file_name)) + ".v" + version.to_s + File.extname(file_name)
 
-        file_path ="SmartBoard/" + project.name + "/" + final_file_name
+        file_path = project.name + "/" + final_file_name
         begin
           dbsession = DropboxSession.deserialize(dropbox_token)
           client = DropboxClient.new(dbsession)

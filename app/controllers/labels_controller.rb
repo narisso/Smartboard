@@ -1,10 +1,13 @@
 # Manages label's information
 class LabelsController < ApplicationController
+  load_and_authorize_resource :project
+  load_and_authorize_resource :label, :through => :project
+
   # Gives the list of labels of the application as JSon
   #
   # @return [String] the list of labels as JSon 
   def index
-    @labels = Label.all
+    @labels = @project.labels
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,8 +33,9 @@ class LabelsController < ApplicationController
   # @return [String] the information to fill about a new label as a JSON
   def new
     @label = Label.new
-
+    @label.project = Project.find(params[:project_id])
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @label }
     end
@@ -53,7 +57,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.save
-        format.html { redirect_to @label, notice: 'Label was successfully created.' }
+        format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully created.' }
         format.json { render json: @label, status: :created, location: @label }
       else
         format.html { render action: "new" }
@@ -90,7 +94,7 @@ class LabelsController < ApplicationController
     @label.destroy
 
     respond_to do |format|
-      format.html { redirect_to labels_url }
+      format.html { redirect_to project_labels_path(@project) }
       format.json { head :no_content }
     end
   end

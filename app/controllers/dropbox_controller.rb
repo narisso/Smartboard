@@ -13,7 +13,6 @@ require 'dropbox_sdk'
 		redirect_to dbsession.get_authorize_url url_for(:action => 'callback')
 	end
 	
-
 	# To callback for Dropbox authorization 
 	# @Params : None
 	# @Return : None
@@ -28,11 +27,9 @@ require 'dropbox_sdk'
 		redirect_to session[:return_to]	
 		
 	rescue 
-
 		session[:dropbox_session] = nil
-	    flash[:success] = "Failed authorized "
+	    flash[:success] = "Failed to authorize"
 		redirect_to session[:return_to]	
-
 	end # end of dropbox_callback action
 
 end

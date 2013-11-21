@@ -57,7 +57,7 @@ class DocumentProjectsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @document_project = DocumentProject.create_and_upload(@project,{name: params[:document_project][:name], description: params[:document_project][:description]}, params[:document_project][:file])
-    
+
     respond_to do |format|
       if @document_project.save
         format.html { redirect_to boards_project_path(@document_project.project_id) }

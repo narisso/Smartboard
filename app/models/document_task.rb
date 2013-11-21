@@ -21,7 +21,7 @@ class DocumentTask < ActiveRecord::Base
     self.version = DocumentTask.where(:name => self.name).count + 1
 
     final_name = "#{self.name}.v#{self.version}#{File.extname(original_name)}"
-    file_path  =  "SmartBoard/" + project.name + "/" + task.name + "/" + final_name
+    file_path  = project.name + "/" + task.name + "/" + final_name
     dbsession = DropboxSession.deserialize(project.dropbox_token)
     client = DropboxClient.new(dbsession)
     response = client.put_file(file_path, file)

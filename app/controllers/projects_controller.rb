@@ -118,12 +118,11 @@ class ProjectsController < ApplicationController
 
     @project.delete_hooks()
 
-    @project.change_repo_name(,@new_repo_name)
+    @project.change_repo_name(@new_repo_name)
 
     @project.create_hook()
     #respond_with @project
   end
-
 
   # Unlinks a Github account of a project
   #

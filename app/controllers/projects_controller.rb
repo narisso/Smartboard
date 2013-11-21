@@ -255,6 +255,13 @@ class ProjectsController < ApplicationController
   end
 
   def reports_hours_users 
+    if params[:initial_date]
+      @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    end
+
+    if params[:final_date]
+      @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+    end
     
     respond_to do |format|
       format.json {render :file => "projects/reports_hours_users.json.erb", :content_type => 'application/json' }

@@ -1,12 +1,15 @@
+# Manages project's information
 class ProjectsController < ApplicationController
-  # GET /projects
-  # GET /projects.json
+
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
   skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github]
 
   respond_to :html, :json
 
+  # Gives the list of projects of the application as JSon
+  #
+  # @return [String] the list of projects as JSon 
   def index   
     @projects = current_user.projects
 
@@ -16,8 +19,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
+  # Gives information about a certain project
+  #
+  # @param id [String] the project's id
+  # @return [String] the project's information as JSON
   def show
     @project = Project.find(params[:id])
 
@@ -27,12 +32,12 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/new
-  # GET /projects/new.json
+  # Gives the template for creating a new project and, if it is possible, link it to Dropbox and Github
+  #
+  # @return [String] the information to fill about a new project as a JSON
   def new
     @linkDropbox = false
     @linkGithub = false
-
     
     if session[:dropbox_session]  
       @linkDropbox = true
@@ -41,7 +46,6 @@ class ProjectsController < ApplicationController
       send_confirmation_doc  
     end 
     
-
     if session[:github_session]
       @linkGithub = true
       @github_token = session[:github_session]
@@ -59,7 +63,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # GET /projects/1/edit
+  # Gives the template for edit a bug, and modifies information about the link of the project with Dropbox or Github
+  #
+  # @param id [String] the project's id
   def edit
     @project = Project.find(params[:id])
 
@@ -82,113 +88,46 @@ class ProjectsController < ApplicationController
     end
     
     if @github_token  
-    if !@github_token.empty?
-      @g = Github.new :oauth_token => @github_token
-      @github_username = @g.users.get.body["login"]
-    end  
+      if !@github_token.empty?
+        @g = Github.new :oauth_token => @github_token
+        @github_username = @g.users.get.body["login"]
+      end  
+    end
   end
 
-
-
-  end
-
+  # Creates the hook of a commit
+  #
+  # @param id [String] the project's id
+  # @param payload [String] the payload as JSON
   def hook
     @project = Project.find(params[:id])
     c = JSON.parse(params[:payload])
-    sp = c["head_commit"]["message"].split "#"
-    taskid = sp[-1].to_i
-    da_task = @project.tasks.find(taskid)
 
-    if da_task then
-      
-      commit = Commit.new
-      commit.author_email = c["head_commit"]["author"]["email"]
-      commit.author_name = c["head_commit"]["author"]["name"]
-      commit.message = c["head_commit"]["message"]
-      commit.url = c["head_commit"]["url"]
-      commit.sha = c["head_commit"]["id"]
-      commit.date = c["head_commit"]["timestamp"]
-      commit.task_id = taskid
-      commit.save
-    end
+    @project.do_hook(c)
 
     #respond 200
-
   end
 
+  # Sets the hook of a commit
+  #
+  # @param project_id [String] the project's id
+  # @param repo_name [String] the name of the repository of Github
   def set_hook
-
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
 
-    delete_hooks
+    @project.delete_hooks()
 
-    @old_repo_name = @project.repo_name
+    @project.change_repo_name(,@new_repo_name)
 
-    @project.repo_name = @new_repo_name
-    @project.save
-
-    create_hook
-
+    @project.create_hook()
     #respond_with @project
-
   end
 
-  def create_hook
 
-    github = Github.new :oauth_token => @project.github_token
-
-    #Check if hook already exists
-
-    url = URL_HOOK
-    url = url.sub(":id",@project.id.to_s)
-
-
-    already_exists = false
-
-    (github.repos.hooks.list @project.github_user, @project.repo_name).body.each do |hook|
-      h_url = hook["config"]["url"]
-      if url == h_url
-        already_exists = true
-      end
-    end
-
-
-
-    if !already_exists
-      github.repos.hooks.create @project.github_user, @project.repo_name,
-        "name" =>  "web",
-        "active" => true,
-        "config" => {
-          "url" => url
-        }
-
-    end
-    
-  end
-
-  def delete_hooks
-
-    unless @project.repo_name.nil? then
-
-      github = Github.new :oauth_token => @project.github_token
-      url = URL_HOOK
-      url = url.sub(":id",@project.id.to_s)
-
-      hooks = (github.repos.hooks.list @project.github_user, @project.repo_name).body
-
-      hooks.each do |hook|
-        h_url = hook["config"]["url"]
-        hook_id = hook["id"]
-        if url == h_url
-          github.repos.hooks.delete @project.github_user, @project.repo_name, hook_id
-        end
-      end
-
-    end
-
-  end
-
+  # Unlinks a Github account of a project
+  #
+  # @param project_id [String] the project's id
   def unlink_github
     @project = Project.find(params[:project_id])
     delete_hooks    
@@ -197,12 +136,12 @@ class ProjectsController < ApplicationController
     @project.repo_name = nil
     @project.save
     redirect_to boards_project_path(@project)
-
-
   end
 
-  # POST /projects
-  # POST /projects.json
+  # Creates the information for a new project, set it status, and set it Project Manager
+  #
+  # @param project [Project] the information of the new bug from POST
+  # @return [String] the status of the creation, and the information of the project as JSON
   def create
     @project = Project.new(params[:project])
     @project.initial_date = Time.now
@@ -237,8 +176,11 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PUT /projects/1
-  # PUT /projects/1.json
+  # Changes the information of a project
+  #
+  # @param id [String] the project's id
+  # @param project [Project] the information of the project from POST
+  # @return [String] the status of the update, and the information of the project as JSON
   def update
     @project = Project.find(params[:id])
     #@old_repo = @project.repo_name
@@ -257,8 +199,10 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # DELETE /projects/1
-  # DELETE /projects/1.json
+  # Deletes a project of the application and redirects the webpage
+  #
+  # @param id [String] the project's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @project = Project.find(params[:id])
     
@@ -270,11 +214,17 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Declares a project as Finished
+  #
+  # @param id [String] the project's id
   def finish
     @project = Project.find(params[:id])
     @project.project_status = ProjectStatus.where(:name => "Finished")
   end
 
+  # Deletes the link of a project with Dropbox
+  #
+  # @param id [String] the project's id
   def delete_dbtoken
     @project = Project.find(params[:id])
     @project.dropbox_token=nil
@@ -282,19 +232,19 @@ class ProjectsController < ApplicationController
     redirect_to boards_project_path(@project)
   end
   
+  # Sends confirmation document, and read me document to a recent linked Dropbox's repository
   def send_confirmation_doc
+    dbsession = DropboxSession.deserialize(@dropbox_token)
+    @file_path ="README_DROPBOX.txt"
+    file = open('doc/README_DROPBOX.txt')
+    client = DropboxClient.new(dbsession)
+    response = client.put_file(@file_path, file)
+    flash[:success] = "We have send a document to your dropbox "
 
-      dbsession = DropboxSession.deserialize(@dropbox_token)
-      @file_path ="README_DROPBOX.txt"
-      file = open('doc/README_DROPBOX.txt')
-      client = DropboxClient.new(dbsession)
-      response = client.put_file(@file_path, file)
-      flash[:success] = "We have send a document to your dropbox "
+    rescue 
 
-  rescue 
-
-      @dropbox_token = nil
-      flash[:success] = "Failed authorized "
+    @dropbox_token = nil
+    flash[:success] = "Failed authorized "
   end
 
 end

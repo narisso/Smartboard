@@ -1,11 +1,13 @@
+# Manages the information of the documents of a task
 class DocumentTasksController < ApplicationController
  load_and_authorize_resource :project
  load_and_authorize_resource :status, :through => :project
  load_and_authorize_resource :task, :through => :status
  load_and_authorize_resource :document_task, :through => :task
 
-  # GET /document_tasks
-  # GET /document_tasks.json
+  # Gives the list of documents of the application associated to a task, as JSON
+  #
+  # @return [String] the list of documents associated to a task as JSon 
   def index
     @document_tasks = DocumentTask.all
 
@@ -15,8 +17,10 @@ class DocumentTasksController < ApplicationController
     end
   end
 
-  # GET /document_tasks/1
-  # GET /document_tasks/1.json
+  # Gives information about a certain document of a task
+  #
+  # @param id [String] the document's id
+  # @return [String] the document's information as JSON
   def show
     @document_task = DocumentTask.find(params[:id])
 
@@ -26,8 +30,9 @@ class DocumentTasksController < ApplicationController
     end
   end
 
-  # GET /document_tasks/new
-  # GET /document_tasks/new.json
+  # Gives the template for creating a new document of a task
+  #
+  # @return [String] the information to fill about a new document of a task as a JSON
   def new
     @document_task = DocumentTask.new
 
@@ -38,13 +43,17 @@ class DocumentTasksController < ApplicationController
     end
   end
 
-  # GET /document_tasks/1/edit
+  # Gives the template to edit the information of a task's document
+  #
+  # @param id [String] the document's id
   def edit
     @document_task = DocumentTask.find(params[:id])
   end
 
-  # POST /document_tasks
-  # POST /document_tasks.json
+  # Creates the information for a new document of a task
+  # 
+  # @param document_task [DocumentTask] the document's information
+  # @return [String] the status of the creation, and the information of the document as JSON
   def create
     @document_task = DocumentTask.new(params[:document_task])
     @document_task.task = @task
@@ -60,8 +69,11 @@ class DocumentTasksController < ApplicationController
     end
   end
 
-  # PUT /document_tasks/1
-  # PUT /document_tasks/1.json
+  # Changes the information of a document
+  #
+  # @param id [String] the id of the document of a task
+  # @param document_task [DocumentTask] the information of the document from POST
+  # @return [String] the status of the update, and the information of the document as JSON
   def update
     @document_task = DocumentTask.find(params[:id])
 
@@ -76,8 +88,10 @@ class DocumentTasksController < ApplicationController
     end
   end
 
-  # DELETE /document_tasks/1
-  # DELETE /document_tasks/1.json
+  # Deletes a document from a task from the BD
+  #
+  # @param id [String] the document's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @document_task = DocumentTask.find(params[:id])
     @document_task.destroy

@@ -1,6 +1,8 @@
+# Manages Test Case's information
 class TestCasesController < ApplicationController
-  # GET /test_cases
-  # GET /test_cases.json
+  # Gives the list of test cases as JSon
+  #
+  # @return [String] the list of test cases as JSon 
   def index
     @test_cases = TestCase.all
 
@@ -10,8 +12,10 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # GET /test_cases/1
-  # GET /test_cases/1.json
+  # Gives information about a certain test case
+  #
+  # @param id [String] the test case's id
+  # @return [String] the test case's information as JSON
   def show
     @test_case = TestCase.find(params[:id])
 
@@ -21,8 +25,9 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # GET /test_cases/new
-  # GET /test_cases/new.json
+  # Gives the template for creating a new test case
+  #
+  # @return [String] the information to fill about a new test case as a JSON
   def new
     @test_case = TestCase.new
 
@@ -32,13 +37,17 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # GET /test_cases/1/edit
+  # Gives the template for edit a test case
+  #
+  # @param id [String] the test case's id
   def edit
     @test_case = TestCase.find(params[:id])
   end
 
-  # POST /test_cases
-  # POST /test_cases.json
+  # Creates the information for a new test case
+  #
+  # @param test case [TestCase] the information of the new test case from POST
+  # @return [String] the status of the creation, and the information of the test case as JSON
   def create
     @test_case = TestCase.new(params[:test_case])
 
@@ -53,8 +62,11 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # PUT /test_cases/1
-  # PUT /test_cases/1.json
+  # Changes the information of a test case
+  #
+  # @param id [String] the test case's id
+  # @param test case [TestCase] the information of the test case from POST
+  # @return [String] the status of the update, and the information of the test case as JSON
   def update
     @test_case = TestCase.find(params[:id])
 
@@ -69,8 +81,10 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # DELETE /test_cases/1
-  # DELETE /test_cases/1.json
+  # Deletes a test case of the application
+  #
+  # @param id [String] the test case's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @test_case = TestCase.find(params[:id])
     @test_case.destroy

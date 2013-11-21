@@ -1,6 +1,9 @@
+# Manages the information of the task of a user
 class TaskUsersController < ApplicationController
-  # GET /task_users
-  # GET /task_users.json
+ 
+  # Gives the list of tasks of associated to a user, as JSON
+  #
+  # @return [String] the list of tasks associated to a user as JSon 
   def index
     @task_users = TaskUser.all
 
@@ -10,8 +13,10 @@ class TaskUsersController < ApplicationController
     end
   end
 
-  # GET /task_users/1
-  # GET /task_users/1.json
+  # Gives information about a certain task of a user
+  #
+  # @param id [String] the taskUser's id
+  # @return [String] the task's information as JSON
   def show
     @task_user = TaskUser.find(params[:id])
 
@@ -21,8 +26,9 @@ class TaskUsersController < ApplicationController
     end
   end
 
-  # GET /task_users/new
-  # GET /task_users/new.json
+  # Gives the template for creating a new task of a user
+  #
+  # @return [String] the information to fill about a new task of a user as a JSON
   def new
     @task_user = TaskUser.new
 
@@ -32,13 +38,17 @@ class TaskUsersController < ApplicationController
     end
   end
 
-  # GET /task_users/1/edit
+  # Gives the template to edit the information of a user's task
+  #
+  # @param id [String] the task's id
   def edit
     @task_user = TaskUser.find(params[:id])
   end
 
-  # POST /task_users
-  # POST /task_users.json
+  # Creates the information for a new task of a user
+  # 
+  # @param task_user [TaskUser] the task's information
+  # @return [String] the status of the creation, and the information of the task as JSON
   def create
     @task_user = TaskUser.new(params[:task_user])
 
@@ -53,8 +63,11 @@ class TaskUsersController < ApplicationController
     end
   end
 
-  # PUT /task_users/1
-  # PUT /task_users/1.json
+  # Changes the information of a task
+  #
+  # @param id [String] the id of the task of a user
+  # @param task_user [TaskUser] the information of the task from POST
+  # @return [String] the status of the update, and the information of the task as JSON
   def update
     @task_user = TaskUser.find(params[:id])
 
@@ -69,8 +82,10 @@ class TaskUsersController < ApplicationController
     end
   end
 
-  # DELETE /task_users/1
-  # DELETE /task_users/1.json
+  # Deletes a task from a user from the BD
+  #
+  # @param id [String] the task's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @task_user = TaskUser.find(params[:id])
     @task_user.destroy

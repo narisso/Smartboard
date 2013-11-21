@@ -1,6 +1,9 @@
+# Manages the information of the role of a user in a certain project
 class ProjectRoleUsersController < ApplicationController
-  # GET /project_role_users
-  # GET /project_role_users.json
+  # Gives the list of the roles of the users linked to a certain project as JSON
+  #
+  # @params id [String] the project's id
+  # @return [String] the list of users with their roles as JSon
   def index
     @project = Project.find(params[:id])
     @project_role_users = ProjectRoleUser.where(:project_id => @project)
@@ -11,8 +14,10 @@ class ProjectRoleUsersController < ApplicationController
     end
   end
 
-  # GET /project_role_users/1
-  # GET /project_role_users/1.json
+  # Gives information about a certain relation user-role
+  #
+  # @param id [String] the relation's id
+  # @return [String] the relation's information as JSON.
   def show
     @project_role_user = ProjectRoleUser.find(params[:id])
 
@@ -22,8 +27,10 @@ class ProjectRoleUsersController < ApplicationController
     end
   end
 
-  # GET /project_role_users/new
-  # GET /project_role_users/new.json
+  # Gives the template for creating a new relation user-role-project
+  #
+  # @param id [String] the relation's id
+  # @return [String] the information to fill about a new relation as a JSON
   def new
     @project_role_user = ProjectRoleUser.new
     @project = Project.find(params[:project_id])
@@ -35,13 +42,18 @@ class ProjectRoleUsersController < ApplicationController
     end
   end
 
-  # GET /project_role_users/1/edit
+  # Gives the template for edit a relation user-role-project
+  #
+  # @param id [String] the relation's id
   def edit
     @project_role_user = ProjectRoleUser.find(params[:id])
   end
 
-  # POST /project_role_users
-  # POST /project_role_users.json
+  # Creates the information for a new relation project-role-user. This is, the role of a user in a certain project.
+  #
+  # @param project_id [String] the project's id
+  # @param project_roke_user [ProjectRoleUser] the information of the new relation from POST
+  # @return [String] the status of the creation, and the information of the evaluation as JSON
   def create
     if ProjectRoleUser.where(:project_id => params[:project_role_user][:project_id], :user_id => params[:project_role_user][:user_id]).exists?
       update
@@ -64,8 +76,11 @@ class ProjectRoleUsersController < ApplicationController
     end
   end
 
-  # PUT /project_role_users/1
-  # PUT /project_role_users/1.json
+  # Changes the information of a relation project-role-user. This is, the role of a userin a certain project.
+  #
+  # @param project_id [String] the project's id
+  # @param project_role_user [ProjectRoleUser] the information of the relation from POST
+  # @return [String] the status of the update, and the information of the relation as JSON
   def update
     @project_role_user = ProjectRoleUser.where(:project_id => params[:project_role_user][:project_id], :user_id => params[:project_role_user][:user_id]).first
 
@@ -80,8 +95,11 @@ class ProjectRoleUsersController < ApplicationController
     end
   end
 
-  # DELETE /project_role_users/1
-  # DELETE /project_role_users/1.json
+  # Deletes a relation project-role-user of the application
+  #
+  # @param id [String] the relation's id
+  # @param project_id [String] the project's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @project_role_user = ProjectRoleUser.find(params[:id])
     @project_role_user.destroy

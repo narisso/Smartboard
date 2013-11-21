@@ -54,7 +54,7 @@
 
                                                 <div class="task-users block">
                                                         <% task.users.each do |user| %>
-                                                                <img src='/assets/NA.png' data-toggle='tooltip' title="<%=user.email%>"></img>
+                                                                <%= gravatar_tag user.email%>
                                                         <% end %>
                                                 </div>
                                         </li>
@@ -98,7 +98,7 @@
 
             <div class="task-users block">
               <% task.users.each do |user| %>
-                <img src='/assets/NA.png' data-toggle='tooltip' title="<%=user.email%>"></img>
+              <%= gravatar_tag user.email%>
               <% end %>
             </div>
           </li>

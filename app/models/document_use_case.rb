@@ -1,5 +1,6 @@
 require 'dropbox_sdk'
 
+#Contains the model of the documents of the use case.
 class DocumentUseCase < ActiveRecord::Base
   attr_accessible :description, :name, :url_path, :use_case_id
 
@@ -10,6 +11,7 @@ class DocumentUseCase < ActiveRecord::Base
   validates :name, :presence => true
   validates :url_path, :presence => true
 
+  # Uploads a file to a use case's directory of Dropbox
   def upload_file
 	project = self.use_case.project
 

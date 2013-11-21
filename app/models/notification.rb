@@ -1,3 +1,4 @@
+# Contains the notification's model
 class Notification < ActiveRecord::Base
   belongs_to :user
   attr_accessible :description, :link, :viewed, :task, :task_id

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
   skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
-                                    :reports_tasks_project ]
+                                    :reports_tasks_project, :reports_tasks_user, :reports_use_case ]
 
   respond_to :html, :json
 
@@ -277,6 +277,29 @@ class ProjectsController < ApplicationController
     if params[:final_date]
       @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
     end
+
+    respond_to do |format|
+      format.json
+      format.js
+    end
+  end
+
+  def reports_tasks_user
+    if params[:initial_date]
+      @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    end
+
+    if params[:final_date]
+      @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+    end
+
+    respond_to do |format|
+      format.json
+      format.js
+    end
+  end
+
+  def reports_use_case
 
     respond_to do |format|
       format.json

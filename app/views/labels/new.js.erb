@@ -1,1 +1,18 @@
 jQuery('#modal').html("<%= escape_javascript(render 'form') %>");
+
+jQuery(document).ready(function($){
+    $('#label_color').iris({
+    	hide: true
+    });
+
+    $('#label_color').hide();
+
+    $('#label_color').after("<div onClick='colorPicker();' class='block'></div>");
+
+});
+
+function colorPicker(){
+
+	$('#label_color').iris("show");
+
+}

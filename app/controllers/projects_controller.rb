@@ -116,11 +116,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
 
-    delete_hooks(@project)
+    @project.delete_hooks()
 
-    change_repo_name(@project,@new_repo_name)
+    @project.change_repo_name(,@new_repo_name)
 
-    create_hook(@project)
+    @project.create_hook()
     #respond_with @project
   end
 

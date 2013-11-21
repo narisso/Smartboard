@@ -1,11 +1,10 @@
+#Contains the task's model
 class Task < ActiveRecord::Base
-
 
   attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, 
                   :priority, :project_id, :requirement_id, :status_id, :status_update_at, 
                   :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users, 
                   :lock, :created_at, :use_case_id
-
 
   belongs_to :label
   belongs_to :project
@@ -35,6 +34,7 @@ class Task < ActiveRecord::Base
   validates :label, :presence => true  
   validates :estimated_hours, :numericality => { :greater_than_or_equal_to => 1 }
 
+  # Gives all the documents of a certain task, including the use case's ones.
   def use_case_documents
     documents = []
     if not self.requirement.nil?
@@ -49,6 +49,10 @@ class Task < ActiveRecord::Base
     return documents.uniq
   end
 
+  # Saves the changes of the task and creates a notification to the user assigned to this new task.
+  #
+  # @param link [String] the url's of the task that generated the notification
+  # @return [boolean] if the changes were saved in the DB
   def save_and_notify(link)
     self.users.each do |user|
       @notification = Notification.new
@@ -62,6 +66,12 @@ class Task < ActiveRecord::Base
     return self.save
   end
 
+  #Updates the information of the reported hours of the current user on a task
+  #
+  # @param instance [Instance] the instance of the application
+  # @param rh [String] the ammount of hours to report
+  # @param current_user [String] the id of the current user
+  # @param task [String] the task in which the hours are been changed.
   def self.report_hours(instance, rh,current_user,task)
     if instance
       instance.update_attributes(rh)
@@ -73,6 +83,9 @@ class Task < ActiveRecord::Base
     end
   end
 
+  #Locks or unlocks a certain task
+  #
+  # @param task [Task] the task that is being locked or unlocked
   def self.lock_unlock(task)
     if(not task.lock == nil )
        task.lock = !task.lock
@@ -81,5 +94,4 @@ class Task < ActiveRecord::Base
      end 
      task.save
    end
-
 end

@@ -1,3 +1,4 @@
+# Contains the label's model
 class Label < ActiveRecord::Base
   attr_accessible :color, :name
 

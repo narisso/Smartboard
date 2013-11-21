@@ -1,5 +1,6 @@
 require 'dropbox_sdk'
 
+#Contains the model of the documents of the task.
 class DocumentTask < ActiveRecord::Base
   attr_accessible :description, :name, :task_id, :url_path, :version, :original_name
 
@@ -10,6 +11,7 @@ class DocumentTask < ActiveRecord::Base
   validates :name, :presence => true
   validates :url_path, :presence => true
 
+  # Uploads a file to a task's directory of Dropbox
   def upload_file
     project = self.task.project
     task = self.task

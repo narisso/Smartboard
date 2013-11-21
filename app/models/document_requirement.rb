@@ -1,5 +1,6 @@
 require 'dropbox_sdk'
 
+#Contains the model of the documents of the requirement.
 class DocumentRequirement < ActiveRecord::Base
   attr_accessible :description, :name, :requirement_id, :url_path
 
@@ -10,6 +11,7 @@ class DocumentRequirement < ActiveRecord::Base
   validates :name, :presence => true
   validates :url_path, :presence => true
 
+  # Uploads a file to a requirement's directory of Dropbox
   def upload_file
 	project = self.requirement.project
 

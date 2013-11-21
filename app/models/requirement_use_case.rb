@@ -1,3 +1,4 @@
+#Contains the model of the use case's of the requirment.
 class RequirementUseCase < ActiveRecord::Base
   attr_accessible :requirement_id, :use_case_id, :use_case, :requirement
 

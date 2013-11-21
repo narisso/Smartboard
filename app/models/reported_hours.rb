@@ -1,3 +1,4 @@
+#Contains the model of the reported hours in tasks.
 class ReportedHours < ActiveRecord::Base
   attr_accessible :reporting_hours, :task_id, :user_id
 

@@ -1,3 +1,4 @@
+#Contains the model of a template of a use case.
 class UseCaseTemplate < ActiveRecord::Base
   attr_accessible :name, :template_form, :project_id
 

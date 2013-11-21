@@ -1,6 +1,8 @@
+# Manages bug's information
 class BugsController < ApplicationController
-  # GET /bugs
-  # GET /bugs.json
+  # Gives the list of bugs as JSon
+  #
+  # @return [String] the list of bugs as JSon 
   def index
     @bugs = Bug.all
 
@@ -10,8 +12,10 @@ class BugsController < ApplicationController
     end
   end
 
-  # GET /bugs/1
-  # GET /bugs/1.json
+  # Gives information about a certain bug
+  #
+  # @param id [String] the bug's id
+  # @return [String] the bug's information as JSON
   def show
     @bug = Bug.find(params[:id])
 
@@ -21,8 +25,9 @@ class BugsController < ApplicationController
     end
   end
 
-  # GET /bugs/new
-  # GET /bugs/new.json
+  # Gives the template for creating a new bug
+  #
+  # @return [String] the information to fill about a new bug as a JSON
   def new
     @bug = Bug.new
 
@@ -32,13 +37,17 @@ class BugsController < ApplicationController
     end
   end
 
-  # GET /bugs/1/edit
+  # Gives the template for edit a bug
+  #
+  # @param id [String] the bug's id
   def edit
     @bug = Bug.find(params[:id])
   end
 
-  # POST /bugs
-  # POST /bugs.json
+  # Creates the information for a new bug
+  #
+  # @param bug [Bug] the information of the new bug from POST
+  # @return [String] the status of the creation, and the information of the bug as JSON
   def create
     @bug = Bug.new(params[:bug])
 
@@ -53,8 +62,11 @@ class BugsController < ApplicationController
     end
   end
 
-  # PUT /bugs/1
-  # PUT /bugs/1.json
+  # Changes the information of a bug
+  #
+  # @param id [String] the bug's id
+  # @param bug [Bug] the information of the bug from POST
+  # @return [String] the status of the update, and the information of the bug as JSON
   def update
     @bug = Bug.find(params[:id])
 
@@ -69,8 +81,10 @@ class BugsController < ApplicationController
     end
   end
 
-  # DELETE /bugs/1
-  # DELETE /bugs/1.json
+  # Deletes a bug of the application and redirects the webpage
+  #
+  # @param id [String] the bug's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @bug = Bug.find(params[:id])
     @bug.destroy

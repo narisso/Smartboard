@@ -1,8 +1,13 @@
+# Manages label's information
 class LabelsController < ApplicationController
-  # GET /labels
-  # GET /labels.json
+  load_and_authorize_resource :project
+  load_and_authorize_resource :label, :through => :project
+
+  # Gives the list of labels of the application as JSon
+  #
+  # @return [String] the list of labels as JSon 
   def index
-    @labels = Label.all
+    @labels = @project.labels
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,8 +15,10 @@ class LabelsController < ApplicationController
     end
   end
 
-  # GET /labels/1
-  # GET /labels/1.json
+  # Gives information about a certain label
+  #
+  # @param id [String] the label's id
+  # @return [String] the label's information as JSON
   def show
     @label = Label.find(params[:id])
 
@@ -21,30 +28,36 @@ class LabelsController < ApplicationController
     end
   end
 
-  # GET /labels/new
-  # GET /labels/new.json
+  # Gives the template for creating a new label
+  #
+  # @return [String] the information to fill about a new label as a JSON
   def new
     @label = Label.new
-
+    @label.project = Project.find(params[:project_id])
     respond_to do |format|
+      format.js
       format.html # new.html.erb
       format.json { render json: @label }
     end
   end
 
-  # GET /labels/1/edit
+  # Gives the template for edit a label
+  #
+  # @param id [String] the label id
   def edit
     @label = Label.find(params[:id])
   end
 
-  # POST /labels
-  # POST /labels.json
+  # Creates the information for a new label
+  #
+  # @param label [Label] the information of the new label from POST
+  # @return [String] the status of the creation, and the information of the label as JSON
   def create
     @label = Label.new(params[:label])
 
     respond_to do |format|
       if @label.save
-        format.html { redirect_to @label, notice: 'Label was successfully created.' }
+        format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully created.' }
         format.json { render json: @label, status: :created, location: @label }
       else
         format.html { render action: "new" }
@@ -53,8 +66,11 @@ class LabelsController < ApplicationController
     end
   end
 
-  # PUT /labels/1
-  # PUT /labels/1.json
+  # Changes the information of a label
+  #
+  # @param id [String] the label id
+  # @param label [Label] the information of the label from POST
+  # @return [String] the status of the update, and the information of the label as JSON
   def update
     @label = Label.find(params[:id])
 
@@ -69,14 +85,16 @@ class LabelsController < ApplicationController
     end
   end
 
-  # DELETE /labels/1
-  # DELETE /labels/1.json
+  # Deletes a label of the application
+  #
+  # @param id [String] the label's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @label = Label.find(params[:id])
     @label.destroy
 
     respond_to do |format|
-      format.html { redirect_to labels_url }
+      format.html { redirect_to project_labels_path(@project) }
       format.json { head :no_content }
     end
   end

@@ -1,3 +1,4 @@
+#Contains the comments' model
 class Comment < ActiveRecord::Base
   attr_accessible :approved, :message, :task_id, :user_id
 

@@ -17,6 +17,28 @@
 
 }
 
+.jumbotron {
+  padding: 30px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+  margin-top: -20px;
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.masthead h1 {
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
 
 #modal-large{
 	width:80%;

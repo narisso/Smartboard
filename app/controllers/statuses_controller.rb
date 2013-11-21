@@ -1,6 +1,8 @@
+# Manages Statu's information
 class StatusesController < ApplicationController
-  # GET /statuses
-  # GET /statuses.json
+  # Gives the list of status as JSon
+  #
+  # @return [String] the list of status as JSon 
   def index
     @statuses = Status.all
 
@@ -10,8 +12,10 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/1
-  # GET /statuses/1.json
+  # Gives information about a certain status
+  #
+  # @param id [String] the status' id
+  # @return [String] the status' information as JSON
   def show
     @status = Status.find(params[:id])
 
@@ -21,8 +25,9 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/new
-  # GET /statuses/new.json
+  # Gives the template for creating a new status
+  #
+  # @return [String] the information to fill about a new status as a JSON
   def new
     @status = Status.new
     @project = Project.find(params[:project_id])
@@ -34,23 +39,23 @@ class StatusesController < ApplicationController
     end
   end
 
-  # GET /statuses/1/edit
+  # Gives the template for edit a status
+  #
+  # @param id [String] the status' id
   def edit
     @status = Status.find(params[:id])
   end
 
-  # POST /statuses
-  # POST /statuses.json
+  # Creates the information for a new status
+  #
+  # @param status [Status] the information of the new status from POST
+  # @return [String] the status of the creation, and the information of the status as JSON
   def create
     @status = Status.new(params[:status])
     @project= Project.find(params[:project_id])
     @status.project_id = params[:project_id]
-    if @status.name == "" || @status.name == nil
-      aux =Status.last.id+1
-      @status.name = "Default"+aux.to_s
-    end
-
-
+    aux = Status.last.id+1
+    @status.set_default_name(aux)
     respond_to do |format|
       if @status.save
         format.html { redirect_to boards_project_path(@project) }
@@ -62,8 +67,11 @@ class StatusesController < ApplicationController
     end
   end
 
-  # PUT /statuses/1
-  # PUT /statuses/1.json
+  # Changes the information of a status
+  #
+  # @param id [String] the status' id
+  # @param status [Status] the information of the status from POST
+  # @return [String] the status of the update, and the information of the status as JSON
   def update
     @status = Status.find(params[:id])
 
@@ -78,8 +86,10 @@ class StatusesController < ApplicationController
     end
   end
 
-  # DELETE /statuses/1
-  # DELETE /statuses/1.json
+  # Deletes a status of the application
+  #
+  # @param id [String] the status' id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @status = Status.find(params[:id])
     @status.destroy
@@ -90,29 +100,28 @@ class StatusesController < ApplicationController
     end
   end
 
-# GET /statuses/project_statuses/1
-# GET /statuses/project_statuses/1.json
+  # Gives the list of status of a certain project as JSon
+  #
+  # @param project_id [String] the project's id
+  # @return [String] the list of status as JSon 
  def project_statuses
-
     @statuses=Status.where(:project_id => params[:id])
-
     respond_to do |format|
       format.html # project_statuses.html.erb
       format.json { render json: @statusess }
     end
   end
 
-
-
-
+  # Updates the position of certain status of a project
+  #
+  # @param id [String] the project's id
+  # @param status_id [String] the status' id
+  # @param num [String] the new position of the status
   def update_order
-
       @project = Project.find(params[:id])
       @status = Status.find(params[:status_id]);
       @status.order = params[:num]
-
       @status.save
-
     respond_to do |format|
       if @status.save
         format.js { render :js => "" }
@@ -122,7 +131,6 @@ class StatusesController < ApplicationController
         format.json { head :no_content }
       end
     end
-
   end
 
 end

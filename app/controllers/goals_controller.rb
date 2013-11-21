@@ -1,6 +1,8 @@
+# Manages goal's information
 class GoalsController < ApplicationController
-  # GET /goals
-  # GET /goals.json
+  # Gives the list of goal as JSon
+  #
+  # @return [String] the list of goals as JSon 
   def index
     @goals = Goal.all
 
@@ -10,8 +12,10 @@ class GoalsController < ApplicationController
     end
   end
 
-  # GET /goals/1
-  # GET /goals/1.json
+  # Gives information about a certain goal
+  #
+  # @param id [String] the goal's id
+  # @return [String] the goal's information as JSON
   def show
     @goal = Goal.find(params[:id])
 
@@ -21,8 +25,9 @@ class GoalsController < ApplicationController
     end
   end
 
-  # GET /goals/new
-  # GET /goals/new.json
+  # Gives the template for creating a new goal
+  #
+  # @return [String] the information to fill about a new goal as a JSON
   def new
     @goal = Goal.new
 
@@ -32,13 +37,17 @@ class GoalsController < ApplicationController
     end
   end
 
-  # GET /goals/1/edit
+  # Gives the template for edit a goal
+  #
+  # @param id [String] the goal's id
   def edit
     @goal = Goal.find(params[:id])
   end
 
-  # POST /goals
-  # POST /goals.json
+  # Creates the information for a new goal
+  #
+  # @param goal [Goal] the information of the new goal from POST
+  # @return [String] the status of the creation, and the information of the goal as JSON
   def create
     @goal = Goal.new(params[:goal])
 
@@ -53,8 +62,11 @@ class GoalsController < ApplicationController
     end
   end
 
-  # PUT /goals/1
-  # PUT /goals/1.json
+  # Changes the information of a goal
+  #
+  # @param id [String] the goal id
+  # @param goal [Goal] the information of the goal from POST
+  # @return [String] the status of the update, and the information of the goal as JSON
   def update
     @goal = Goal.find(params[:id])
 
@@ -69,8 +81,10 @@ class GoalsController < ApplicationController
     end
   end
 
-  # DELETE /goals/1
-  # DELETE /goals/1.json
+  # Deletes a goal of the application and redirects the webpage
+  #
+  # @param id [String] the goal's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @goal = Goal.find(params[:id])
     @goal.destroy

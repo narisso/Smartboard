@@ -23,7 +23,7 @@
 
 $(document).bind("page:load", function() {
 
-chosenSelect();
+chosenSelect(200);
 
 $('#side_close_button').click(ltl_bar_change);
 
@@ -42,15 +42,7 @@ $('#modal').on('hide', function () {
     $("#modal-header").empty();
   })
 
-
-
-
-
 });
-
-
-
-
 
 
 // Script to active chosen select

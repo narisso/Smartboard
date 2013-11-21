@@ -1,6 +1,9 @@
+# Manages requirement's templates information
 class RequirementTemplatesController < ApplicationController
-  # GET /requirement_templates
-  # GET /requirement_templates.json
+  
+  # Gives the list of requirement's templates as JSon
+  #
+  # @return [String] the list of requirement's templates as JSon 
   def index
     @requirement_templates = RequirementTemplate.all
 
@@ -10,8 +13,10 @@ class RequirementTemplatesController < ApplicationController
     end
   end
 
-  # GET /requirement_templates/1
-  # GET /requirement_templates/1.json
+  # Gives information about a certain templates of a requirement
+  #
+  # @param id [String] the template's id
+  # @return [String] the template's information as JSON
   def show
     @requirement_template = RequirementTemplate.find(params[:id])
 
@@ -21,8 +26,9 @@ class RequirementTemplatesController < ApplicationController
     end
   end
 
-  # GET /requirement_templates/new
-  # GET /requirement_templates/new.json
+  # Gives the template for creating a new template of a requirement
+  #
+  # @return [String] the information to fill about a new template of a requirement as a JSON
   def new
     @requirement_template = RequirementTemplate.new
 
@@ -32,13 +38,17 @@ class RequirementTemplatesController < ApplicationController
     end
   end
 
-  # GET /requirement_templates/1/edit
+  # Gives the template to edit the information of a requirement's template
+  #
+  # @param id [String] the template's id
   def edit
     @requirement_template = RequirementTemplate.find(params[:id])
   end
 
-  # POST /requirement_templates
-  # POST /requirement_templates.json
+  # Creates the information for a new template of a requirement
+  # 
+  # @param requirement_template [RequirementTemplate] the template's information
+  # @return [String] the status of the creation, and the information of the template as JSON
   def create
     @requirement_template = RequirementTemplate.new(params[:requirement_template])
 
@@ -53,8 +63,11 @@ class RequirementTemplatesController < ApplicationController
     end
   end
 
-  # PUT /requirement_templates/1
-  # PUT /requirement_templates/1.json
+  # Changes the information of a template
+  #
+  # @param id [String] the id of the template of a requirement
+  # @param requirement_template [RequirementTemplate] the information of the template from POST
+  # @return [String] the status of the update, and the information of the template as JSON
   def update
     @requirement_template = RequirementTemplate.find(params[:id])
 
@@ -69,8 +82,10 @@ class RequirementTemplatesController < ApplicationController
     end
   end
 
-  # DELETE /requirement_templates/1
-  # DELETE /requirement_templates/1.json
+  # Deletes a template from a requirement from the BD
+  #
+  # @param id [String] the template's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @requirement_template = RequirementTemplate.find(params[:id])
     @requirement_template.destroy

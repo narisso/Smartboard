@@ -65,7 +65,7 @@
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       get  :reports_hours_users
-      get  :reports_tasks_users
+      get  :reports_tasks_project
       get  :reports
       post :finish
     end

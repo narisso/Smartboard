@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
   skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
-                                    :reports_tasks_users ]
+                                    :reports_tasks_project ]
 
   respond_to :html, :json
 
@@ -262,14 +262,14 @@ class ProjectsController < ApplicationController
     if params[:final_date]
       @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
     end
-    
+
     respond_to do |format|
       format.json {render :file => "projects/reports_hours_users.json.erb", :content_type => 'application/json' }
       format.js { render "reports_hours_users.js.erb" }
     end 
   end 
 
-  def reports_tasks_users
+  def reports_tasks_project
     if params[:initial_date]
       @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
     end

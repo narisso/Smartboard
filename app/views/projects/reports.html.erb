@@ -58,7 +58,7 @@ function loadGraph(){
       case "Project tasks":
         $.ajax({
                 type: "GET",
-                url: "<%= reports_tasks_users_project_path(@project) %>",
+                url: "<%= reports_tasks_project_project_path(@project) %>",
                 dataType: "script",
                 data: {initial_date: initial_date.val(), final_date: final_date.val()}
               });
@@ -74,6 +74,10 @@ function loadGraph(){
 chosenSelect(200);
 $('#initial_date').datepicker();
 $('#final_date').datepicker();
+
+$('#chart_type').change(function(){
+  loadGraph();
+});
 
 $('#final_date').change(function(){
   loadGraph();

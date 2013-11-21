@@ -2,7 +2,8 @@
 class Comment < ActiveRecord::Base
   attr_accessible :approved, :message, :task_id, :user_id
 
-  #validates_length_of :message, :minimum => 4
+  #Comments can't be blank
+  validates_length_of :message, :minimum => 1
 
   belongs_to :user
   belongs_to :task

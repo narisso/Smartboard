@@ -5,7 +5,9 @@
 	  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
 	</div>
 	<%= render 'nav_bar' %>
-
+	<% if @project.dropbox_token == nil %>
+    	<span class="label label-warning"><strong>Warning!</strong> You need to link this project 	to Dropbox to be able to upload files.</span>
+  	<% end %>
 	<table class="table table-striped">
 	    <thead>
 	      <tr>

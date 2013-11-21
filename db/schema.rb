@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114145011) do
+ActiveRecord::Schema.define(:version => 20131119200047) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20131114145011) do
     t.string   "color"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "project_id"
   end
 
   create_table "notifications", :force => true do |t|

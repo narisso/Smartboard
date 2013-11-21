@@ -51,7 +51,7 @@ class BoardsController < ApplicationController
 	# Puts a README file on the folder of Dropbox, when the link has just been done. 
 	def send_confirmation_doc
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
-      @file_path ="SMARTBOARD/README_DROPBOX.txt"
+      @file_path ="README_DROPBOX.txt"
       file = open('doc/README_DROPBOX.txt')
       client = DropboxClient.new(dbsession)
       response = client.put_file(@file_path, file)

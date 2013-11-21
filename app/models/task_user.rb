@@ -1,3 +1,4 @@
+#Contains the model of the relation between a user and a task.
 class TaskUser < ActiveRecord::Base
   attr_accessible :creator_id, :developer_id, :task_id, :user_id
 

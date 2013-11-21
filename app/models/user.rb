@@ -1,3 +1,4 @@
+#Contains the model of the users.
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -11,7 +12,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :current_password, :provider, :uid, :avatar, :notifications
-
 
   # attr_accessible :title, :body
 
@@ -27,8 +27,6 @@ class User < ActiveRecord::Base
 
   has_many :reported_hours
   has_many :notifications, dependent: :destroy
-
-
 
   def self.from_omniauth(auth)
     if user = User.find_by_email(auth.info.email)
@@ -75,6 +73,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Gives the projects of a certain user as JSON.
+  #
+  # @param token [String] the user's token
+  # @return [String] the projects the user works with, as JSON
   def self.getProjectsAsJSon(token)
     us = User.find_by_authentication_token(token)
     
@@ -101,6 +103,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Logins the user.
+  #
+  # @param email [String] the user's email
+  # @param password [String] the password's email
+  # @return [String] the user token or a message of errror as JSON
   def self.loginAsJson(email,password)
 
     if email.nil? or password.nil?
@@ -125,6 +132,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Logouts the user.
+  #
+  # @param token [String] the user's token
+  # @return [String] a message of success or failure as JSON
   def self.logoutAsJSon(token)
     user=User.find_by_authentication_token(token)
     if user.nil?
@@ -136,6 +147,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Uploads a file to a project.
+  #
+  # @param project_id [String] the project's id
+  # @param file [File] the file to upload
+  # @param token [String] the user's token
+  # @param file_name [String] the file's name of the file to upload.
+  # @return [String] a message of success or failure as JSON
   def self.uploadAsJSon(project_id,file,token,file_name)
     require 'dropbox_sdk'
     
@@ -176,7 +194,7 @@ class User < ActiveRecord::Base
 
         final_file_name = File.basename(file_name,File.extname(file_name)) + ".v" + version.to_s + File.extname(file_name)
 
-        file_path ="SmartBoard/" + project.name + "/" + final_file_name
+        file_path = project.name + "/" + final_file_name
         begin
           dbsession = DropboxSession.deserialize(dropbox_token)
           client = DropboxClient.new(dbsession)
@@ -196,6 +214,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Gives all the document's of a project as JSON.
+  #
+  # @param proj_id [String] the project's id
+  # @return [String] a message of success or failure as JSON
   def self.getDocumentsAsJSon(proj_id)
     document_projects = DocumentProject.where(:project_id => proj_id)
     if document_projects.nil?

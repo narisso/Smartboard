@@ -1,3 +1,4 @@
+#Contains the model of a user case.
 class UseCase < ActiveRecord::Base
   attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, :task_ids, 
                   :document_project_ids

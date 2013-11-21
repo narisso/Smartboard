@@ -116,11 +116,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
 
-    delete_hooks(@project)
+    @project.delete_hooks()
 
-    change_repo_name(@project,@new_repo_name)
+    @project.change_repo_name(,@new_repo_name)
 
-    create_hook(@project)
+    @project.create_hook()
     #respond_with @project
   end
 
@@ -155,6 +155,17 @@ class ProjectsController < ApplicationController
         Status.create({name: 'Backlog', project_id: @project.id, order: 1 })
         Status.create({name: 'In Progress', project_id: @project.id, order: 2})
         Status.create({name: 'Done', project_id: @project.id, order: 9999})
+        Label.create([{name: 'Administration',project_id: @project.id, color: '#2b72dc'}, 
+          {name: 'Analysis',project_id: @project.id, color: '#2babd6'}, 
+          {name: 'Requirement',project_id: @project.id, color: '#ff8533'}, 
+          {name: 'Feature',project_id: @project.id, color: '#ffad33'}, 
+          {name: 'Design',project_id: @project.id, color: '#9d2bd6'}, 
+          {name: 'Bug',project_id: @project.id, color: '#ff3333'}, 
+          {name: 'Testing',project_id: @project.id, color: '#ffff33'},
+          {name: 'Chore',project_id: @project.id, color: '#bceb2f'}, 
+          {name: 'Suggestion',project_id: @project.id, color: '#2bd62b'}, 
+          {name: 'Learning',project_id: @project.id, color: '#472bd6'},
+          {name: 'Research',project_id: @project.id, color: '#020118'}])
         @project.add_user_role(current_user, Role.first)
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
@@ -224,7 +235,7 @@ class ProjectsController < ApplicationController
   # Sends confirmation document, and read me document to a recent linked Dropbox's repository
   def send_confirmation_doc
     dbsession = DropboxSession.deserialize(@dropbox_token)
-    @file_path ="SMARTBOARD/README_DROPBOX.txt"
+    @file_path ="README_DROPBOX.txt"
     file = open('doc/README_DROPBOX.txt')
     client = DropboxClient.new(dbsession)
     response = client.put_file(@file_path, file)

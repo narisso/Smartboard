@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 960px) {
     .board, .fixed-right{
         top: 122px;
     }
@@ -13,7 +13,7 @@
 
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 961px) {
     .board, .fixed-right{
         top: 83px;
     }
@@ -22,6 +22,14 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .board, .fixed-right{
+        top: 83px;
+    }
+    .filters-container, .ltl-nav {
+    	top: 44px;
+    }
+}
 
 
 .board {

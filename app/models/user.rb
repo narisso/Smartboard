@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
         user.name = auth.info.name
         user.email = auth.info.email
         user.avatar = auth.info.image
-        user.password = auth.info.password
+        user.password = nil
 
         user.confirm!
         user.save!
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
         user.uid = auth.uid
         user.name = auth.extra.raw_info.name
         user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
+        user.password = nil
 
         user.confirm!
         user.save!

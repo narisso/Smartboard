@@ -67,30 +67,55 @@ float:left;
 }
 
 .uc-task {
-  height:22px;
-  width:200px;
+margin-top:2px;
+  height:30px;
+  width:196px;
+  list-style-type: none;
+  cursor:pointer;
+  z-index:10;
+
+  background-color: white;
+  padding: 1px;
+      border: solid 1px rgba(0,136,204,0.5);
+
+}
+
+.ui-state-highlight-task {
+  height:28px;
+  width:192px;
   border-radius: 2px;
   list-style-type: none;
   cursor:pointer;
-  margin:2px;
+  backgorund-color:white;
+  border-color: rgba(0,0,0,0.3);
+  border-style: double;
   padding: 1px;
 }
 
 .uc-task .name{
-  width:110px;
+  width:140px;
+  height:25px;;
   word-wrap:break-word;
   display:inline-block;
   float:left;
-  margin:0;
+  margin:0px;
+  margin-left:5px;
+  margin-top:5px;
+  vertical-align: middle;
 }
 
 .uc-task .status{
-
-  width:80px;
+position:relative;
+  text-align:right;
+  padding-top:0;
+  width:40px%;
+  height:100%;
   word-wrap:break-word;
   display:inline-block;
-  float:left;
+  font-size:10px;
+  float:right;
   margin:0;
+  font-style:italic;
 }
 
 .uc-tasks-container ul li .head{
@@ -98,16 +123,19 @@ float:left;
   background: #0088cc;
   color: white;
   padding: 5px;
+vertical-align:bottom;
+  height: 30px;
 
 }
 .uc-li ul{
   width:100%;
-  height:120px;
-  margin:0;
-    -webkit-columns: 210px;
-     -moz-columns: 210px;
-     -o-columns: 210px;
-    columns: 210px;
+  height:216px;
+overflow:auto;
+  padding-left:3px;
+    -webkit-columns: 205px;
+     -moz-columns: 205px;
+     -o-columns: 205px;
+    columns: 205px;
 }
 
 .uc-li .new{

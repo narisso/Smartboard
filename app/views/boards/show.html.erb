@@ -72,7 +72,7 @@
 
 <div draggable="false" data-id="<%= @statuses.last.id %>" data-pos="<%= @statuses.last.order %>"  class='column fixed-right last hide'  >
     
-    <%= link_to "+", new_project_status_task_path(@project, @statuses.last), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right",:style=>"position:absolute; margin:5px;" %>
+  
     <h4 class='block text-center handle'><%= @statuses.last.name%></h4>
     <p class='block text-center handle task-percentage'><%= @statuses.last.tasks.length*100/@total %>% of total tasks</p>
 
@@ -167,7 +167,7 @@ function filterByDate(date){
 
 
       var stringdate = new String($(this).data("created")).replace(' UTC', '');
-
+      stringdate = stringdate.split(' ')[0];
       var dateItem = new Date(stringdate);
 
       if(dateItem>date){

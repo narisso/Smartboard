@@ -44,6 +44,12 @@
   <%= link_to "Attach Document", 
               attach_document_project_use_case_path(@project, @use_case),
               :class => 'btn' %>
+              <%= link_to "Requirements", 
+              requirements_project_use_case_path(@project, @use_case),
+              :class => 'btn' %>
+              <%= link_to "Tasks", 
+              tasks_project_use_case_path(@project, @use_case),
+              :class => 'btn' %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               project_use_cases_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),

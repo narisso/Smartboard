@@ -1,7 +1,14 @@
 <%- model_class = UseCase -%>
 
 <div class="use_cases">
+ <div class="row">
+
+<h1>New Use Case</h1>
+<%= render :partial => "new_step_bar", :locals => {:step => 1} %>
+
 
 <%= render :partial => 'form' %>
+
+</div>
 
 </div>

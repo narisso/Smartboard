@@ -81,8 +81,10 @@ class User < ActiveRecord::Base
 
   end 
 
-  def get_tasks_with_hours
-    restriction = "user_id = #{self.id.to_s}" 
+  #This method returns the sum of reported user hours in the tickets in JSON format
+  def get_tasks_with_hours( id )
+    restriction = "project_id =" + id.to_s + " and "
+    restriction = restriction + "user_id = #{self.id.to_s}" 
     user_tasks = Task.joins("INNER JOIN reported_hours on tasks.id = reported_hours.task_id").where(restriction).select("name, reporting_hours as size").all
   end
 

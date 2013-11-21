@@ -1,3 +1,4 @@
+# Contains the evaluation's model
 class Evaluation < ActiveRecord::Base
   attr_accessible :code, :description, :name, :task_id
 

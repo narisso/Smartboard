@@ -1,43 +1,54 @@
 <%= simple_form_for [@use_case.project, @use_case], :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="well">
+ 
     <% if params[:action] == "attach_document" %>
+     <div class="well">
       <%= f.association :document_projects,
                         :collectoin => DocumentProject.where(:project_id => @project),
                         :as => :check_boxes %>
       <%= f.hidden_field :data, :hidden => true, :value => @use_case.data %>
       </div>
     <% else %>
+
+     <div class="block ">
     	<%= f.input :name %>
       <%= f.association :use_case_group, 
                         :collection => UseCaseGroup.where(:project_id => @project),
                         :input_html => { class: 'chosen-select selectpicker'} %>
-      <%= f.association :requirement, 
-                        :collection => Requirement.where(:project_id => @project), 
-                        :input_html => { class: 'chosen-select'} %>
-      <%= f.association :tasks, 
-                        :collection => Task.where(:project_id => @project), 
-                        :input_html => { class: 'chosen-select'} %>
-      <%= f.association :document_projects,
-                        :collection => DocumentProject.where(:project_id => @project),
-                        :input_html => { class: 'chosen-select'} %>
+      
     	<%= f.association :use_case_template,
                         :collection => UseCaseTemplate.where(:project_id => @project),
     					          :input_html => { class: 'chosen-select selectpicker'},
                         :include_blank => true %>
-    </div>
+
     <div id="template">
       <% if params[:action] == "edit" %>
         <%= render 'template_form', :@json_obj => JSON.parse(@use_case.use_case_template.template_form),
                                     :@data => JSON.parse(@use_case.data) %>
       <% end %>
     </div>
-  <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <div class="form-actions">
+
+    <% if params[:type]=="step" %>
+    <%= hidden_field_tag "subaction","step"%> 
+    <%= f.button :submit, "Update and Continue" , :class => 'btn-primary' %>
+    
+    <%else%>
+    <%= f.button :submit, "Create and Continue" , :class => 'btn-primary' %>
+    <%end%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 project_use_cases_path, :class => 'btn' %>
-  </div>
+    </div>
+
+
+
+  <% end %>
+
+
+
+
+
+</div>
 <% end %>
 
 <% content_for :javascripts do %>
@@ -45,12 +56,15 @@
     $(chosenSelect(200));
 		$('#use_case_use_case_template_id').change(function(){
 			var use_case_template_id = $(this).val();
+      $(".btn").attr('disabled', 'disabled');
 			var response = $.ajax({
   									url: "<%= template_use_case_project_use_cases_path %>",
 					  				data: {use_case_template_id: use_case_template_id}
 							}).done(function(){
 								chosenSelect(200);
+                $(".btn").removeAttr('disabled');
 							});
 		});
+
 	</script>
 <% end %>

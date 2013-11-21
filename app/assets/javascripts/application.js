@@ -42,15 +42,7 @@ $('#modal').on('hide', function () {
     $("#modal-header").empty();
   })
 
-
-
-
-
 });
-
-
-
-
 
 
 // Script to active chosen select

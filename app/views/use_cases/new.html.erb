@@ -1,12 +1,14 @@
 <%- model_class = UseCase -%>
 
 <div class="use_cases">
+ <div class="row">
 
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human %></h1>
-</div>
+<h1>New Use Case</h1>
+<%= render :partial => "new_step_bar", :locals => {:step => 1} %>
 
-<%= render 'nav_bar' %>
+
 <%= render :partial => 'form' %>
+
+</div>
 
 </div>

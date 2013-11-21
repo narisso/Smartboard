@@ -1,3 +1,4 @@
+#Contains the bugs' model.
 class Bug < ActiveRecord::Base
   attr_accessible :description, :project_id, :task_id, :test_case_id, :user_id
 

@@ -1,9 +1,12 @@
-<%= simple_form_for @label, :html => { :class => 'form-horizontal' } do |f| %>
+
+
+<%= simple_form_for [@label.project, @label], :html => { :class => 'form-horizontal' },:remote => true do |f| %>
   <%= f.input :name %>
   <%= f.input :color %>
+  <%= f.input :project_id, :as => :hidden, :input_html => { :value => @label.project_id } %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                labels_path, :class => 'btn' %>
+                project_labels_path(@project), :class => 'btn' %>
   </div>
 <% end %>

@@ -1,11 +1,13 @@
+#Contains the model of a user case.
 class UseCase < ActiveRecord::Base
-  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, 
-                  :requirement_id, :task_ids, :document_project_ids
+  attr_accessible :name, :project_id, :use_case_template_id, :data, :use_case_group_id, :task_ids, 
+                  :document_project_ids
 
   belongs_to :project
   belongs_to :use_case_template
   belongs_to :use_case_group
-  belongs_to :requirement
+  has_many :requirement_use_cases
+  has_many :requirements, :through => :requirement_use_cases
 
   has_many :tasks
   has_many :document_use_cases
@@ -36,5 +38,15 @@ class UseCase < ActiveRecord::Base
 
   def remove_document doc
     self.document_projects.delete(doc)
+  end
+
+  def add_remove_document(document_project,add)
+    if add == "true"
+      self.add_document(document_project)
+      return "Document added to use case."
+    else
+      self.remove_document(document_project)
+      return "Document removed from use case."
+    end
   end
 end

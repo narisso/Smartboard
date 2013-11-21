@@ -1,7 +1,9 @@
+# Handles all about login with external accounts
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 	skip_before_filter :check_session
 	
+	# Asks for google's account authorization to login in SmartBoard with it.
 	def google_oauth2
 		user = User.from_omniauth(request.env["omniauth.auth"])
 		if user.persisted?
@@ -14,6 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		end
 	end
 
+	# Asks for facebook's account authorization to login in SmartBoard with it.
 	def facebook
 	    # You need to implement the method below in your model (e.g. app/models/user.rb)
 	    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)

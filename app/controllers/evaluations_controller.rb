@@ -1,6 +1,8 @@
+# Manages evaluation's information
 class EvaluationsController < ApplicationController
-  # GET /evaluations
-  # GET /evaluations.json
+  # Gives the list of evaluations of the application as JSon
+  #
+  # @return [String] the list of bugs as JSon 
   def index
     @evaluations = Evaluation.all
 
@@ -10,8 +12,10 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # GET /evaluations/1
-  # GET /evaluations/1.json
+  # Gives information about a certain evaluation
+  #
+  # @param id [String] the evaluation's id
+  # @return [String] the bug's information as JSON
   def show
     @evaluation = Evaluation.find(params[:id])
 
@@ -21,8 +25,9 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # GET /evaluations/new
-  # GET /evaluations/new.json
+  # Gives the template for creating a new evaluation
+  #
+  # @return [String] the information to fill about a new evaluation as a JSON
   def new
     @evaluation = Evaluation.new
 
@@ -32,13 +37,17 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # GET /evaluations/1/edit
+  # Gives the template for edit a evaluation
+  #
+  # @param id [String] the evaluation's id
   def edit
     @evaluation = Evaluation.find(params[:id])
   end
 
-  # POST /evaluations
-  # POST /evaluations.json
+  # Creates the information for a new evaluation
+  #
+  # @param evaluation [Evaluation] the information of the new evaluation from POST
+  # @return [String] the status of the creation, and the information of the evaluation as JSON
   def create
     @evaluation = Evaluation.new(params[:evaluation])
 
@@ -53,8 +62,11 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # PUT /evaluations/1
-  # PUT /evaluations/1.json
+  # Changes the information of a evaluation
+  #
+  # @param id [String] the evaluation's id
+  # @param evaluation [Evaluation] the information of the evaluation from POST
+  # @return [String] the status of the update, and the information of the evaluation as JSON
   def update
     @evaluation = Evaluation.find(params[:id])
 
@@ -69,8 +81,10 @@ class EvaluationsController < ApplicationController
     end
   end
 
-  # DELETE /evaluations/1
-  # DELETE /evaluations/1.json
+  # Deletes a evaluation of the application
+  #
+  # @param id [String] the evaluation's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @evaluation = Evaluation.find(params[:id])
     @evaluation.destroy

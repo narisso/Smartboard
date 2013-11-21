@@ -1,9 +1,11 @@
+# Manages Use Case's information
 class UseCasesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :use_case, :through => :project
   
-  # GET /use_cases
-  # GET /use_cases.json
+  # Gives the list of use cases as JSon
+  #
+  # @return [String] the list of use cases as JSon 
   def index
     @use_case_groups = @project.use_case_groups
 
@@ -13,8 +15,10 @@ class UseCasesController < ApplicationController
     end
   end
 
-  # GET /use_cases/1
-  # GET /use_cases/1.json
+  # Gives information about a certain use case
+  #
+  # @param id [String] the use case's id
+  # @return [String] the use case's information as JSON
   def show
     @use_case = UseCase.find(params[:id])
 
@@ -24,8 +28,9 @@ class UseCasesController < ApplicationController
     end
   end
 
-  # GET /use_cases/new
-  # GET /use_cases/new.json
+  # Gives the template for creating a new use case
+  #
+  # @return [String] the information to fill about a new use case as a JSON
   def new
     @use_case = UseCase.new
     @use_case.project = Project.find(params[:project_id])
@@ -36,13 +41,18 @@ class UseCasesController < ApplicationController
     end
   end
 
-  # GET /use_cases/1/edit
+  # Gives the template for edit a use case
+  #
+  # @param id [String] the use case's id
   def edit
     @use_case = UseCase.find(params[:id])
   end
 
-  # POST /use_cases
-  # POST /use_cases.json
+  # Creates the information for a new use case
+  #
+  # @param use case [UseCase] the information of the new use case from POST
+  # @param project_id [String] the project id
+  # @return [String] the status of the creation, and the information of the use case as JSON
   def create
     @use_case = UseCase.new(params[:use_case])
     @use_case.project_id = params[:project_id]
@@ -50,7 +60,7 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.save
-        format.html { redirect_to project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
+        format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
         format.json { render json: @use_case, status: :created, location: @use_case }
       else
         format.html { render action: "new" }
@@ -59,15 +69,23 @@ class UseCasesController < ApplicationController
     end
   end
 
-  # PUT /use_cases/1
-  # PUT /use_cases/1.json
+  # Changes the information of a use case
+  #
+  # @param id [String] the use case's id
+  # @param use case [UseCase] the information of the use case from POST
+  # @return [String] the status of the update, and the information of the use case as JSON
   def update
     @use_case = UseCase.find(params[:id])
     @use_case.data = params[:data].to_json
 
     respond_to do |format|
       if @use_case.update_attributes(params[:use_case])
-        format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
+
+        if params[:subaction]=="step"
+          format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully updated.' }
+        else
+          format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,8 +94,10 @@ class UseCasesController < ApplicationController
     end
   end
 
-  # DELETE /use_cases/1
-  # DELETE /use_cases/1.json
+  # Deletes a use case of the application
+  #
+  # @param id [String] the use case's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @use_case = UseCase.find(params[:id])
     @use_case.destroy
@@ -88,6 +108,10 @@ class UseCasesController < ApplicationController
     end
   end
 
+  # Gives the template of an use case as JSON
+  #
+  # @param use_case_template_id [String] the use case template's id
+  # @return [String] the use case template as JSON
   def template_use_case
     @use_case_template = UseCaseTemplate.find(params[:use_case_template_id])
     @json_obj = JSON.parse(@use_case_template.template_form)
@@ -97,6 +121,10 @@ class UseCasesController < ApplicationController
     end
   end
 
+  # Gives the list of documents of a project to attach to a use case
+  #
+  # @param id [String] the use case's id
+  # @param project_id [String] the project's id
   def attach_document
     @use_case = UseCase.find(params[:id])
     @document_projects = DocumentProject.where(:project_id => params[:project_id])
@@ -106,20 +134,44 @@ class UseCasesController < ApplicationController
     end
   end
 
+  # Adds or removes a document of a use of case
+  #
+  # @param id [String] the use case's id
+  # @param document_project_id [String] the document's id
+  # @param add [String] Indicates if you want to add (add = true) or remove (add = false) a document.
+  # @param project_id [String] the project's id
   def add_document
     @use_case = UseCase.find(params[:id])
-    @document_project = DocumentProject.find(params[:document_project_id])
-
-    if params[:add] == "true"
-      @use_case.add_document(@document_project)
-      flash[:notice] = "Document added to use case."
-    else
-      @use_case.remove_document(@document_project)
-      flash[:notice] = "Document removed from use case."
-    end
-
+    document_project = DocumentProject.find(params[:project_id])
+    text = @use_case.add_remove_document(document_project,params[:add])
+    flash[:notice] = text
     respond_to do |format|
       format.js
+    end
+  end
+
+  # Gives the view of the requirement of a certain use case
+  #
+  # @param id [String] the use case's id
+  # @param project_id [String] the project's id
+  def requirements
+  @use_case = UseCase.find(params[:id])
+  @project = @use_case.project
+  @requirements = @use_case.requirements
+    respond_to do |format|
+      format.html 
+    end
+  end
+
+  # Gives the view of the tasks of a certain use case
+  #
+  # @param id [String] the use case's id
+  # @param project_id [String] the project's id
+  def tasks
+  @use_case = UseCase.find(params[:id])
+  @project = @use_case.project
+    respond_to do |format|
+      format.html 
     end
   end
 end

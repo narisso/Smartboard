@@ -8,7 +8,7 @@
       <div class='control-group'>
         <label class='control-label'>Chart Type</label>
         <div class='controls'>
-            <%= select_tag :chart_type, options_for_select(["User hours"]), :include_blank => true, :class => "chosen-select" %> 
+            <%= select_tag :chart_type, options_for_select(["User hours", "Project tasks"]), :include_blank => true, :class => "chosen-select" %> 
         </div>
       </div>
     </br>
@@ -54,6 +54,16 @@ function loadGraph(){
                 data: {initial_date: initial_date.val(), final_date: final_date.val()}
               });
         break;
+
+      case "Project tasks":
+        $.ajax({
+                type: "GET",
+                url: "<%= reports_tasks_project_project_path(@project) %>",
+                dataType: "script",
+                data: {initial_date: initial_date.val(), final_date: final_date.val()}
+              });
+        break;
+
       default:
         break;
     }
@@ -64,6 +74,10 @@ function loadGraph(){
 chosenSelect(200);
 $('#initial_date').datepicker();
 $('#final_date').datepicker();
+
+$('#chart_type').change(function(){
+  loadGraph();
+});
 
 $('#final_date').change(function(){
   loadGraph();

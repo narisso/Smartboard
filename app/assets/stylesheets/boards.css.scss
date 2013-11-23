@@ -152,6 +152,12 @@
 	cursor: pointer;
 }
 
+.locked
+{
+	border-style: solid;
+	border-color: rgba(255, 0, 0, 0.24);
+}
+
 .dragging {
   -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);

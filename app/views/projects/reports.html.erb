@@ -1,34 +1,33 @@
 <h1>Reports</h1>
 
 <div class="row use_cases">
-	<div class="span4" style="border: thin solid #CCC">
+  <div class="option_chart" >
 		
     <%= form_tag do %>
+        <div class='control-group'>
+          <label class='control-label'>Chart Type</label>
+          <div class='controls'>
+              <%= select_tag :chart_type, options_for_select(["User hours", "Project tasks", "User tasks", "Use cases"]), :include_blank => true, :class => "chosen-select" %> 
+          </div>
+        </div>
 
-      <div class='control-group'>
-        <label class='control-label'>Chart Type</label>
-        <div class='controls'>
-            <%= select_tag :chart_type, options_for_select(["User hours", "Project tasks", "User tasks", "Use cases"]), :include_blank => true, :class => "chosen-select" %> 
+        <div class='control-group'>
+          <label class='control-label'>Initial Date</label>
+          <div class='controls'>
+              <%= text_field_tag :initial_date, nil %> 
+          </div>
         </div>
-      </div>
-    </br>
-      <div class='control-group'>
-        <label class='control-label'>Initial Date</label>
-        <div class='controls'>
-            <%= text_field_tag :initial_date, nil %> 
-        </div>
-      </div>
-
-      <div class='control-group'>
-        <label class='control-label'>Final Date</label>
-        <div class='controls'>
-            <%= text_field_tag :final_date, nil %> 
-        </div>
-      </div>      
-      
+     
+        <div class='control-group'>
+          <label class='control-label'>Final Date</label>
+          <div class='controls'>
+              <%= text_field_tag :final_date, nil %> 
+          </div>
+        </div>          
     <% end %>
-	</div>
-	<div class="span8" style="border: thin solid #CCC; min-height: 500px;" id="chart">		
+  </div>
+
+	<div class="chart_area" id="chart">		
 		
 	</div>
 </div>

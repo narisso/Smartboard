@@ -60,7 +60,7 @@ class UseCasesController < ApplicationController
 
     respond_to do |format|
       if @use_case.save
-        format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully created.' }
+        format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case,:type => "step"), notice: 'Use case was successfully created.' }
         format.json { render json: @use_case, status: :created, location: @use_case }
       else
         format.html { render action: "new" }
@@ -82,7 +82,7 @@ class UseCasesController < ApplicationController
       if @use_case.update_attributes(params[:use_case])
 
         if params[:subaction]=="step"
-          format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case), notice: 'Use case was successfully updated.' }
+          format.html { redirect_to requirements_project_use_case_path(@use_case.project, @use_case, :type=>"step"), notice: 'Use case was successfully updated.' }
         else
           format.html { redirect_to project_use_case_path(@project, @use_case), notice: 'Use case was successfully updated.' }
         end
@@ -174,4 +174,10 @@ class UseCasesController < ApplicationController
       format.html 
     end
   end
+
+
+
+
+
+
 end

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
  
   protect_from_forgery
   before_filter :check_session , :except => [:home]
+  before_filter :check_dropbox
   after_filter  :flash_to_headers
 
   # Handles all about the session of a user.
@@ -88,6 +89,43 @@ class ApplicationController < ActionController::Base
         return type unless flash[type].blank?
       end
     end
+
+  def check_dropbox
+      if session[:dropbox_session]  
+        if params[:project_id] 
+          project = Project.find(params[:project_id])
+          project.dropbox_token =  session[:dropbox_session]
+          project.save
+          session.delete :dropbox_session 
+          if send_confirmation_doc       
+            flash[:success] = ""
+          else
+            project.dropbox_token =  nil
+            project.save
+            flash[:alert] = "Dropbox Auth Failed"
+          end
+        end
+      end 
+  end 
+
+  # Puts a README file on the folder of Dropbox, when the link has just been done. 
+  def send_confirmation_doc
+    if params[:project_id] 
+      project = Project.find(params[:project_id])
+      dbsession = DropboxSession.deserialize(project.dropbox_token)
+      file_path = project.name + "/" + "README_DROPBOX.txt"
+      file = open('doc/README_DROPBOX.txt')
+      begin
+        client = DropboxClient.new(dbsession)
+        response = client.put_file(file_path, file)
+        flash[:success] = "We have send a document to your dropbox "
+        return true
+      rescue
+        return false
+      end
+    end
+  end
+
 end
 
 

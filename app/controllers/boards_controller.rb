@@ -1,5 +1,6 @@
 # Manages board's information
 class BoardsController < ApplicationController
+  require 'dropbox_sdk'
 	# Shows the administrator, project manager and developer board's view and indicates the link with dropbox and github
   	#
   	# @param id [String] the project's id
@@ -28,13 +29,17 @@ class BoardsController < ApplicationController
       		@total = 1
     	end
     	skip_footer = true
-    	if session[:dropbox_session]                
-     		@project.dropbox_token =  session[:dropbox_session]
-      		@project.save
-      		session.delete :dropbox_session 
-    		send_confirmation_doc         
-      		flash[:success] = ""
-    	end   	
+ 		if session[:dropbox_session]  
+          	@project.dropbox_token =  session[:dropbox_session]
+          	@project.save
+          	session.delete :dropbox_session 
+          if send_confirmation_doc       
+          	flash[:success] = ""
+          else
+            @project.dropbox_token =  nil
+            @project.save
+          end
+        end  	
 		@highlight = params[:task_highlight]
         respond_to do |format|
             format.html 
@@ -47,14 +52,20 @@ class BoardsController < ApplicationController
 	        format.html
 	    end
 	end 
-
-	# Puts a README file on the folder of Dropbox, when the link has just been done. 
-	def send_confirmation_doc
+# Puts a README file on the folder of Dropbox, when the link has just been done. 
+  def send_confirmation_doc
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
-      @file_path ="README_DROPBOX.txt"
+      file_path =@project.name + "/" + "README_DROPBOX.txt"
       file = open('doc/README_DROPBOX.txt')
-      client = DropboxClient.new(dbsession)
-      response = client.put_file(@file_path, file)
-      flash[:success] = "We have send a document to your dropbox "
- 	end
+      begin
+        client = DropboxClient.new(dbsession)
+        response = client.put_file(file_path, file)
+        flash[:success] = "We have send a document to your dropbox "
+        return true
+      rescue
+        return false
+      end
+
+  end
+
 end

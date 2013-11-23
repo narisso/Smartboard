@@ -238,11 +238,11 @@ ActiveRecord::Schema.define(:version => 20131119200047) do
     t.integer  "estimated_hours"
     t.integer  "effective_hours"
     t.integer  "priority"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
-    t.boolean  "lock"
+    t.boolean  "lock",             :default => false
     t.integer  "use_case_id"
   end
 

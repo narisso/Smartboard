@@ -57,6 +57,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.save
+        format.js { render :js => "location.reload();" }
         format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully created.' }
         format.json { render json: @label, status: :created, location: @label }
       else
@@ -76,7 +77,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.update_attributes(params[:label])
-        format.html { redirect_to @label, notice: 'Label was successfully updated.' }
+        format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -91,11 +92,17 @@ class LabelsController < ApplicationController
   # @return [String] the content of the deletion as JSON
   def destroy
     @label = Label.find(params[:id])
-    @label.destroy
 
-    respond_to do |format|
-      format.html { redirect_to project_labels_path(@project) }
-      format.json { head :no_content }
+    if @label.valid_destroy
+      respond_to do |format|
+        format.html { redirect_to project_labels_path(@project) }
+        format.json { head :no_content }
+      end
+    else 
+      respond_to do |format|
+        format.html { redirect_to project_labels_path(@project), alert: 'First delete or change tasks with this label.' }
+        format.json { head @label.json}
+      end
     end
   end
 end

@@ -2,6 +2,9 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h1>Upload Document</h1>
+    <% if @document_project.project.dropbox_token == nil %>
+      <span class="label label-warning"><strong>Warning!</strong> You need to link this project to Dropbox to be able to upload files.</span>
+    <% end %>
 </div>
 <%= bootstrap_flash %>
 <%= simple_form_for [@document_project.project, @document_project], :html => { :class => 'form-horizontal',:multipart => true }, :remote => true do |f| %>

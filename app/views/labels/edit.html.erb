@@ -1,5 +1,39 @@
 <%- model_class = Label -%>
-<div class="page-header">
+<div class="page-header" style="margin-left:50px;">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human %></h1>
 </div>
-<%= render :partial => 'form' %>
+<div style="margin-left:50px;" >
+<%= render :partial => 'form',:locals => {:edit => true} %>
+</div>
+
+<%- content_for(:javascripts) do -%>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+
+	$('#label_color').hide();
+
+    
+    $('#label_color').iris({
+    	hide: true,
+    	change: function(event, ui) {
+        // event = standard jQuery event, produced by whichever control was changed.
+        // ui = standard jQuery UI object, with a color member containing a Color.js object
+
+        // change the headline color
+        $(".color-picker-button").css( 'background-color', ui.color.toString());
+    }
+    });
+
+    $('#label_color').after("<div class='color-picker-button' onClick='colorPicker();' style=''> <div class='pull-right' style=''> <i class='icon-chevron-down' style=' margin-left:3px; margin-top:5px;'></i> </div>  </div>");
+
+    var color = $('#label_color').val();
+    $('#label_color').iris('color', color);
+});
+
+function colorPicker(){
+
+	$('#label_color').iris("show");
+
+}
+</script>
+<%end%>

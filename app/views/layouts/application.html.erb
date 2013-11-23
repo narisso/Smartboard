@@ -202,9 +202,11 @@
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+        
       </div>
 
       <div id="modal-large" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+
       </div>
 
       <!--footer>
@@ -220,6 +222,8 @@
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
+    <script src="/assets/color.js"></script>
+    <script src="/assets/iris-basic.js"></script>
     <script type="text/javascript">
 
         <%if user_signed_in?%>

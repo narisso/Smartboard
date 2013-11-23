@@ -1,6 +1,12 @@
 <div style="margin-left:30px;">
-  <h1>Add Requirements to Use Case <%= @use_case.name %></h1>
+  <h1 style="margin-bottom:10px;">Add Requirements to Use Case <%= @use_case.name %></h1>
+
+  <% if params[:type]=="step" %>
 	<%= render :partial => "new_step_bar", :locals => {:step => 2} %>
+  <%else%>
+<div class="page-header" style="margin-left:30px;">
+</div>
+  <%end%>
 
 <div class="accordion" id="#accordion_groups" style="margin-left:30px;">
   <% @requirements.each do |requirement| %>
@@ -50,10 +56,14 @@
 </div>
 
 	<div class="form-actions">
-    <%= link_to "Back", edit_project_use_case_path(@project,@use_case,:type=>"step"),:class=>"btn",:style =>""%>
-    <%= link_to "Continue", tasks_project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                project_use_cases_path(@project,@use_case), :class => 'btn' %>
+    <% if params[:type]=="step" %>
+      <%= link_to "Back", edit_project_use_case_path(@project,@use_case,:type=>"step"),:class=>"btn",:style =>""%>
+      <%= link_to "Continue", tasks_project_use_case_path(@project,@use_case,:type=>"step"),:class=>"btn btn-primary",:style =>""%>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  project_use_case_path(@project,@use_case), :class => 'btn' %>
+    <%else%>
+      <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn  btn-primary",:style =>""%>
+    <%end%>
     </div>
 
 </div>

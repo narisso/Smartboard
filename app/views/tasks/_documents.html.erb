@@ -1,3 +1,6 @@
+<% if @project.dropbox_token == nil %>
+  <span class="label label-warning"><strong>Warning!</strong> You need to link this project to Dropbox to be able to upload files.</span>
+<% end %>
 <div class="accordion" id="#accordion_groups">
   <!-- Accordion group -->
     <div class="accordion-group">
@@ -41,33 +44,12 @@
       </div>
     </div>
   <!-- End accordion group -->
-  <!-- Accordion group -->
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse_requirement'>
-          Requirement Documents
-        </a>
-      </div>
-      <div id='collapse_requirement' class="accordion-body collapse">
-        <div class="accordion-inner">
-          <% if not @task.requirement.nil? and @task.requirement.document_requirements.count > 0 %>
-            <ul>
-                  <% @task.requirement.document_requirements.each do |d| %>
-                        <li><a href="<%= d.url_path %>"><%= d.name %></a></li>
-                  <% end %>
-            </ul>
-          <% else %>
-            <p>No documents found for <%= @task.name %> requirement</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <!-- End accordion group -->
+ 
 </div>
 
 
-<div class="form-actions">
-      <%= link_to t('.new', :default => t("helpers.links.new")),
+<div class="form-actions", style = "margin-left:0px"  >
+      <%= link_to t('.new', :default => "Upload a Document"),
             new_project_status_task_document_task_path(@project, @status, @task), 
             :class => 'btn btn-primary', :remote => true %>
 </div>

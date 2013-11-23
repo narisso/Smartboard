@@ -1,3 +1,22 @@
 // Place all the styles related to the labels controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.color-picker-button {
+	width:218px; height:28px; margin-bottom:10px; border: 1px solid #cccccc; border-radius:4px; cursor:pointer;
+
+}
+
+.color-picker-button div {
+	width:20px; height:28px; background-color:white; border-left: 1px solid #cccccc; border-top-right-radius:3px; border-bottom-right-radius:3px;
+
+}
+
+.color-picker-button:hover div {
+background-color:#cccccc;
+}
+
+color-picker-button div i {
+	
+
+}

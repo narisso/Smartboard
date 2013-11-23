@@ -90,6 +90,16 @@ $(document).ready(function() {
 jQuery(document).ready(function($) {
   $('.dropdown-toggle').dropdown();
 
+  $('#modal').html('<div id="modal-progress"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+  $('#modal-large').html('<div id="modal-progress-large"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+
+  $('#modal').on('hidden', function () {
+    $('#modal').html('<div id="modal-progress"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+  })
+  $('#modal-large').on('hidden', function () {
+    $('#modal-large').html('<div id="modal-progress-large"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+  })
+  
 });
 
 //Loading for Hooks

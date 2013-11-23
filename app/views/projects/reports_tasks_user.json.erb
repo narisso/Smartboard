@@ -5,8 +5,8 @@
 		{
 		"name": "<%= user.email %>",
 		"children": [
-			<% user.tasks.where(:project_id => @project).where("tasks.created_at >= ? and tasks.created_at <= ?", @initial_date, @final_date).each_with_index do |task, index| %>
-			{"name": "<%= task.name %>", "size": 1}<%= index < user.tasks.where(:project_id => @project).where("tasks.created_at >= ? and tasks.created_at <= ?", @initial_date, @final_date).count - 1 ? "," : "" %>
+			<% user.get_tasks(@project, @initial_date, @final_date).each_with_index do |task, index| %>
+			{"name": "<%= task.name %>", "size": 1}<%= index < user.get_tasks(@project, @initial_date, @final_date).count - 1 ? "," : "" %>
 			<% end %>
 		]
 		}<%= uindex < @project.users.count - 1 ? "," : "" %>

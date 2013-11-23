@@ -242,4 +242,8 @@ class User < ActiveRecord::Base
     end    
   end
 
+  def get_tasks(project, initial_date, final_date)
+    self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date)
+  end
+
 end

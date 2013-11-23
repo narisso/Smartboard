@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 jQuery(document).ready(function($) {
   $('.dropdown-toggle').dropdown();
+
 });
 
 //Loading for Hooks

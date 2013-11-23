@@ -240,7 +240,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])
-
+    
     @task.status = @status
     
     respond_to do |format|

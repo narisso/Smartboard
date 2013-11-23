@@ -34,35 +34,32 @@
 		<ul class='sortable scroll' data-id='<%=status.id%>'> 
 			<% status.tasks.each_with_index do |task , i| %>
 
+          <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do %>
+					  <li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
 
-					<li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
+              <div class="task-info block">
+                <span class='task-type' style="background-color: <%= task.label.color %>" >
+                  <%= task.label.name %>
+                </span>
+                <span class='task-time'>
+                  <%= task.estimated_hours %>
+                </span>
+              </div>
+              <h5>
+               <%= task.name %>
+              </h5>
 
+              <div class="task-users block">
+                  <% task.users.each do |user| %>
+                          <%= gravatar_tag user.email%>
+                  <% end %>
+              </div>
+            </li>
+          <% end %>
 
-                                                <div class="task-info block">
-
-                                                                        <span class='task-type' style="background-color: <%= task.label.color %>" >
-                                                                                <%= task.label.name %>
-                                                                        </span>
-                                                                        <span class='task-time'>
-                                                                                <%= task.estimated_hours %>
-                                                                        </span>
-                                                </div>
-                                                <h5>
-                                                        <%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
-                                                </h5>
-
-
-                                                <div class="task-users block">
-                                                        <% task.users.each do |user| %>
-                                                                <%= gravatar_tag user.email%>
-                                                        <% end %>
-                                                </div>
-                                        </li>
-        
-                        <% end %>
-                </ul>
-
-        </li>
+      <% end %>
+    </ul>
+  </li>
 <% end %>
 
 
@@ -79,11 +76,10 @@
     <ul class='sortable scroll' data-id='<%=@statuses.last.id%>' style="margin:0px;"> 
       <% @statuses.last.tasks.each_with_index do |task , i| %>
 
-
+        <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do %>
           <li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
 
             <div class="task-info block">
-
                   <span class='task-type' style="background-color: <%= task.label.color %>" >
                     <%= task.label.name %>
                   </span>
@@ -92,9 +88,8 @@
                   </span>
             </div>
             <h5>
-              <%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
+            <%= task.name %>
             </h5>
-
 
             <div class="task-users block">
               <% task.users.each do |user| %>
@@ -102,7 +97,7 @@
               <% end %>
             </div>
           </li>
-  
+        <% end %>
       <% end %>
     </ul>
 
@@ -241,6 +236,7 @@ function filterByDate(date){
 
   $( "ul.sortable" ).sortable({
       cursor: "move",
+      items: "> a",
       connectWith: "ul.sortable",
       placeholder: "ui-state-highlight-board",
       forcePlaceholderSize: true,
@@ -256,9 +252,10 @@ function filterByDate(date){
 
       },
       stop: function(event, ui){
-            var id = $(ui.item).data("id");
-            var col = $(ui.item).parents(".column").data("id");
-            $(ui.item).find("a").attr("href","<%= project_path(@project) %>"+"/statuses/"+col+"/tasks/"+id)
+            var id = $(ui.item).find("li").data("id")
+            var col = $(ui.item).parents(".column").data("id")
+
+            $(ui.item).attr("href","<%= project_path(@project) %>"+"/statuses/"+col+"/tasks/"+id)
             $.post( "tasks/update_status", { task_id: id, col: col } );
             var i = Math.floor(  $(ui.item).parent().children().length*100/totalTasks );
             $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
@@ -268,12 +265,6 @@ function filterByDate(date){
   $('.hide').removeClass('hide');
 
 	$('.progress').addClass('hide');
-
-
-
-
-
-
 
 $('#side_close_button').click(ltl_bar_change);
 

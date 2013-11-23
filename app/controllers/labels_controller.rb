@@ -92,11 +92,17 @@ class LabelsController < ApplicationController
   # @return [String] the content of the deletion as JSON
   def destroy
     @label = Label.find(params[:id])
-    @label.destroy
 
-    respond_to do |format|
-      format.html { redirect_to project_labels_path(@project) }
-      format.json { head :no_content }
+    if @label.valid_destroy
+      respond_to do |format|
+        format.html { redirect_to project_labels_path(@project) }
+        format.json { head :no_content }
+      end
+    else 
+      respond_to do |format|
+        format.html { redirect_to project_labels_path(@project), alert: 'First delete or change tasks with this label.' }
+        format.json { head @label.json}
+      end
     end
   end
 end

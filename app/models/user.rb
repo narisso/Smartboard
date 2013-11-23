@@ -242,6 +242,12 @@ class User < ActiveRecord::Base
     end    
   end
 
+  # Gives all tasks for a project between two dates
+  #
+  # @param project [String] the project's id
+  # @param initial_date [String]
+  # @param final_date [String]
+  # @return [Array] an array with tasks
   def get_tasks(project, initial_date, final_date)
     self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date)
   end

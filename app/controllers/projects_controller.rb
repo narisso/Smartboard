@@ -247,6 +247,9 @@ class ProjectsController < ApplicationController
     flash[:success] = "Failed authorized "
   end
 
+  # Render report's view
+  #
+  # @param id [String] the project's id
   def reports
     
     respond_to do |format|
@@ -254,60 +257,48 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Render a JSON file for report user's hours between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
   def reports_hours_users 
-    @dom_id = params[:dom_id]
-    if params[:initial_date]
-      @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
-    end
-
-    if params[:final_date]
-      @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
-    end
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
 
     respond_to do |format|
-      format.json {render :file => "projects/reports_hours_users.json.erb", :content_type => 'application/json' }
-      format.js { render "reports_hours_users.js.erb" }
+      format.json
     end 
   end 
 
+  # Render a JSON file for report project's tasks between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
   def reports_tasks_project
-    @dom_id = params[:dom_id]
-    if params[:initial_date]
-      @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
-    end
-
-    if params[:final_date]
-      @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
-    end
-
-    respond_to do |format|
-      format.json
-      format.js
-    end
-  end
-
-  def reports_tasks_user
-    @dom_id = params[:dom_id]
-    if params[:initial_date]
-      @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
-    end
-
-    if params[:final_date]
-      @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
-    end
-
-    respond_to do |format|
-      format.json
-      format.js
-    end
-  end
-
-  def reports_use_case
-    @dom_id = params[:dom_id]
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
     
     respond_to do |format|
       format.json
-      format.js
+    end
+  end
+
+  # Render a JSON file for report user's tasks between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
+  def reports_tasks_user
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+
+    respond_to do |format|
+      format.json
     end
   end
   

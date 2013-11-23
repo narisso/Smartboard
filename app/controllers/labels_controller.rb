@@ -77,7 +77,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.update_attributes(params[:label])
-        format.html { redirect_to @label, notice: 'Label was successfully updated.' }
+        format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

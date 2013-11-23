@@ -3,34 +3,29 @@
 <div class="row use_cases">
 
   <div class="option_chart" >
-        <div class="well">
-          <p>
-            <strong>Instructions:</strong> for use of graphs
-          </p>
-        </div>
 		
     <%= form_tag do %>
 
         <div class='control-group'>
           <label class='control-label'>Initial Date</label>
           <div class='controls'>
-              <%= text_field_tag :initial_date, nil %> 
+              <%= text_field_tag :initial_date, (Time.now - 7.days).strftime("%m/%d/%Y") %> 
           </div>
         </div>
      
         <div class='control-group'>
           <label class='control-label'>Final Date</label>
           <div class='controls'>
-              <%= text_field_tag :final_date, nil %> 
+              <%= text_field_tag :final_date, Time.now.strftime("%m/%d/%Y") %> 
           </div>
         </div>          
     <% end %>
   </div>
 
 </div>
-<br/> 
 
-<div class="tabbable use_cases"> <!-- Only required for left/right tabs -->
+
+<div class="tabbable use_cases" id="charts_tabs" style="display: none"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Graph #1</a></li>
     <li><a href="#tab2" data-toggle="tab">Graph #2</a></li>
@@ -40,42 +35,22 @@
 
   <div class="tab-content">
     
-    <div id="tab1" class="tab-pane active" style="border: thin solid #CCC; min-height: 500px; min-width: 500px">
-      <div class="well">
-        <p>
-          <strong>Instructions:</strong> for use of graphs
-        </p>
-      </div>
+    <div id="tab1" class="tab-pane active">
       <div id="graph1" class="graph">
       </div>
     </div>
 
-    <div id="tab2" class="tab-pane" style="border: thin solid #CCC; min-height: 500px; min-width: 500px">
-      <div class="well">
-        <p>
-          <strong>Instructions:</strong> for use of graphs
-        </p>
-      </div>
+    <div id="tab2" class="tab-pane">
       <div id="graph2" class="graph">
       </div>
     </div>
 
-    <div id="tab3" class="tab-pane" style="border: thin solid #CCC; min-height: 500px; min-width: 500px">
-      <div class="well">
-        <p>
-          <strong>Instructions:</strong> for use of graphs
-        </p>
-      </div>
+    <div id="tab3" class="tab-pane">
       <div id="graph3" class="graph">
       </div>
     </div>
 
-    <div id="tab4" class="tab-pane" style="border: thin solid #CCC; min-height: 500px; min-width: 500px">
-      <div class="well">
-        <p>
-          <strong>Instructions:</strong> for use of graphs
-        </p>
-      </div>
+    <div id="tab4" class="tab-pane">
       <div id="graph4" class="graph">
       </div>
     </div>

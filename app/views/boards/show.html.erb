@@ -1,5 +1,12 @@
-<div class="progress progress-striped active center-progress">
-  <div class="bar" style="width: 100%;"></div>
+<div class="loading">
+  <div id="bowlG">
+<div id="bowl_ringG">
+<div class="ball_holderG">
+<div class="ballG">
+</div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -264,29 +271,14 @@ function filterByDate(date){
          
   $('.hide').removeClass('hide');
 
-	$('.progress').addClass('hide');
+	$('.loading').addClass('hide');
+$('.main-content-small').addClass('main-content-big');
 
-$('#side_close_button').click(ltl_bar_change);
 
 });
 
 
-function ltl_bar_change(){
-  if($('.ltl-nav-open').length>0){
 
-    $('.ltl-nav-open').addClass('ltl-nav-close');
-    $('.ltl-nav-open').removeClass('ltl-nav-open');
-    $('.main-content-small').addClass('main-content-big');
-    $('.main-content-small').removeClass('main-content-small');
-  }
-  else{
-    
-    $('.ltl-nav-close').addClass('ltl-nav-open');
-    $('.ltl-nav-close').removeClass('ltl-nav-close');
-    $('.main-content-big').addClass('main-content-small');
-    $('.main-content-big').removeClass('main-content-big');
-  }
-}
 
 
 

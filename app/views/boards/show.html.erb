@@ -35,7 +35,7 @@
 			<% status.tasks.each_with_index do |task , i| %>
 
           <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do %>
-					  <li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
+					  <li data-id="<%= task.id %>"   class='task<%= if(task.lock) then " locked" end%>' data-created="<%= task.created_at %>">
 
               <div class="task-info block">
                 <span class='task-type' style="background-color: <%= task.label.color %>" >
@@ -77,7 +77,7 @@
       <% @statuses.last.tasks.each_with_index do |task , i| %>
 
         <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do %>
-          <li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
+          <li data-id="<%= task.id %>" class='task<%= if(task.lock) then " locked" end%>' data-created="<%= task.created_at %>">
 
             <div class="task-info block">
                   <span class='task-type' style="background-color: <%= task.label.color %>" >

@@ -17,7 +17,8 @@
     		</thead>
     		<tbody>
     			<% @project_role_users.each do |project_role_user| %>
-    			<% if project_role_user.user.encrypted_password != "" %>
+    			<!--% if project_role_user.user.encrypted_password != "" %-->
+          <% if project_role_user.invitation_confirmed != false %>         
               <tr>
         				<td><%= project_role_user.user.email %></td>
         				<td><%= project_role_user.role.name %></td>

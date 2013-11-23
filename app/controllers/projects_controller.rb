@@ -11,7 +11,16 @@ class ProjectsController < ApplicationController
   #
   # @return [String] the list of projects as JSon 
   def index   
-    @projects = current_user.projects
+    p=current_user.project_role_users
+    @projects = Array.new
+    p.each do |pru|
+      if pru.invitation_confirmed != false
+        @projects << Project.find(pru.project_id)
+      end
+    end
+
+
+
 
     respond_to do |format|
       format.html # index.html.erb

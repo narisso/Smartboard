@@ -13,8 +13,10 @@
   #invitation
   match '/project/:id/invitation' => 'project_invite#invite', :as => 'invite_project'
   match '/project/send_invitation' => 'project_invite#send_invitation', :as =>'send_invitation'
+  match '/project/decide_invitation' => 'project_invite#decide', :as =>'decide_invitation_project'
   match '/project/accept_invitation' => 'project_invite#accept', :as =>'accept_invitation_project'
-  
+  match '/project/reject_invitation' => 'project_invite#reject', :as =>'reject_invitation_project'
+    
 
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'

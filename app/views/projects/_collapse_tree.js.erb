@@ -1,5 +1,5 @@
-var actualWidth = $("#chart").width();
-var actualHeight = $("#chart").height();
+var actualWidth =  $("#<%= dom_id %>").width();
+var actualHeight = $("#<%= dom_id %>").height();
 
 var m = [20, 120, 20, 70],
     w = actualWidth,
@@ -13,7 +13,7 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
-var vis = d3.select("#chart").append("svg:svg")
+var vis = d3.select("#<%= dom_id %>").append("svg:svg")
     .attr("width", w + m[1] + m[3])
     .attr("height", h + m[0] + m[2])
   .append("svg:g")

@@ -1,7 +1,7 @@
-var actualWidth  = $("#chart").width();
-var actualHeight = $("#chart").height();
+var actualWidth  = $("#<%= dom_id %>").width();
+var actualHeight = $("#<%= dom_id %>").height();
 
-var m = [30, 40, 20, 120], // top right bottom left
+var m = [30, 40, 20, 100], // top right bottom left
     w = actualWidth - m[1] - m[3], // width
     h = actualHeight - m[0] - m[2], // height
     x = d3.scale.linear().range([0, w]),
@@ -17,7 +17,7 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("top");
 
-var svg = d3.select("#chart").append("svg:svg")
+var svg = d3.select("#<%= dom_id %>").append("svg:svg")
     .attr("width", w + m[1] + m[3])
     .attr("height", h + m[0] + m[2])
   .append("svg:g")

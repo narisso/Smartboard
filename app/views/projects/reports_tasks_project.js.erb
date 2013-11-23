@@ -1,4 +1,5 @@
-$("#chart").html("");
-<%= render 'hierarchical_bars', :data_path =>    "reports_tasks_project",
-								:initial_date => @initial_date.strftime('%m/%d/%Y'), 
-                                :final_date =>   @final_date.strftime('%m/%d/%Y') %>
+$("#<%= @dom_id %>").html("");
+<%= render 'hierarchical_bars', :data_path 		=>  "reports_tasks_project",
+								:initial_date 	=> 	@initial_date.strftime('%m/%d/%Y'), 
+                                :final_date 	=>  @final_date.strftime('%m/%d/%Y'),
+                                :dom_id			=>	@dom_id %>

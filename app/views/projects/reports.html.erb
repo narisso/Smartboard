@@ -27,10 +27,10 @@
 
 <div class="tabbable use_cases" id="charts_tabs" style="display: none"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Graph #1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Graph #2</a></li>
-    <li><a href="#tab3" data-toggle="tab">Graph #3</a></li>
-    <li><a href="#tab4" data-toggle="tab">Graph #4</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab">User Hours</a></li>
+    <li><a href="#tab2" data-toggle="tab">User Tasks</a></li>
+    <li><a href="#tab3" data-toggle="tab">Label Tickets</a></li>
+    <li><a href="#tab4" data-toggle="tab">Use Case Structure</a></li>
   </ul>
 
   <div class="tab-content">
@@ -60,6 +60,6 @@
 
 <% content_for :javascripts do %>
   <%= javascript_include_tag "hierarchical_bars" -%>
-  <%= javascript_include_tag "graph" -%>
   <%= javascript_include_tag "collapse_tree" -%>
+  <%= javascript_include_tag "graph" -%>
 <% end %>

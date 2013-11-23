@@ -255,6 +255,7 @@ class ProjectsController < ApplicationController
   end
 
   def reports_hours_users 
+    @dom_id = params[:dom_id]
     if params[:initial_date]
       @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
     end
@@ -270,6 +271,7 @@ class ProjectsController < ApplicationController
   end 
 
   def reports_tasks_project
+    @dom_id = params[:dom_id]
     if params[:initial_date]
       @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
     end
@@ -285,6 +287,7 @@ class ProjectsController < ApplicationController
   end
 
   def reports_tasks_user
+    @dom_id = params[:dom_id]
     if params[:initial_date]
       @initial_date = Date.strptime(params[:initial_date], "%m/%d/%Y")
     end
@@ -300,7 +303,8 @@ class ProjectsController < ApplicationController
   end
 
   def reports_use_case
-
+    @dom_id = params[:dom_id]
+    
     respond_to do |format|
       format.json
       format.js

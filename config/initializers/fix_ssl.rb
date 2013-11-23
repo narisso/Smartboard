@@ -1,3 +1,5 @@
+# Force ruby to use the CA bundle from the application's lib/ directory that is used 
+# to verify the authenticity of secure web servers.
 require 'open-uri'
 require 'net/https'
 

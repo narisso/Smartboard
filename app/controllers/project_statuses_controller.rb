@@ -1,6 +1,9 @@
+# Manages the information of the statuses of a project
+# Manages the information of the status of certain project
 class ProjectStatusesController < ApplicationController
-  # GET /project_statuses
-  # GET /project_statuses.json
+  # Gives the list of statuses of the application as JSon
+  #
+  # @return [String] the list of statuses and the project they are associated to, as JSon 
   def index
     @project_statuses = ProjectStatus.all
 
@@ -10,8 +13,10 @@ class ProjectStatusesController < ApplicationController
     end
   end
 
-  # GET /project_statuses/1
-  # GET /project_statuses/1.json
+  # Gives information about a certain status of a project
+  #
+  # @param id [String] the id of the relation of a status and a project
+  # @return [String] the relation's information as JSON
   def show
     @project_status = ProjectStatus.find(params[:id])
 
@@ -21,8 +26,9 @@ class ProjectStatusesController < ApplicationController
     end
   end
 
-  # GET /project_statuses/new
-  # GET /project_statuses/new.json
+  # Gives the template for creating a new status of a project
+  #
+  # @return [String] the information to fill about a new status of a project as a JSON
   def new
     @project_status = ProjectStatus.new
 
@@ -32,13 +38,17 @@ class ProjectStatusesController < ApplicationController
     end
   end
 
-  # GET /project_statuses/1/edit
+  # Gives the template for edit a status
+  #
+  # @param id [String] the id of the relation of a status and a project
   def edit
     @project_status = ProjectStatus.find(params[:id])
   end
 
-  # POST /project_statuses
-  # POST /project_statuses.json
+  # Creates the information for a new status
+  #
+  # @param project_status [ProjectStatus] the information of the new status of a project from POST
+  # @return [String] the status of the creation, and the information of the evaluation as JSON
   def create
     @project_status = ProjectStatus.new(params[:project_status])
 
@@ -53,8 +63,11 @@ class ProjectStatusesController < ApplicationController
     end
   end
 
-  # PUT /project_statuses/1
-  # PUT /project_statuses/1.json
+  # Changes the information of a relation between a status and a project
+  #
+  # @param id [String] the relation's id
+  # @param project_status [ProjectStatus] the information of the relation from POST
+  # @return [String] the status of the update, and the information of the relation as JSON
   def update
     @project_status = ProjectStatus.find(params[:id])
 
@@ -69,8 +82,10 @@ class ProjectStatusesController < ApplicationController
     end
   end
 
-  # DELETE /project_statuses/1
-  # DELETE /project_statuses/1.json
+  # Deletes a relation between a status and a project of the application
+  #
+  # @param id [String] the relation's id
+  # @return [String] the content of the deletion as JSON
   def destroy
     @project_status = ProjectStatus.find(params[:id])
     @project_status.destroy

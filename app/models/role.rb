@@ -1,3 +1,4 @@
+#Contains the role's model
 class Role < ActiveRecord::Base
   attr_accessible :name
 

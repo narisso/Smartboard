@@ -1,3 +1,4 @@
+#Contains the model of a group of use cases.
 class UseCaseGroup < ActiveRecord::Base
   attr_accessible :name, :project_id
 

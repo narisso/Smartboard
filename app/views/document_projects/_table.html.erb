@@ -41,7 +41,7 @@
 <div class="modal-footer">
   <% if @project.dropbox_token then %>
   <%= link_to t('.new', :default => 'Upload'),
-              new_project_document_project_path,
+              new_project_document_project_path(@project),
               :class => 'btn btn-primary', :remote => true %>
   <%end%>
   <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            

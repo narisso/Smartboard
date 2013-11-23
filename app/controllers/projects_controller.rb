@@ -228,7 +228,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.dropbox_token=nil
     @project.save
-    redirect_to boards_project_path(@project)
+    redirect_to session[:return_to] 
   end
   
   # Sends confirmation document, and read me document to a recent linked Dropbox's repository

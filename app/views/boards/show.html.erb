@@ -16,57 +16,38 @@
     <!--<div class="btn"  onClick="filterByDateClick();"> Filter </div>-->
     <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;",:data => {:toggle => "modal", :remote => true} %>
   </form>
-
 </div>
 
 <ul  class="board board-big scroll hide">
-
-
-<% @statuses[0..-2].each_with_index do |status , j|%>
-
-
-	<li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>"  class='column' >
-		
-		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right",:style=>"position:absolute; margin:5px;"%>
-		<h4 class='block text-center handle'><%= status.name%></h4>
-    <p class='block text-center handle task-percentage'><%= status.tasks.length.to_i*100/@total.to_i %>% of total tasks</p>
-
-		<ul class='sortable scroll' data-id='<%=status.id%>'> 
-			<% status.tasks.each_with_index do |task , i| %>
-
-
-					<li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
-
-
-                                                <div class="task-info block">
-
-                                                                        <span class='task-type' style="background-color: <%= task.label.color %>" >
-                                                                                <%= task.label.name %>
-                                                                        </span>
-                                                                        <span class='task-time'>
-                                                                                <%= task.estimated_hours %>
-                                                                        </span>
-                                                </div>
-                                                <h5>
-                                                        <%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
-                                                </h5>
-
-
-                                                <div class="task-users block">
-                                                        <% task.users.each do |user| %>
-                                                                <%= gravatar_tag user.email%>
-                                                        <% end %>
-                                                </div>
-                                        </li>
-        
-                        <% end %>
-                </ul>
-
-        </li>
-<% end %>
-
-
-
+  <% @statuses[0..-2].each_with_index do |status , j|%>
+  	<li draggable="false" data-id="<%= status.id %>" data-pos="<%= j+1 %>"  class='column' >
+  		<%= link_to "+", new_project_status_task_path(@project, status), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right",:style=>"position:absolute; margin:5px;"%>
+  		<h4 class='block text-center handle'><%= status.name%></h4>
+      <p class='block text-center handle task-percentage'><%= status.tasks.length.to_i*100/@total.to_i %>% of total tasks</p>
+  		<ul class='sortable scroll' data-id='<%=status.id%>'> 
+  			<% status.tasks.each_with_index do |task , i| %>
+  				<li data-id="<%= task.id %>" class='task' data-created="<%= task.created_at %>">
+            <div class="task-info block">
+              <span class='task-type' style="background-color: <%= task.label.color %>" >
+                      <%= task.label.name %>
+              </span>
+              <span class='task-time'>
+                      <%= task.estimated_hours %>
+              </span>
+            </div>
+            <h5>
+              <%= link_to task.name, project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} %>
+            </h5>
+            <div class="task-users block">
+              <% task.users.each do |user| %>
+                      <%= gravatar_tag user.email%>
+              <% end %>
+            </div>
+          </li> 
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>
 
 
@@ -270,9 +251,21 @@ function filterByDate(date){
 	$('.progress').addClass('hide');
 
 
+$(window).load(function(){
+        $('#myModal').modal('show');
+    });
 
-
-
+$('#myModal').modal().css(
+                {
+                    width: '90%',
+                    height: '80%',
+                    'top': function () {
+                        return '10%';
+                    },
+                    'margin-left': function () {
+                        return -($(this).width() / 2);
+                    }
+                })
 
 
 $('#side_close_button').click(ltl_bar_change);

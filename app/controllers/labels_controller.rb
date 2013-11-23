@@ -57,6 +57,7 @@ class LabelsController < ApplicationController
 
     respond_to do |format|
       if @label.save
+        format.js { render :js => "location.reload();" }
         format.html { redirect_to project_labels_path(@label.project), notice: 'Label was successfully created.' }
         format.json { render json: @label, status: :created, location: @label }
       else

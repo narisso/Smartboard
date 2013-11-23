@@ -1,10 +1,20 @@
 
+<%- model_class = ProjectRoleUser -%>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      
+      <h1>Label</h1>
+
+  </div>
+  <%= bootstrap_flash %>
 
 <%= simple_form_for [@label.project, @label], :html => { :class => 'form-horizontal' },:remote => true do |f| %>
+  <div class="modal-body modal-body-task">
   <%= f.input :name %>
   <%= f.input :color %>
   <%= f.input :project_id, :as => :hidden, :input_html => { :value => @label.project_id } %>
-  <div class="form-actions">
+</div>
+  <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 project_labels_path(@project), :class => 'btn' %>

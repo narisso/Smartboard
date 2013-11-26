@@ -152,17 +152,20 @@ rect.background {
   stroke: #000;
 }
 
-/*Control group oh report view*/
-.control-group {
-    display: inline-block;
-    margin-left: 10px; 
-    vertical-align: top;
-}
+
 
 .option_chart{
   
    border-top: thin solid #CCC;
    padding-top: 20px; 
+
+   /*Control group oh report view*/
+  .control-group {
+    display: inline-block;
+    margin-left: 10px; 
+    vertical-align: top;
+  }
+  
 }
 
 /*Area of chart*/

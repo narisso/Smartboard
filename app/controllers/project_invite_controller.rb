@@ -1,6 +1,6 @@
 class ProjectInviteController < ApplicationController
 
-  skip_before_filter :check_session, only: [:decide, :accept, :reject]
+  skip_before_filter :check_session, only: [:decide, :accept, :reject, :confirm_password_invitation,:submit_password_invitation]
 
 
 
@@ -30,13 +30,15 @@ class ProjectInviteController < ApplicationController
   	@project_role_user.invitation_confirmed = false
 
   	user = User.find_by_email(@email)
+    flash[:notice] = "An invitation email has been sent to #{@email}."
 
-  	if user
-  	  @project_role_user.user_id = user.id
-  	else
-
+  	if not user
+      user = User.new(:email=> @email, :password => 'asdfasdf', :password_confirmation => 'asdfasdf')
+      user.encrypted_password=""
+      user.save
   	end
-
+    
+    @project_role_user.user_id = user.id
     @project_role_user.save
     @project_role_user = ProjectRoleUser.find_by_project_id_and_user_id(@project.id,user.id)
     @project_role_user.update_attributes(:invitation_token => ProjectRoleUser.generate_token)
@@ -48,8 +50,12 @@ class ProjectInviteController < ApplicationController
   def decide
     @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
     if @project_role_user
-      @project = Project.find(@project_role_user.project_id)
+      @project_invited = Project.find(@project_role_user.project_id)
       @invitation_token = @project_role_user.invitation_token
+      user = User.find(@project_role_user.user_id)
+      if user.encrypted_password == ""
+        redirect_to confirm_password_invitation_path(:invitation_token=>@invitation_token)
+      end
 
     else
       redirect_to root_url
@@ -57,16 +63,46 @@ class ProjectInviteController < ApplicationController
 
   end
 
+  def confirm_password_invitation
+    @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
+    #@project = Project.find(@project_role_user.project_id)
+    @invitation_token = @project_role_user.invitation_token
+    @user = User.find(@project_role_user.user_id)
+
+  end
+
+  def submit_password_invitation
+    @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
+    @user = User.find(@project_role_user.user_id)
+    if @user.update_attributes(params[:password_set])
+      @user.confirm!
+      redirect_to decide_invitation_project_path(params[:invitation_token])
+    else
+      if params[:password_set][:password]!=params[:password_set][:password_confirmation]
+        flash[:error] = 'Password and password confirmation must be the same'
+      elsif params[:password_set][:password].length<8
+        flash[:error] = 'Password must be at least 8 characters long'
+      else
+        flash[:error] = 'Password invalid'
+      end
+      redirect_to :back
+    end
+  end
+
   def accept
     @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
     @user = User.find(@project_role_user.user_id)
     @project_role_user.update_attributes(:invitation_confirmed => true)
-    redirect_to projects_path
+    @project_accepted = Project.find(@project_role_user.project_id)
+    flash[:notice] = "You accepted the invitation to Project #{@project_accepted.name}. Please sign in."
+    redirect_to root_url
   end
 
   def reject
     @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
     @project_role_user.destroy
-    redirect_to projects_path
+    @project_accepted = Project.find(@project_role_user.project_id)
+    flash[:notice] = "You rejected the invitation to Project #{@project_accepted.name}"
+    redirect_to root_url
   end
 end

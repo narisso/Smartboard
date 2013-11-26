@@ -71,9 +71,9 @@ class BoardsController < ApplicationController
 	def show_tutorial
 		@project  = Project.find(params[:id])
 		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
-		
+
 		respond_to do |format|
-			if @tutorial.show_tutorial
+			if @tutorial.show_tutorial and @tutorial.role_id == 1
 	        	format.js { render partial: "tutorial" }
 	        else
 	        	format.js { head :no_content }

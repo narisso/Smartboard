@@ -16,13 +16,14 @@
     			</tr>
     		</thead>
     		<tbody>
+         <% current_role = Role.find(ProjectRoleUser.find_by_project_id_and_user_id(@project,current_user).role_id).name %>
     			<% @project_role_users.each do |project_role_user| %>
     			<!--% if project_role_user.user.encrypted_password != "" %-->
-          <% if project_role_user.invitation_confirmed != false %>         
+          <% if project_role_user.invitation_confirmed != false %>       
               <tr>
         				<td><%= project_role_user.user.email %></td>
         				<td><%= project_role_user.role.name %></td>
-                <%if project_role_user.user.email != current_user.email %>
+                <%if (project_role_user.user.email != current_user.email) && "Administrator"==current_role%>
                 <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                           project_project_role_user_path(@project, project_role_user),
                           :remote => true,

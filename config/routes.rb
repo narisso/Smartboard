@@ -80,6 +80,7 @@
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       put '/boards/understood' => 'boards#accept_tutorial', :as => 'accept_tutorial'
+      get '/boards/show_tutorial' => 'boards#show_tutorial', :as => 'show_tutorial'
       get  :reports_hours_users
       get  :reports_tasks_project
       get  :reports_tasks_user

@@ -45,6 +45,11 @@
 	margin-left:-40%;
 }
 
+#myModal{
+  width:90%;
+  margin-left:-45%;
+}
+
 .tab-content{
 	height:300px;
 	overflow:auto;
@@ -55,7 +60,7 @@
 }
 
 .item{
-  height:400px;
+  height:280px;
   width:100%;
 }
 

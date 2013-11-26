@@ -124,7 +124,6 @@
 
 <%- content_for(:javascripts) do -%>
   <!-- <script type="text/javascript">var p_id =<%= @project.id %></script> -->
-  <!-- <%= javascript_include_tag "boards_controller" %> -->
   <script type="text/javascript">
  
 console.log(<%= @highlight%>);
@@ -273,29 +272,19 @@ function filterByDate(date){
     });
          
   $('.hide').removeClass('hide');
-
-<<<<<<< HEAD
 	$('.progress').addClass('hide');
 
 
 
 
-$('#side_close_button').click(ltl_bar_change);
-
-=======
-	$('.loading').addClass('hide');
-$('.main-content-small').addClass('main-content-big');
-
-
->>>>>>> bf93f7e0e58dd0432f604b10e3e8799bc248a1e9
+  $('.loading').addClass('hide');
+  $('.main-content-small').addClass('main-content-big');
 });
 
-
-
-
-
-
   </script>
+    <%= javascript_include_tag "boards_controller" -%>
+
+
 <%- end -%>
 
 </ul>

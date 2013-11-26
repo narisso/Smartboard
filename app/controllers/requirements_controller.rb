@@ -44,6 +44,7 @@ class RequirementsController < ApplicationController
   #
   # @param id [String] the requirement's id
   def edit
+    params[:type] = ""
     @requirement = Requirement.find(params[:id])
   end
 

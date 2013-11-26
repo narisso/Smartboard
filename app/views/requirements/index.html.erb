@@ -21,7 +21,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to edit_project_requirement_path(@project, requirement) do %>
+              <%= link_to edit_project_requirement_path(@project, requirement), :data => {:toggle => "modal", :remote => true, :target => '#modal'} do %>
                 <i class="icon-edit"></i> Edit
               <% end %>
             </li>

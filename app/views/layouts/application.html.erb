@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Iic21542" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "SmartBoard" %></title>
     <%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -57,7 +57,7 @@
               <%end%>
             </ul>
             <ul class="nav pull-right">
-<div class="modal" id="loading" style="display: none;text-align:center;">Creating Web Hook with Github. Please wait...</div>
+            <div class="modal" id="loading" style="display: none;text-align:center;">Creating Web Hook with Github. Please wait...</div>
 
              <% if @project and not @project.id.nil? %>
                     <%if @project and not @project.github_token.nil? %>
@@ -202,9 +202,11 @@
       </div><!--/row-->
 
       <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+        
       </div>
 
       <div id="modal-large" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+
       </div>
 
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true" >
@@ -284,6 +286,8 @@
     <script src="/assets/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="/assets/jquery.ui.touch-punch.min.js"></script>
     <%= yield(:javascripts) %>
+    <script src="/assets/color.js"></script>
+    <script src="/assets/iris-basic.js"></script>
     <script type="text/javascript">
 
         <%if user_signed_in?%>
@@ -308,7 +312,7 @@
 
     },10000);
 
-    <%end%>
+    <% end %>
 
       
 

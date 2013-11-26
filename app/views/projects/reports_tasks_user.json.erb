@@ -1,0 +1,15 @@
+{
+	"name": "<%= @project.name %>",
+	"children": [
+		<% @project.users.each_with_index do |user, uindex| %>
+		{
+		"name": "<%= user.email %>",
+		"children": [
+			<% user.get_tasks(@project, @initial_date, @final_date).each_with_index do |task, index| %>
+			{"name": "<%= task.name %>", "size": 1}<%= index < user.get_tasks(@project, @initial_date, @final_date).count - 1 ? "," : "" %>
+			<% end %>
+		]
+		}<%= uindex < @project.users.count - 1 ? "," : "" %>
+		<% end %>
+	]
+}

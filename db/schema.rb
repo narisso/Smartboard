@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126192707) do
+ActiveRecord::Schema.define(:version => 20131123134805) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20131126192707) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.boolean  "show_tutorial", :default => true
+    t.string   "invitation_token"
+    t.boolean  "invitation_confirmed"
   end
 
   create_table "project_statuses", :force => true do |t|

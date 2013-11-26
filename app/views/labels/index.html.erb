@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:color) %></th>
+      <th ><%= model_class.human_attribute_name(:color) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,7 +16,7 @@
       <tr>
 
         <td><%= label.name %></td>
-        <td><%= label.color %></td>
+        <td style="background-color:<%=label.color%>;"><%= label.color %></td>
         <td><%=l label.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -34,4 +34,4 @@
 
 <%= link_to "New Label",
             new_project_label_path(@project),
-            :class => 'btn btn-primary',:data => {:toggle => "modal", :remote => true},:style =>"margin-left:50px;margin-bottom:30px;" %>
+            :class => 'btn btn-primary',:data => {:toggle => "modal", :remote => true, :target => '#modal'},:style =>"margin-left:50px;margin-bottom:30px;" %>

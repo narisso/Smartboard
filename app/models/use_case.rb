@@ -6,6 +6,7 @@ class UseCase < ActiveRecord::Base
   belongs_to :project
   belongs_to :use_case_template
   belongs_to :use_case_group
+  
   has_many :requirement_use_cases
   has_many :requirements, :through => :requirement_use_cases
 

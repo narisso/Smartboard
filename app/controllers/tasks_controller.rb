@@ -152,6 +152,14 @@ class TasksController < ApplicationController
 
   # Returns the template for creating a new instance of the reported hours of a task
   def new_reported_hours
+    
+    current_report = ReportedHours.find_by_user_id_and_task_id(current_user.id ,@task.id)
+    @current_hours = 0;
+
+    if current_report 
+      @current_hours = current_report.reporting_hours
+    end
+
     @rh = ReportedHours.new
     @rh.task = @task
     @rh.user = current_user
@@ -169,6 +177,7 @@ class TasksController < ApplicationController
   # @param project_id [String] the project's id
   # @param rh [String] the reported hours to register
   def create_reported_hours
+    
     rh = ReportedHours.find_by_user_id_and_task_id(params[:user_id],params[:id])
     @status = Status.find(params[:status_id])
     @project = Project.find(params[:project_id])
@@ -240,7 +249,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])
-
+    
     @task.status = @status
     
     respond_to do |format|

@@ -1,0 +1,15 @@
+{
+	"name": "<%= @project.name %>",
+	"children": [
+		<% @project.labels.each_with_index do |label, uindex| %>
+		{
+		"name": "<%= label.name %>",
+		"children": [
+			<% label.get_tasks(@initial_date, @final_date).each_with_index do |task, index| %>
+			{"name": "<%= task.name %>", "size": 1}<%= index < label.get_tasks(@initial_date, @final_date).count - 1 ? "," : "" %>
+			<% end %>
+		]
+		}<%= uindex < @project.labels.count - 1 ? "," : "" %>
+		<% end %>
+	]
+}

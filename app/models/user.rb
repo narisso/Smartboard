@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :project_role_users
   has_many :projects, :through => :project_role_users
 
-  has_many :reported_hours
+  has_many :reported_hours, :class_name => "ReportedHours", :foreign_key => "user_id"
   has_many :notifications, dependent: :destroy
 
   def self.from_omniauth(auth)
@@ -71,6 +71,21 @@ class User < ActiveRecord::Base
         user.save!
       end
     end
+  end
+
+  #This method returns the sum of reported user hours in the tickets in JSON format
+  def get_total_reported_hours(initial_date, finish_date)
+
+      total = self.reported_hours.where("created_at >= ? and created_at < ? ", initial_date, finish_date).sum(:reporting_hours)
+      return total
+
+  end 
+
+  #This method returns the sum of reported user hours in the tickets in JSON format
+  def get_tasks_with_hours( id,initial_date, finish_date )
+    #restriction = "project_id =" + id.to_s + " and "
+    #restriction = restriction + "user_id = #{self.id.to_s}" 
+    user_tasks = Task.joins("INNER JOIN reported_hours on tasks.id = reported_hours.task_id").where("tasks.created_at >= ? and tasks.created_at < ? and user_id = ? and project_id= ?", initial_date, finish_date, self.id, id).select("name, reporting_hours as size").all
   end
 
   # Gives the projects of a certain user as JSON.
@@ -226,4 +241,15 @@ class User < ActiveRecord::Base
       return :json => document_projects
     end    
   end
+
+  # Gives all tasks for a project between two dates
+  #
+  # @param project [String] the project's id
+  # @param initial_date [String]
+  # @param final_date [String]
+  # @return [Array] an array with tasks
+  def get_tasks(project, initial_date, final_date)
+    self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date)
+  end
+
 end

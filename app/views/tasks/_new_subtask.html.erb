@@ -2,7 +2,7 @@
   <div class="modal-body" id="subtask_form">
   <%= f.input :name %>
   <%= f.input :description, :as => :text, :input_html => { :cols => 30, :rows => 4 } %>
-  <%= f.input :curr_state, :as => :boolean, input_html: {checked:   false} %>
+
   <div class="modal-footer">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            

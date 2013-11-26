@@ -1,9 +1,24 @@
   Iic21542::Application.routes.draw do
 
+  get "project_invite/invite"
+
+  get "project_invite/accept"
+
+  get "project_invite/reject"
+
   get "github/authorize"
 
   get "github/callback"
 
+  #invitation
+  match '/project/:id/invitation' => 'project_invite#invite', :as => 'invite_project'
+  match '/project/send_invitation' => 'project_invite#send_invitation', :as =>'send_invitation'
+  match '/project/decide_invitation' => 'project_invite#decide', :as =>'decide_invitation_project'
+  match '/project/accept_invitation' => 'project_invite#accept', :as =>'accept_invitation_project'
+  match '/project/reject_invitation' => 'project_invite#reject', :as =>'reject_invitation_project'
+  match '/project/confirm_password_invitation' => 'project_invite#confirm_password_invitation', :as => 'confirm_password_invitation'  
+  match '/project/submit_password_invitation' => 'project_invite#submit_password_invitation', :as => 'submit_password_invitation'  
+  
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 
@@ -65,6 +80,11 @@
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       put '/boards/understood' => 'boards#accept_tutorial', :as => 'accept_tutorial'
+      get  :reports_hours_users
+      get  :reports_tasks_project
+      get  :reports_tasks_user
+      get  :reports_use_case
+      get  :reports
       post :finish
     end
     member do

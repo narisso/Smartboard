@@ -1,1 +1,28 @@
 jQuery('#modal').html("<%= escape_javascript(render 'form') %>");
+
+jQuery(document).ready(function($){
+
+	$('#label_color').hide();
+
+    
+    $('#label_color').iris({
+    	hide: true,
+    	change: function(event, ui) {
+        // event = standard jQuery event, produced by whichever control was changed.
+        // ui = standard jQuery UI object, with a color member containing a Color.js object
+
+        // change the headline color
+        $(".color-picker-button").css( 'background-color', ui.color.toString());
+    }
+    });
+
+       $('#label_color').after("<div class='color-picker-button' onClick='colorPicker();' style=''> <div class='pull-right' style=''> <i class='icon-chevron-down' style=' margin-left:3px; margin-top:5px;'></i> </div>  </div>");
+
+    $('#label_color').iris('color', '#2b72dc')
+});
+
+function colorPicker(){
+
+	$('#label_color').iris("show");
+
+}

@@ -1,0 +1,67 @@
+<h1>Reports</h1>
+
+<div class="row use_cases">
+
+  <div class="option_chart" >
+		
+    <%= form_tag do %>
+
+        <div class='control-group'>
+          <label class='control-label'>Initial Date</label>
+          <div class='controls input-append'>
+              <%= text_field_tag :initial_date, (Time.now - 7.days).strftime("%m/%d/%Y") %> 
+              <button disabled class="btn"><i class="icon-calendar"></i></button>
+          </div>
+        </div>
+     
+        <div class='control-group'>
+          <label class='control-label'>Final Date</label>
+          <div class='controls input-append'>
+              <%= text_field_tag :final_date, Time.now.strftime("%m/%d/%Y") %>
+              <button disabled class="btn"><i class="icon-calendar"></i></button>
+          </div>
+        </div>          
+    <% end %>
+  </div>
+
+</div>
+
+
+<div class="tabbable use_cases" id="charts_tabs" style="display: none"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">User Hours</a></li>
+    <li><a href="#tab2" data-toggle="tab">User Tasks</a></li>
+    <li><a href="#tab3" data-toggle="tab">Label Tickets</a></li>
+    <li><a href="#tab4" data-toggle="tab">Use Case Structure</a></li>
+  </ul>
+
+  <div class="tab-content">
+    
+    <div id="tab1" class="tab-pane active">
+      <div id="graph1" class="graph">
+      </div>
+    </div>
+
+    <div id="tab2" class="tab-pane">
+      <div id="graph2" class="graph">
+      </div>
+    </div>
+
+    <div id="tab3" class="tab-pane">
+      <div id="graph3" class="graph">
+      </div>
+    </div>
+
+    <div id="tab4" class="tab-pane">
+      <div id="graph4" class="graph">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "hierarchical_bars" -%>
+  <%= javascript_include_tag "collapse_tree" -%>
+  <%= javascript_include_tag "graph" -%>
+<% end %>

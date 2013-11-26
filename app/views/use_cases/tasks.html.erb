@@ -1,6 +1,13 @@
 <div style="margin-left:30px;">
 	<h1>Add Tasks to Use Case <%= @use_case.name %></h1>
-	<%= render :partial => "new_step_bar", :locals => {:step => 3} %>
+
+	<% if params[:type]=="step" %>
+		<%= render :partial => "new_step_bar", :locals => {:step => 3} %>
+		  <%else%>
+<div class="page-header" style="margin-left:30px;">
+</div>
+	<%end%>
+
 <div class="alert alert-info" style="top:50px;">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Hint!</strong> Drag & Drop the tasks adding or removing them from the use case.
@@ -10,7 +17,7 @@
 	<ul>
 		<li class="uc-li">
 			<div class="head"><%= @use_case.name %> Tasks
-<%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.sort_by{|e| e[:order]}.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right", :style=>"margin-right:20px;"%>
+            <%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.sort_by{|e| e[:order]}.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right", :style=>"margin-right:20px;" %>
 			</div>
 			<ul class="sortable" data-type="use_case">
 				<% @use_case.tasks.each_with_index do |task , i| %>
@@ -18,21 +25,23 @@
 						<p class="status"> <%= task.status.name %> </p>
 						<p class="name"> <%= task.name %> </p>
 					</li>
-
-				<%end%>
+				<% end %>
 			</ul>
-			
 		</li>
-
 	</ul>
 
 
 
 	<div class="form-actions">
-	<%= link_to "Back", requirements_project_use_case_path(@project,@use_case),:class=>"btn",:style =>""%>
+	<% if params[:type]=="step" %>
+	<%= link_to "Back", requirements_project_use_case_path(@project,@use_case,:type=>"step"),:class=>"btn",:style =>""%>
     <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn btn-primary",:style =>""%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 project_use_cases_path(@project,@use_case), :class => 'btn' %>
+
+    <%else%>
+      <%= link_to "Finish", project_use_case_path(@project,@use_case),:class=>"btn  btn-primary",:style =>""%>
+    <%end%>
     </div>
 </div>
 <div class="p-tasks-container">

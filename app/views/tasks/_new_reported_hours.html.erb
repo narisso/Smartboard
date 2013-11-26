@@ -2,18 +2,28 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       
-      <h1>Report Hours</h1>
+      <h1>Add Hours</h1>
 
   </div>
   <%= bootstrap_flash %>
 
-
 <%= simple_form_for :rh, :url => create_reported_hours_project_status_task_path(@project, @status, @task, :user_id => current_user),:html => { :class => 'form-horizontal' }, :data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do |f| %>
   <div class="modal-body">
-  <%= f.input :reporting_hours %>
+  
+<div class="control-group string required">
+        <label class="string required control-label" style="line-height:54px;">Current hours</label>
+
+    <div class="controls">
+    <h5 class="hoursCircle">
+      <%= @current_hours %>
+    </h5>
+  </div>
+  </div>
+
+  <%= f.input :reporting_hours, label: 'Add hours', :as => :decimal  %>
   </div>
   <div class="modal-footer">
-    <%= f.button :submit, :class => 'btn-primary', :value => 'Submit Hours' %>
+    <%= f.button :submit, :class => 'btn-primary', :value => 'Add Hours' %>
     <%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>            
   </div>
 <% end %>

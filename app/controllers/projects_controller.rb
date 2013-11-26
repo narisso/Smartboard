@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
 
   load_and_authorize_resource
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github]
+  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
+                                    :reports_tasks_project, :reports_tasks_user, :reports_use_case ]
 
   respond_to :html, :json
 
@@ -228,7 +229,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.dropbox_token=nil
     @project.save
-    redirect_to boards_project_path(@project)
+    redirect_to session[:return_to] 
   end
   
   # Sends confirmation document, and read me document to a recent linked Dropbox's repository
@@ -245,5 +246,62 @@ class ProjectsController < ApplicationController
     @dropbox_token = nil
     flash[:success] = "Failed authorized "
   end
+
+  # Render report's view
+  #
+  # @param id [String] the project's id
+  def reports
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # Render a JSON file for report user's hours between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
+  def reports_hours_users 
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+
+    respond_to do |format|
+      format.json
+    end 
+  end 
+
+  # Render a JSON file for report project's tasks between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
+  def reports_tasks_project
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+    
+    respond_to do |format|
+      format.json
+    end
+  end
+
+  # Render a JSON file for report user's tasks between two given dates
+  #
+  # @param id [String] the project's id
+  # @param initial_date [String]
+  # @param final_date   [String]
+  # @return [String] JSON file
+  def reports_tasks_user
+    @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
+    @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+
+    respond_to do |format|
+      format.json
+    end
+  end
+  
+
 
 end

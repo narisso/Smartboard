@@ -18,11 +18,12 @@
 //= require jquery.purr
 //= require best_in_place
 //= require flash_message
+//= require d3
 
 
 $(document).bind("page:load", function() {
 
-chosenSelect();
+chosenSelect(200);
 
 $('#side_close_button').click(ltl_bar_change);
 
@@ -92,10 +93,10 @@ jQuery(document).ready(function($) {
 
 
   $('#modal').on('hidden', function () {
-    $('#modal').html('<div id="modal-progress hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+    $('#modal').html('<div id="modal-progress hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>')
   })
   $('#modal-large').on('hidden', function () {
-    $('#modal-large').html('<div id="modal-progress-large hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped"><div class="bar" style="width: 100%;"></div></div></div></div>')
+    $('#modal-large').html('<div id="modal-progress-large hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>')
   })
 
 

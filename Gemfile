@@ -71,8 +71,11 @@ gem 'gretel'
 # Add a fine select to forms
 gem 'chosen-rails'
 
-#Best in place
+# Best in place
 gem 'best_in_place'
+
+# Framework for reports
+gem "d3-rails"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

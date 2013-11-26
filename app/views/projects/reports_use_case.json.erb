@@ -8,8 +8,8 @@
 			<% group.use_cases.each_with_index do |use_case, usindex| %>
 			{"name": "<%= use_case.name %>",
 			 "children": [
-			 	<% use_case.requirements.each_with_index do |requirement, rindex| %>
-			 	{"name": "<%= requirement.name %>", "size": 1}<%= rindex < use_case.requirements.count - 1 ? "," : "" %>
+			 	<% use_case.tasks.each_with_index do |task, rindex| %>
+			 	{"name": "<%= task.name %>", "size": 1}<%= rindex < use_case.tasks.count - 1 ? "," : "" %>
 			 	<% end %>
 			 ]}<%= usindex < group.use_cases.count - 1 ? "," : "" %>
 			<% end %>
@@ -17,4 +17,5 @@
 		}<%= gindex < @project.use_case_groups.count - 1 ? "," : "" %>
 		<% end %>
 	]
+
 }

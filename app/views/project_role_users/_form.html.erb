@@ -17,7 +17,8 @@
     		</thead>
     		<tbody>
     			<% @project_role_users.each do |project_role_user| %>
-    			<% if project_role_user.user.encrypted_password != "" %>
+    			<!--% if project_role_user.user.encrypted_password != "" %-->
+          <% if project_role_user.invitation_confirmed != false %>         
               <tr>
         				<td><%= project_role_user.user.email %></td>
         				<td><%= project_role_user.role.name %></td>
@@ -36,18 +37,18 @@
     	</table>
   	</div>
 		  <%= simple_form_for [@project, @project_role_user], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
-    <div class="modal-body big">  
+    <!--div class="modal-body big">  
 		  <%= f.association :user, :include_blank => false, 
                                :label_method => :email, 
                                :input_html => { class: 'chosen-select selectpicker' } %>
       <%= f.association :role, :include_blank => false, 
                                :input_html => { class: 'chosen-select selectpicker' } %>
       <%= f.input :project_id,:as => :hidden, :input_html => { :value => "#{@project.id}" } %>
-    </div>
+    </div-->
     <div class="modal-footer">
      <!-- Le entregamos a la invitacion mediante el link_to el id del proyecto -->
        
-		  <%= f.button :submit, 'Add user', :class => 'btn-primary' %>
+		  <!--%= f.button :submit, 'Add user', :class => 'btn-primary' %-->
       <%= link_to 'Invite', invite_project_path(:id => @project.id), :class => 'btn btn-primary' , :remote => true %>
 		  <%= link_to t('.cancel', :default => t("helpers.links.cancel")), "", :class => 'btn', :data => {:dismiss => "modal"} %>
 	   </div>

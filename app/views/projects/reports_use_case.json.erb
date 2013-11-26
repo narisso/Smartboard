@@ -1,15 +1,20 @@
 {
-	"name": "Use Cases",
+	"name": "<%= @project.name %>",
+	"level": "Project",
 	"children": [
 		<% @project.use_case_groups.each_with_index do |group, gindex| %>
 		{
 		"name": "<%= group.name %>",
+		"level": "Use Case Group",
 		"children": [
 			<% group.use_cases.each_with_index do |use_case, usindex| %>
 			{"name": "<%= use_case.name %>",
+			 "level": "Use Case",
 			 "children": [
 			 	<% use_case.requirements.each_with_index do |requirement, rindex| %>
-			 	{"name": "<%= requirement.name %>", "size": 1}<%= rindex < use_case.requirements.count - 1 ? "," : "" %>
+			 	{"name": "<%= requirement.name %>", 
+			 	 "level": "Requirement",
+			 	 "size": 1}<%= rindex < use_case.requirements.count - 1 ? "," : "" %>
 			 	<% end %>
 			 ]}<%= usindex < group.use_cases.count - 1 ? "," : "" %>
 			<% end %>

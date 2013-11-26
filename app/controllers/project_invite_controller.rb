@@ -1,5 +1,6 @@
 class ProjectInviteController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
   skip_before_filter :check_session, only: [:decide, :accept, :reject, :confirm_password_invitation,:submit_password_invitation]
 
 

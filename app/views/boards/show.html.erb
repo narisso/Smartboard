@@ -93,6 +93,25 @@
 
 
 
+<% if false %>
+  <script type="text/javascript">
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+
+    $('#myModal').modal().css(
+                    {
+                        width: '90%',
+                        'top': function () {
+                            return '10%';
+                        },
+                        'margin-left': function () {
+                            return -($(this).width() / 2);
+                        }
+                    })
+    });
+  </script>
+<% end %>
 
 
 
@@ -251,21 +270,6 @@ function filterByDate(date){
 	$('.progress').addClass('hide');
 
 
-$(window).load(function(){
-        $('#myModal').modal('show');
-    });
-
-$('#myModal').modal().css(
-                {
-                    width: '90%',
-                    height: '80%',
-                    'top': function () {
-                        return '10%';
-                    },
-                    'margin-left': function () {
-                        return -($(this).width() / 2);
-                    }
-                })
 
 
 $('#side_close_button').click(ltl_bar_change);

@@ -1,6 +1,6 @@
 #Contains the model of the relation of the role of a user in a project
 class ProjectRoleUser < ActiveRecord::Base
-  attr_accessible :project_id, :role_id, :user_id
+  attr_accessible :project_id, :role_id, :user_id, :show_tutorial
 
   belongs_to :project
   belongs_to :role

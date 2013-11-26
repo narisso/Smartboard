@@ -9,6 +9,9 @@ class BoardsController < ApplicationController
 		authorize! :read, @project
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;		
+		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+		@tutorial.save
+		
 		begin
 			if @project.github_token
 				g=Github.new :oauth_token => @project.github_token
@@ -47,6 +50,18 @@ class BoardsController < ApplicationController
 	        format.html
 	    end
 	end 
+
+	# Stop showing tutorial for a project
+	def accept_tutorial
+		@project = Project.find(params[:id])
+		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+		@tutorial.show_tutorial = false
+		@tutorial.save
+		respond_to do |format|
+	        format.js {head :ok}
+	    end
+	end
+
 
 	# Puts a README file on the folder of Dropbox, when the link has just been done. 
 	def send_confirmation_doc

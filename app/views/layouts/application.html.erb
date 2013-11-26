@@ -207,23 +207,69 @@
       <div id="modal-large" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
       </div>
 
-
-      <% if @project and not @project.id.nil? and @project.dropbox_token.nil? and @project.github_token.nil? %>
-        <div class="modal hide fade" id="myModal" >
-          <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>Welcome to your new Project: "<strong><%= @project.name %></strong>"</h3>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true" >
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>Welcome to your new Project: "<strong><%= @project.name %></strong>"</h3>
+        </div>
+        <div class="modal-body">
+          <p><span class="label label-info">We recommend that you link the project to Dropbox and Github, this tools will help you make the process easier.</span></p>
+          
+          <div class="span6 tutorial">
+            <h3 style="text-align:center;">Link to Dropbox!</h3>
+            <div id="myCarousel" class="carousel slide">
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+                <div class="item item1 active">
+                  <a><img src="/assets/Dropbox1.png"/></a>
+                </div>
+                <div class="item item2">
+                  <a><img src="/assets/Dropbox2.png"/></a>
+                </div>
+                <div class="item item3">
+                  <a><img src="/assets/Dropbox3.png"/></a>
+                </div>
+                <div class="item item4">
+                  <a><img src="/assets/Dropbox4.png"/></a>
+                </div>
+              </div>
+              <!-- Carousel nav -->
+              <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+              <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>We recommend you to link the project to github and dropbox, this tools will help to make the process easier.</p>
-            <p>This is how you do it:</p>
-          </div>
-          <div class="modal-footer" style="vertical-align:text-bottom;">
-            <a href="#" class="btn">Close</a>
-            <a href="#" class="btn btn-primary">Save changes</a>
+          <div class="span6" style="margin:0px;">
+            <h3 style="text-align:center;">Link to Github!</h3>
+            <div id="myCarousel2" class="carousel slide">
+              <!-- Carousel items -->
+              <div class="carousel-inner">
+                <div class="item item1 active">
+                  <a><img src="/assets/Github1.png"/></a>
+                </div>
+                <div class="item item2">
+                  <a><img src="/assets/Github2.png"/></a>
+                </div>
+                <div class="item item3">
+                  <a><img src="/assets/Github3.png"/></a>
+                </div>
+                <div class="item item4">
+                  <a><img src="/assets/Github4.png"/></a>
+                </div>
+                <div class="item item5">
+                  <a><img src="/assets/Github5.png"/></a>
+                </div>
+              </div>
+              <!-- Carousel nav -->
+              <a class="carousel-control left" href="#myCarousel2" data-slide="prev">‹</a>
+              <a class="carousel-control right" href="#myCarousel2" data-slide="next">›</a>
+            </div>
           </div>
         </div>
-      <% end %>
+        <div class="modal-footer">
+          <%= link_to 'Remind me later...', "#", :remote => true, :class => "btn ", "data-toggle" => "modal", 'data-target' => '#myModal' %>
+          <%= link_to 'Understood', accept_tutorial_project_path(@project), :remote => true, :class => "btn btn-primary", :method => :put, "data-toggle" => "modal", 'data-target' => '#myModal' %>
+        </div>
+      </div>
 
       <!--footer>
         <%= render "layouts/footer" unless @skip_footer %>

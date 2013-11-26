@@ -64,6 +64,7 @@
     member do
       get '/boards/' => 'boards#show' , :as => 'boards'
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
+      put '/boards/understood' => 'boards#accept_tutorial', :as => 'accept_tutorial'
       post :finish
     end
     member do

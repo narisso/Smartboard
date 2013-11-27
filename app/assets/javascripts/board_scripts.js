@@ -62,11 +62,11 @@ function filterByDate(date){
     function(index){
 
 
-      var stringdate = new String($(this).data("created")).replace(' UTC', '');
+      var stringdate = new String($(this).children("li").data("created")).replace(' UTC', '');
       stringdate = stringdate.split(' ')[0];
       var dateItem = new Date(stringdate);
 
-      if(dateItem>date){
+      if(dateItem>=date){
         $(this).show();
         $(this).removeAttr("vis");
       }

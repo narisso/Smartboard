@@ -101,7 +101,7 @@ class StatusesController < ApplicationController
       end
     else
        respond_to do |format|
-        format.html { redirect_to boards_project_path(@project),alert: 'First delete or change tasks with this label.' }
+        format.html { redirect_to boards_project_path(@project),alert: 'First delete or change tasks with this status.' }
         format.json { render json: @status.errors }
       end
     end

@@ -131,6 +131,7 @@
       member do
         get  :attach_document
         post :add_document
+        get :add_use_case
       end
       resources :document_requirements
     end

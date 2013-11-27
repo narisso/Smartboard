@@ -14,8 +14,9 @@ class Label < ActiveRecord::Base
   	self.tasks.where("created_at >= ? and created_at <= ?", initial_date, final_date) 
   end
 
-
-
+  #See if there is no tasks with this label, and destroy the label if it's posible
+  #
+  # 
   def valid_destroy
   	if self.tasks.count > 0
   		return false

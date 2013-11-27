@@ -15,4 +15,18 @@ class Status < ActiveRecord::Base
       self.name = "Default"+aux.to_s
     end
   end
+
+  #See if there is no tasks in the status, and destroy the status if it's posible
+  #
+  # 
+  def valid_destroy
+    if self.tasks.count > 0
+      return false
+    else
+      self.destroy
+      return true
+    end
+  end
+
+
 end

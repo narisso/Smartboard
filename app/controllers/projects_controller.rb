@@ -176,6 +176,7 @@ class ProjectsController < ApplicationController
           {name: 'Learning',project_id: @project.id, color: '#472bd6'},
           {name: 'Research',project_id: @project.id, color: '#020118'}])
         @project.add_user_role(current_user, Role.first)
+        UseCaseGroup.create({ name: "Use Cases", project_id: @project.id })
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
       else

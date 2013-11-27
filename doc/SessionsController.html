@@ -101,7 +101,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Manages the sessions' information</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -133,7 +144,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Redirects if the user logins with a Google account.</p>
+</div></span>
   
 </li>
 
@@ -157,20 +170,51 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Redirects if the user logins with a Google account</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>commit</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The user’s way of login</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7
-8
-9</pre>
+9
+10
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/sessions_controller.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_for_google'>check_for_google</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:commit</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Google Login</span><span class='tstring_end'>&quot;</span></span>
@@ -187,7 +231,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:38 2013 by
+  Generated on Wed Nov 27 18:22:48 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

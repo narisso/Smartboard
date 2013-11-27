@@ -101,7 +101,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Contains the model of the users.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -163,7 +174,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#getDocumentsAsJSon-class_method" title="getDocumentsAsJSon (class method)">+ (Object) <strong>getDocumentsAsJSon</strong>(proj_id) </a>
+      <a href="#getDocumentsAsJSon-class_method" title="getDocumentsAsJSon (class method)">+ (String) <strong>getDocumentsAsJSon</strong>(proj_id) </a>
     
 
     
@@ -177,7 +188,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gives all the document's of a project as JSON.</p>
+</div></span>
   
 </li>
 
@@ -185,7 +198,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#getProjectsAsJSon-class_method" title="getProjectsAsJSon (class method)">+ (Object) <strong>getProjectsAsJSon</strong>(token) </a>
+      <a href="#getProjectsAsJSon-class_method" title="getProjectsAsJSon (class method)">+ (String) <strong>getProjectsAsJSon</strong>(token) </a>
     
 
     
@@ -199,7 +212,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gives the projects of a certain user as JSON.</p>
+</div></span>
   
 </li>
 
@@ -207,7 +222,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#loginAsJson-class_method" title="loginAsJson (class method)">+ (Object) <strong>loginAsJson</strong>(email, password) </a>
+      <a href="#loginAsJson-class_method" title="loginAsJson (class method)">+ (String) <strong>loginAsJson</strong>(email, password) </a>
     
 
     
@@ -221,7 +236,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Logins the user.</p>
+</div></span>
   
 </li>
 
@@ -229,7 +246,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#logoutAsJSon-class_method" title="logoutAsJSon (class method)">+ (Object) <strong>logoutAsJSon</strong>(token) </a>
+      <a href="#logoutAsJSon-class_method" title="logoutAsJSon (class method)">+ (String) <strong>logoutAsJSon</strong>(token) </a>
     
 
     
@@ -243,7 +260,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Logouts the user.</p>
+</div></span>
   
 </li>
 
@@ -251,7 +270,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#uploadAsJSon-class_method" title="uploadAsJSon (class method)">+ (Object) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) </a>
+      <a href="#uploadAsJSon-class_method" title="uploadAsJSon (class method)">+ (String) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) </a>
     
 
     
@@ -265,7 +284,92 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Uploads a file to a project.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_tasks-instance_method" title="#get_tasks (instance method)">- (Array) <strong>get_tasks</strong>(project, initial_date, final_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gives all tasks for a project between two dates.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_tasks_with_hours-instance_method" title="#get_tasks_with_hours (instance method)">- (Object) <strong>get_tasks_with_hours</strong>(id, initial_date, finish_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>This method returns the sum of reported user hours in the tickets in JSON
+format.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_total_reported_hours-instance_method" title="#get_total_reported_hours (instance method)">- (Object) <strong>get_total_reported_hours</strong>(initial_date, finish_date) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>This method returns the sum of reported user hours in the tickets in JSON
+format.</p>
+</div></span>
   
 </li>
 
@@ -295,6 +399,8 @@
       <pre class="lines">
 
 
+54
+55
 56
 57
 58
@@ -313,12 +419,10 @@
 71
 72
 73
-74
-75
-76</pre>
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_for_facebook_oauth'>find_for_facebook_oauth</span><span class='lparen'>(</span><span class='id identifier rubyid_auth'>auth</span><span class='comma'>,</span> <span class='id identifier rubyid_signed_in_resource'>signed_in_resource</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_email'>find_by_email</span><span class='lparen'>(</span><span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
@@ -334,7 +438,7 @@
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_uid'>uid</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_extra'>extra</span><span class='period'>.</span><span class='id identifier rubyid_raw_info'>raw_info</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
-      <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='const'>Devise</span><span class='period'>.</span><span class='id identifier rubyid_friendly_token'>friendly_token</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>20</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_confirm!'>confirm!</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_save!'>save!</span>
@@ -361,6 +465,8 @@
       <pre class="lines">
 
 
+31
+32
 33
 34
 35
@@ -380,12 +486,10 @@
 49
 50
 51
-52
-53
-54</pre>
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_omniauth'>from_omniauth</span><span class='lparen'>(</span><span class='id identifier rubyid_auth'>auth</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_user'>user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_email'>find_by_email</span><span class='lparen'>(</span><span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span><span class='rparen'>)</span>
@@ -402,7 +506,7 @@
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_email'>email</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_avatar'>avatar</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_image'>image</span>
-      <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span>
+      <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_confirm!'>confirm!</span>
       <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_save!'>save!</span>
@@ -417,30 +521,78 @@
       <div class="method_details ">
   <h3 class="signature " id="getDocumentsAsJSon-class_method">
   
-    + (<tt>Object</tt>) <strong>getDocumentsAsJSon</strong>(proj_id) 
+    + (<tt>String</tt>) <strong>getDocumentsAsJSon</strong>(proj_id) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gives all the document's of a project as JSON.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>proj_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the project’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a message of success or failure as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-200
-201
-202
-203
-204
-205
-206
-207
-208</pre>
+236
+237
+238
+239
+240
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getDocumentsAsJSon'>getDocumentsAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_proj_id'>proj_id</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_document_projects'>document_projects</span> <span class='op'>=</span> <span class='const'>DocumentProject</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_proj_id'>proj_id</span><span class='rparen'>)</span>
@@ -448,8 +600,7 @@
     <span class='kw'>return</span> <span class='symbol'>:json</span><span class='op'>=&gt;</span><span class='lbrace'>{</span><span class='symbol'>:message</span><span class='op'>=&gt;</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>There's no project whit that id.</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='symbol'>:json</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_document_projects'>document_projects</span>
-  <span class='kw'>end</span>
-  
+  <span class='kw'>end</span>    
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -459,35 +610,67 @@
       <div class="method_details ">
   <h3 class="signature " id="getProjectsAsJSon-class_method">
   
-    + (<tt>Object</tt>) <strong>getProjectsAsJSon</strong>(token) 
+    + (<tt>String</tt>) <strong>getProjectsAsJSon</strong>(token) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gives the projects of a certain user as JSON.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s token</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the projects the user works with, as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
 95
 96
 97
@@ -495,10 +678,27 @@
 99
 100
 101
-102</pre>
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getProjectsAsJSon'>getProjectsAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_us'>us</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_authentication_token'>find_by_authentication_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
@@ -533,44 +733,109 @@
       <div class="method_details ">
   <h3 class="signature " id="loginAsJson-class_method">
   
-    + (<tt>Object</tt>) <strong>loginAsJson</strong>(email, password) 
+    + (<tt>String</tt>) <strong>loginAsJson</strong>(email, password) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Logins the user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>email</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s email</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the password’s email</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user token or a message of errror as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126</pre>
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_loginAsJson'>loginAsJson</span><span class='lparen'>(</span><span class='id identifier rubyid_email'>email</span><span class='comma'>,</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
 
@@ -603,31 +868,80 @@
       <div class="method_details ">
   <h3 class="signature " id="logoutAsJSon-class_method">
   
-    + (<tt>Object</tt>) <strong>logoutAsJSon</strong>(token) 
+    + (<tt>String</tt>) <strong>logoutAsJSon</strong>(token) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Logouts the user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s token</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a message of success or failure as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137</pre>
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logoutAsJSon'>logoutAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_user'>user</span><span class='op'>=</span><span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find_by_authentication_token'>find_by_authentication_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
@@ -647,51 +961,115 @@
       <div class="method_details ">
   <h3 class="signature " id="uploadAsJSon-class_method">
   
-    + (<tt>Object</tt>) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) 
+    + (<tt>String</tt>) <strong>uploadAsJSon</strong>(project_id, file, token, file_name) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Uploads a file to a project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>project_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the project’s id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file</span>
+      
+      
+        <span class='type'>(<tt>File</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file to upload</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’s token</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the file’s name of the file to upload.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a message of success or failure as JSON</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
 172
 173
 174
@@ -717,10 +1095,43 @@
 194
 195
 196
-197</pre>
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uploadAsJSon'>uploadAsJSon</span><span class='lparen'>(</span><span class='id identifier rubyid_project_id'>project_id</span><span class='comma'>,</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>dropbox_sdk</span><span class='tstring_end'>'</span></span>
@@ -762,7 +1173,7 @@
 
       <span class='id identifier rubyid_final_file_name'>final_file_name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='comma'>,</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.v</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_file_name'>file_name</span><span class='rparen'>)</span>
 
-      <span class='id identifier rubyid_file_path'>file_path</span> <span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SmartBoard/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_final_file_name'>final_file_name</span>
+      <span class='id identifier rubyid_file_path'>file_path</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_final_file_name'>final_file_name</span>
       <span class='kw'>begin</span>
         <span class='id identifier rubyid_dbsession'>dbsession</span> <span class='op'>=</span> <span class='const'>DropboxSession</span><span class='period'>.</span><span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_dropbox_token'>dropbox_token</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>DropboxClient</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dbsession'>dbsession</span><span class='rparen'>)</span>
@@ -788,10 +1199,211 @@
     
   </div>
 
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get_tasks-instance_method">
+  
+    - (<tt>Array</tt>) <strong>get_tasks</strong>(project, initial_date, final_date) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gives all tasks for a project between two dates</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>project</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the project’s id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>initial_date</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>final_date</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an array with tasks</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 251</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_tasks'>get_tasks</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='comma'>,</span> <span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_final_date'>final_date</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tasks'>tasks</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tasks.created_at &gt;= ? and tasks.created_at &lt;= ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_final_date'>final_date</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_tasks_with_hours-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_tasks_with_hours</strong>(id, initial_date, finish_date) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>This method returns the sum of reported user hours in the tickets in JSON
+format</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_tasks_with_hours'>get_tasks_with_hours</span><span class='lparen'>(</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span><span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_finish_date'>finish_date</span> <span class='rparen'>)</span>
+  <span class='comment'>#restriction = &quot;project_id =&quot; + id.to_s + &quot; and &quot;
+</span>  <span class='comment'>#restriction = restriction + &quot;user_id = #{self.id.to_s}&quot; 
+</span>  <span class='id identifier rubyid_user_tasks'>user_tasks</span> <span class='op'>=</span> <span class='const'>Task</span><span class='period'>.</span><span class='id identifier rubyid_joins'>joins</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INNER JOIN reported_hours on tasks.id = reported_hours.task_id</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tasks.created_at &gt;= ? and tasks.created_at &lt; ? and user_id = ? and project_id= ?</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_finish_date'>finish_date</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name, reporting_hours as size</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_total_reported_hours-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_total_reported_hours</strong>(initial_date, finish_date) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>This method returns the sum of reported user hours in the tickets in JSON
+format</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/user.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_total_reported_hours'>get_total_reported_hours</span><span class='lparen'>(</span><span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_finish_date'>finish_date</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_total'>total</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reported_hours'>reported_hours</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>created_at &gt;= ? and created_at &lt; ? </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_initial_date'>initial_date</span><span class='comma'>,</span> <span class='id identifier rubyid_finish_date'>finish_date</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sum'>sum</span><span class='lparen'>(</span><span class='symbol'>:reporting_hours</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_total'>total</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:35 2013 by
+  Generated on Wed Nov 27 18:22:45 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

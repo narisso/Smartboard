@@ -400,7 +400,6 @@ role of a user in a certain project.</p>
       <pre class="lines">
 
 
-57
 58
 59
 60
@@ -420,10 +419,11 @@ role of a user in a certain project.</p>
 74
 75
 76
-77</pre>
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='kw'>if</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_role_user</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_role_user</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span>
@@ -531,7 +531,6 @@ role of a user in a certain project.</p>
       <pre class="lines">
 
 
-103
 104
 105
 106
@@ -543,10 +542,11 @@ role of a user in a certain project.</p>
 112
 113
 114
-115</pre>
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -612,12 +612,12 @@ role of a user in a certain project.</p>
       <pre class="lines">
 
 
-48
 49
-50</pre>
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -763,7 +763,6 @@ JSON</p>
       <pre class="lines">
 
 
-34
 35
 36
 37
@@ -772,10 +771,11 @@ JSON</p>
 40
 41
 42
-43</pre>
+43
+44</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -863,13 +863,15 @@ JSON</p>
 25
 26
 27
-28</pre>
+28
+29</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  
 
   <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
     <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='comment'># show.html.erb
@@ -962,7 +964,6 @@ of a userin a certain project.</p>
       <pre class="lines">
 
 
-84
 85
 86
 87
@@ -974,10 +975,11 @@ of a userin a certain project.</p>
 93
 94
 95
-96</pre>
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_role_users_controller.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_role_user</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_role_user</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -1002,7 +1004,7 @@ of a userin a certain project.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:40 2013 by
+  Generated on Wed Nov 27 18:22:46 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

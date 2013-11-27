@@ -101,7 +101,7 @@ class LabelsController < ApplicationController
     else 
       respond_to do |format|
         format.html { redirect_to project_labels_path(@project), alert: 'First delete or change tasks with this label.' }
-        format.json { head @label.json}
+        format.json { render json: @label.errors}
       end
     end
   end

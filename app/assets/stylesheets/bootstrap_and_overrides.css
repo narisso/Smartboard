@@ -86,6 +86,11 @@
     max-height:400px;
 }
 
+.home_icon
+{
+    height: 30px;
+}
+
 .alert {
    font-weight: bold;
    right: 10px;

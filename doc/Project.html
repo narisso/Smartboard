@@ -101,13 +101,105 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Contains the project's model</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#change_repo_name-class_method" title="change_repo_name (class method)">+ (Object) <strong>change_repo_name</strong>(new_repo_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Changes the name of a repository in the DB.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_hook-class_method" title="create_hook (class method)">+ (Object) <strong>create_hook</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates the hook of a commit in the project.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete_hooks-class_method" title="delete_hooks (class method)">+ (Object) <strong>delete_hooks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Deletes a hook from a project.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
   
     <h2>
       Instance Method Summary
@@ -133,7 +225,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Adds a relation between a role and a user on a certain project, i.e., sets
+a role to a user in a project.</p>
+</div></span>
   
 </li>
 
@@ -141,7 +236,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_repo_names-instance_method" title="#get_repo_names (instance method)">- (Object) <strong>get_repo_names</strong>(github_username, git_token) </a>
+      <a href="#do_hook-instance_method" title="#do_hook (instance method)">- (Object) <strong>do_hook</strong>(c) </a>
     
 
     
@@ -155,7 +250,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Does the hook of a commit in the project.</p>
+</div></span>
   
 </li>
 
@@ -163,7 +260,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_repo_users-instance_method" title="#get_repo_users (instance method)">- (Object) <strong>get_repo_users</strong> </a>
+      <a href="#get_repo_names-instance_method" title="#get_repo_names (instance method)">- (Array) <strong>get_repo_names</strong>(github_username, git_token) </a>
     
 
     
@@ -177,7 +274,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets all the names of the repositories associated to a Github account.</p>
+</div></span>
   
 </li>
 
@@ -185,7 +284,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_role-instance_method" title="#get_role (instance method)">- (Object) <strong>get_role</strong>(user) </a>
+      <a href="#get_repo_users-instance_method" title="#get_repo_users (instance method)">- (Array) <strong>get_repo_users</strong> </a>
     
 
     
@@ -199,7 +298,33 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the names of all users that posses a certain repository of Github.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_role-instance_method" title="#get_role (instance method)">- (String) <strong>get_role</strong>(user) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gives the role of a certain user in the current project.</p>
+</div></span>
   
 </li>
 
@@ -209,6 +334,223 @@
 
 
   
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="change_repo_name-class_method">
+  
+    + (<tt>Object</tt>) <strong>change_repo_name</strong>(new_repo_name) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Changes the name of a repository in the DB.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_change_repo_name'>change_repo_name</span><span class='lparen'>(</span><span class='id identifier rubyid_new_repo_name'>new_repo_name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_old_repo_name'>old_repo_name</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span>
+
+  <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span> <span class='op'>=</span> <span class='id identifier rubyid_new_repo_name'>new_repo_name</span>
+  <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_hook-class_method">
+  
+    + (<tt>Object</tt>) <strong>create_hook</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates the hook of a commit in the project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_hook'>create_hook</span>
+  <span class='id identifier rubyid_github'>github</span> <span class='op'>=</span> <span class='const'>Github</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:oauth_token</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_token'>github_token</span>
+
+  <span class='comment'>#Check if hook already exists
+</span>  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='const'>URL_HOOK</span>
+  <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_already_exists'>already_exists</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='lparen'>(</span><span class='id identifier rubyid_github'>github</span><span class='period'>.</span><span class='id identifier rubyid_repos'>repos</span><span class='period'>.</span><span class='id identifier rubyid_hooks'>hooks</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_user'>github_user</span><span class='comma'>,</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hook'>hook</span><span class='op'>|</span>
+    <span class='id identifier rubyid_h_url'>h_url</span> <span class='op'>=</span> <span class='id identifier rubyid_hook'>hook</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>==</span> <span class='id identifier rubyid_h_url'>h_url</span>
+      <span class='id identifier rubyid_already_exists'>already_exists</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_already_exists'>already_exists</span>
+    <span class='id identifier rubyid_github'>github</span><span class='period'>.</span><span class='id identifier rubyid_repos'>repos</span><span class='period'>.</span><span class='id identifier rubyid_hooks'>hooks</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_user'>github_user</span><span class='comma'>,</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>web</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>active</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_url'>url</span>
+    <span class='rbrace'>}</span>
+
+  <span class='kw'>end</span>   
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete_hooks-class_method">
+  
+    + (<tt>Object</tt>) <strong>delete_hooks</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Deletes a hook from a project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 134</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delete_hooks'>delete_hooks</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>then</span>
+
+    <span class='id identifier rubyid_github'>github</span> <span class='op'>=</span> <span class='const'>Github</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:oauth_token</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_token'>github_token</span>
+    <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='const'>URL_HOOK</span>
+    <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:id</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_hooks'>hooks</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_github'>github</span><span class='period'>.</span><span class='id identifier rubyid_repos'>repos</span><span class='period'>.</span><span class='id identifier rubyid_hooks'>hooks</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_user'>github_user</span><span class='comma'>,</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
+
+    <span class='id identifier rubyid_hooks'>hooks</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hook'>hook</span><span class='op'>|</span>
+      <span class='id identifier rubyid_h_url'>h_url</span> <span class='op'>=</span> <span class='id identifier rubyid_hook'>hook</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_hook_id'>hook_id</span> <span class='op'>=</span> <span class='id identifier rubyid_hook'>hook</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>==</span> <span class='id identifier rubyid_h_url'>h_url</span>
+        <span class='id identifier rubyid_github'>github</span><span class='period'>.</span><span class='id identifier rubyid_repos'>repos</span><span class='period'>.</span><span class='id identifier rubyid_hooks'>hooks</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_github_user'>github_user</span><span class='comma'>,</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_repo_name'>repo_name</span><span class='comma'>,</span> <span class='id identifier rubyid_hook_id'>hook_id</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -223,22 +565,70 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds a relation between a role and a user on a certain project, i.e., sets
+a role to a user in a project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’ id</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>role</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the role’s id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53
-54</pre>
+62
+63
+64
+65
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_user_role'>add_user_role</span> <span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_role'>role</span>
   <span class='id identifier rubyid_user_role'>user_role</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -253,35 +643,169 @@
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="get_repo_names-instance_method">
+  <h3 class="signature " id="do_hook-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_repo_names</strong>(github_username, git_token) 
-  
-
+    - (<tt>Object</tt>) <strong>do_hook</strong>(c) 
   
 
   
-</h3><table class="source_code">
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Does the hook of a commit in the project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-24
-25
-26
-27
-28
-29
-30
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_do_hook'>do_hook</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sp'>sp</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>message</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_taskid'>taskid</span> <span class='op'>=</span> <span class='id identifier rubyid_sp'>sp</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='id identifier rubyid_da_task'>da_task</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tasks'>tasks</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_taskid'>taskid</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_da_task'>da_task</span> <span class='kw'>then</span>
+    <span class='id identifier rubyid_commit'>commit</span> <span class='op'>=</span> <span class='const'>Commit</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_author_email'>author_email</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>author</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>email</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_author_name'>author_name</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>author</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>message</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>url</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_sha'>sha</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>id</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_date'>date</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>head_commit</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>timestamp</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_task_id'>task_id</span> <span class='op'>=</span> <span class='id identifier rubyid_taskid'>taskid</span>
+    <span class='id identifier rubyid_commit'>commit</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_repo_names-instance_method">
+  
+    - (<tt>Array</tt>) <strong>get_repo_names</strong>(github_username, git_token) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets all the names of the repositories associated to a Github account.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>github_username</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The Github account’s username</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>git_token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the token of the github account</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the array of name of the repositories</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
 31
 32
 33
 34
-35</pre>
+35
+36
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_repo_names'>get_repo_names</span> <span class='id identifier rubyid_github_username'>github_username</span> <span class='comma'>,</span> <span class='id identifier rubyid_git_token'>git_token</span>
   <span class='id identifier rubyid_repo_names'>repo_names</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -303,31 +827,60 @@
       <div class="method_details ">
   <h3 class="signature " id="get_repo_users-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_repo_users</strong> 
+    - (<tt>Array</tt>) <strong>get_repo_users</strong> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets the names of all users that posses a certain repository of Github.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the array of name of the users</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46</pre>
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_repo_users'>get_repo_users</span>
   <span class='id identifier rubyid_repo_users'>repo_users</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -347,29 +900,79 @@
       <div class="method_details ">
   <h3 class="signature " id="get_role-instance_method">
   
-    - (<tt>Object</tt>) <strong>get_role</strong>(user) 
+    - (<tt>String</tt>) <strong>get_role</strong>(user) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gives the role of a certain user in the current project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the user’ id</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the name of the role given to the user in the current project. Returns nil
+if there’s is no user with the id given in the current project.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-56
-57
-58
-59
-60
-61
-62
-63</pre>
+74
+75
+76
+77
+78
+79
+80
+81</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'app/models/project.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_role'>get_role</span> <span class='id identifier rubyid_user'>user</span>
   <span class='id identifier rubyid_project_role_user'>project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='symbol'>:user_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -389,7 +992,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:36 2013 by
+  Generated on Wed Nov 27 18:22:45 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

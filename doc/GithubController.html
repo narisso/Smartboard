@@ -167,7 +167,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Handles the authorization of a Github's account to let the SmartBoard
+connect, and redirects the webpage.</p>
+</div></span>
   
 </li>
 
@@ -189,7 +192,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Handles the response of the Github account, after it has been asked for a
+connection with SmartBoard, and redirects the webpage.</p>
+</div></span>
   
 </li>
 
@@ -211,7 +217,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Handles the Github related information of a project.</p>
+</div></span>
   
 </li>
 
@@ -294,22 +302,54 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles the authorization of a Github's account to let the SmartBoard
+connect, and redirects the webpage</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>project_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the id of the project that is been connected with a GitHub account</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7
 8
 9
 10
-11</pre>
+11
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authorize'>authorize</span>
 	<span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_referer'>referer</span>
@@ -332,19 +372,60 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles the response of the Github account, after it has been asked for a
+connection with SmartBoard, and redirects the webpage.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>project_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the id of the project that is been linked with Github.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>code</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the code of authorization given in the callback.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-13
-14
-15
-16
-17
-18
-19
 20
 21
 22
@@ -352,10 +433,17 @@
 24
 25
 26
-27</pre>
+27
+28
+29
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callback'>callback</span>
 	<span class='id identifier rubyid_github'>github</span>  <span class='op'>=</span> <span class='const'>Github</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:client_id</span> <span class='op'>=&gt;</span> <span class='const'>GITHUB_CLIENT_ID</span> <span class='comma'>,</span> <span class='symbol'>:client_secret</span> <span class='op'>=&gt;</span> <span class='const'>GITHUB_CLIENT_SECRET</span>
@@ -386,23 +474,54 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles the Github related information of a project.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the id of the project that has the Github account linked.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-29
-30
-31
-32
-33
-34
-35
-36</pre>
+39
+40
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/github_controller.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_github_client'>github_client</span>
   <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -422,7 +541,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:37 2013 by
+  Generated on Wed Nov 27 18:22:49 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

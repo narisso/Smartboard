@@ -111,10 +111,6 @@ function filterByDate(date){
     });
   });
 
-
-
-
-
     $('ul.board').sortable({
       handle: ".handle",
        stop: function(event, ui){

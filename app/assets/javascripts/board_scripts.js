@@ -137,7 +137,7 @@ function filterByDate(date){
 
   $( "ul.sortable" ).sortable({
       cursor: "move",
-      items: "> a",
+      items: "a",
       connectWith: "ul.sortable",
       placeholder: "ui-state-highlight-board",
       forcePlaceholderSize: true,

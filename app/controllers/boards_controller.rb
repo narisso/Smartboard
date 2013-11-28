@@ -47,6 +47,8 @@ class BoardsController < ApplicationController
         respond_to do |format|
             format.html 
         end
+    rescue
+    	redirect_to reports_project_path(@project)
 	end
 
 	# Shows the client board's view

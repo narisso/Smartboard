@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="60d12c51-84f4-4323-a0f2-f73fe935f6f0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/boards_controller.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/erd.pdf" afterPath="$PROJECT_DIR$/erd.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.yardoc/objects/root.dat" afterPath="$PROJECT_DIR$/.yardoc/objects/root.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Ability.html" afterPath="$PROJECT_DIR$/doc/Ability.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ApiController.html" afterPath="$PROJECT_DIR$/doc/ApiController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ApiHelper.html" afterPath="$PROJECT_DIR$/doc/ApiHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ApplicationController.html" afterPath="$PROJECT_DIR$/doc/ApplicationController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ApplicationHelper.html" afterPath="$PROJECT_DIR$/doc/ApplicationHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/BoardsController.html" afterPath="$PROJECT_DIR$/doc/BoardsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/BoardsHelper.html" afterPath="$PROJECT_DIR$/doc/BoardsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/BootstrapFlashHelper.html" afterPath="$PROJECT_DIR$/doc/BootstrapFlashHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Bug.html" afterPath="$PROJECT_DIR$/doc/Bug.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/BugsController.html" afterPath="$PROJECT_DIR$/doc/BugsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/BugsHelper.html" afterPath="$PROJECT_DIR$/doc/BugsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Comment.html" afterPath="$PROJECT_DIR$/doc/Comment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/CommentsController.html" afterPath="$PROJECT_DIR$/doc/CommentsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/CommentsHelper.html" afterPath="$PROJECT_DIR$/doc/CommentsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Commit.html" afterPath="$PROJECT_DIR$/doc/Commit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/CommitsController.html" afterPath="$PROJECT_DIR$/doc/CommitsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/CommitsHelper.html" afterPath="$PROJECT_DIR$/doc/CommitsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DeviseHelper.html" afterPath="$PROJECT_DIR$/doc/DeviseHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentProject.html" afterPath="$PROJECT_DIR$/doc/DocumentProject.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentProjectRequirement.html" afterPath="$PROJECT_DIR$/doc/DocumentProjectRequirement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentProjectUseCase.html" afterPath="$PROJECT_DIR$/doc/DocumentProjectUseCase.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentProjectsController.html" afterPath="$PROJECT_DIR$/doc/DocumentProjectsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentProjectsHelper.html" afterPath="$PROJECT_DIR$/doc/DocumentProjectsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentRequirement.html" afterPath="$PROJECT_DIR$/doc/DocumentRequirement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentRequirementsController.html" afterPath="$PROJECT_DIR$/doc/DocumentRequirementsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentRequirementsHelper.html" afterPath="$PROJECT_DIR$/doc/DocumentRequirementsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentTask.html" afterPath="$PROJECT_DIR$/doc/DocumentTask.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentTasksController.html" afterPath="$PROJECT_DIR$/doc/DocumentTasksController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentTasksHelper.html" afterPath="$PROJECT_DIR$/doc/DocumentTasksHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentUseCase.html" afterPath="$PROJECT_DIR$/doc/DocumentUseCase.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentUseCasesController.html" afterPath="$PROJECT_DIR$/doc/DocumentUseCasesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DocumentUseCasesHelper.html" afterPath="$PROJECT_DIR$/doc/DocumentUseCasesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DropboxController.html" afterPath="$PROJECT_DIR$/doc/DropboxController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/DropboxHelper.html" afterPath="$PROJECT_DIR$/doc/DropboxHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Evaluation.html" afterPath="$PROJECT_DIR$/doc/Evaluation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/EvaluationsController.html" afterPath="$PROJECT_DIR$/doc/EvaluationsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/EvaluationsHelper.html" afterPath="$PROJECT_DIR$/doc/EvaluationsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/GithubController.html" afterPath="$PROJECT_DIR$/doc/GithubController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/GithubHelper.html" afterPath="$PROJECT_DIR$/doc/GithubHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Goal.html" afterPath="$PROJECT_DIR$/doc/Goal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/GoalsController.html" afterPath="$PROJECT_DIR$/doc/GoalsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/GoalsHelper.html" afterPath="$PROJECT_DIR$/doc/GoalsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Users/InvitationsController.html" afterPath="$PROJECT_DIR$/doc/Users/InvitationsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Label.html" afterPath="$PROJECT_DIR$/doc/Label.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/LabelsController.html" afterPath="$PROJECT_DIR$/doc/LabelsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/LabelsHelper.html" afterPath="$PROJECT_DIR$/doc/LabelsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Notification.html" afterPath="$PROJECT_DIR$/doc/Notification.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/OmniauthCallbacksController.html" afterPath="$PROJECT_DIR$/doc/OmniauthCallbacksController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Project.html" afterPath="$PROJECT_DIR$/doc/Project.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectRoleUser.html" afterPath="$PROJECT_DIR$/doc/ProjectRoleUser.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectRoleUsersController.html" afterPath="$PROJECT_DIR$/doc/ProjectRoleUsersController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectRoleUsersHelper.html" afterPath="$PROJECT_DIR$/doc/ProjectRoleUsersHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectStatus.html" afterPath="$PROJECT_DIR$/doc/ProjectStatus.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectStatusesController.html" afterPath="$PROJECT_DIR$/doc/ProjectStatusesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectStatusesHelper.html" afterPath="$PROJECT_DIR$/doc/ProjectStatusesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectsController.html" afterPath="$PROJECT_DIR$/doc/ProjectsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ProjectsHelper.html" afterPath="$PROJECT_DIR$/doc/ProjectsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RegistrationsController.html" afterPath="$PROJECT_DIR$/doc/RegistrationsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RegistrationsHelper.html" afterPath="$PROJECT_DIR$/doc/RegistrationsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/ReportedHours.html" afterPath="$PROJECT_DIR$/doc/ReportedHours.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Requirement.html" afterPath="$PROJECT_DIR$/doc/Requirement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RequirementTemplate.html" afterPath="$PROJECT_DIR$/doc/RequirementTemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RequirementTemplatesController.html" afterPath="$PROJECT_DIR$/doc/RequirementTemplatesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RequirementTemplatesHelper.html" afterPath="$PROJECT_DIR$/doc/RequirementTemplatesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RequirementsController.html" afterPath="$PROJECT_DIR$/doc/RequirementsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RequirementsHelper.html" afterPath="$PROJECT_DIR$/doc/RequirementsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Role.html" afterPath="$PROJECT_DIR$/doc/Role.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RolesController.html" afterPath="$PROJECT_DIR$/doc/RolesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/RolesHelper.html" afterPath="$PROJECT_DIR$/doc/RolesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/SessionsController.html" afterPath="$PROJECT_DIR$/doc/SessionsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/SessionsHelper.html" afterPath="$PROJECT_DIR$/doc/SessionsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Status.html" afterPath="$PROJECT_DIR$/doc/Status.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/StatusesController.html" afterPath="$PROJECT_DIR$/doc/StatusesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/StatusesHelper.html" afterPath="$PROJECT_DIR$/doc/StatusesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/SubTask.html" afterPath="$PROJECT_DIR$/doc/SubTask.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/Task.html" afterPath="$PROJECT_DIR$/doc/Task.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TaskUser.html" afterPath="$PROJECT_DIR$/doc/TaskUser.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TaskUsersController.html" afterPath="$PROJECT_DIR$/doc/TaskUsersController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TaskUsersHelper.html" afterPath="$PROJECT_DIR$/doc/TaskUsersHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TasksController.html" afterPath="$PROJECT_DIR$/doc/TasksController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TasksHelper.html" afterPath="$PROJECT_DIR$/doc/TasksHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TestCase.html" afterPath="$PROJECT_DIR$/doc/TestCase.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TestCasesController.html" afterPath="$PROJECT_DIR$/doc/TestCasesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/TestCasesHelper.html" afterPath="$PROJECT_DIR$/doc/TestCasesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCase.html" afterPath="$PROJECT_DIR$/doc/UseCase.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseGroup.html" afterPath="$PROJECT_DIR$/doc/UseCaseGroup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseGroupsController.html" afterPath="$PROJECT_DIR$/doc/UseCaseGroupsController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseGroupsHelper.html" afterPath="$PROJECT_DIR$/doc/UseCaseGroupsHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseTemplate.html" afterPath="$PROJECT_DIR$/doc/UseCaseTemplate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseTemplatesController.html" afterPath="$PROJECT_DIR$/doc/UseCaseTemplatesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCaseTemplatesHelper.html" afterPath="$PROJECT_DIR$/doc/UseCaseTemplatesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCasesController.html" afterPath="$PROJECT_DIR$/doc/UseCasesController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UseCasesHelper.html" afterPath="$PROJECT_DIR$/doc/UseCasesHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/User.html" afterPath="$PROJECT_DIR$/doc/User.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UsersController.html" afterPath="$PROJECT_DIR$/doc/UsersController.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/UsersHelper.html" afterPath="$PROJECT_DIR$/doc/UsersHelper.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/use_case_groups/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/use_case_groups/_form.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/_index.html" afterPath="$PROJECT_DIR$/doc/_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.yardoc/checksums" afterPath="$PROJECT_DIR$/.yardoc/checksums" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/class_list.html" afterPath="$PROJECT_DIR$/doc/class_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/file.README.html" afterPath="$PROJECT_DIR$/doc/file.README.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/index.html" afterPath="$PROJECT_DIR$/doc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/method_list.html" afterPath="$PROJECT_DIR$/doc/method_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.yardoc/object_types" afterPath="$PROJECT_DIR$/.yardoc/object_types" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doc/top-level-namespace.html" afterPath="$PROJECT_DIR$/doc/top-level-namespace.html" />
+    </list>
+    <ignored path="IIC2154-2013-2-Grupo2.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="IIC2154-2013-2-Grupo2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="RailsDependency/#IIC2154-2013-2-Grupo2" pinned="false" current="true" current-in-tab="true">
+        <entry file="uml://RailsDependency/#IIC2154-2013-2-Grupo2">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>RailsDependency</ID>
+              <OriginalElement>#IIC2154-2013-2-Grupo2</OriginalElement>
+              <nodes>
+                <node x="0.0" y="257.75">User</node>
+                <node x="703.0" y="727.75">ProjectStatus</node>
+                <node x="32.5" y="353.75">UseCase</node>
+                <node x="0.0" y="444.75">DocumentProject</node>
+                <node x="188.0" y="727.75">ProjectRoleUser</node>
+                <node x="644.0" y="653.75">DocumentUseCase</node>
+                <node x="346.0" y="120.25000000000001">Evaluation</node>
+                <node x="221.0" y="653.75">RequirementTemplate</node>
+                <node x="540.0" y="504.875">DocumentProjectRequirement</node>
+                <node x="10.0" y="557.75">Requirement</node>
+                <node x="802.0" y="801.75">Ability</node>
+                <node x="682.0" y="801.75">Project</node>
+                <node x="435.0" y="653.75">RequirementUseCase</node>
+                <node x="226.0" y="875.75">Goal</node>
+                <node x="540.0" y="384.625">DocumentProjectUseCase</node>
+                <node x="326.0" y="211.25">ReportedHours</node>
+                <node x="363.0" y="727.75">DocumentTask</node>
+                <node x="555.0" y="801.75">Commit</node>
+                <node x="152.0" y="801.75">Comment</node>
+                <node x="0.0" y="727.75">UseCaseTemplate</node>
+                <node x="336.0" y="7.25">Bug</node>
+                <node x="0.0" y="801.75">Notification</node>
+                <node x="290.0" y="801.75">TaskUser</node>
+                <node x="0.0" y="875.75">Status</node>
+                <node x="535.0" y="727.75">UseCaseGroup</node>
+                <node x="71.5" y="0.0">TestCase</node>
+                <node x="51.5" y="98.25000000000001">Task</node>
+                <node x="425.0" y="801.75">SubTask</node>
+                <node x="331.0" y="875.75">Role</node>
+                <node x="116.0" y="875.75">Label</node>
+                <node x="0.0" y="653.75">DocumentRequirement</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="TestCase" target="Bug">
+                  <point x="51.5" y="-0.0" />
+                  <point x="-66.5" y="-18.25" />
+                </edge>
+                <edge source="UseCase" target="DocumentProjectUseCase">
+                  <point x="197.5" y="-0.0" />
+                  <point x="460.0" y="379.25" />
+                  <point x="-149.0" y="-18.25" />
+                </edge>
+                <edge source="Task" target="ReportedHours">
+                  <point x="71.5" y="31.666666666666686" />
+                  <point x="246.0" y="177.41666666666669" />
+                  <point x="-76.5" y="-24.0" />
+                </edge>
+                <edge source="DocumentProject" target="DocumentProjectRequirement">
+                  <point x="230.0" y="18.25" />
+                  <point x="-149.0" y="-18.25" />
+                </edge>
+                <edge source="DocumentProject" target="DocumentProjectUseCase">
+                  <point x="230.0" y="-18.25" />
+                  <point x="-149.0" y="18.25" />
+                </edge>
+                <edge source="User" target="ReportedHours">
+                  <point x="123.0" y="-0.0" />
+                  <point x="-76.5" y="24.0" />
+                </edge>
+                <edge source="Task" target="Evaluation">
+                  <point x="71.5" y="-0.0" />
+                  <point x="-56.5" y="-0.0" />
+                </edge>
+                <edge source="Requirement" target="DocumentProjectRequirement">
+                  <point x="220.0" y="-0.0" />
+                  <point x="-149.0" y="18.25" />
+                </edge>
+                <edge source="Task" target="Bug">
+                  <point x="71.5" y="-31.66666666666667" />
+                  <point x="246.0" y="114.08333333333334" />
+                  <point x="-66.5" y="18.25" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.7102702702702702" x="438.07990867579906" y="553.4931506849316" />
+              <SelectedNodes>
+                <node>Goal</node>
+              </SelectedNodes>
+              <Categories>
+                <Category>Association fields</Category>
+                <Category>Migration fields</Category>
+              </Categories>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="10" />
+    <option name="y" value="29" />
+    <option name="width" value="1004" />
+    <option name="height" value="728" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="RailsProjectView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IIC2154-2013-2-Grupo2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IIC2154-2013-2-Grupo2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IIC2154-2013-2-Grupo2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IIC2154-2013-2-Grupo2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IIC2154-2013-2-Grupo2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RunManager" selected="Rails.Development: IIC2154-2013-2-Grupo2">
+    <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test: IIC2154-2013-2-Grupo2" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="IIC2154-2013-2-Grupo2" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="test" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="spec: IIC2154-2013-2-Grupo2" type="RakeRunConfigurationType" factoryName="Rake">
+      <module name="IIC2154-2013-2-Grupo2" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Production: IIC2154-2013-2-Grupo2" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="IIC2154-2013-2-Grupo2" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="production" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Development: IIC2154-2013-2-Grupo2" type="RailsRunConfigurationType" factoryName="Rails">
+      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
+      <module name="IIC2154-2013-2-Grupo2" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
+      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Rake.test: IIC2154-2013-2-Grupo2" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.spec: IIC2154-2013-2-Grupo2" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: IIC2154-2013-2-Grupo2" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: IIC2154-2013-2-Grupo2" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="60d12c51-84f4-4323-a0f2-f73fe935f6f0" name="Default" comment="" />
+      <created>1385588491751</created>
+      <updated>1385588491751</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="10" y="29" width="1004" height="728" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329927" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USERS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/controllers/api_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://RailsDependency/#IIC2154-2013-2-Grupo2">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>RailsDependency</ID>
+          <OriginalElement>#IIC2154-2013-2-Grupo2</OriginalElement>
+          <nodes>
+            <node x="0.0" y="257.75">User</node>
+            <node x="703.0" y="727.75">ProjectStatus</node>
+            <node x="32.5" y="353.75">UseCase</node>
+            <node x="0.0" y="444.75">DocumentProject</node>
+            <node x="188.0" y="727.75">ProjectRoleUser</node>
+            <node x="644.0" y="653.75">DocumentUseCase</node>
+            <node x="346.0" y="120.25000000000001">Evaluation</node>
+            <node x="221.0" y="653.75">RequirementTemplate</node>
+            <node x="540.0" y="504.875">DocumentProjectRequirement</node>
+            <node x="10.0" y="557.75">Requirement</node>
+            <node x="802.0" y="801.75">Ability</node>
+            <node x="682.0" y="801.75">Project</node>
+            <node x="435.0" y="653.75">RequirementUseCase</node>
+            <node x="226.0" y="875.75">Goal</node>
+            <node x="540.0" y="384.625">DocumentProjectUseCase</node>
+            <node x="326.0" y="211.25">ReportedHours</node>
+            <node x="363.0" y="727.75">DocumentTask</node>
+            <node x="555.0" y="801.75">Commit</node>
+            <node x="152.0" y="801.75">Comment</node>
+            <node x="0.0" y="727.75">UseCaseTemplate</node>
+            <node x="336.0" y="7.25">Bug</node>
+            <node x="0.0" y="801.75">Notification</node>
+            <node x="290.0" y="801.75">TaskUser</node>
+            <node x="0.0" y="875.75">Status</node>
+            <node x="535.0" y="727.75">UseCaseGroup</node>
+            <node x="71.5" y="0.0">TestCase</node>
+            <node x="51.5" y="98.25000000000001">Task</node>
+            <node x="425.0" y="801.75">SubTask</node>
+            <node x="331.0" y="875.75">Role</node>
+            <node x="116.0" y="875.75">Label</node>
+            <node x="0.0" y="653.75">DocumentRequirement</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="TestCase" target="Bug">
+              <point x="51.5" y="-0.0" />
+              <point x="-66.5" y="-18.25" />
+            </edge>
+            <edge source="UseCase" target="DocumentProjectUseCase">
+              <point x="197.5" y="-0.0" />
+              <point x="460.0" y="379.25" />
+              <point x="-149.0" y="-18.25" />
+            </edge>
+            <edge source="Task" target="ReportedHours">
+              <point x="71.5" y="31.666666666666686" />
+              <point x="246.0" y="177.41666666666669" />
+              <point x="-76.5" y="-24.0" />
+            </edge>
+            <edge source="DocumentProject" target="DocumentProjectRequirement">
+              <point x="230.0" y="18.25" />
+              <point x="-149.0" y="-18.25" />
+            </edge>
+            <edge source="DocumentProject" target="DocumentProjectUseCase">
+              <point x="230.0" y="-18.25" />
+              <point x="-149.0" y="18.25" />
+            </edge>
+            <edge source="User" target="ReportedHours">
+              <point x="123.0" y="-0.0" />
+              <point x="-76.5" y="24.0" />
+            </edge>
+            <edge source="Task" target="Evaluation">
+              <point x="71.5" y="-0.0" />
+              <point x="-56.5" y="-0.0" />
+            </edge>
+            <edge source="Requirement" target="DocumentProjectRequirement">
+              <point x="220.0" y="-0.0" />
+              <point x="-149.0" y="18.25" />
+            </edge>
+            <edge source="Task" target="Bug">
+              <point x="71.5" y="-31.66666666666667" />
+              <point x="246.0" y="114.08333333333334" />
+              <point x="-66.5" y="18.25" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.7102702702702702" x="438.07990867579906" y="553.4931506849316" />
+          <SelectedNodes>
+            <node>Goal</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Association fields</Category>
+            <Category>Migration fields</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

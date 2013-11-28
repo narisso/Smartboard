@@ -89,7 +89,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save_and_notify boards_project_path(@task.project_id)
-        format.js { render :js => "window.location = '#{boards_project_path(@task.project_id)}'" }
+        format.js { render :js => "location.reload();" }
 
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }

@@ -1,4 +1,6 @@
+$('#modal').modal('hide');
 $('#modal-large').html("<%= escape_javascript(render 'show') %>");
+$('#modal-large').modal('show');
 
 var dds = $('#subtasks dd');
 var as = dds.children();

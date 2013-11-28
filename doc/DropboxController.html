@@ -103,7 +103,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Handles the authorization and callback of the Dropbox account of a project.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -135,7 +146,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Asks for authorization to Dropbox's account for access from SmartBoard to
+the files on it repository.</p>
+</div></span>
   
 </li>
 
@@ -157,7 +171,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>To callback for Dropbox authorization.</p>
+</div></span>
   
 </li>
 
@@ -192,24 +208,36 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Asks for authorization to Dropbox's account for access from SmartBoard to
+the files on it repository.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
-5
 6
 7
 8
 9
 10
 11
-12</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/dropbox_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/dropbox_controller.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authorize'>authorize</span>
 
@@ -234,15 +262,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>To callback for Dropbox authorization</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-17
-18
-19
 20
 21
 22
@@ -259,10 +295,9 @@
 33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/dropbox_controller.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/dropbox_controller.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callback'>callback</span>
- 
 	<span class='id identifier rubyid_dbsession'>dbsession</span> <span class='op'>=</span> <span class='const'>DropboxSession</span><span class='period'>.</span><span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:dropbox_session</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_dbsession'>dbsession</span><span class='period'>.</span><span class='id identifier rubyid_get_access_token'>get_access_token</span> <span class='comment'>#we've been authorized, so now request an access_token
 </span>	<span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:dropbox_session</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_dbsession'>dbsession</span><span class='period'>.</span><span class='id identifier rubyid_serialize'>serialize</span>	
@@ -272,11 +307,9 @@
 	<span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span>	
 	
 <span class='kw'>rescue</span> 
-
 	<span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:dropbox_session</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:success</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed authorized </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:success</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to authorize</span><span class='tstring_end'>&quot;</span></span>
 	<span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_session'>session</span><span class='lbracket'>[</span><span class='symbol'>:return_to</span><span class='rbracket'>]</span>	
-
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -288,7 +321,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:37 2013 by
+  Generated on Wed Nov 27 18:22:48 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

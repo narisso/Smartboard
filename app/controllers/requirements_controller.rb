@@ -44,6 +44,7 @@ class RequirementsController < ApplicationController
   #
   # @param id [String] the requirement's id
   def edit
+    params[:type] = ""
     @requirement = Requirement.find(params[:id])
   end
 
@@ -127,4 +128,20 @@ class RequirementsController < ApplicationController
       format.js
     end
   end
+
+  # Adds Use Case to a requirement
+  #
+  # @param id [String] the requirement's id
+  # @param use_case_id [String] the use case's id
+  # @param project_id [String] the project's id
+  def add_use_case
+    @requirement = Requirement.find(params[:id])
+    use_case = UseCase.find(params[:use_case_id])
+    @requirement.use_cases << use_case
+    @requirement.save
+    respond_to do |format|
+      format.html {redirect_to requirements_project_use_case_path(@project, use_case) }
+    end
+  end
+
 end

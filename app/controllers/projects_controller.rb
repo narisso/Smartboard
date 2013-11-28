@@ -12,7 +12,16 @@ class ProjectsController < ApplicationController
   #
   # @return [String] the list of projects as JSon 
   def index   
-    @projects = current_user.projects
+    p=current_user.project_role_users
+    @projects = Array.new
+    p.each do |pru|
+      if pru.invitation_confirmed != false
+        @projects << Project.find(pru.project_id)
+      end
+    end
+
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -167,6 +176,7 @@ class ProjectsController < ApplicationController
           {name: 'Learning',project_id: @project.id, color: '#472bd6'},
           {name: 'Research',project_id: @project.id, color: '#020118'}])
         @project.add_user_role(current_user, Role.first)
+        UseCaseGroup.create({ name: "Use Cases", project_id: @project.id })
         format.html { redirect_to boards_project_path(@project) }
         format.json { render json: @project, status: :created, location: @project }
       else

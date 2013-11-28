@@ -91,6 +91,11 @@ $(document).ready(function() {
 jQuery(document).ready(function($) {
   $('.dropdown-toggle').dropdown();
 
+  $(document).on('click', 'a.accordion-toggle', function(e) {
+    $(e.target).parent().siblings('.accordion-body').on('hidden', function(e) {
+        e.stopPropagation();
+    });
+  });
 
   $('#modal').on('hidden', function () {
     $('#modal').html('<div id="modal-progress hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>')
@@ -98,7 +103,6 @@ jQuery(document).ready(function($) {
   $('#modal-large').on('hidden', function () {
     $('#modal-large').html('<div id="modal-progress-large hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>')
   })
-
 
 });
 

@@ -10,6 +10,9 @@ class BoardsController < ApplicationController
 		authorize! :read, @project
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;		
+		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+		@tutorial.save
+		
 		begin
 			if @project.github_token
 				g=Github.new :oauth_token => @project.github_token
@@ -52,8 +55,34 @@ class BoardsController < ApplicationController
 	        format.html
 	    end
 	end 
-# Puts a README file on the folder of Dropbox, when the link has just been done. 
-  def send_confirmation_doc
+
+	# Stop showing tutorial for a project
+	def accept_tutorial
+		@project = Project.find(params[:id])
+		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+		@tutorial.show_tutorial = false
+		@tutorial.save
+		respond_to do |format|
+	        format.js {head :ok}
+	    end
+	end
+
+	# Request html for tutorial
+	def show_tutorial
+		@project  = Project.find(params[:id])
+		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)
+
+		respond_to do |format|
+			if @tutorial.show_tutorial and @tutorial.role_id == 1
+	        	format.js { render partial: "tutorial" }
+	        else
+	        	format.js { head :no_content }
+	        end
+	    end
+	end
+
+	# Puts a README file on the folder of Dropbox, when the link has just been done. 
+  	def send_confirmation_doc
       dbsession = DropboxSession.deserialize(@project.dropbox_token)
       file_path =@project.name + "/" + "README_DROPBOX.txt"
       file = open('doc/README_DROPBOX.txt')
@@ -65,7 +94,8 @@ class BoardsController < ApplicationController
       rescue
         return false
       end
+  	end
 
-  end
+
 
 end

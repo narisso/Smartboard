@@ -1,0 +1,23 @@
+<%- model_class = User -%>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h2><%= t "devise.invitations.new.header" %></h2>
+
+  <div class="modal-body">
+
+<%= simple_form_for :project_invitation, :url => send_invitation_path, :html => {:method => :post} do |f| %>
+
+  <%= f.input :email %> 
+
+  <p> Select role of the new user </p>
+  <%= select_tag :role_guest, options_for_select( @roles_name, "Developer") %>
+
+  <%= hidden_field_tag :project_id, @project.id %>
+
+</div>
+
+<div class="modal-footer">
+<%= f.button :submit, :class => 'btn-primary' , :value => 'Send'%>
+<%= link_to "Cancel", '', :data => {:dismiss => "modal"}, :class => 'btn' %>   
+</div>
+<% end %>

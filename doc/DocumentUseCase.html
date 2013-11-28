@@ -101,7 +101,18 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Contains the model of the documents of the use case.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -133,7 +144,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Uploads a file to a use case's directory of Dropbox.</p>
+</div></span>
   
 </li>
 
@@ -157,14 +170,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Uploads a file to a use case's directory of Dropbox</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-13
-14
 15
 16
 17
@@ -175,10 +197,12 @@
 22
 23
 24
-25</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/document_use_case.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'app/models/document_use_case.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upload_file'>upload_file</span>
 	<span class='id identifier rubyid_project'>project</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_use_case'>use_case</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span>
@@ -186,7 +210,7 @@
 	<span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_url_path'>url_path</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
   <span class='id identifier rubyid_whole_name'>whole_name</span> <span class='op'>=</span> <span class='id identifier rubyid_url_path'>url_path</span><span class='period'>.</span><span class='id identifier rubyid_original_filename'>original_filename</span>
   <span class='id identifier rubyid_final_name'>final_name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.v1.0</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_extname'>extname</span><span class='lparen'>(</span><span class='id identifier rubyid_whole_name'>whole_name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_file_path'>file_path</span> <span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SmartBoard/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/UseCases/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_final_name'>final_name</span>
+  <span class='id identifier rubyid_file_path'>file_path</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/UseCases/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_final_name'>final_name</span>
   <span class='id identifier rubyid_dbsession'>dbsession</span> <span class='op'>=</span> <span class='const'>DropboxSession</span><span class='period'>.</span><span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_dropbox_token'>dropbox_token</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>DropboxClient</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dbsession'>dbsession</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put_file'>put_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file_path'>file_path</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
@@ -203,7 +227,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 19 11:52:36 2013 by
+  Generated on Wed Nov 27 18:22:46 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

@@ -53,6 +53,14 @@
   <% end %>
   <br>
   <%= link_to "New Requirement", new_project_requirement_path(@project,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn", :style=>""%>
+  <div class="dropdown" style="float:left;">
+                        <a href="#" class="dropdown-toggle btn">Add Existing Requirement</a>
+                        <ul class="dropdown-menu">
+                        <% (@project.requirements-@requirements).each do |requirement| %>
+                        <li><%= link_to requirement.name, add_use_case_project_requirement_path(@project,requirement,:use_case_id => @use_case.id) %></li>
+                        <%end%>
+                        </ul>
+  </div> 
 </div>
 
 	<div class="form-actions">

@@ -45,6 +45,11 @@
 	margin-left:-40%;
 }
 
+#myModal{
+  width:90%;
+  margin-left:-45%;
+}
+
 .tab-content{
 	height:300px;
 	overflow:auto;
@@ -52,6 +57,18 @@
 
 #modal-large{
 	position:relative;
+}
+
+.item{
+  height:280px;
+  width:100%;
+}
+
+.tutorial{
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 .breadcrumb {
@@ -67,6 +84,11 @@
 .modal-body-task
 {
     max-height:400px;
+}
+
+.home_icon
+{
+    height: 30px;
 }
 
 .alert {

@@ -20,6 +20,7 @@ class ProjectRoleUsersController < ApplicationController
   # @return [String] the relation's information as JSON.
   def show
     @project_role_user = ProjectRoleUser.find(params[:id])
+    
 
     respond_to do |format|
       format.html # show.html.erb

@@ -56,6 +56,10 @@ class UseCasesController < ApplicationController
   def create
     @use_case = UseCase.new(params[:use_case])
     @use_case.project_id = params[:project_id]
+    @project = Project.find(params[:project_id])    
+    if @use_case.use_case_group_id.nil? then
+      @use_case.use_case_group_id = @project.use_case_groups.first.id
+    end
     @use_case.data = params[:data].to_json
 
     respond_to do |format|
@@ -155,9 +159,9 @@ class UseCasesController < ApplicationController
   # @param id [String] the use case's id
   # @param project_id [String] the project's id
   def requirements
-  @use_case = UseCase.find(params[:id])
-  @project = @use_case.project
-  @requirements = @use_case.requirements
+    @use_case = UseCase.find(params[:id])
+    @project = @use_case.project
+    @requirements = @use_case.requirements
     respond_to do |format|
       format.html 
     end
@@ -168,16 +172,11 @@ class UseCasesController < ApplicationController
   # @param id [String] the use case's id
   # @param project_id [String] the project's id
   def tasks
-  @use_case = UseCase.find(params[:id])
-  @project = @use_case.project
+    @use_case = UseCase.find(params[:id])
+    @project = @use_case.project
     respond_to do |format|
       format.html 
     end
   end
-
-
-
-
-
 
 end

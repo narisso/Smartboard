@@ -92,11 +92,18 @@ class StatusesController < ApplicationController
   # @return [String] the content of the deletion as JSON
   def destroy
     @status = Status.find(params[:id])
-    @status.destroy
-
-    respond_to do |format|
-      format.html { redirect_to statuses_url }
-      format.json { head :no_content }
+    @project = @status.project
+    
+    if @status.valid_destroy
+      respond_to do |format|
+        format.html { redirect_to boards_project_path(@project) }
+        format.json { head :no_content }
+      end
+    else
+       respond_to do |format|
+        format.html { redirect_to boards_project_path(@project),alert: 'First delete or change tasks with this status.' }
+        format.json { render json: @status.errors }
+      end
     end
   end
 

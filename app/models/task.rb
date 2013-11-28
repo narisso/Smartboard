@@ -72,9 +72,10 @@ class Task < ActiveRecord::Base
   # @param rh [String] the ammount of hours to report
   # @param current_user [String] the id of the current user
   # @param task [String] the task in which the hours are been changed.
-  def self.report_hours(instance, rh,current_user,task)
+  def self.report_hours(instance, rh, current_user, task)
     if instance
-      instance.update_attributes(rh)
+      instance.reporting_hours = instance.reporting_hours + rh[:reporting_hours].to_f
+      instance.save
     else
       instance = ReportedHours.new(rh)
       instance.task = task

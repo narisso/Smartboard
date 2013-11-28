@@ -17,7 +17,7 @@
 	<ul>
 		<li class="uc-li">
 			<div class="head"><%= @use_case.name %> Tasks
-<%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.sort_by{|e| e[:order]}.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right", :style=>"margin-right:20px;"%>
+            <%= link_to "New Task", new_project_status_task_path(@project, @project.statuses.sort_by{|e| e[:order]}.first,:use_case =>@use_case.id), :data => {:toggle => "modal", :remote => true, :target => '#modal'}, :class=>"btn pull-right", :style=>"margin-right:20px;" %>
 			</div>
 			<ul class="sortable" data-type="use_case">
 				<% @use_case.tasks.each_with_index do |task , i| %>
@@ -25,12 +25,9 @@
 						<p class="status"> <%= task.status.name %> </p>
 						<p class="name"> <%= task.name %> </p>
 					</li>
-
-				<%end%>
+				<% end %>
 			</ul>
-			
 		</li>
-
 	</ul>
 
 

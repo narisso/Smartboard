@@ -139,7 +139,7 @@ class ProjectsController < ApplicationController
   # @param project_id [String] the project's id
   def unlink_github
     @project = Project.find(params[:project_id])
-    delete_hooks    
+    @project.delete_hooks    
     @project.github_token = nil
     @project.github_user = nil
     @project.repo_name = nil

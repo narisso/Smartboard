@@ -11,7 +11,7 @@ class Label < ActiveRecord::Base
   # @param final_date [String]
   # @return [Array] an array with tasks
   def get_tasks(initial_date, final_date)
-  	self.tasks.where("created_at >= ? and created_at <= ?", initial_date, final_date) 
+  	self.tasks.where("created_at >= ? and created_at <= ?", initial_date, final_date + 1.day) 
   end
 
   #See if there is no tasks with this label, and destroy the label if it's posible

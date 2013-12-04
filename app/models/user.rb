@@ -83,9 +83,7 @@ class User < ActiveRecord::Base
 
   #This method returns the sum of reported user hours in the tickets in JSON format
   def get_tasks_with_hours( id,initial_date, finish_date )
-    #restriction = "project_id =" + id.to_s + " and "
-    #restriction = restriction + "user_id = #{self.id.to_s}" 
-    user_tasks = Task.joins("INNER JOIN reported_hours on tasks.id = reported_hours.task_id").where("tasks.created_at >= ? and tasks.created_at < ? and user_id = ? and project_id= ?", initial_date, finish_date, self.id, id).select("name, reporting_hours as size").all
+    Task.joins("INNER JOIN reported_hours on tasks.id = reported_hours.task_id").where("tasks.created_at >= ? and tasks.created_at <= ? and user_id = ? and project_id= ?", initial_date, finish_date + 1.day, self.id, id).select("name, reporting_hours as size").all
   end
 
   # Gives the projects of a certain user as JSON.
@@ -249,7 +247,7 @@ class User < ActiveRecord::Base
   # @param final_date [String]
   # @return [Array] an array with tasks
   def get_tasks(project, initial_date, final_date)
-    self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date)
+    self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date + 1.day)
   end
 
 end

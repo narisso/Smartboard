@@ -44,11 +44,17 @@ class Ability
                 if task.lock == false  
                     task.users.include? user
                 end 
-            end   
-        else
+            end 
+        elsif project.get_role(user) == "Client"   
+            cannot :create, Task  
+        else 
 
         end 
-        #Client case, can't read
+ 
+    end 
+
+    #Contidion for can enter in the project board
+    can :enter, Project do |project|
         not project.get_role(user) == "Client"
     end 
 

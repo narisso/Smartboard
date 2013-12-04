@@ -2,7 +2,7 @@
   <div class=" sidebar-nav ltl-nav ltl-nav-close">
     <ul class="ltl-nav-list">
 
-      <% if can? :read, @project %>
+      <% if can? :enter, @project %>
       <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed", :id => "popover_tasks", "data-content"=>"Tasks",:rel=> "popover", "data-placement"=>"right" ), boards_project_path(@project) %><h4>Tasks</h4></li>
       <% end %>
     

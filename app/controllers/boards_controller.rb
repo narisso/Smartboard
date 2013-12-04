@@ -20,7 +20,7 @@ class BoardsController < ApplicationController
   	# @param task_highlight [String]
 	def show
 		@project = Project.find(params[:id])
-		authorize! :read, @project
+		authorize! :enter, @project
 		@statuses = Status.where(:project_id => params[:id]).sort_by{|e| e[:order]}
 		@total = 0;		
 		@tutorial = ProjectRoleUser.find_by_user_id_and_project_id(current_user.id, @project.id)

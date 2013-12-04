@@ -3,7 +3,7 @@ function hierarchicalGraphInit(id, data_path, initial_date, final_date)
   var actualWidth  = $(id).width();
   var actualHeight = $(id).height();
 
-  var m = [30, 40, 20, 100], // top right bottom left
+  var m = [30, 40, 20, 150], // top right bottom left
       w = actualWidth - m[1] - m[3], // width
       h = actualHeight - m[0] - m[2], // height
       x = d3.scale.linear().range([0, w]),

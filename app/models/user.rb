@@ -250,4 +250,11 @@ class User < ActiveRecord::Base
     self.tasks.where(:project_id => project).where("tasks.created_at >= ? and tasks.created_at <= ?", initial_date, final_date + 1.day)
   end
 
+  def get_short_email
+    at_index = self.email.index('@') - 1
+    at_index = [15, at_index].min
+    str = self.email.slice(0..at_index)
+
+  end
+
 end

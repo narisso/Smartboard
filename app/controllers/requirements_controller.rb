@@ -140,7 +140,11 @@ class RequirementsController < ApplicationController
     @requirement.use_cases << use_case
     @requirement.save
     respond_to do |format|
-      format.html {redirect_to requirements_project_use_case_path(@project, use_case) }
+      if(params[:type])
+        format.html {redirect_to requirements_project_use_case_path(@project, use_case, :type=>"step") }
+      else
+         format.html {redirect_to requirements_project_use_case_path(@project, use_case) }
+      end
     end
   end
 

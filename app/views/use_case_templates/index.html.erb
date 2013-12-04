@@ -17,8 +17,9 @@
       <div id='collapse<%= "_#{template.id}"%>' class="accordion-body collapse">
         <div class="accordion-inner">
           <ul>
-            <%= render 'use_cases/template_form', :@json_obj => JSON.parse(template.template_form) %>
-              
+            <% if template.template_form != "null" %>
+              <%= render 'use_cases/template_form', :@json_obj => JSON.parse(template.template_form) %>
+            <% end %>
           </ul>
         </div>
       </div>

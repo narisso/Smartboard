@@ -2,7 +2,6 @@
 class UseCaseGroupsController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :use_case_group, :through => :project
-
   # Gives the list of groups of use cases
   #
   # @return [String] the list of groups as JSon 

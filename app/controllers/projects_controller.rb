@@ -129,9 +129,9 @@ require 'dropbox_sdk'
 
     Project.delete_hooks(@project)
 
-    @project.change_repo_name(@new_repo_name)
+    Project.change_repo_name(@project, @new_repo_name)
 
-    @project.create_hook()
+    Project.create_hook(@project)
     #respond_with @project
   end
 

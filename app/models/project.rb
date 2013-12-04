@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
   end
 
   # Creates the hook of a commit in the project.
-  def self.create_hook
+  def self.create_hook(project)
     github = Github.new :oauth_token => project.github_token
 
     #Check if hook already exists
@@ -154,7 +154,7 @@ class Project < ActiveRecord::Base
   end
 
   #Changes the name of a repository in the DB.
-  def self.change_repo_name(new_repo_name)
+  def self.change_repo_name(project, new_repo_name)
     old_repo_name = project.repo_name
 
     project.repo_name = new_repo_name

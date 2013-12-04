@@ -2,6 +2,7 @@
 class UseCasesController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :use_case, :through => :project
+
   
   # Gives the list of use cases as JSon
   #
@@ -34,7 +35,7 @@ class UseCasesController < ApplicationController
   def new
     @use_case = UseCase.new
     @use_case.project = Project.find(params[:project_id])
-
+    @use_case.use_case_group_id = params[:group_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @use_case }
@@ -58,7 +59,7 @@ class UseCasesController < ApplicationController
     @use_case.project_id = params[:project_id]
     @project = Project.find(params[:project_id])    
     if @use_case.use_case_group_id.nil? then
-      @use_case.use_case_group_id = @project.use_case_groups.first.id
+      @use_case.use_case_group_id = params[:group_id]
     end
     @use_case.data = params[:data].to_json
 

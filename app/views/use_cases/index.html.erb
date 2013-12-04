@@ -9,8 +9,15 @@
 
 <%= bootstrap_flash %>
 
+<div class="alert alert-info" style="top:50px;">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Hint!</strong> In this page you can find the project use case groups and their associated use case.
+</div>
+
+
 <%= render 'nav_bar' %>
 
+<h3>Use Case Groups</h3>
 <div class="accordion" id="#accordion_groups">
     
   <% @use_case_groups.each do |group| %>
@@ -19,8 +26,11 @@
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{group.id}" %>'>
           <%= group.name %>
         </a>
+        <%= link_to t('.new', :default => t("New Use Case")),
+            new_project_use_case_path(@project,:group_id => group.id),
+            :class => 'btn btn-primary pull-right', :style =>'margin-top:-33px;margin-right:5px;' %>
       </div>
-      <div id='collapse<%= "_#{group.id}"%>' class="accordion-body collapse">
+      <div id='collapse<%= "_#{group.id}"%>' class="accordion-body">
         <div class="accordion-inner">
           <ul>
             <% group.use_cases.each do |use_case| %>
@@ -38,7 +48,5 @@
 <div>
 
 <div class="form-actions use-cases" style="margin-left:0px">
-<%= link_to t('.new', :default => t("New Use Case")),
-            new_project_use_case_path,
-            :class => 'btn btn-primary' %>
+<%= link_to "New Group", new_project_use_case_group_path(@project),:class=>'btn' %>
 </div>

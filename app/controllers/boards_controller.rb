@@ -1,6 +1,7 @@
 # Manages board's information
 class BoardsController < ApplicationController
   require 'dropbox_sdk'
+
 	# Shows the administrator, project manager and developer board's view and indicates the link with dropbox and github
   	#
   	# @param id [String] the project's id

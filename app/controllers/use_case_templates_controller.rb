@@ -1,8 +1,7 @@
 # Manages the information of the use case's templates
 class UseCaseTemplatesController < ApplicationController
   load_and_authorize_resource :project
-  load_and_authorize_resource :use_case_template, :through => :project
-  
+  load_and_authorize_resource :use_case_template, :through => :project 
   # Gives the list of templates of use case of a project
   #
   # @param project_id [String] the project's id

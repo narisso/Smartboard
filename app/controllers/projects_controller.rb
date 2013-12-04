@@ -127,7 +127,7 @@ require 'dropbox_sdk'
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
 
-    @project.delete_hooks()
+    Project.delete_hooks(@project)
 
     @project.change_repo_name(@new_repo_name)
 
@@ -140,7 +140,7 @@ require 'dropbox_sdk'
   # @param project_id [String] the project's id
   def unlink_github
     @project = Project.find(params[:project_id])
-    @project.delete_hooks    
+    Project.delete_hooks(@project)    
     @project.github_token = nil
     @project.github_user = nil
     @project.repo_name = nil

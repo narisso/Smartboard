@@ -45,7 +45,7 @@ class Ability
                     task.users.include? user
                 end 
             end   
-        else 
+        else
 
         end 
         #Client case, can't read

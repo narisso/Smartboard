@@ -131,7 +131,7 @@ class Project < ActiveRecord::Base
   end
 
   # Deletes a hook from a project.
-  def self.delete_hooks
+  def self.delete_hooks(project)
 
     unless project.repo_name.nil? then
 

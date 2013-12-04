@@ -1,9 +1,10 @@
 # Manages project's information
 class ProjectsController < ApplicationController
-
+require 'dropbox_sdk'
   load_and_authorize_resource
+
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
+  skip_authorize_resource :only => [:show,:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
                                     :reports_tasks_project, :reports_tasks_user, :reports_use_case ]
 
   respond_to :html, :json
@@ -243,18 +244,22 @@ class ProjectsController < ApplicationController
   end
   
   # Sends confirmation document, and read me document to a recent linked Dropbox's repository
+# Puts a README file on the folder of Dropbox, when the link has just been done. 
   def send_confirmation_doc
-    dbsession = DropboxSession.deserialize(@dropbox_token)
-    @file_path ="README_DROPBOX.txt"
-    file = open('doc/README_DROPBOX.txt')
-    client = DropboxClient.new(dbsession)
-    response = client.put_file(@file_path, file)
-    flash[:success] = "We have send a document to your dropbox "
-
-    rescue 
-
-    @dropbox_token = nil
-    flash[:success] = "Failed authorized "
+    if params[:project_id] 
+      project = Project.find(params[:project_id])
+      dbsession = DropboxSession.deserialize(project.dropbox_token)
+      file_path = project.name + "/" + "README_DROPBOX.txt"
+      file = open('doc/README_DROPBOX.txt')
+      begin
+        client = DropboxClient.new(dbsession)
+        response = client.put_file(file_path, file)
+        flash[:success] = "We have send a document to your dropbox "
+        return true
+      rescue
+        return false
+      end
+    end
   end
 
   # Render report's view

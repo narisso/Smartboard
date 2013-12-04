@@ -2,4 +2,11 @@
 <div class="page-header">
   <h1><%=t '.title', :default => 'New Use Case Group', :model => model_class.model_name.human.titleize %></h1>
 </div>
+
+<div class="alert alert-info" style="top:50px;">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Hint!</strong> Create a new use case group for the project.
+</div>
 <%= render :partial => 'form' %>
+
+

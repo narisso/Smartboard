@@ -2,7 +2,6 @@
 class UsersController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, :only => [:notifications]
- 
   # Gives the list of users of the application as JSon
   #
   # @return [String] the list of users as JSon 

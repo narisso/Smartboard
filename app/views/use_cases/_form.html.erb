@@ -11,9 +11,7 @@
 
      <div class="block ">
     	<%= f.input :name %>
-      <%= f.association :use_case_group, 
-                        :collection => UseCaseGroup.where(:project_id => @project),
-                        :input_html => { class: 'chosen-select selectpicker'} %>
+      <%= f.input :use_case_group_id, :as => :hidden, :input_html => { :value => @use_case.use_case_group_id } %>
       
     	<%= f.association :use_case_template,
                         :collection => UseCaseTemplate.where(:project_id => @project),

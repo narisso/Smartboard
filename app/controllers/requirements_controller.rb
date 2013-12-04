@@ -3,6 +3,7 @@ class RequirementsController < ApplicationController
 
   load_and_authorize_resource :project, :except => :create
   load_and_authorize_resource :requirement, :through => :project, :except => :create
+
   # Gives the list of requirements as JSon
   #
   # @return [String] the list of requirements as JSon 
@@ -20,7 +21,7 @@ class RequirementsController < ApplicationController
   # @return [String] the requirement's information as JSON
   def show
     @requirement = Requirement.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @requirement }
@@ -140,7 +141,11 @@ class RequirementsController < ApplicationController
     @requirement.use_cases << use_case
     @requirement.save
     respond_to do |format|
-      format.html {redirect_to requirements_project_use_case_path(@project, use_case) }
+      if(params[:type])
+        format.html {redirect_to requirements_project_use_case_path(@project, use_case, :type=>"step") }
+      else
+         format.html {redirect_to requirements_project_use_case_path(@project, use_case) }
+      end
     end
   end
 

@@ -2,6 +2,7 @@
 class LabelsController < ApplicationController
   load_and_authorize_resource :project
   load_and_authorize_resource :label, :through => :project
+  
 
   # Gives the list of labels of the application as JSon
   #

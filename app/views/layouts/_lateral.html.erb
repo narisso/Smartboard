@@ -5,9 +5,9 @@
       <% if can? :read, @project %>
       <li><%= link_to image_tag("ltl_bar_task.png", :alt => "rss feed", :id => "popover_tasks", "data-content"=>"Tasks",:rel=> "popover", "data-placement"=>"right" ), boards_project_path(@project) %><h4>Tasks</h4></li>
       <% end %>
-      <% if can? :read, @project %>
+    
       <li><%= link_to image_tag("ltl_bar_docs.png", :alt => "rss feed", :id => "popover_docs", "data-content"=>"Documents",:rel=> "popover", "data-placement"=>"right"), project_document_projects_path(@project), :data => {:toggle => "modal", :remote => true, :target => '#modal'} %><h4>Docs</h4></li>
-      <% end %>
+  
       <!--
       <li><%= image_tag("ltl_bar_test.png", :alt => "rss feed", :id => "popover_tests", "data-content"=>"Tests",:rel=> "popover", "data-placement"=>"right") %><h4>Tests</h4></li>
 
@@ -19,7 +19,7 @@
 
       <li><%= link_to image_tag("ltl_bar_use.png", :alt => "rss feed", :id => "popover_cases", "data-content"=>"UseCases",:rel=> "popover", "data-placement"=>"right"), project_use_cases_path(@project) %><h4>Use Cases</h4></li>
 
-      <li><%= link_to image_tag("ltl_bar_list.png", :alt => "rss feed", :id => "popover_config", "data-content"=>"Details",:rel=> "popover", "data-placement"=>"right"), project_path(@project) %><h4>Use Cases</h4></li>
+      <li><%= link_to image_tag("ltl_bar_list.png", :alt => "rss feed", :id => "popover_config", "data-content"=>"Details",:rel=> "popover", "data-placement"=>"right"), project_path(@project) %><h4>Details</h4></li>
 
       <li><%= link_to image_tag("ltl_bar_test.png", :alt => "rss feed", :id => "popover_tests", "data-content"=>"Reports",:rel=> "popover", "data-placement"=>"right"), reports_project_path(@project) %><h4>Reports</h4></li>
 

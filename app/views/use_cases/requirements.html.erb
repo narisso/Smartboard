@@ -57,7 +57,14 @@
                         <a href="#" class="dropdown-toggle btn">Add Existing Requirement</a>
                         <ul class="dropdown-menu">
                         <% (@project.requirements-@requirements).each do |requirement| %>
-                        <li><%= link_to requirement.name, add_use_case_project_requirement_path(@project,requirement,:use_case_id => @use_case.id) %></li>
+                        <li>
+                        <% if params[:type]=="step" %> 
+                        <%= link_to requirement.name, add_use_case_project_requirement_path(@project,requirement,:use_case_id => @use_case.id,:type =>'step') %>
+                        <%else%>
+                          <%= link_to requirement.name, add_use_case_project_requirement_path(@project,requirement,:use_case_id => @use_case.id) %>
+                        <%end%>
+
+                        </li>
                         <%end%>
                         </ul>
   </div> 

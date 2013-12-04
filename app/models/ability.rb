@@ -18,7 +18,7 @@ class Ability
         can :manage, UseCase
         can :manage, UseCaseTemplate
         can :manage, UseCaseGroup
-        
+
         project.users.include? user 
 
         if project.get_role(user) == "Administrator"
@@ -44,12 +44,11 @@ class Ability
                 if task.lock == false  
                     task.users.include? user
                 end 
-            end     
-            
-        else #Caso en el que es cliente
-            ##No puede manejar tareas             
-        end 
+            end   
+        else 
 
+        end 
+        #Client case, can't read
         not project.get_role(user) == "Client"
     end 
 

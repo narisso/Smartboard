@@ -1,9 +1,15 @@
+	<% if params[:controller] == "use_case_templates" %>
+		<% @disabled = true %>
+	<% else %>
+		<% @disabled = false %>
+	<% end %>
+
 	<% @json_obj.each do |p| %>
 		<% if p[1]["input_type"] == "text_field_tag" %>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
 				<div class='controls atribbute-input'>
-						<%= text_field_tag "data[#{p[0]}]", defined?(@data[p[0]]).nil? ? '' : @data[p[0]] %>
+						<%= text_field_tag "data[#{p[0]}]", defined?(@data[p[0]]).nil? ? '' : @data[p[0]], :disabled => @disabled %>
 				</div>
 			</div>
 		<% elsif p[1]["input_type"] == "radio_button_tag" %>
@@ -12,7 +18,7 @@
 				<div class="controls">
 					<% p[1]["data_input"].split(',').each do |value| %>
 						<label class='radio inline'>
-							<%= radio_button_tag "data[#{p[0]}]", value, defined?(@data[p[0]]).nil? ? false : @data[p[0]] == value %> <%= value %>
+							<%= radio_button_tag "data[#{p[0]}]", value, defined?(@data[p[0]]).nil? ? false : @data[p[0]] == value, :disabled => @disabled %> <%= value %>
 						</label>
 					<% end %>
 				</div>
@@ -21,7 +27,7 @@
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
 					<div class='controls satribbute-input'>
-						<%= select_tag "data[#{p[0]}]", options_for_select(p[1]["data_input"].split(','), defined?(@data[p[0]]).nil? ? nil : @data[p[0]]), :class => "chosen-select" %> 
+						<%= select_tag "data[#{p[0]}]", options_for_select(p[1]["data_input"].split(','), defined?(@data[p[0]]).nil? ? nil : @data[p[0]]), :class => "chosen-select", :disabled => @disabled %> 
 					</div>
 			</div>
 		<% elsif p[1]["input_type"] == "check_box_tag"%>
@@ -30,7 +36,7 @@
 				<div class="controls">
 					<% p[1]["data_input"].split(',').each do |value| %>
 						<label class="checkbox inline">
-							<%= check_box_tag "data[#{p[0]}]", value, defined?(@data[p[0]]).nil? ? false : @data[p[0]] == value %> <%= value %> 
+							<%= check_box_tag "data[#{p[0]}]", value, defined?(@data[p[0]]).nil? ? false : @data[p[0]] == value, :disabled => @disabled %> <%= value %> 
 						</label>
 					<% end %>
 				</div>
@@ -38,7 +44,7 @@
 		<% elsif p[1]["input_type"] == "text_area_tag"%>
 			<div class='control-group'>
 				<label class='control-label'><%= p[1]["name"] %></label>
-				<div class='controls atribbute-input'><%= text_area_tag "data[#{p[0]}]", defined?(@data[p[0]]).nil? ? '' : @data[p[0]] %></div>
+				<div class='controls atribbute-input'><%= text_area_tag "data[#{p[0]}]", defined?(@data[p[0]]).nil? ? '' : @data[p[0]], :disabled => @disabled %></div>
 			</div>
 		<% end %>
 	<% end %>

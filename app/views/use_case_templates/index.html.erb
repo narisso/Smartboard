@@ -17,15 +17,8 @@
       <div id='collapse<%= "_#{template.id}"%>' class="accordion-body collapse">
         <div class="accordion-inner">
           <ul>
-            <% JSON.parse(template.template_form).each do |attribute| %>
-              <li><%= attribute[1]["name"] %>
-                <ul>
-                  <li>Input: <%= attribute[1]["input_type"] %></li>
-                  <li>Data Type: <%= attribute[1]["data_type"] %></li>
-                  <li>Data Input: <%= attribute[1]["data_input"] %></li>
-                </ul>
-              </li>
-            <% end %>
+            <%= render 'use_cases/template_form', :@json_obj => JSON.parse(template.template_form) %>
+              
           </ul>
         </div>
       </div>

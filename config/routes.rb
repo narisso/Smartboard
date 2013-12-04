@@ -81,6 +81,7 @@
       get '/boards/show_client' => 'boards#show_client', :as => 'boards_client'
       put '/boards/understood' => 'boards#accept_tutorial', :as => 'accept_tutorial'
       get '/boards/show_tutorial' => 'boards#show_tutorial', :as => 'show_tutorial'
+      match '/boards/selection_board_view' =>'boards#selection_board_view', as: 'selection_board_view'
       get  :reports_hours_users
       get  :reports_tasks_project
       get  :reports_tasks_user

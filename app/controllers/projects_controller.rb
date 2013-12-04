@@ -4,7 +4,7 @@ require 'dropbox_sdk'
   load_and_authorize_resource
 
   skip_before_filter :check_session, only: [:hook, :set_hook]
-  skip_authorize_resource :only => [:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
+  skip_authorize_resource :only => [:show,:hook, :set_hook, :delete_dbtoken, :unlink_github, :reports, :reports_hours_users,
                                     :reports_tasks_project, :reports_tasks_user, :reports_use_case ]
 
   respond_to :html, :json

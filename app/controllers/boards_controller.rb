@@ -2,6 +2,18 @@
 class BoardsController < ApplicationController
   require 'dropbox_sdk'
 
+
+  	# Analize what role have the user and redirect to her specific view
+  	# @param id [String] the project's id
+  	def selection_board_view
+  		@project = Project.find(params[:id])
+
+		if(@project.get_role(current_user) == "Client")
+			redirect_to reports_project_path(@project)
+		else 
+			redirect_to boards_project_path(@project)
+		end
+  	end
 	# Shows the administrator, project manager and developer board's view and indicates the link with dropbox and github
   	#
   	# @param id [String] the project's id
@@ -48,8 +60,7 @@ class BoardsController < ApplicationController
         respond_to do |format|
             format.html 
         end
-    rescue
-    	redirect_to reports_project_path(@project)
+
 	end
 
 	# Shows the client board's view

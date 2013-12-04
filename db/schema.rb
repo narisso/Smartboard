@@ -241,11 +241,19 @@ ActiveRecord::Schema.define(:version => 20131126192707) do
     t.integer  "estimated_hours"
     t.integer  "effective_hours"
     t.integer  "priority"
+<<<<<<< Updated upstream
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "goal_id"
     t.integer  "task_depend_id"
     t.boolean  "lock",             :default => false
+=======
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "goal_id"
+    t.integer  "task_depend_id"
+    t.boolean  "lock"
+>>>>>>> Stashed changes
     t.integer  "use_case_id"
   end
 
@@ -304,6 +312,12 @@ ActiveRecord::Schema.define(:version => 20131126192707) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "authentication_token"
+<<<<<<< Updated upstream
+=======
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar"
+>>>>>>> Stashed changes
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -311,9 +325,12 @@ ActiveRecord::Schema.define(:version => 20131126192707) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
+<<<<<<< Updated upstream
     t.string   "provider"
     t.string   "uid"
     t.string   "avatar"
+=======
+>>>>>>> Stashed changes
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

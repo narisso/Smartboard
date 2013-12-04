@@ -7,11 +7,11 @@ class UseCaseTemplate < ActiveRecord::Base
   belongs_to :project
 
   def input_options
-  	options = [['input', 'text_field_tag'], ['radio-button', 'radio_button_tag'], ['select', 'select_tag'], ['check-box', 'check_box_tag'], ['text_area', 'text_area_tag']]
+  	options = [['Input Field', 'text_field_tag'], ['Radio Button', 'radio_button_tag'], ['Select', 'select_tag'], ['Check Box', 'check_box_tag'], ['Text Area', 'text_area_tag']]
   end
 
   def data_types
-  	options = [['string', 'string'], ['text', 'text'], ['integer', 'integer'], ['datetime', 'datetime'], ['boolean', 'boolean']]
+  	options = [['Text', 'string'], ['Paragraph Text', 'text'], ['Number', 'integer'], ['Date', 'datetime'], ['True/False', 'boolean']]
   end
 
   def self.create_default project

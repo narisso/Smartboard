@@ -62,7 +62,7 @@ class UseCaseTemplatesController < ApplicationController
 
     respond_to do |format|
       if @use_case_template.save
-        format.html { redirect_to [@use_case_template.project, @use_case_template], notice: 'Use case template was successfully created.' }
+        format.html { redirect_to project_use_case_templates_path(@project), notice: 'Use case template was successfully created.' }
         format.json { render json: @use_case_template, status: :created, location: @use_case_template }
       else
         format.html { render action: "new" }

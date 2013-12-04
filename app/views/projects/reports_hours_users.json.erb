@@ -5,7 +5,7 @@
 		<% uindex = 0 %>		
 		<% @project.users.each do |user| %>
 		{
-		"name": "<%= user.email %>",
+		"name": "<%= user.get_short_email %>",
 		"children": [
 			
 			<% user.get_tasks_with_hours(id,@initial_date, @final_date).each_with_index do |task_hour, index| %>

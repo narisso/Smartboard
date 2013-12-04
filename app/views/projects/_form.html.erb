@@ -1,7 +1,7 @@
 <%= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :initial_date %>
+  <%= f.input :initial_date, :input_html => { :value => Time.now.strftime("%m/%d/%Y") }, :as => :string %>
+  <%= f.input :description, :input_html => { :rows=> 3, :value=>"", :placeholder=>"Description"} %>
   <% if not @project.created_at.nil?%>
     <%= f.association :project_status, :include_blank => false %>
   <% end %>
@@ -11,4 +11,10 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 projects_path, :class => 'btn' %>
   </div>
+<% end %>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $('#project_initial_date').datepicker();
+  </script>
 <% end %>

@@ -13,6 +13,7 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <div class="btn-group pull-right">
+          <%if can? :edit, @requirement%>
           <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">Actions <i class="icon-white"></i><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li>
@@ -33,6 +34,7 @@
               <% end %> 
             </li>
           </ul>
+          <%end%>
         </div>
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{requirement.id}" %>'>
           <%= requirement.name %>

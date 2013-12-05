@@ -3,6 +3,8 @@
     <%= link_to "Use cases", project_use_cases_path %>
   </li>
   <li><%= link_to "Requirements", project_requirements_path(@project) %></li>
+  <%if can? :create, @use_case_templates%>
   <li><%= link_to "Templates", project_use_case_templates_path(@project) %></li>
+  <% end %>
 
 </ul>

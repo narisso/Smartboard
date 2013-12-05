@@ -26,9 +26,11 @@
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{group.id}" %>'>
           <%= group.name %>
         </a>
+        <%if can? :create, @use_case%>
         <%= link_to t('.new', :default => t("New Use Case")),
             new_project_use_case_path(@project,:group_id => group.id),
             :class => 'btn btn-primary pull-right', :style =>'margin-top:-33px;margin-right:5px;' %>
+        <%end %>
       </div>
       <div id='collapse<%= "_#{group.id}"%>' class="accordion-body">
         <div class="accordion-inner">
@@ -48,5 +50,7 @@
 <div>
 
 <div class="form-actions use-cases" style="margin-left:0px">
+<%if can? :create, @use_case_group%>
 <%= link_to "New Group", new_project_use_case_group_path(@project),:class=>'btn' %>
+<%end%>
 </div>

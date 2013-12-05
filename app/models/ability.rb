@@ -18,6 +18,7 @@ class Ability
         can :manage, UseCase
         can :manage, UseCaseTemplate
         can :manage, UseCaseGroup
+        can :manage, Requirement
 
         project.users.include? user 
 
@@ -46,7 +47,18 @@ class Ability
                 end 
             end 
         elsif project.get_role(user) == "Client"   
-            cannot :create, Task  
+            cannot :create, Task 
+            cannot :edit, Task
+            cannot :delete, Task
+            cannot :manage, UseCaseTemplate
+            cannot :manage, UseCaseGroup 
+            can :read, UseCaseGroup 
+            cannot :manage, Requirement
+            can :read, Requirement
+            can :create, Requirement
+            cannot :nanage, UseCase
+            can :read, UseCase
+          
         else 
 
         end 

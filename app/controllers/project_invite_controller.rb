@@ -77,7 +77,7 @@ class ProjectInviteController < ApplicationController
     @user = User.find(@project_role_user.user_id)
     if @user.update_attributes(params[:password_set])
       @user.confirm!
-      redirect_to decide_invitation_project_path(params[:invitation_token])
+      redirect_to decide_invitation_project_path(:invitation_token => params[:invitation_token])
     else
       if params[:password_set][:password]!=params[:password_set][:password_confirmation]
         flash[:error] = 'Password and password confirmation must be the same'
@@ -92,18 +92,22 @@ class ProjectInviteController < ApplicationController
 
   def accept
     @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
-    @user = User.find(@project_role_user.user_id)
-    @project_role_user.update_attributes(:invitation_confirmed => true)
-    @project_accepted = Project.find(@project_role_user.project_id)
-    flash[:notice] = "You accepted the invitation to Project #{@project_accepted.name}. Please sign in."
+    if @project_role_user
+      @user = User.find(@project_role_user.user_id)
+      @project_role_user.update_attributes(:invitation_confirmed => true)
+      @project_accepted = Project.find(@project_role_user.project_id)
+      flash[:notice] = "You accepted the invitation to Project #{@project_accepted.name}. Please sign in."
+    end
     redirect_to root_url
   end
 
   def reject
     @project_role_user = ProjectRoleUser.find_by_invitation_token(params[:invitation_token])
-    @project_role_user.destroy
-    @project_accepted = Project.find(@project_role_user.project_id)
-    flash[:notice] = "You rejected the invitation to Project #{@project_accepted.name}"
+    if @project_role_user
+      @project_role_user.destroy
+      @project_accepted = Project.find(@project_role_user.project_id)
+      flash[:notice] = "You rejected the invitation to Project #{@project_accepted.name}"
+    end
     redirect_to root_url
   end
 end

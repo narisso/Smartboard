@@ -147,7 +147,7 @@ class UseCasesController < ApplicationController
   # @param project_id [String] the project's id
   def add_document
     @use_case = UseCase.find(params[:id])
-    document_project = DocumentProject.find(params[:project_id])
+    document_project = DocumentProject.find(params[:document_project_id])
     text = @use_case.add_remove_document(document_project,params[:add])
     flash[:notice] = text
     respond_to do |format|

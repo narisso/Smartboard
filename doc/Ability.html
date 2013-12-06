@@ -266,7 +266,24 @@
 91
 92
 93
-94</pre>
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/models/ability.rb', line 5</span>
@@ -287,7 +304,8 @@
       <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>UseCase</span>
       <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>UseCaseTemplate</span>
       <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>UseCaseGroup</span>
-      
+      <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Requirement</span>
+
       <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_user'>user</span> 
 
       <span class='kw'>if</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_get_role'>get_role</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Administrator</span><span class='tstring_end'>&quot;</span></span>
@@ -313,12 +331,28 @@
               <span class='kw'>if</span> <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_lock'>lock</span> <span class='op'>==</span> <span class='kw'>false</span>  
                   <span class='id identifier rubyid_task'>task</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_user'>user</span>
               <span class='kw'>end</span> 
-          <span class='kw'>end</span>     
-          
-      <span class='kw'>else</span> <span class='comment'>#Caso en el que es cliente
-</span>          <span class='comment'>##No puede manejar tareas             
-</span>      <span class='kw'>end</span> 
+          <span class='kw'>end</span> 
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_get_role'>get_role</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Client</span><span class='tstring_end'>&quot;</span></span>   
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:create</span><span class='comma'>,</span> <span class='const'>Task</span> 
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:edit</span><span class='comma'>,</span> <span class='const'>Task</span>
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:delete</span><span class='comma'>,</span> <span class='const'>Task</span>
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>UseCaseTemplate</span>
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>UseCaseGroup</span> 
+          <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>UseCaseGroup</span> 
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:manage</span><span class='comma'>,</span> <span class='const'>Requirement</span>
+          <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>Requirement</span>
+          <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:create</span><span class='comma'>,</span> <span class='const'>Requirement</span>
+          <span class='id identifier rubyid_cannot'>cannot</span> <span class='symbol'>:nanage</span><span class='comma'>,</span> <span class='const'>UseCase</span>
+          <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:read</span><span class='comma'>,</span> <span class='const'>UseCase</span>
+        
+      <span class='kw'>else</span> 
 
+      <span class='kw'>end</span> 
+ 
+  <span class='kw'>end</span> 
+
+  <span class='comment'>#Contidion for can enter in the project board
+</span>  <span class='id identifier rubyid_can'>can</span> <span class='symbol'>:enter</span><span class='comma'>,</span> <span class='const'>Project</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_project'>project</span><span class='op'>|</span>
       <span class='kw'>not</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_get_role'>get_role</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Client</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span> 
 
@@ -372,7 +406,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Nov 27 18:22:45 2013 by
+  Generated on Thu Dec  5 21:53:32 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

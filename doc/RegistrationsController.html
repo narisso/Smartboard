@@ -278,35 +278,35 @@ had login with facebook or google</p>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid_resource_class'>resource_class</span><span class='period'>.</span><span class='id identifier rubyid_to_adapter'>to_adapter</span><span class='period'>.</span><span class='id identifier rubyid_get!'>get!</span><span class='lparen'>(</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:current_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_key'>to_key</span><span class='rparen'>)</span>
 		<span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span> <span class='op'>=</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_unconfirmed_email'>unconfirmed_email</span> <span class='kw'>if</span> <span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:unconfirmed_email</span><span class='rparen'>)</span>
 
-		<span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:current_password</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
+	<span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:current_password</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
 
-	<span class='kw'>if</span> <span class='id identifier rubyid_update_resource_no_password'>update_resource_no_password</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_account_update_params'>account_update_params</span><span class='rparen'>)</span>
-  		<span class='kw'>if</span> <span class='id identifier rubyid_is_navigational_format?'>is_navigational_format?</span>
-	        <span class='id identifier rubyid_flash_key'>flash_key</span> <span class='op'>=</span> <span class='id identifier rubyid_update_needs_confirmation?'>update_needs_confirmation?</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span><span class='rparen'>)</span> <span class='op'>?</span>
-	          <span class='symbol'>:update_needs_confirmation</span> <span class='op'>:</span> <span class='symbol'>:updated</span>
-	        <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='id identifier rubyid_flash_key'>flash_key</span>
+		<span class='kw'>if</span> <span class='id identifier rubyid_update_resource_no_password'>update_resource_no_password</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_account_update_params'>account_update_params</span><span class='rparen'>)</span>
+	  		<span class='kw'>if</span> <span class='id identifier rubyid_is_navigational_format?'>is_navigational_format?</span>
+		        <span class='id identifier rubyid_flash_key'>flash_key</span> <span class='op'>=</span> <span class='id identifier rubyid_update_needs_confirmation?'>update_needs_confirmation?</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span><span class='rparen'>)</span> <span class='op'>?</span>
+		          <span class='symbol'>:update_needs_confirmation</span> <span class='op'>:</span> <span class='symbol'>:updated</span>
+		        <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='id identifier rubyid_flash_key'>flash_key</span>
+		    <span class='kw'>end</span>
+	      	<span class='id identifier rubyid_sign_in'>sign_in</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:bypass</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+	      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:location</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+	    <span class='kw'>else</span>
+	      	<span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
+	      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
 	    <span class='kw'>end</span>
-      	<span class='id identifier rubyid_sign_in'>sign_in</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:bypass</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
-      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:location</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
-    <span class='kw'>else</span>
-      	<span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
-      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
-    <span class='kw'>end</span>
 
 	<span class='kw'>else</span>
 
-	<span class='kw'>if</span> <span class='id identifier rubyid_update_resource'>update_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_account_update_params'>account_update_params</span><span class='rparen'>)</span>
-  		<span class='kw'>if</span> <span class='id identifier rubyid_is_navigational_format?'>is_navigational_format?</span>
-	        <span class='id identifier rubyid_flash_key'>flash_key</span> <span class='op'>=</span> <span class='id identifier rubyid_update_needs_confirmation?'>update_needs_confirmation?</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span><span class='rparen'>)</span> <span class='op'>?</span>
-	          <span class='symbol'>:update_needs_confirmation</span> <span class='op'>:</span> <span class='symbol'>:updated</span>
-	        <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='id identifier rubyid_flash_key'>flash_key</span>
+		<span class='kw'>if</span> <span class='id identifier rubyid_update_resource'>update_resource</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_account_update_params'>account_update_params</span><span class='rparen'>)</span>
+	  		<span class='kw'>if</span> <span class='id identifier rubyid_is_navigational_format?'>is_navigational_format?</span>
+		        <span class='id identifier rubyid_flash_key'>flash_key</span> <span class='op'>=</span> <span class='id identifier rubyid_update_needs_confirmation?'>update_needs_confirmation?</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_prev_unconfirmed_email'>prev_unconfirmed_email</span><span class='rparen'>)</span> <span class='op'>?</span>
+		          <span class='symbol'>:update_needs_confirmation</span> <span class='op'>:</span> <span class='symbol'>:updated</span>
+		        <span class='id identifier rubyid_set_flash_message'>set_flash_message</span> <span class='symbol'>:notice</span><span class='comma'>,</span> <span class='id identifier rubyid_flash_key'>flash_key</span>
+		    <span class='kw'>end</span>
+	      	<span class='id identifier rubyid_sign_in'>sign_in</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:bypass</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+	      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:location</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+	    <span class='kw'>else</span>
+	      	<span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
+	      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
 	    <span class='kw'>end</span>
-      	<span class='id identifier rubyid_sign_in'>sign_in</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:bypass</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
-      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:location</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_after_update_path_for'>after_update_path_for</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
-    <span class='kw'>else</span>
-      	<span class='id identifier rubyid_clean_up_passwords'>clean_up_passwords</span> <span class='id identifier rubyid_resource'>resource</span>
-      	<span class='id identifier rubyid_respond_with'>respond_with</span> <span class='id identifier rubyid_resource'>resource</span>
-    <span class='kw'>end</span>
 
 	<span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -390,8 +390,8 @@ password</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_resource_no_password'>update_resource_no_password</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 	<span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:current_password</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_blank?'>blank?</span>
- 		<span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>current_password</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='kw'>end</span>    	
+  		<span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>current_password</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+	<span class='kw'>end</span>    	
 	<span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -404,7 +404,7 @@ password</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Nov 27 18:22:47 2013 by
+  Generated on Thu Dec  5 21:53:36 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

@@ -315,17 +315,21 @@
 97
 98
 99
-100</pre>
+100
+101
+102</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'app/controllers/project_invite_controller.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_find_by_invitation_token'>find_by_invitation_token</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invitation_token</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span><span class='rparen'>)</span>
-  <span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:invitation_confirmed</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>
-  <span class='ivar'>@project_accepted</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You accepted the invitation to Project </span><span class='embexpr_beg'>#{</span><span class='ivar'>@project_accepted</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>. Please sign in.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='ivar'>@project_role_user</span>
+    <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span><span class='rparen'>)</span>
+    <span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='symbol'>:invitation_confirmed</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='ivar'>@project_accepted</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You accepted the invitation to Project </span><span class='embexpr_beg'>#{</span><span class='ivar'>@project_accepted</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>. Please sign in.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_root_url'>root_url</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -494,22 +498,26 @@
       <pre class="lines">
 
 
-102
-103
 104
 105
 106
 107
-108</pre>
+108
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/project_invite_controller.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/project_invite_controller.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reject'>reject</span>
   <span class='ivar'>@project_role_user</span> <span class='op'>=</span> <span class='const'>ProjectRoleUser</span><span class='period'>.</span><span class='id identifier rubyid_find_by_invitation_token'>find_by_invitation_token</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invitation_token</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  <span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
-  <span class='ivar'>@project_accepted</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You rejected the invitation to Project </span><span class='embexpr_beg'>#{</span><span class='ivar'>@project_accepted</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='ivar'>@project_role_user</span>
+    <span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_destroy'>destroy</span>
+    <span class='ivar'>@project_accepted</span> <span class='op'>=</span> <span class='const'>Project</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_project_id'>project_id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:notice</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You rejected the invitation to Project </span><span class='embexpr_beg'>#{</span><span class='ivar'>@project_accepted</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_root_url'>root_url</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -634,7 +642,7 @@
   <span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='ivar'>@project_role_user</span><span class='period'>.</span><span class='id identifier rubyid_user_id'>user_id</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_update_attributes'>update_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password_set</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_confirm!'>confirm!</span>
-    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_decide_invitation_project_path'>decide_invitation_project_path</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invitation_token</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_decide_invitation_project_path'>decide_invitation_project_path</span><span class='lparen'>(</span><span class='symbol'>:invitation_token</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:invitation_token</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password_set</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:password</span><span class='rbracket'>]</span><span class='op'>!=</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:password_set</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:password_confirmation</span><span class='rbracket'>]</span>
       <span class='id identifier rubyid_flash'>flash</span><span class='lbracket'>[</span><span class='symbol'>:error</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Password and password confirmation must be the same</span><span class='tstring_end'>'</span></span>
@@ -656,7 +664,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Nov 27 18:22:47 2013 by
+  Generated on Thu Dec  5 21:53:36 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

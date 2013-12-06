@@ -415,6 +415,7 @@ webpage.</p>
       <pre class="lines">
 
 
+58
 59
 60
 61
@@ -428,11 +429,10 @@ webpage.</p>
 69
 70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:use_case_template</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -441,7 +441,7 @@ webpage.</p>
 
   <span class='id identifier rubyid_respond_to'>respond_to</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_format'>format</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='ivar'>@use_case_template</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
-      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='lbracket'>[</span><span class='ivar'>@use_case_template</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='comma'>,</span> <span class='ivar'>@use_case_template</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Use case template was successfully created.</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_project_use_case_templates_path'>project_use_case_templates_path</span><span class='lparen'>(</span><span class='ivar'>@project</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Use case template was successfully created.</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span>
       <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_json'>json</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>json:</span> <span class='ivar'>@use_case_template</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:created</span><span class='comma'>,</span> <span class='label'>location:</span> <span class='ivar'>@use_case_template</span> <span class='rbrace'>}</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_render'>render</span> <span class='label'>action:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>new</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
@@ -519,6 +519,7 @@ webpage</p>
       <pre class="lines">
 
 
+97
 98
 99
 100
@@ -526,11 +527,10 @@ webpage</p>
 102
 103
 104
-105
-106</pre>
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -592,12 +592,12 @@ webpage</p>
       <pre class="lines">
 
 
+48
 49
-50
-51</pre>
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -671,17 +671,17 @@ webpage</p>
       <pre class="lines">
 
 
+9
 10
 11
 12
 13
 14
 15
-16
-17</pre>
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
   <span class='ivar'>@use_case_templates</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_where'>where</span><span class='lparen'>(</span><span class='symbol'>:project_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:project_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -760,6 +760,7 @@ webpage</p>
       <pre class="lines">
 
 
+35
 36
 37
 38
@@ -767,11 +768,10 @@ webpage</p>
 40
 41
 42
-43
-44</pre>
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -851,17 +851,17 @@ webpage</p>
       <pre class="lines">
 
 
+22
 23
 24
 25
 26
 27
 28
-29
-30</pre>
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -956,6 +956,7 @@ webpage</p>
       <pre class="lines">
 
 
+79
 80
 81
 82
@@ -967,11 +968,10 @@ webpage</p>
 88
 89
 90
-91
-92</pre>
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/use_case_templates_controller.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
   <span class='ivar'>@use_case_template</span> <span class='op'>=</span> <span class='const'>UseCaseTemplate</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -996,7 +996,7 @@ webpage</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Nov 27 18:22:46 2013 by
+  Generated on Thu Dec  5 21:53:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-1.9.3).
 </div>

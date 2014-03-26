@@ -31,6 +31,7 @@ gem 'quiet_assets', :group => :development
 
 group :production do 
   gem 'pg'
+  gem 'unicorn'
 end
 
 gem 'jquery-rails'

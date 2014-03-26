@@ -96,9 +96,9 @@ class ProjectInviteController < ApplicationController
       @user = User.find(@project_role_user.user_id)
       @project_role_user.update_attributes(:invitation_confirmed => true)
       @project_accepted = Project.find(@project_role_user.project_id)
-      flash[:notice] = "You accepted the invitation to Project #{@project_accepted.name}. Please sign in."
+      sign_in @user
     end
-    redirect_to root_url
+    redirect_to boards_project_path(@project_role_user.project)
   end
 
   def reject

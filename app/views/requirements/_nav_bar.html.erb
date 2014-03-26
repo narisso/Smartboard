@@ -1,8 +1,9 @@
 <ul class="nav nav-pills">
-  <li><%= link_to "Use cases", project_use_cases_path %></li>
   <li class="active">
-  	<%= link_to "Requirements", project_requirements_path(@project) %>
+    <%= link_to "Requirements", project_requirements_path(@project) %>
   </li>
+  <li><%= link_to "Use cases", project_use_cases_path %></li>
+  
   <li><%= link_to "Templates", project_use_case_templates_path(@project) %></li>
 
 </ul>

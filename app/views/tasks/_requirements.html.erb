@@ -1,0 +1,17 @@
+<div class="accordion" id="#accordion_groups">
+  <% @task.use_case.requirements.each do |requirement| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_groups" href='#collapse<%= "_#{requirement.id}" %>'>
+          <%= requirement.name %>
+        </a> 
+      </div>
+      <div id='collapse<%= "_#{requirement.id}"%>' class="accordion-body collapse">
+        <div class="accordion-inner">
+          <p><%= requirement.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

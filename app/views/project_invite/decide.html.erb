@@ -1,6 +1,12 @@
-<h2>You were invited for project <%= @project_invited.name %></h2>
+<div class="page-header">
+    <h2>You were invited to project "<%= @project_invited.name %>" as <%=@project_role_user.role.name %></h2>
+</div>
 
-<h3>¿Accept invitation to this project?</h3>
+<div style="text-align: center">
+<h3>¿Do you accept this invitation?</h3>
 
-  <%= link_to "Accept", accept_invitation_project_path(:invitation_token => @invitation_token), :class => 'btn' %> 
-  <%= link_to "Reject", reject_invitation_project_path(:invitation_token => @invitation_token), :class => 'btn btn-danger' %> 
+<div class="well" style="max-width: 400px;margin: 0 auto 10px;">
+  <%= link_to "Accept", accept_invitation_project_path(:invitation_token => @invitation_token), :class => 'btn btn-large btn-primary' %> 
+  <%= link_to "Reject", reject_invitation_project_path(:invitation_token => @invitation_token), :class => 'btn btn-large btn-danger' %> 
+</div>
+</div>

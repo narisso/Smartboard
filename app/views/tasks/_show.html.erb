@@ -20,13 +20,6 @@
     <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
     <dd><%= @task.estimated_hours %></dd>
 
-    <dt><strong>Requirement</strong></dt>
-    <% if @task.requirement %>
-      <dd><%= @task.requirement.name %></dd>
-    <% else %>
-      <dd> - </dd>
-    <% end %>
-
     <dt><strong>Use Case</strong></dt>
     <% if @task.use_case %>
       <dd><%= @task.use_case.name %></dd>
@@ -61,6 +54,7 @@
         <li id="Commits" class="tab-pane"><%= link_to "Commits", "#commits", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Documentos" class="tab-pane <%= params[:tab]=='document' ? 'active' : '' %>"><%= link_to "Documents", "#documents", :data => {:remote => true, :toggle => "tab"} %></li>
         <li id="Subtasks" class="tab-pane"><%= link_to "Subtasks", "#subtasks", :data => {:remote => true, :toggle => "tab"} %></li>
+        <li id="Requirements" class="tab-pane"><%= link_to "Requirements", "#requirements", :data => {:remote => true, :toggle => "tab"} %></li>
     </ul>
   </div>
 
@@ -86,6 +80,11 @@
       </div>
       <div id="subtask_form"></div>
       <%= link_to "Create SubTask", new_subtask_path(@task.status,@task.project,@task), :remote => true, :class => 'btn' %>
+    </div>
+    <div class="tab-pane" id="requirements">
+      <div id="reqquirements_list">
+        <%= render 'requirements' %>
+      </div>
     </div>
   </div>
 

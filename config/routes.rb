@@ -18,7 +18,6 @@
   match '/project/reject_invitation' => 'project_invite#reject', :as =>'reject_invitation_project'
   match '/project/confirm_password_invitation' => 'project_invite#confirm_password_invitation', :as => 'confirm_password_invitation'  
   match '/project/submit_password_invitation' => 'project_invite#submit_password_invitation', :as => 'submit_password_invitation'  
-  
 
   match '/tasks/comments/:id' => 'tasks#show_comments_of_task', :as => 'comments_task'
 

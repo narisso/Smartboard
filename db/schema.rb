@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126192707) do
+ActiveRecord::Schema.define(:version => 20140326121845) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -247,6 +247,8 @@ ActiveRecord::Schema.define(:version => 20131126192707) do
     t.integer  "task_depend_id"
     t.boolean  "lock",             :default => false
     t.integer  "use_case_id"
+    t.boolean  "archived",         :default => false
+    t.integer  "user_id"
   end
 
   create_table "test_cases", :force => true do |t|

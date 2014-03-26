@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
   attr_accessible :description, :effective_hours, :estimated_hours, :label_id, :name, 
                   :priority, :project_id, :requirement_id, :status_id, :status_update_at, 
                   :task_father_id, :task_type, :goal_id, :task_depend_id, :assigned_users, 
-                  :lock, :created_at, :use_case_id
+                  :lock, :created_at, :use_case_id, :archived, :user_id
 
   belongs_to :label
   belongs_to :project
@@ -14,6 +14,7 @@ class Task < ActiveRecord::Base
   belongs_to :goal
   belongs_to :task_depend, :class_name => "Task", :foreign_key => "task_depdend_id"
   belongs_to :use_case
+  belongs_to :user
 
   has_one :bug
   has_one :evaluation
@@ -53,7 +54,8 @@ class Task < ActiveRecord::Base
   #
   # @param link [String] the url's of the task that generated the notification
   # @return [boolean] if the changes were saved in the DB
-  def save_and_notify(link)
+  def save_and_notify(link,current_user)
+    self.user = current_user
     self.users.each do |user|
       @notification = Notification.new
       @notification.user = user

@@ -41,7 +41,7 @@ function filterByDateClick(){
   }
   else if($( "#tasks-created" )[0].value =="Last Month"){
     var date = new Date(Date.now());
-    date.setMonth(date.getMonth()-1);
+    date.setMonth(date.getMonth()-2);
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);
@@ -64,8 +64,17 @@ function filterByDate(date){
 
       var stringdate = new String($(this).children("li").data("created")).replace(' UTC', '');
       stringdate = stringdate.split(' ')[0];
-      var dateItem = new Date(stringdate);
-
+      var dateItem = new Date();
+      dateItem.setUTCFullYear( parseInt(stringdate.split('-')[0]) );
+      dateItem.setUTCMonth( parseInt(stringdate.split('-')[1])-1 );
+      dateItem.setUTCDate( parseInt(stringdate.split('-')[2]) );
+      dateItem.setUTCHours(0);
+      dateItem.setUTCMinutes(0);
+      dateItem.setUTCSeconds(0);
+      //alert( stringdate + "     "+dateItem.toUTCString() )
+      //alert( date.toUTCString() )
+      //alert( dateItem+"    >=    "+date )
+      //alert( (dateItem-date) / 1000 / 60 / 60 / 24)
       if(dateItem>=date){
         $(this).show();
         $(this).removeAttr("vis");

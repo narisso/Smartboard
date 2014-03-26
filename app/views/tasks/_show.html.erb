@@ -20,29 +20,35 @@
     <dt><strong><%= model_class.human_attribute_name(:estimated_hours) %>:</strong></dt>
     <dd><%= @task.estimated_hours %></dd>
 
-    <dt><strong>Use Case</strong></dt>
+    <dt><strong>Use case:</strong></dt>
     <% if @task.use_case %>
       <dd><%= @task.use_case.name %></dd>
     <% else %>
       <dd> - </dd>
     <% end %>
-    
 
   <% else %>
     <img src="/assets/icon3.png" >
-
   <% end %>
 
-    <dt>Owner:</dt>
-    <% @task.users.each do |user| %>
-      <dd>
-        <%= user.email%>
-        <% rep_hours = ReportedHours.find_by_user_id_and_task_id(user.id,@task.id) %>
-        <% if(rep_hours)%>
-          <b>(<%= rep_hours.reporting_hours %>)</b>
-        <% end %>
-      </dd>
-    <% end %>
+      <dt><strong>Owners:</strong></dt>
+      <% if @task.users.length > 0%>
+      <% @task.users.each do |user| %>
+        <dd>
+          <%= user.email%>
+          <% rep_hours = ReportedHours.find_by_user_id_and_task_id(user.id,@task.id) %>
+          <% if(rep_hours)%>
+            <b>(<%= rep_hours.reporting_hours %>)</b>
+          <% end %>
+        </dd>
+      <% end %>
+      <% else %>
+        <dd> - </dd>
+      <% end %>
+
+    <dt><strong>Created by:</strong></dt>
+    <dd><%= @task.user.email %></dd>
+
   </div>
 
 

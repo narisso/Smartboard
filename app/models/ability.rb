@@ -19,6 +19,7 @@ class Ability
         can :manage, UseCaseTemplate
         can :manage, UseCaseGroup
         can :manage, Requirement
+        can :manage, ReportedHours
 
         project.users.include? user 
 
@@ -43,7 +44,7 @@ class Ability
             can :read, Task
             can :update, Task do |task|
                 if task.lock == false  
-                    task.users.include? user
+                    task.users.include? user or task.user == user
                 end 
             end 
         elsif project.get_role(user) == "Client"   

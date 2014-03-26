@@ -3,9 +3,9 @@ class TasksController < ApplicationController
 
  load_and_authorize_resource :project, :except => [:update_status,:assign_use_case]
  load_and_authorize_resource :status, :through => :project, :except => [:update_status,:assign_use_case, :change_lock]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock,:create_reported_hours,:new_reported_hours]
 
- skip_authorize_resource :only => [:create_reported_hours]
+ skip_authorize_resource :only => [:create_reported_hours,:new_reported_hours]
 
  respond_to :html, :json
   
@@ -88,7 +88,7 @@ class TasksController < ApplicationController
     @task.status = Status.find(params[:status_id])
 
     respond_to do |format|
-      if @task.save_and_notify boards_project_path(@task.project_id)
+      if @task.save_and_notify boards_project_path(@task.project_id), current_user
         format.js { render :js => "location.reload();" }
 
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
@@ -152,7 +152,7 @@ class TasksController < ApplicationController
 
   # Returns the template for creating a new instance of the reported hours of a task
   def new_reported_hours
-    
+    @task = Task.find(params[:id])
     current_report = ReportedHours.find_by_user_id_and_task_id(current_user.id ,@task.id)
     @current_hours = 0;
 

@@ -126,12 +126,27 @@ require 'dropbox_sdk'
   def set_hook
     @project = Project.find(params[:project_id])
     @new_repo_name = params[:repo_name]
+    @new_user_name = params[:user_name]
 
-    Project.delete_hooks(@project)
+    @is_linked = false
+    json_repos = {}
+    begin
+      json_repos = JSON.parse(@project.repo_name)
+    rescue                                            
+    end
+    json_repos.each do |j|
+      if j["repo"] == @new_repo_name
+        @is_linked = true
+      end
+    end
 
-    Project.change_repo_name(@project, @new_repo_name)
-
-    Project.create_hook(@project)
+    if @is_linked
+      @old_repo_name = @new_repo_name
+      Project.delete_hooks(@project, @new_user_name, @new_repo_name )  
+    else
+      Project.change_repo_name(@project, @new_repo_name, @new_user_name)
+      Project.create_hook(@project, @new_repo_name, @new_user_name)
+    end
     #respond_with @project
   end
 

@@ -82,11 +82,23 @@
                                   <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
                                   <% repo_list.each do |repo|%>
                                     <li id="repo"><!--a tabindex="-1" href="#"-->
-                                      <% rep = repo %> 
-                                      <% if repo ==@project.repo_name %>
-                                        <% rep = raw("&#10004; #{repo}") %>
+                                      <% rep = repo[:repo] %> 
+                                      <%  is_linked = false
+                                          json_repos = {}
+                                          begin
+                                            json_repos = JSON.parse(@project.repo_name)
+                                          rescue                                            
+                                          end
+                                          json_repos.each do |j|
+                                            if j["repo"] == repo[:repo]
+                                              is_linked = true
+                                            end
+                                          end
+                                      %>
+                                      <% if is_linked %>
+                                        <% rep = raw("&#10004; #{repo[:repo]}") %>
                                       <% end %>  
-                                      <%= link_to rep, set_hook_path(@project,:repo_name => repo), :remote => true ,:id => "github_#{repo}" %>
+                                      <%= link_to rep, set_hook_path(@project,:repo_name => repo[:repo], :user_name=>repo[:user] ), :remote => true ,:id => "github_#{repo[:repo]}" %>
                                         
                                     <!--/a--></li>
                                 

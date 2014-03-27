@@ -34,10 +34,24 @@ class Project < ActiveRecord::Base
 
     github.repos.list.body.each do |repo|
       if github_username == repo["owner"]["login"]
-        repo_names << repo["name"]
+        repo_names << { :user=>github_username ,:repo=>repo["name"]}
       end
     end
 
+    orgs_names = Array.new
+    github.orgs.list.each do |org|
+      orgs_names << org["login"]
+    end
+
+    orgs_names.each do |oname|
+      url = "orgs/"+oname+"/repos"
+      
+      github.get_request(url,Github::ParamsHash.new({})).each do |orepo|
+        if oname == orepo["owner"]["login"]
+          repo_names << { :user=>oname ,:repo=>orepo["name"]}
+        end
+      end
+    end
     repo_names
   end
 
@@ -103,16 +117,15 @@ class Project < ActiveRecord::Base
   end
 
   # Creates the hook of a commit in the project.
-  def self.create_hook(project)
+  def self.create_hook(project,repo_name,new_user_name)
     github = Github.new :oauth_token => project.github_token
-
     #Check if hook already exists
     url = URL_HOOK
     url = url.sub(":id",project.id.to_s)
 
     already_exists = false
 
-    (github.repos.hooks.list project.github_user, project.repo_name).body.each do |hook|
+    (github.repos.hooks.list new_user_name, repo_name).body.each do |hook|
       h_url = hook["config"]["url"]
       if url == h_url
         already_exists = true
@@ -120,18 +133,17 @@ class Project < ActiveRecord::Base
     end
 
     if !already_exists
-      github.repos.hooks.create project.github_user, project.repo_name,
+      github.repos.hooks.create new_user_name, repo_name,
       "name" =>  "web",
       "active" => true,
       "config" => {
         "url" => url
       }
-
     end   
   end
 
   # Deletes a hook from a project.
-  def self.delete_hooks(project)
+  def self.delete_hooks(project, user, repo)
 
     unless project.repo_name.nil? then
 
@@ -139,25 +151,43 @@ class Project < ActiveRecord::Base
       url = URL_HOOK
       url = url.sub(":id",project.id.to_s)
 
-      hooks = (github.repos.hooks.list project.github_user, project.repo_name).body
+      hooks = (github.repos.hooks.list user, repo).body
 
       hooks.each do |hook|
         h_url = hook["config"]["url"]
         hook_id = hook["id"]
         if url == h_url
-          github.repos.hooks.delete project.github_user, project.repo_name, hook_id
+          github.repos.hooks.delete user, repo, hook_id
         end
       end
 
+      repos = []
+      begin
+        repos = JSON.parse(project.repo_name)
+      rescue
+      end
+      to_delete = repos.detect {|f| f["repo"] == repo }
+      repos = repos - [to_delete]
+      project.repo_name = repos.to_json
+      project.save
     end
 
   end
 
   #Changes the name of a repository in the DB.
-  def self.change_repo_name(project, new_repo_name)
-    old_repo_name = project.repo_name
+  def self.change_repo_name(project, new_repo_name, new_user_name)
+    repos = []
+    begin
+      repos = JSON.parse(project.repo_name)
+    rescue
 
-    project.repo_name = new_repo_name
+    end
+    is_repeat = repos.detect {|f| f["repo"] == new_repo_name }
+    if is_repeat.nil?
+      repos << {"user" => new_user_name, "repo" => new_repo_name}
+    end
+    project.repo_name = repos.to_json
+    project.github_user = new_user_name
     project.save
   end
 

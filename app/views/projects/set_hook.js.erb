@@ -1,2 +1,5 @@
+<% if @old_repo_name %>
 $('#github_<%= @old_repo_name%>').html('<%= @old_repo_name%>');
+<% else %>
 $('#github_<%= @new_repo_name%>').html('&#10004;<%= @new_repo_name%>');
+<% end %>

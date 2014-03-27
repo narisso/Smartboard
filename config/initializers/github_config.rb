@@ -7,7 +7,7 @@ elsif Rails.env.production?
   GITHUB_CLIENT_SECRET = "c8ea2de5c74ca82fb89347bbf1a13d8cd052f24c"
   URL_HOOK = "http://trackpro.ing.puc.cl/projects/:id/hook"
 elsif Rails.env.staging?
-  GITHUB_CLIENT_ID = "b0951ee7e6d6b9c50aa4" 
-  GITHUB_CLIENT_SECRET = "c8ea2de5c74ca82fb89347bbf1a13d8cd052f24c"
+  GITHUB_CLIENT_ID = "7cc4d6ed2d0046658673" 
+  GITHUB_CLIENT_SECRET = "1e7fb202f160e690e70b1300dd11a9b35d24fa77"
   URL_HOOK = "http://trackpro.ing.puc.cl:8080/projects/:id/hook"
 end

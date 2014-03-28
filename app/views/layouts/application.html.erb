@@ -76,6 +76,7 @@
                             <li><a tabindex="-1" href="#">Something else here</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#">Separated link</a></li-->
+                            <% if @project.get_role(current_user) == "Administrator" %>
                             <% if @project.github_token %>
                               <% if !@project.github_token.empty? %>
                                 <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
@@ -111,7 +112,9 @@
                                 <li><a id="commit_help_button" href="#commit_help" data-toggle="modal">Help</a></li>
                               <% end %>
                             <% end %>
-
+                            <% else %>
+                            <li><a id="commit_help_button" href="#commit_help" data-toggle="modal">Help</a></li>
+                            <% end %>  
 
 
                           </ul>
@@ -133,15 +136,17 @@
                         </li>
 
                     <% end %>
-                 
                       <!-- Dropbox Icons-->
-
                   <%if @project and not @project.dropbox_token.nil? %>
                     
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"><%= image_tag('dropbox_color.png', :alt => 'Dropbox vinculo') %></a>
                         <ul class="dropdown-menu">
-                        <li><%= link_to "Unlink of dropbox", delete_dbtoken_path(@project) %></li>
+                        <% if @project.get_role(current_user) == "Administrator" %>
+                          <li><%= link_to "Unlink of dropbox", delete_dbtoken_path(@project) %></li>
+                        <% else %>
+                          <li><%= link_to "Linked to Dropbox", "#", :onclick => "return false;" %></li>
+                        <% end %>
                         </ul>
                     </li>                                 
                                     
@@ -149,16 +154,15 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"><%= image_tag('dropbox.png', :alt => 'Dropbox vinculo') %></a>
                         <ul class="dropdown-menu">
-                        <li><%= link_to "Link to Dropbox", '/dropbox/authorize' %></li>
+                        <% if @project.get_role(current_user) == "Administrator" %>
+                          <li><%= link_to "Link to Dropbox", '/dropbox/authorize' %></li>
+                        <% else %>
+                          <li><%= link_to "Not linked to Dropbox", "#", :onclick => "return false;" %></li>
+                        <% end %>
                         </ul>
                     </li>
-                      <!-- link_to image_tag('dropbox.png', :alt => 'Dropbox vinculo' ), '/dropbox/authorize' -->
+                  <% end %>
 
-                     <!-- <ul class="dropdown-menu">
-                        <li role="presentation"><a data-target="#" href="/dropbox/authorize" tabindex="-1" role="menuitem">Link to dropbox</a></li>
-                      </ul>
-                    </li>-->
-                <% end %>
              <% end %>
 
               <%if user_signed_in?%>

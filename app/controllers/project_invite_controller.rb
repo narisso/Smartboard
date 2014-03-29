@@ -36,6 +36,7 @@ class ProjectInviteController < ApplicationController
   	if not user
       user = User.new(:email=> @email, :password => 'asdfasdf', :password_confirmation => 'asdfasdf')
       user.encrypted_password=""
+      user.skip_confirmation!
       user.save
   	end
     

@@ -106,3 +106,9 @@
    box-shadow: 3px 3px 1px 1px #CCCCCC;
 }
 
+.overflow-wrapper h5 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

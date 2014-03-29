@@ -33,6 +33,8 @@ class Ability
             end 
         elsif project.get_role(user) == "Project Manager"
             can :manage, Task
+            can :manage, Label
+            can :manage, Project
             cannot :update, Task do |task|
                 task.lock == true 
             end 

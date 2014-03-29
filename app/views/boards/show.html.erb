@@ -40,7 +40,7 @@
       <p class='block text-center handle task-percentage'><%= status.tasks.length.to_i*100/@total.to_i %>% of total tasks</p>
   		<ul class='sortable scroll' data-id='<%=status.id%>'> 
   			<% status.tasks.each_with_index do |task , i| %>
-        <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'},:class=>"task #{ if task.lock then 'locked' end }"  do %>
+        <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'},:class=>"task#{ if task.lock then ' locked' end }",:style=>"text-decoration: none;"  do %>
   				<li data-id="<%= task.id %>" class='' data-created="<%= task.created_at %>">
             <div class="task-info block">
               <span class='task-type' style="background-color: <%= task.label.color %>" >
@@ -50,9 +50,11 @@
                       <%= task.estimated_hours %>
               </span>
             </div>
+            <div class="overflow-wrapper">
             <h5>
               <%= task.name %>
             </h5>
+            </div>
             <div class="task-users block">
               <% task.users.each do |user| %>
                 <%= gravatar_tag user.email%>
@@ -87,10 +89,11 @@
                     <%= task.estimated_hours %>
                   </span>
             </div>
+            <div class="overflow-wrapper">
             <h5>
             <%= task.name %>
             </h5>
-
+            </div>
             <div class="task-users block">
               <% task.users.each do |user| %>
               <%= gravatar_tag user.email%>

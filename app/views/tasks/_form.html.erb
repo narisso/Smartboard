@@ -2,7 +2,9 @@
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       
-      <h1>Task</h1>
+      <div class="overflow-wrapper">
+      <h1><%= @task.name %></h1>
+    </div>
 
   </div>
   <%= bootstrap_flash %>
@@ -19,7 +21,7 @@
               collection: 1..5, 
               :include_blank => false,
               :input_html => { class: 'chosen-select' } %>
-  <%= f.input :estimated_hours ,:include_blank => false, :input_html => {value: 1} %>
+  <%= f.input :estimated_hours ,:include_blank => false %>
   <%= f.association :users,
                     :collection => @project.users,
                     :label_method => :email,

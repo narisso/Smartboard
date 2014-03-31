@@ -112,3 +112,9 @@
   text-overflow: ellipsis;
 }
 
+.overflow-wrapper h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

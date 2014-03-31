@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
  load_and_authorize_resource :project, :except => [:update_status,:assign_use_case]
  load_and_authorize_resource :status, :through => :project, :except => [:update_status,:assign_use_case, :change_lock]
- load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock,:create_reported_hours,:new_reported_hours]
+ load_and_authorize_resource :task, :through => :status, :except => [:update_status,:assign_use_case, :change_lock,:create_reported_hours,:new_reported_hours, :new_subtask, :create_subtask,:update_subtask,:delete_subtask]
 
  skip_authorize_resource :only => [:create_reported_hours,:new_reported_hours]
 

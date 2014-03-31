@@ -1,15 +1,20 @@
 {
 	"name": "<%= @project.name %>",
 	"children": [
-		<% @project.users.each_with_index do |user, uindex| %>
-		{
-		"name": "<%= user.get_short_email %>",
-		"children": [
-			<% user.get_tasks(@project, @initial_date, @final_date).each_with_index do |task, index| %>
-			{"name": "<%= task.name %>", "size": 1}<%= index < user.get_tasks(@project, @initial_date, @final_date).count - 1 ? "," : "" %>
+		<% uindex = 0 %>	
+		<% @project.users.each_with_index do |user| %>
+			<%if ProjectRoleUser.where(:user_id => user.id, :project_id => @project.id).first.invitation_token == nil or ProjectRoleUser.where(:user_id => user.id, :project_id => @project.id).first.invitation_confirmed == true%>
+				{
+				"name": "<%= user.get_short_email %>",
+				"children": [
+					<% user.get_tasks(@project, @initial_date, @final_date).each_with_index do |task, index| %>
+					{"name": "<%= task.name %>", "size": 1}<%= index < user.get_tasks(@project, @initial_date, @final_date).count - 1 ? "," : "" %>
+					<% end %>
+				]
+				}
+				<%= uindex < @count - 1 ? "," : "" %>
+				<% uindex = uindex + 1%>
 			<% end %>
-		]
-		}<%= uindex < @project.users.count - 1 ? "," : "" %>
 		<% end %>
 	]
 }

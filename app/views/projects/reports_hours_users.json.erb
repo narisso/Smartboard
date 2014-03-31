@@ -4,8 +4,9 @@
 		<% id = @project.id %>
 		<% uindex = 0 %>		
 		<% @project.users.each do |user| %>
-		{
+
 		<%if ProjectRoleUser.where(:user_id => user.id, :project_id => @project.id).first.invitation_token == nil %>
+		{
 			"name": "<%= user.get_short_email %>",
 			"children": [
 			
@@ -13,8 +14,11 @@
 				{"name": "<%= task_hour.name %>", "size": <%= task_hour.size %>}<%= index < user.get_tasks_with_hours(id,@initial_date, @final_date).count - 1 ? "," : "" %>
 				<% end %>
 			]
-		<% else %>
-			<%if ProjectRoleUser.where(:user_id => user.id, :project_id => @project.id).first.invitation_confirmed == true %>
+		}<%= uindex < @project.users.count - 1 ? "," : "" %>
+		<% uindex = uindex + 1%>
+
+		<% elsif ProjectRoleUser.where(:user_id => user.id, :project_id => @project.id).first.invitation_confirmed == true %>
+		{
 				"name": "<%= user.get_short_email %>",
 				"children": [
 				
@@ -22,11 +26,11 @@
 				{"name": "<%= task_hour.name %>", "size": <%= task_hour.size %>}<%= index < user.get_tasks_with_hours(id,@initial_date, @final_date).count - 1 ? "," : "" %>
 				<% end %>
 			]
-			<%end%>
+		}<%= uindex < @count - 1 ? "," : "" %>
+		<% uindex = uindex + 1%>
 		<% end %>
 
-		}<%= uindex < @project.users.count - 1 ? "," : "" %>
-		<% uindex = uindex + 1%>
+
 		<% end %>
 	]
 }

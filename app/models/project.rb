@@ -81,6 +81,21 @@ class Project < ActiveRecord::Base
     user_role.save
   end
 
+  # Counts users removing not confirmed invites
+  #
+  def count_confirmed_users
+    count = 0
+    self.users.each do |user|
+      if ProjectRoleUser.where(:user_id => user.id, :project_id => self.id).first.invitation_token == nil
+        count = count + 1
+      elsif ProjectRoleUser.where(:user_id => user.id, :project_id => self.id).first.invitation_confirmed == true
+        count = count + 1
+      end
+    end
+
+    return count
+  end
+
   # Gives the role of a certain user in the current project.
   #
   # @param user [String] the user' id

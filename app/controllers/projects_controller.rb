@@ -296,6 +296,7 @@ require 'dropbox_sdk'
   def reports_hours_users 
     @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
     @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
+    @count = @project.count_confirmed_users
 
     respond_to do |format|
       format.json
@@ -326,7 +327,7 @@ require 'dropbox_sdk'
   def reports_tasks_user
     @initial_date  = Date.strptime(params[:initial_date], "%m/%d/%Y")
     @final_date    = Date.strptime(params[:final_date], "%m/%d/%Y")
-
+    @count = @project.count_confirmed_users
     respond_to do |format|
       format.json
     end

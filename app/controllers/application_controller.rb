@@ -10,24 +10,22 @@ class ApplicationController < ActionController::Base
   before_filter :check_dropbox
   after_filter  :flash_to_headers
 
+
   # Handles all about the session of a user.
   #
   # @params controller [Controller] the logger information for Rails class purposes.
   def check_session
-    Rails.logger.debug(params[:controller])
     unless (params[:controller] == "devise/sessions" || 
       params[:controller] == "devise_invitable/registrations" || 
       params[:controller] == "devise/invitations" ||
       params[:controller] == "devise/confirmations" ||
       params[:controller] == "devise/passwords")
       unless user_signed_in?
-        Rails.logger.debug("User is not signed in")
         redirect_to root_path
         flash[:error] = "You need to sign in to access"
         return
       end
     end
-    Rails.logger.debug("User is signed in")
   end
 
   # Handle the project path after a sign in has been made
@@ -71,7 +69,7 @@ class ApplicationController < ActionController::Base
       response.headers['X-Message'] = flash_message
       response.headers["X-Message-Type"] = flash_type.to_s
  
-      flash.discard # don't want the flash to appear when you reload page
+      flash.discard #don't want the flash to appear when you reload page
     end
  
     # Handles the message of the flashes to user's notification of the application.

@@ -3,9 +3,15 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       
       <div class="overflow-wrapper">
-      <h1><%= @task.name %></h1>
+      <h1>
+    <% if @task.name.nil? or @task.name.blank? %>
+      Task
+    <% else %>
+    <%= @task.name%>
+    <% end %>
+  </h1>
     </div>
-
+       
   </div>
   <%= bootstrap_flash %>
 
@@ -27,9 +33,7 @@
                     :label_method => :email,
                     :include_blank => true,
                     :input_html => { class: 'chosen-select' } %>
-  <% if @editing %>
-    <%= f.input :status_id, collection: Status.where(:project_id => params[:project_id]), :include_blank => false %>
-   <% end %> 
+
    <% if params[:use_case] %>
    <%= f.input :use_case_id, :as => :hidden, :input_html => { :value => params[:use_case] } %>
    <%end%>

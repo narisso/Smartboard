@@ -1,7 +1,7 @@
 #Contains the requirement's model
 class Requirement < ActiveRecord::Base
   attr_accessible :data, :name, :template_id, :type, :description, 
-  				  :task_ids, :document_project_ids
+  				  :task_ids, :document_project_ids, :use_case_ids
 
   has_many :requirement_use_cases
   has_many :use_cases, :through => :requirement_use_cases

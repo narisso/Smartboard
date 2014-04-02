@@ -45,6 +45,8 @@ class TasksController < ApplicationController
     @comment.task = @task
     @comment.user = current_user
     @subtask = SubTask.new
+
+
     respond_to do |format|
       format.js # show.html.erb
       format.json { render json: @task }
@@ -55,11 +57,8 @@ class TasksController < ApplicationController
   #
   # @return [String] the information to fill about a new task as a JSON
   def new
+
     @task = Task.new
-    @editing = false
-
-    
-
     respond_to do |format|
       format.js
       format.html # new.html.erb
@@ -72,7 +71,6 @@ class TasksController < ApplicationController
   # @param id [String] the task's id
   def edit
     @task = Task.find(params[:id])
-    @editing = true
   end
 
   # Creates the information for a new task, and send the notification to all the users assigned to the task.
@@ -90,11 +88,10 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save_and_notify boards_project_path(@task.project_id), current_user
         format.js { render :js => "location.reload();" }
-
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
-        format.js { redirect_to new_project_status_task_path, alert: 'Error'}
+        format.js { render "new"}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -115,7 +112,7 @@ class TasksController < ApplicationController
         format.json { head :no_content }
       else
         #format.html { render action: "edit" }
-        format.js { redirect_to edit_project_status_task_path, alert: 'Name must not be blank'}
+        format.js { render "edit"}
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end

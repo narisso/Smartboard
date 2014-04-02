@@ -3,7 +3,13 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <!--h1><%=t '.title', :default => model_class.model_name.human %></h1-->
   <div class="overflow-wrapper">
-  <h1><%= @task.name%></h1>
+  <h1>
+    <% if @task.name.nil? or @task.name.blank? %>
+      Task
+    <% else %>
+    <%= @task.name%>
+    <% end %>
+  </h1>
 </div>
 </div>
 

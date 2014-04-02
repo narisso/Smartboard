@@ -7,10 +7,10 @@
   <%= bootstrap_flash %>
 
 <%= simple_form_for [@project, @requirement], :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
-  <div class="well">
+  <div>
 
       <%= f.input :name %>
-      <% if params[:action] == "edit" %>
+      <% if @render_usecases %>
         <%= f.association :use_cases, 
                           :collection => UseCase.where(:project_id => @project), 
                           :input_html => { :class => "chosen-select"}  %>

@@ -49,6 +49,11 @@ class Ability
                     task.users.include? user or task.user == user
                 end 
             end 
+            can :destroy, Task do |task|
+                if task.lock == false  
+                    task.users.include? user or task.user == user
+                end 
+            end 
         elsif project.get_role(user) == "Client"   
             cannot :create, Task 
             cannot :edit, Task

@@ -42,7 +42,7 @@
       </div>
       <div id='collapse<%= "_#{requirement.id}"%>' class="accordion-body collapse">
         <div class="accordion-inner">
-          <p><%= requirement.description %></p>
+          <p><%= simple_format h(requirement.description) %></p>
           
           <% if requirement.use_cases.count > 0 %>
             <h5>Use cases</h5>

@@ -73,7 +73,7 @@
   </div>
 
   <div class="tab-content span8 offset0">
-    <div class="tab-pane <%= params[:tab].nil? ? 'active' : '' %>" id="description"><%= @task.description %></div> 
+    <div class="tab-pane <%= params[:tab].nil? ? 'active' : '' %>" id="description"><%= simple_format h(@task.description) %></div> 
     <div class="tab-pane" id="comments">
     <div id="comment" >
       <%= render :partial => 'comment' %>

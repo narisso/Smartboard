@@ -220,8 +220,12 @@
 	height: 40px;
 	padding-left: 5px;
 	background-color: rgba(176,196,222,0.6); 
-	overflow: auto;
+	overflow: hidden;
 
+}
+
+.task-users:hover {
+	overflow-x: auto;
 }
 
 .task img {

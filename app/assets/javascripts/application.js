@@ -71,7 +71,14 @@ $(function(){ //DOM Ready
 
 $(document).ready(function() {
   /* Activating Best In Place */
+            
+
   jQuery(".best_in_place").best_in_place();
+
+  $('.smart_tooltip').tooltip({
+    placement: 'bottom',
+    container: 'body'
+    });
 
   $('#popover_tasks').popover({ trigger: "hover" });
   $('#popover_tests').popover({ trigger: "hover" });

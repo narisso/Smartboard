@@ -3,8 +3,9 @@ module GravatarHelper
  def gravatar_tag(email,*args)    
     opts = args.extract_options!
     opts[:class]||=""
-    opts[:class]+=" gravatar"
+    opts[:class]+="gravatar smart_tooltip"
     opts[:alt] = email
+    opts[:title] = email
 
     size = opts.delete(:size) || 80
     require 'digest/md5'

@@ -68,7 +68,7 @@ Iic21542::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #Mailer
-  config.action_mailer.default_url_options = {:host => 'trackpro.ing.puc.cl'}
+  config.action_mailer.default_url_options = {:host => 'trackpro.ing.puc.cl:8080'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
    :address => "smtp.gmail.com",

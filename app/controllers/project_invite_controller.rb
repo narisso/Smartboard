@@ -7,6 +7,7 @@ class ProjectInviteController < ApplicationController
 
   def invite
   	 @project = Project.find(params[:id])
+     @project_role_users = ProjectRoleUser.where(:project_id => @project, :invitation_confirmed => false)
      roles = Role.all  
      @roles_name = Array.new
      i = 0

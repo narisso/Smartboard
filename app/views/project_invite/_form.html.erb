@@ -1,9 +1,40 @@
 <%- model_class = User -%>
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h2><%= t "devise.invitations.new.header" %></h2>
+<h1><%= t "devise.invitations.new.header" %></h1>
 
   <div class="modal-body">
+
+<%= bootstrap_flash %>
+
+<% if @project_role_users.empty? %>
+  
+  <table class="table table-striped">
+
+    <tbody>
+      <tr><th>No users invited</th></tr>
+    </tbody>
+  </table>
+
+<% else %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr><th>Pending invites:</th></tr>
+    </thead>  
+    <tbody>    
+      <% @project_role_users.each do |project_role_user| %>
+      <% if project_role_user.invitation_confirmed == false%>       
+          <tr>
+            <td><%= project_role_user.user.email %></td>
+            <td><%= project_role_user.role.name %></td>
+          </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+<%end%>
 
 <%= simple_form_for :project_invitation, :url => send_invitation_path, :html => {:method => :post} do |f| %>
 

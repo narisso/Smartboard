@@ -100,7 +100,7 @@ class RequirementsController < ApplicationController
   # @return [String] the content of the deletion as JSON
   def unlink
     @requirement = Requirement.find(params[:id])
-    @use_case = Requirement.find(params[:use_case_id])
+    @use_case = UseCase.find(params[:use_case_id])
     @requirement_link = RequirementUseCase.where(:requirement_id => @requirement.id, :use_case_id => @use_case.id ).first
     @requirement_link.destroy
 

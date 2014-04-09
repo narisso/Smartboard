@@ -93,6 +93,30 @@ class RequirementsController < ApplicationController
     end
   end
 
+  # Deletes link to use case
+  #
+  # @param id [String] the requirement's id
+  # @param use_case_id [String] the use case id
+  # @return [String] the content of the deletion as JSON
+  def unlink
+    @requirement = Requirement.find(params[:id])
+    @use_case = Requirement.find(params[:use_case_id])
+    @requirement_link = RequirementUseCase.where(:requirement_id => @requirement.id, :use_case_id => @use_case.id ).first
+    @requirement_link.destroy
+
+    respond_to do |format|
+
+      if params[:step] == 'true'
+        format.html { redirect_to requirements_project_use_case_path(@project, @use_case, :type => 'step' ) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to requirements_project_use_case_path(@project, @use_case) }
+        format.json { head :no_content }
+      end
+
+    end
+  end
+
   # Deletes a requirement of the application
   #
   # @param id [String] the requirement's id

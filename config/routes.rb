@@ -132,6 +132,7 @@
         get  :attach_document
         post :add_document
         get :add_use_case
+        delete :unlink
       end
       resources :document_requirements
     end

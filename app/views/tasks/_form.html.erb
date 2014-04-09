@@ -33,6 +33,11 @@
                     :label_method => :email,
                     :include_blank => true,
                     :input_html => { class: 'chosen-select' } %>
+  <%= f.association :use_case,
+                    :collection => @project.use_cases,
+                    :label_method => :name,
+                    :include_blank => true,
+                    :input_html => { class: 'chosen-select' } %>
 
    <% if params[:use_case] %>
    <%= f.input :use_case_id, :as => :hidden, :input_html => { :value => params[:use_case] } %>

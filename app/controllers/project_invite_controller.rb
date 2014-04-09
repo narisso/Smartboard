@@ -23,31 +23,41 @@ class ProjectInviteController < ApplicationController
   end
 
   def send_invitation
-  	@project_role_user = ProjectRoleUser.new
-  	@project = Project.find(params[:project_id])
-  	@email = params[:project_invitation][:email]
-  	role = Role.find_by_name(params[:role_guest])
-  	@project_role_user.role_id = role.id
-  	@project_role_user.project_id = @project.id
-  	@project_role_user.invitation_confirmed = false
+    @email = params[:project_invitation][:email]
+    @project = Project.find(params[:project_id])
+    respond_to do |format|
+      unless @email.nil? or @email.blank?
+      	@project_role_user = ProjectRoleUser.new
+      	
+      	role = Role.find_by_name(params[:role_guest])
+      	@project_role_user.role_id = role.id
+      	@project_role_user.project_id = @project.id
+      	@project_role_user.invitation_confirmed = false
 
-  	user = User.find_by_email(@email)
-    flash[:notice] = "An invitation email has been sent to #{@email}."
+      	user = User.find_by_email(@email)
+        flash[:notice] = "An invitation email has been sent to #{@email}."
 
-  	if not user
-      user = User.new(:email=> @email, :password => 'asdfasdf', :password_confirmation => 'asdfasdf')
-      user.encrypted_password=""
-      user.skip_confirmation!
-      user.save
-  	end
-    
-    @project_role_user.user_id = user.id
-    @project_role_user.save
-    @project_role_user = ProjectRoleUser.find_by_project_id_and_user_id(@project.id,user.id)
-    @project_role_user.update_attributes(:invitation_token => ProjectRoleUser.generate_token)
-    ProjectInviteMailer.send_invitation(@project_role_user,@email).deliver
+      	if not user
+          user = User.new(:email=> @email, :password => 'asdfasdf', :password_confirmation => 'asdfasdf')
+          user.encrypted_password=""
+          user.skip_confirmation!
+          user.save
+      	end
+        
+        @project_role_user.user_id = user.id
+        @project_role_user.save
+        @project_role_user = ProjectRoleUser.find_by_project_id_and_user_id(@project.id,user.id)
+        @project_role_user.update_attributes(:invitation_token => ProjectRoleUser.generate_token)
+        ProjectInviteMailer.send_invitation(@project_role_user,@email).deliver
 
-    redirect_to boards_project_path(@project)
+        redirect_to boards_project_path(@project)
+        return
+      else
+        flash[:error] = "You must specify an email"
+        redirect_to boards_project_path(@project)
+        return
+      end
+    end
   end
 
   def decide

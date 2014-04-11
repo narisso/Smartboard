@@ -19,7 +19,7 @@
 //= require best_in_place
 //= require flash_message
 //= require d3
-
+//= require private_pub
 
 $(document).bind("page:load", function() {
 

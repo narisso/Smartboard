@@ -261,29 +261,28 @@
         $('#commit_help_content').html('In order to append your Github commit\'s to this project add "#ID" at the end of each commit message. Where ID is the unique identifier for each task.');
       });
 
-        <%if user_signed_in?%>
-      $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $('.dropdown-notification').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
+      <% if user_signed_in? and false %>
+        $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+        function( data ) {
+          $('.dropdown-notification').append(data);
+          var n = $(data).children().size() - 2;
+          $("#notification-badge").html(n);
+        } );
 
 
-    setInterval(function(){
-      
-           $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
-      function( data ) {
-        $(".dropdown-notification").children(".dropdown-menu").remove();
-        $('.dropdown-notification').append(data);
-        var n = $(data).children().size() - 2;
-        $("#notification-badge").html(n);
-      } );
+        setInterval(function(){
+          
+               $.post( "<%= Rails.application.routes.url_helpers.notifications_path %>",
+          function( data ) {
+            $(".dropdown-notification").children(".dropdown-menu").remove();
+            $('.dropdown-notification').append(data);
+            var n = $(data).children().size() - 2;
+            $("#notification-badge").html(n);
+          } );
 
+        },10000);
 
-    },10000);
-
-    <% end %>
+      <% end %>
 
       
 

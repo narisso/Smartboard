@@ -244,6 +244,7 @@ class TasksController < ApplicationController
   # @param col [String] the id of the new status of the task
   def update_status
     @task = Task.find(params[:task_id])
+    @old_status_id = @task.status.id
     @project = Project.find(params[:id])
     @status = Status.find(params[:col])
     
@@ -251,11 +252,10 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.save
-        format.json { render :js => project_status_task_path(@project,@status,@task) }
+        PrivatePub.publish_to "/#{Rails.env}/tasks/move", :move => {:id => @task.id, :col => @status.id, :ocol=> @old_status_id }.to_json
         format.json { head :no_content }
       else
-        format.js { render :js => "alert('error')" }
-        format.json { head :no_content }
+        format.js { render :js => "alert('Error, please reload')" }
       end
     end
 

@@ -111,6 +111,13 @@
   <script type="text/javascript">
     var totalTasks = <%= @total %>;
     var status_path = "<%= project_path(@project) %>";
+    
+    <% subscription =  PrivatePub.subscription(:channel => "/#{Rails.env}/tasks/move") %>
+    var s_channel = "<%= subscription[:channel] %>"
+    var s_times = "<%= subscription[:timestamp] %>"
+    var s_signature = "<%= subscription[:signature] %>"
+    var s_server = "<%= subscription[:server] %>"
+
   </script>
     <%= javascript_include_tag "board_scripts" -%>
 <%- end -%>

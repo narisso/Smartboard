@@ -1,5 +1,25 @@
 jQuery(document).ready(function($) {
 
+  PrivatePub.sign({
+    channel: s_channel,
+    timestamp: s_times,
+    signature: s_signature,
+    server: s_server
+  });
+
+  PrivatePub.subscribe(s_channel, function(data, channel) {
+    
+    data.move = jQuery.parseJSON(data.move)
+    from = $("ul[data-id="+data.move.ocol+"]").find("li[data-id="+data.move.id+"]").parent();
+    $("ul[data-id="+data.move.col+"]").prepend(from);
+
+    var old_i = Math.floor(  $("ul[data-id="+data.move.ocol+"]").children().length*100/totalTasks );
+    var new_i = Math.floor(  $("ul[data-id="+data.move.col+"]").children().length*100/totalTasks );
+    $("ul[data-id="+data.move.ocol+"]").parent().children(".task-percentage").html(old_i + "% of total tasks");
+    $("ul[data-id="+data.move.col+"]").parent().children(".task-percentage").html(new_i + "% of total tasks");
+
+  });
+
   $('#myModal').on('hidden', function () {
     $('#myModal').html('<div id="modal-progress-large hide"><div class="modal-header"><h1>Loading...</h1></div><div class="modal-body"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div></div>')
   })

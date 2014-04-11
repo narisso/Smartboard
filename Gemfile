@@ -79,6 +79,10 @@ gem 'best_in_place'
 # Framework for reports
 gem "d3-rails"
 
+# Push notifications
+gem "private_pub"
+gem "thin"
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

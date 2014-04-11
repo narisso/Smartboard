@@ -252,7 +252,7 @@ class TasksController < ApplicationController
     
     respond_to do |format|
       if @task.save
-        PrivatePub.publish_to "/#{Rails.env}/tasks/move", :move => {:id => @task.id, :col => @status.id, :ocol=> @old_status_id }.to_json
+        PrivatePub.publish_to "/#{Rails.env}/projects/#{@project.id}/tasks/move", :move => {:id => @task.id, :col => @status.id, :ocol=> @old_status_id }.to_json
         format.json { head :no_content }
       else
         format.js { render :js => "alert('Error, please reload')" }

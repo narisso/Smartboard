@@ -5,9 +5,9 @@ test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
 staging:
-  server: "http://trackpro.ing.puc.cl:9292/faye"
+  server: "http://trackpro.ing.puc.cl:3030/faye"
   secret_token: "4d446f3e098cdd0555643a808d3576adfd89b576a274aa06f10c900ad5bd3acf"
   signature_expiration: 3600 # one hour
 production:
-  server: "http://trackpro.ing.puc.cl:9292/faye"
+  server: "http://trackpro.ing.puc.cl:3030/faye"
   secret_token: "4d446f3e098cdd0555643a808d3576adfd89b576a274aa06f10c900ad5bd3acf"

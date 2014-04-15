@@ -81,6 +81,10 @@ function filterByDateClick(){
 
 }
 
+function filterByUser(){
+
+}
+
 function filterByDate(date){
 
   $(".sortable").children().each(
@@ -108,22 +112,12 @@ function filterByDate(date){
         $(this).hide();
         $(this).attr("vis","hidden");
       }
-
-
-
-
     });
-
-
       $(".sortable").each(function(index) {
             var i = Math.floor( $(this).children("[vis!='hidden']").length*100/totalTasks );
 
             $(this).parent().children(".task-percentage").html(i + "% of total tasks");
-
-
       });
-
-
 }
 
 

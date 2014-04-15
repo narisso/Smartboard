@@ -19,7 +19,14 @@
       <option>Last Week</option>
       <option>Today</option>
     </select>
-    <label class="tasks-created-label" for="tasks-created" style=" width: 100px;">All</label>
+
+    <label class="tasks-created-label" for="tasks-created" style=" width: 75px;">All</label>
+
+    <label class="" style=" width: 75px;">My Tasks:</label>
+    <input class="checkbox" id="filter_own" name="filter_own" type="checkbox" value="true" style=" width: 75px;">
+
+    <input type="text" class="input-medium search-query" style="height: 15px" placeholder="Search ...">
+
     <!--<div class="btn"  onClick="filterByDateClick();"> Filter </div>-->
     <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;",:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
   </form>
@@ -111,7 +118,7 @@
   <script type="text/javascript">
     var totalTasks = <%= @total %>;
     var status_path = "<%= project_path(@project) %>";
-    
+
     <% subscription =  PrivatePub.subscription(:channel => "/#{Rails.env}/projects/#{@project.id}/tasks/move") %>
     var s_channel = "<%= subscription[:channel] %>"
     var s_times = "<%= subscription[:timestamp] %>"

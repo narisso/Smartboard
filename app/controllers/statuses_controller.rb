@@ -131,7 +131,7 @@ class StatusesController < ApplicationController
       @status.save
     respond_to do |format|
       if @status.save
-        format.js { render :js => "" }
+        #PrivatePub.publish_to "/#{Rails.env}/projects/#{@project.id}/tasks/move", :move => {:type => "status", :id => @task.id, :col => @status.id, :ocol=> @old_status_id }.to_json
         format.json { head :no_content }
       else
         format.js { render :js => "alert('error')" }

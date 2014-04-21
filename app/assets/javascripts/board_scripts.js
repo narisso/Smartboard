@@ -17,10 +17,10 @@ jQuery(document).ready(function($) {
         from = $("ul[data-id="+data.move.ocol+"]").find("li[data-id="+data.move.id+"]").parent();
         from.attr("href",status_path+"/statuses/"+data.move.col+"/tasks/"+data.move.id)
 
+        $("ul[data-id="+data.move.col+"]").insertAt(data.move.index,from);   
+
         var old_i = Math.floor(  $("ul[data-id="+data.move.ocol+"]").children().length*100/totalTasks );
         var new_i = Math.floor(  $("ul[data-id="+data.move.col+"]").children().length*100/totalTasks );
-
-        $("ul[data-id="+data.move.col+"]").insertAt(data.move.index,from);    
 
         $("ul[data-id="+data.move.ocol+"]").parent().children(".task-percentage").html(old_i + "% of total tasks");
         $("ul[data-id="+data.move.col+"]").parent().children(".task-percentage").html(new_i + "% of total tasks");

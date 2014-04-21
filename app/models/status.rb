@@ -1,7 +1,7 @@
 #Contains the status' model
 class Status < ActiveRecord::Base
 
-  attr_accessible :name, :project_id, :order
+  attr_accessible :name, :project_id, :order, :task_order_string
   validates :name, :project_id, :order, presence: true
 
   has_many :tasks
@@ -26,6 +26,40 @@ class Status < ActiveRecord::Base
       self.destroy
       return true
     end
+  end
+
+  def tasks_ordered
+    my_tasks = self.tasks
+    task_order = JSON.parse(self.task_order_string)
+    new_tasks = []
+    my_tasks.each_with_index do |task,i|
+      new_tasks << my_tasks.detect{|t| t.id == task_order[i]}
+    end
+    return new_tasks
+  end
+
+  def set_task_order_string_by_date
+    tasks = self.tasks.order('tasks.created_at DESC')
+    new_order = []
+    tasks.each do |task|
+      new_order << task.id
+    end
+    self.task_order_string = new_order.to_s
+  end
+
+  def insert_into_task_order( index , task_id )
+    task_order = JSON.parse(self.task_order_string)
+    if task_order.include? task_id
+      task_order.delete(task_id)
+    end
+    task_order.insert( index,task_id )
+    self.task_order_string = task_order.to_s
+  end
+
+  def delete_from_task_order( task_id )
+    task_order = JSON.parse(self.task_order_string)
+    task_order.delete(task_id)
+    self.task_order_string = task_order.to_s
   end
 
 

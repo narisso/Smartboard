@@ -1,12 +1,12 @@
 <div class="loading">
   <div id="bowlG">
-<div id="bowl_ringG">
-<div class="ball_holderG">
-<div class="ballG">
-</div>
-</div>
-</div>
-</div>
+    <div id="bowl_ringG">
+      <div class="ball_holderG">
+        <div class="ballG">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -25,7 +25,7 @@
     <label class="" style=" width: 75px;">My Tasks:</label>
     <input class="checkbox" id="filter_own" name="filter_own" type="checkbox" value="true" style=" width: 75px;">
 
-    <input type="text" class="input-medium search-query" style="height: 15px" placeholder="Search ...">
+    <input type="text" id="filter_search" class="input-medium search-query" style="height: 15px" placeholder="Search ...">
 
     <!--<div class="btn"  onClick="filterByDateClick();"> Filter </div>-->
     <%= link_to "Add Column", new_project_status_path(:project_id => @project.id),:class=>"btn btn-primary pull-right",:style =>"margin:5px;",:data => {:toggle => "modal", :remote => true, :target => '#modal'} %>
@@ -46,7 +46,7 @@
 
       <p class='block text-center handle task-percentage'><%= status.tasks.length.to_i*100/@total.to_i %>% of total tasks</p>
   		<ul class='sortable scroll' data-id='<%=status.id%>'> 
-  			<% status.tasks.each_with_index do |task , i| %>
+  			<% status.tasks_ordered.each_with_index do |task , i| %>
         <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'},:class=>"task#{ if task.lock then ' locked' end }",:style=>"text-decoration: none;"  do %>
   				<li data-id="<%= task.id %>" class='' data-created="<%= task.created_at %>">
             <div class="task-info block">
@@ -124,6 +124,7 @@
     var s_times = "<%= subscription[:timestamp] %>"
     var s_signature = "<%= subscription[:signature] %>"
     var s_server = "<%= subscription[:server] %>"
+    var current_user = "<%= current_user.email %>"
 
   </script>
     <%= javascript_include_tag "board_scripts" -%>

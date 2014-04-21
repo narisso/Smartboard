@@ -83,10 +83,15 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @task.task_type = @task.label.name
     @task.project = Project.find(params[:project_id])
-    @task.status = Status.find(params[:status_id])
+    @status = Status.find(params[:status_id])
+    @task.status = @status
+
+
 
     respond_to do |format|
       if @task.save_and_notify boards_project_path(@task.project_id), current_user
+        @status.insert_into_task_order(0,@task.id)
+        @status.save
         format.js { render :js => "location.reload();" }
         format.html { redirect_to boards_project_path(@task.project_id)}#, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
@@ -124,6 +129,9 @@ class TasksController < ApplicationController
   # @return [String] the content of the deletion as JSON
   def destroy
     @task = Task.find(params[:id])
+    @status = @task.status
+    @status.delete_from_task_order(@task.id)
+    @status.save
     @task.destroy
 
     respond_to do |format|
@@ -242,17 +250,33 @@ class TasksController < ApplicationController
   # @param task_id [String] the task's id
   # @param id [String] the project's id
   # @param col [String] the id of the new status of the task
+  # @param index [String] index inside task array
+  # @param signature [String] client signature
   def update_status
     @task = Task.find(params[:task_id])
     @old_status_id = @task.status.id
     @project = Project.find(params[:id])
+    @old_status = @task.status
     @status = Status.find(params[:col])
+    @index = params[:index].to_i
+    @signature = params[:signature]
     
-    @task.status = @status
+    if (@old_status.id != @status.id)
+      @old_status.delete_from_task_order(@task.id)
+      @status.insert_into_task_order(@index,@task.id)
+      @old_status.save
+      @status.save
+      
+      @task.status = @status
+
+    else
+      @status.insert_into_task_order(@index,@task.id)
+      @status.save
+    end
     
     respond_to do |format|
       if @task.save
-        PrivatePub.publish_to "/#{Rails.env}/projects/#{@project.id}/tasks/move", :move => {:type => "task", :id => @task.id, :col => @status.id, :ocol=> @old_status_id }.to_json
+        PrivatePub.publish_to "/#{Rails.env}/projects/#{@project.id}/tasks/move", :move => {:type => "task", :id => @task.id, :col => @status.id, :ocol=> @old_status_id, :index=>@index, :signature=>@signature }.to_json
         format.json { head :no_content }
       else
         format.js { render :js => "alert('Error, please reload')" }

@@ -21,9 +21,6 @@ require 'dropbox_sdk'
       end
     end
 
-
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -64,7 +61,6 @@ require 'dropbox_sdk'
       @g = Github.new :oauth_token => @github_token
       @github_username = @g.users.get.body["login"]
     end
-
 
     @project = Project.new
 

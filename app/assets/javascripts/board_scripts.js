@@ -10,18 +10,21 @@ jQuery(document).ready(function($) {
   PrivatePub.subscribe(s_channel, function(data, channel) {
     
     data.move = jQuery.parseJSON(data.move)
-
-    if(data.move.type == "task")
+    if(data.move.signature != s_signature)
     {
-      from = $("ul[data-id="+data.move.ocol+"]").find("li[data-id="+data.move.id+"]").parent();
-      from.attr("href",status_path+"/statuses/"+data.move.col+"/tasks/"+data.move.id)
-      $("ul[data-id="+data.move.col+"]").prepend(from);
+      if(data.move.type == "task")
+      {
+        from = $("ul[data-id="+data.move.ocol+"]").find("li[data-id="+data.move.id+"]").parent();
+        from.attr("href",status_path+"/statuses/"+data.move.col+"/tasks/"+data.move.id)
 
+        var old_i = Math.floor(  $("ul[data-id="+data.move.ocol+"]").children().length*100/totalTasks );
+        var new_i = Math.floor(  $("ul[data-id="+data.move.col+"]").children().length*100/totalTasks );
 
-      var old_i = Math.floor(  $("ul[data-id="+data.move.ocol+"]").children().length*100/totalTasks );
-      var new_i = Math.floor(  $("ul[data-id="+data.move.col+"]").children().length*100/totalTasks );
-      $("ul[data-id="+data.move.ocol+"]").parent().children(".task-percentage").html(old_i + "% of total tasks");
-      $("ul[data-id="+data.move.col+"]").parent().children(".task-percentage").html(new_i + "% of total tasks");
+        $("ul[data-id="+data.move.col+"]").insertAt(data.move.index,from);    
+
+        $("ul[data-id="+data.move.ocol+"]").parent().children(".task-percentage").html(old_i + "% of total tasks");
+        $("ul[data-id="+data.move.col+"]").parent().children(".task-percentage").html(new_i + "% of total tasks");
+      }
     }
   });
 
@@ -46,7 +49,11 @@ jQuery(document).ready(function($) {
 	})
 });
 
-function filterByDateClick(){
+function filterByAllClick()
+{
+  var date_string = $( "#tasks-created" )[0].value
+  var opt = $( "#filter_own" ).prop('checked')
+  var query = $("#filter_search").val()
 
   if($( "#tasks-created" )[0].value =="Last Week") {
     var date = new Date(Date.now());
@@ -54,15 +61,16 @@ function filterByDateClick(){
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);
-    filterByDate(date);
+    filterByAll(opt,date,query);
   }
   else if($( "#tasks-created" )[0].value =="Today"){
     var date = new Date(Date.now());
+    date.setDate(date.getDate()-1);
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);
 
-    filterByDate(date);
+    filterByAll(opt,date,query);
   }
   else if($( "#tasks-created" )[0].value =="Last Month"){
     var date = new Date(Date.now());
@@ -71,40 +79,34 @@ function filterByDateClick(){
     date.setMinutes(0);
     date.setSeconds(0);
 
-    filterByDate(date);
+    filterByAll(opt,date,query);
   }
   else {
     var date = new Date("October 16, 1989 00:00:00");
-    filterByDate(date);
+    filterByAll(opt,date,query);
 
   }
 
 }
 
-function filterByUser(){
-
-}
-
-function filterByDate(date){
+function filterByAll(opt,date,query){
 
   $(".sortable").children().each(
     function(index){
-
-
       var stringdate = new String($(this).children("li").data("created")).replace(' UTC', '');
       stringdate = stringdate.split(' ')[0];
       var dateItem = new Date();
+      var user = $(this).find("img[alt='"+current_user+"']").size()
+      var name = $(this).find("div[class='overflow-wrapper']:contains('"+query+"')").size()
+
       dateItem.setUTCFullYear( parseInt(stringdate.split('-')[0]) );
       dateItem.setUTCMonth( parseInt(stringdate.split('-')[1])-1 );
       dateItem.setUTCDate( parseInt(stringdate.split('-')[2]) );
       dateItem.setUTCHours(0);
       dateItem.setUTCMinutes(0);
       dateItem.setUTCSeconds(0);
-      //alert( stringdate + "     "+dateItem.toUTCString() )
-      //alert( date.toUTCString() )
-      //alert( dateItem+"    >=    "+date )
-      //alert( (dateItem-date) / 1000 / 60 / 60 / 24)
-      if(dateItem>=date){
+
+      if( dateItem>=date && ( user>0 || !opt) && name >0){
         $(this).show();
         $(this).removeAttr("vis");
       }
@@ -113,11 +115,10 @@ function filterByDate(date){
         $(this).attr("vis","hidden");
       }
     });
-      $(".sortable").each(function(index) {
-            var i = Math.floor( $(this).children("[vis!='hidden']").length*100/totalTasks );
-
-            $(this).parent().children(".task-percentage").html(i + "% of total tasks");
-      });
+    $(".sortable").each(function(index) {
+      var i = Math.floor( $(this).children("[vis!='hidden']").length*100/totalTasks );
+      $(this).parent().children(".task-percentage").html(i + "% of total tasks");
+    });
 }
 
 
@@ -132,12 +133,31 @@ function filterByDate(date){
       range: "min",
       value: select[ 0 ].selectedIndex + 1,
       slide: function( event, ui ) {
-        select[ 0 ].selectedIndex = ui.value - 1;
-        $(".tasks-created-label").html(select[ 0 ].value)
-        filterByDateClick();
+          select[ 0 ].selectedIndex = ui.value - 1;
+          $(".tasks-created-label").html(select[ 0 ].value)
+          filterByAllClick();
+        }
+    });
+
+    var checkbox = $("#filter_own");
+    checkbox.change(function () {
+      filterByAllClick();
+    });
+
+    var searchbox = $("#filter_search");
+    searchbox.keyup(function () {
+      filterByAllClick();
+    });
+    searchbox.keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
       }
     });
+
   });
+
+
 
     $('ul.board').sortable({
       handle: ".handle",
@@ -149,13 +169,9 @@ function filterByDate(date){
                   var id = $(this).data("id");
                   var col = $(this).index();
 
-
                   $.post( "statuses/update_order", { status_id: id, num: col } );
 
                 })
-                
-
-
           }
     });
 
@@ -179,9 +195,9 @@ function filterByDate(date){
       stop: function(event, ui){
             var id = $(ui.item).find("li").data("id")
             var col = $(ui.item).parents(".column").data("id")
-
+            var index = $(ui.item).index();
             $(ui.item).attr("href",status_path+"/statuses/"+col+"/tasks/"+id)
-            $.post( "tasks/update_status", { task_id: id, col: col } );
+            $.post( "tasks/update_status", { task_id: id, col: col, index: index, signature: s_signature } );
             var i = Math.floor(  $(ui.item).parent().children().length*100/totalTasks );
             $(ui.item).parent().parent().children(".task-percentage").html(i + "% of total tasks");
       }
@@ -189,8 +205,6 @@ function filterByDate(date){
          
   $('.hide').removeClass('hide');
   $('.progress').addClass('hide');
-
-
 
 
   $('.loading').addClass('hide');

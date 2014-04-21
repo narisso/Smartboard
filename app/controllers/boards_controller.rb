@@ -14,6 +14,7 @@ class BoardsController < ApplicationController
 			redirect_to boards_project_path(@project)
 		end
   	end
+
 	# Shows the administrator, project manager and developer board's view and indicates the link with dropbox and github
   	#
   	# @param id [String] the project's id
@@ -103,7 +104,7 @@ class BoardsController < ApplicationController
       begin
         client = DropboxClient.new(dbsession)
         response = client.put_file(file_path, file)
-        flash[:success] = "We have send a document to your dropbox "
+        flash[:success] = "We have sent a document to your dropbox"
         return true
       rescue
         return false

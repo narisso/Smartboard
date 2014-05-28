@@ -79,8 +79,8 @@
                             <% if @project.get_role(current_user) == "Administrator" %>
                             <% if @project.github_token %>
                               <% if !@project.github_token.empty? %>
-                                <% if !@project.get_repo_names(@project.github_user,@project.github_token).empty?%>
-                                  <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
+                                <% repo_list = @project.get_repo_names(@project.github_user,@project.github_token)%>
+                                <% if !repo_list.empty?%>
                                   <% repo_list.each do |repo|%>
                                     <li id="repo"><!--a tabindex="-1" href="#"-->
                                       <% rep = repo[:repo] %> 

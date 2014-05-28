@@ -261,14 +261,12 @@ class TasksController < ApplicationController
     @index = params[:index].to_i
     @signature = params[:signature]
     
-    if (@old_status.id != @status.id)
+    if @old_status.id != @status.id
       @old_status.delete_from_task_order(@task.id)
       @status.insert_into_task_order(@index,@task.id)
       @old_status.save
       @status.save
-      
       @task.status = @status
-
     else
       @status.insert_into_task_order(@index,@task.id)
       @status.save

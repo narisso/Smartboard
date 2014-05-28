@@ -46,17 +46,18 @@ class BoardsController < ApplicationController
       		@total = 1
     	end
     	skip_footer = true
- 		if session[:dropbox_session]  
-          	@project.dropbox_token =  session[:dropbox_session]
-          	@project.save
-          	session.delete :dropbox_session 
-          if send_confirmation_doc       
-          	flash[:success] = ""
-          else
-            @project.dropbox_token =  nil
+        if session[:dropbox_session]  
+            @project.dropbox_token =  session[:dropbox_session]
             @project.save
-          end
-        end  	
+            session.delete :dropbox_session 
+            if send_confirmation_doc       
+                flash[:success] = ""
+            else
+                @project.dropbox_token =  nil
+                @project.save
+            end
+        end  
+
 		@highlight = params[:task_highlight]
         respond_to do |format|
             format.html 

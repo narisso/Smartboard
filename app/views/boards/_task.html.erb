@@ -1,0 +1,22 @@
+<%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'},:class=>"task#{ if task.lock then ' locked' end }",:style=>"text-decoration: none;"  do %>
+                <li data-id="<%= task.id %>" class='' data-created="<%= task.created_at %>">
+            <div class="task-info block">
+              <span class='task-type' style="background-color: <%= task.label.color %>" >
+                      <%= task.label.name %>
+              </span>
+              <span class='task-time'>
+                      <%= task.estimated_hours %>
+              </span>
+            </div>
+            <div class="overflow-wrapper">
+            <h5>
+              <%= task.name %>
+            </h5>
+            </div>
+            <div class="task-users block">
+              <% task.users.each do |user| %>
+                <%= gravatar_tag user.email%>
+              <% end %>
+            </div>
+          </li> 
+          <% end %>

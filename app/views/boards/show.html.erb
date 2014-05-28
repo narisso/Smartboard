@@ -83,10 +83,10 @@
     <p class='block text-center handle task-percentage'><%= @statuses.last.tasks.length*100/@total %>% of total tasks</p>
 
     <ul class='sortable scroll' data-id='<%=@statuses.last.id%>' style="margin:0px;"> 
-      <% @statuses.last.tasks.each_with_index do |task , i| %>
+      <% @statuses.last.tasks_ordered.each_with_index do |task , i| %>
 
-        <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'} do %>
-          <li data-id="<%= task.id %>" class='task<%= if(task.lock) then " locked" end%>' data-created="<%= task.created_at %>">
+        <%= link_to project_status_task_path(task.status.project, task.status, task) ,:data => {:toggle => "modal", :remote => true, :target => '#modal-large'},:class=>"task#{ if task.lock then ' locked' end }",:style=>"text-decoration: none;"  do %>
+          <li data-id="<%= task.id %>" class='' data-created="<%= task.created_at %>">
 
             <div class="task-info block">
                   <span class='task-type' style="background-color: <%= task.label.color %>" >

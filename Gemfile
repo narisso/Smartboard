@@ -83,6 +83,9 @@ gem "d3-rails"
 gem "private_pub"
 gem "thin"
 
+# PDF Docs
+gem 'wkhtmltopdf-binary'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

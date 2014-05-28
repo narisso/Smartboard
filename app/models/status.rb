@@ -48,18 +48,22 @@ class Status < ActiveRecord::Base
   end
 
   def insert_into_task_order( index , task_id )
-    task_order = JSON.parse(self.task_order_string)
-    if task_order.include? task_id
-      task_order.delete(task_id)
+    unless task_id.nil? or ! task_id.is_a? Fixnum or index.nil? or ! index.is_a? Fixnum
+      task_order = JSON.parse(self.task_order_string)
+      if task_order.include? task_id
+        task_order.delete(task_id)
+      end
+      task_order.insert( index,task_id )
+      self.task_order_string = task_order.to_s
     end
-    task_order.insert( index,task_id )
-    self.task_order_string = task_order.to_s
   end
 
   def delete_from_task_order( task_id )
-    task_order = JSON.parse(self.task_order_string)
-    task_order.delete(task_id)
-    self.task_order_string = task_order.to_s
+    unless task_id.nil? or ! task_id.is_a? Fixnum
+      task_order = JSON.parse(self.task_order_string)
+      task_order.delete(task_id)
+      self.task_order_string = task_order.to_s
+    end
   end
 
 

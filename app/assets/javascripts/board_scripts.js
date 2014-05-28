@@ -157,23 +157,21 @@ function filterByAll(opt,date,query){
 
   });
 
+  $('ul.board').sortable({
+    handle: ".handle",
+     stop: function(event, ui){
+              var children = $(ui.item).parents(".board").children("li");
 
+              children.each(function() {
 
-    $('ul.board').sortable({
-      handle: ".handle",
-       stop: function(event, ui){
-                var children = $(ui.item).parents(".board").children("li");
+                var id = $(this).data("id");
+                var col = $(this).index();
 
-                children.each(function() {
+                $.post( "statuses/update_order", { status_id: id, num: col } );
 
-                  var id = $(this).data("id");
-                  var col = $(this).index();
-
-                  $.post( "statuses/update_order", { status_id: id, num: col } );
-
-                })
-          }
-    });
+              })
+        }
+  });
 
   $( "ul.sortable" ).sortable({
       cursor: "move",

@@ -29,30 +29,33 @@ class Project < ActiveRecord::Base
   # @param git_token [String] the token of the github account
   # @return [Array] the array of name of the repositories
   def get_repo_names github_username , git_token
-    repo_names = Array.new
-    github = Github.new :oauth_token => git_token
 
-    github.repos.list.body.each do |repo|
-      if github_username == repo["owner"]["login"]
-        repo_names << { :user=>github_username ,:repo=>repo["name"]}
-      end
-    end
+    Rails.cache.fetch("#{self.id}/repo_names", expires_in: 6.hours) do
+      repo_names = Array.new
+      github = Github.new :oauth_token => git_token
 
-    orgs_names = Array.new
-    github.orgs.list.each do |org|
-      orgs_names << org["login"]
-    end
-
-    orgs_names.each do |oname|
-      url = "orgs/"+oname+"/repos"
-      
-      github.get_request(url,Github::ParamsHash.new({})).each do |orepo|
-        if oname == orepo["owner"]["login"]
-          repo_names << { :user=>oname ,:repo=>orepo["name"]}
+      github.repos.list.body.each do |repo|
+        if github_username == repo["owner"]["login"]
+          repo_names << { :user=>github_username ,:repo=>repo["name"]}
         end
       end
+
+      orgs_names = Array.new
+      github.orgs.list.each do |org|
+        orgs_names << org["login"]
+      end
+
+      orgs_names.each do |oname|
+        url = "orgs/"+oname+"/repos"
+        
+        github.get_request(url,Github::ParamsHash.new({})).each do |orepo|
+          if oname == orepo["owner"]["login"]
+            repo_names << { :user=>oname ,:repo=>orepo["name"]}
+          end
+        end
+      end
+      repo_names
     end
-    repo_names
   end
 
   # Gets the names of all users that posses a certain repository of Github.

@@ -34,7 +34,10 @@ class Status < ActiveRecord::Base
     new_tasks = []
 
     my_tasks.each_with_index do |task,i|
-      new_tasks << my_tasks.detect{|t| t.id == task_order[i]}
+      t = my_tasks.detect{|t| t.id == task_order[i]}
+      unless t.nil?
+        new_tasks << t
+      end
     end
 
     if my_tasks.count != new_tasks.count

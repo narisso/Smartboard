@@ -32,9 +32,17 @@ class Status < ActiveRecord::Base
     my_tasks = self.tasks
     task_order = JSON.parse(self.task_order_string)
     new_tasks = []
+
     my_tasks.each_with_index do |task,i|
       new_tasks << my_tasks.detect{|t| t.id == task_order[i]}
     end
+
+    if my_tasks.count != new_tasks.count
+      self.set_task_order_string_by_date
+      self.save
+      return self.tasks_ordered
+    end
+
     return new_tasks
   end
 

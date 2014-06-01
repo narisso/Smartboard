@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140421122904) do
+ActiveRecord::Schema.define(:version => 20140601153439) do
 
   create_table "bugs", :force => true do |t|
     t.text     "description"
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(:version => 20140421122904) do
     t.datetime "updated_at",                          :null => false
     t.integer  "project_id"
     t.integer  "order"
-    t.string   "task_order_string", :default => "[]"
+    t.text     "task_order_string", :default => "[]"
   end
 
   create_table "sub_tasks", :force => true do |t|

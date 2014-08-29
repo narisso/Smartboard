@@ -1,3 +1,11 @@
+== SmartBoard
+
+Ruby 1.9.3
+Rails 3.2.13
+
+rails s (port 3000)
+rackup private_pub.ru -s -E production -D (port 9292)
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
